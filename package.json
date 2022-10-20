@@ -1,0 +1,16 @@
+{
+  "name": "paracosm",
+  "version": "1.0.0",
+  "private": true,
+  "repository": "https://github.com/junhoyeo/paracosm",
+  "author": "Junho Yeo <i@junho.io>",
+  "license": "MIT",
+  "scripts": {
+    "lint": "prettier --write ."
+  },
+  "devDependencies": {
+    "@ianvs/prettier-plugin-sort-imports": "^3.4.2",
+    "prettier": "^2.7.1"
+  },
+  "packageManager": "yarn@3.2.4"
+}

@@ -1,0 +1,16 @@
+node_modules
+dist
+build
+lib
+.DS_Store
+*.tsbuildinfo
+
+## Yarn
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+
+# Vercel
+.next
+.vercel
