@@ -1,16 +1,25 @@
 {
   "name": "paracosm",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "private": true,
-  "repository": "https://github.com/junhoyeo/paracosm",
-  "author": "Junho Yeo <i@junho.io>",
-  "license": "MIT",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
-    "lint": "prettier --write ."
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
-    "@ianvs/prettier-plugin-sort-imports": "^3.4.2",
-    "prettier": "^2.7.1"
+    "eslint-config-custom": "*",
+    "prettier": "latest",
+    "turbo": "latest"
   },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {},
   "packageManager": "yarn@3.2.4"
 }
