@@ -9,17 +9,16 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
-    "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "lint": "turbo run lint"
   },
+  "dependencies": {},
   "devDependencies": {
-    "eslint-config-custom": "*",
+    "eslint": "^8.25.0",
     "prettier": "latest",
     "turbo": "latest"
   },
+  "packageManager": "yarn@3.2.4",
   "engines": {
     "node": ">=14.0.0"
-  },
-  "dependencies": {},
-  "packageManager": "yarn@3.2.4"
+  }
 }

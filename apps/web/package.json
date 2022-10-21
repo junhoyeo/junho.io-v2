@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next/eslint-plugin-next": "^12.3.1",
+    "@vercel/style-guide": "^4.0.2",
     "next": "12.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -16,12 +18,12 @@
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
+    "@types/node": "^17.0.12",
+    "@types/react": "18.0.17",
     "eslint": "7.32.0",
     "eslint-config-custom": "*",
     "next-transpile-modules": "9.0.0",
     "tsconfig": "*",
-    "@types/node": "^17.0.12",
-    "@types/react": "18.0.17",
     "typescript": "^4.5.3"
   }
 }

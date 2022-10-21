@@ -1,6 +1,7 @@
+import { type NextPage } from "next";
 import { Button } from "ui";
 
-export default function Docs() {
+const Docs: NextPage = () => {
   return (
     <div>
       <h1>Docs</h1>
@@ -8,3 +9,5 @@ export default function Docs() {
     </div>
   );
 }
+
+export default Docs

@@ -1,5 +1,11 @@
 {
-  "extends": "tsconfig/react-library.json",
+  "extends": "@vercel/style-guide/typescript",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "lib": ["ES2015"],
+    "module": "ESNext",
+    "target": "es6"
+  },
   "include": ["."],
   "exclude": ["dist", "build", "node_modules"]
 }
