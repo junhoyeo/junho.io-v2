@@ -1,5 +1,5 @@
-import { type NextPage } from "next";
-import { Button } from "ui";
+import { type NextPage } from 'next';
+import { Button } from 'ui';
 
 const Docs: NextPage = () => {
   return (
@@ -8,6 +8,6 @@ const Docs: NextPage = () => {
       <Button />
     </div>
   );
-}
+};
 
-export default Docs
+export default Docs;

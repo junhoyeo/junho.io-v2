@@ -1,5 +1,5 @@
-import { type NextPage } from "next";
-import { Button } from "ui";
+import { type NextPage } from 'next';
+import { Button } from 'ui';
 
 const Web: NextPage = () => {
   return (
@@ -8,6 +8,6 @@ const Web: NextPage = () => {
       <Button />
     </div>
   );
-}
+};
 
-export default Web
+export default Web;

@@ -1,8 +1,8 @@
 module.exports = {
   root: true,
   extends: [
-    "turbo",
-    "prettier",
+    'turbo',
+    'prettier',
     require.resolve('@vercel/style-guide/eslint/node'),
     require.resolve('@vercel/style-guide/eslint/next'),
     require.resolve('@vercel/style-guide/eslint/react'),
@@ -20,7 +20,7 @@ module.exports = {
   ],
   rules: {
     'no-constant-binary-expression': 'off',
-    "@next/next/no-html-link-for-pages": "off",
-    "react/jsx-key": "off",
+    '@next/next/no-html-link-for-pages': 'off',
+    'react/jsx-key': 'off',
   },
 };

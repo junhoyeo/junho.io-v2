@@ -4,7 +4,7 @@ const project = resolve(__dirname, 'tsconfig.json');
 
 module.exports = {
   root: true,
-  extends: ["custom"],
+  extends: ['custom'],
   parserOptions: {
     project,
   },
@@ -14,5 +14,5 @@ module.exports = {
         project,
       },
     },
-  }
+  },
 };
