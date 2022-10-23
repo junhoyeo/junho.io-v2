@@ -7,12 +7,16 @@
   "scripts": {
     "lint": "TIMING=1 eslint \"**/*.ts*\""
   },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
   "devDependencies": {
-    "@types/react": "^17.0.37",
-    "@types/react-dom": "^17.0.11",
+    "@types/node": "^18.11.3",
+    "@types/react": "^18.0.21",
+    "@types/react-dom": "^18.0.6",
     "eslint": "latest",
     "eslint-config-custom": "*",
-    "react": "^18.2.0",
     "tsconfig": "*",
     "typescript": "^4.5.2"
   }
