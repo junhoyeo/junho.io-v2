@@ -1,0 +1,7 @@
+{
+  "name": "tsconfig",
+  "version": "1.0.0",
+  "dependencies": {
+    "@vercel/style-guide": "^4.0.2"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "extends": "@vercel/style-guide/typescript",
+  "compilerOptions": {
+    "allowJs": true,
+    "incremental": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "target": "es5"
+  }
+}
