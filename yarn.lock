@@ -235,10 +235,14 @@
   dependencies:
     "@babel/runtime" "^7.16.7"
 
-"@geist-ui/icons@^1.0.2":
+"@geist-ui/icons@git+https://github.com/junhoyeo/icons.git#dist":
   version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@geist-ui/icons/-/icons-1.0.2.tgz#00eba846fb21ce4f26601be5ef181f2374c00887"
-  integrity sha512-Npfa0NW6fQ31qw/+iMPWbs1hAcJ/3FqBjSLYgEfITDqy/3TJFpFKeVyK04AC/hTmYTsdNruVYczqPNcham5FOQ==
+  uid e63fcc96c637cb38bd88252cd5a45d57ceb0f452
+  resolved "git+https://github.com/junhoyeo/icons.git#e63fcc96c637cb38bd88252cd5a45d57ceb0f452"
+
+"@geist-ui/icons@https://github.com/junhoyeo/icons.git#dist":
+  version "1.0.2"
+  resolved "https://github.com/junhoyeo/icons.git#e63fcc96c637cb38bd88252cd5a45d57ceb0f452"
 
 "@humanwhocodes/config-array@^0.10.5":
   version "0.10.7"
