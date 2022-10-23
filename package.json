@@ -13,7 +13,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "eslint": "^8.25.0",
+    "eslint": "latest",
     "prettier": "latest",
     "turbo": "latest"
   },

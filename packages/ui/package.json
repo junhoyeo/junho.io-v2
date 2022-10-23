@@ -10,8 +10,8 @@
   "devDependencies": {
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
-    "@vercel/style-guide": "^4.0.2",
-    "eslint": "^8.25.0",
+    "eslint": "latest",
+    "eslint-config-custom": "*",
     "react": "^18.2.0",
     "tsconfig": "*",
     "typescript": "^4.5.2"
