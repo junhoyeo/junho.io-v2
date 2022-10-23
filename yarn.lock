@@ -235,6 +235,11 @@
   dependencies:
     "@babel/runtime" "^7.16.7"
 
+"@geist-ui/icons@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@geist-ui/icons/-/icons-1.0.2.tgz#00eba846fb21ce4f26601be5ef181f2374c00887"
+  integrity sha512-Npfa0NW6fQ31qw/+iMPWbs1hAcJ/3FqBjSLYgEfITDqy/3TJFpFKeVyK04AC/hTmYTsdNruVYczqPNcham5FOQ==
+
 "@humanwhocodes/config-array@^0.10.5":
   version "0.10.7"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.10.7.tgz#6d53769fd0c222767e6452e8ebda825c22e9f0dc"
