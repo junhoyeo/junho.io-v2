@@ -1,3 +1,4 @@
+import styled from '@emotion/styled';
 import { Text, useTheme } from '@geist-ui/core';
 import { Info } from '@geist-ui/icons';
 import { type NextPage } from 'next';
@@ -14,14 +15,7 @@ const HomePage: NextPage = () => {
 
       <Layout>
         <Text blockquote>
-          <Info
-            size={20}
-            style={{
-              marginRight: 8,
-              display: 'inline-block',
-              verticalAlign: 'text-bottom',
-            }}
-          />
+          <InfoIcon size={20} />
 
           <Text span style={{ color: palette.accents_6 }}>
             A{' '}
@@ -42,3 +36,9 @@ const HomePage: NextPage = () => {
 };
 
 export default HomePage;
+
+const InfoIcon = styled(Info)`
+  margin-right: 8px;
+  display: inline-block;
+  vertical-align: text-bottom;
+`;
