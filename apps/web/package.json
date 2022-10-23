@@ -9,6 +9,9 @@
     "start": "next start"
   },
   "dependencies": {
+    "@emotion/core": "^11.0.0",
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
     "@geist-ui/core": "^2.3.8",
     "@geist-ui/icons": "git+https://github.com/junhoyeo/icons.git#dist",
     "next": "^12.3.1",
