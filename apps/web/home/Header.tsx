@@ -9,7 +9,7 @@ export const Header: React.FC = () => {
 
   return (
     <Container>
-      <ShipIllust alt="" sizes="100vw" src={shipIllust} />
+      <ShipIllust alt="" placeholder="blur" sizes="100vw" src={shipIllust} />
       <Content>
         <Title h1>Paracøsm</Title>
         <Subtitle h2 style={{ color: palette.accents_5 }}>
