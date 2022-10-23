@@ -1,3 +1,4 @@
+import styled from '@emotion/styled';
 import { Text, useTheme } from '@geist-ui/core';
 import Image from 'next/future/image';
 
@@ -7,70 +8,63 @@ export const Header: React.FC = () => {
   const { palette } = useTheme();
 
   return (
-    <div
-      style={{
-        height: '600px',
-        position: 'relative',
-        zIndex: 0,
-        marginBottom: -64,
-      }}
-    >
-      <Image
-        alt=""
-        sizes="100vw"
-        src={shipIllust}
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          width: '100%',
-          height: '420px',
-          objectFit: 'cover',
-          objectPosition: 'bottom center',
-          filter: 'brightness(0.85)',
-          userSelect: 'none',
-        }}
-      />
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'flex-end',
-          position: 'absolute',
-          zIndex: 0,
-          left: 0,
-          right: 0,
-          bottom: 48,
-          paddingTop: 80,
-          background: 'linear-gradient(rgba(0, 0, 0, 0), rgb(0, 0, 0) 70%)',
-        }}
-      >
-        <Text
-          h1
-          style={{
-            margin: 0,
-            lineHeight: 1,
-            fontSize: '84px',
-            textAlign: 'center',
-          }}
-        >
-          Paracøsm
-        </Text>
-        <Text
-          h2
-          style={{
-            margin: 0,
-            marginTop: 16,
-            lineHeight: 1,
-            textAlign: 'center',
-            color: palette.accents_5,
-          }}
-        >
+    <Container>
+      <ShipIllust alt="" sizes="100vw" src={shipIllust} />
+      <Content>
+        <Title h1>Paracøsm</Title>
+        <Subtitle h2 style={{ color: palette.accents_5 }}>
           Junho Yeø
-        </Text>
-      </div>
-    </div>
+        </Subtitle>
+      </Content>
+    </Container>
   );
 };
+
+const Container = styled.header`
+  margin-bottom: -64px;
+  height: 600px;
+
+  position: relative;
+  z-index: 0;
+`;
+const ShipIllust = styled(Image)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 420px;
+
+  object-fit: cover;
+  object-position: bottom center;
+  filter: brightness(0.85);
+  user-select: none;
+`;
+
+const Content = styled.div`
+  padding-top: 80px;
+
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  right: 0;
+  bottom: 48px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  background: linear-gradient(rgba(0, 0, 0, 0), rgb(0, 0, 0) 70%);
+`;
+const Title = styled(Text)`
+  margin: 0;
+  line-height: 1;
+  font-size: 84px;
+  text-align: center;
+`;
+const Subtitle = styled(Text)`
+  margin: 0;
+  margin-top: 16px;
+  line-height: 1;
+  text-align: center;
+`;
