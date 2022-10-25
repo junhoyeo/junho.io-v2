@@ -1622,6 +1622,11 @@ get-tsconfig@^4.2.0:
   resolved "https://registry.yarnpkg.com/get-tsconfig/-/get-tsconfig-4.2.0.tgz#ff368dd7104dab47bf923404eb93838245c66543"
   integrity sha512-X8u8fREiYOE6S8hLbq99PeykTDoLVnxvF4DjWKJmz9xy2nNRdUcV8ZN9tniJFeKyTU3qnC9lL8n4Chd6LmVKHg==
 
+get-xpath@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/get-xpath/-/get-xpath-3.0.1.tgz#8be182566d52d1494ac008d48b66a870b9f39cb0"
+  integrity sha512-GWG+RbJ7VE40rn4/NYYGojQbgN3Eha0s223ZSz1IhHFcGlMU+X7H5Iyrbuz6csiWqedAKplpS3udLw9X1nqX5Q==
+
 git-hooks-list@1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/git-hooks-list/-/git-hooks-list-1.0.3.tgz#be5baaf78203ce342f2f844a9d2b03dba1b45156"
