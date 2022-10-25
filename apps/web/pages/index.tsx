@@ -5,7 +5,7 @@ import getXPath from 'get-xpath';
 import { type NextPage } from 'next';
 import { useEffect, useState } from 'react';
 import { type Descendant, Editor, Node, Transforms, createEditor } from 'slate';
-import { Editable, Slate, withReact } from 'slate-react';
+import { Editable, ReactEditor, Slate, withReact } from 'slate-react';
 import { v4 as uuidv4 } from 'uuid';
 
 import { Layout } from '../components/Layout';
@@ -72,6 +72,10 @@ const HomePage: NextPage = () => {
         const x = event.clientX + window.pageXOffset;
         const y = event.clientY + window.pageYOffset;
         setPositionDraft({ x, y, xpath });
+
+        setTimeout(() => {
+          ReactEditor.focus(editor);
+        });
       }
     };
     document.addEventListener('click', handleClick);
@@ -117,7 +121,7 @@ const HomePage: NextPage = () => {
                   >
                     <Avatar src={MOCKED_USER.avatarURL} />
                   </BubbleItem>
-                  <EditorContainer>
+                  <EditorContainer shadow>
                     <Editable
                       // eslint-disable-next-line jsx-a11y/no-autofocus
                       autoFocus
@@ -138,6 +142,7 @@ const HomePage: NextPage = () => {
                           resetNodes(editor, INITIAL_EDITOR_NODES);
                         }
                       }}
+                      placeholder="Start a new thread"
                     />
                   </EditorContainer>
                 </UserCommentEditorContainer>
