@@ -2,14 +2,18 @@ import { Card, Text, User } from '@geist-ui/core';
 
 import { useTimeAgo } from '../hooks/use-time-ago';
 
-type UserCommentCardProps = {
+export type UserComment = {
+  uuid: string;
   user: {
     displayName: string;
     avatarURL: string;
   };
   comment: string;
   createdAt: Date;
+  xpath: string;
 };
+
+type UserCommentCardProps = UserComment;
 
 export const UserCommentCard: React.FC<UserCommentCardProps> = ({
   user,

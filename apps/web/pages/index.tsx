@@ -1,10 +1,16 @@
 import styled from '@emotion/styled';
 import { Breadcrumbs, Text, useTheme } from '@geist-ui/core';
 import { Info } from '@geist-ui/icons';
+import getXPath from 'get-xpath';
 import { type NextPage } from 'next';
+import { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 import { Layout } from '../components/Layout';
-import { UserCommentCard } from '../components/UserCommentCard';
+import {
+  type UserComment,
+  UserCommentCard,
+} from '../components/UserCommentCard';
 import { Header } from '../home/Header';
 
 const MOCKED_CREATED_AT = new Date();
@@ -15,6 +21,33 @@ const MOCKED_USER = {
 
 const HomePage: NextPage = () => {
   const { palette } = useTheme();
+
+  const [comments, setComments] = useState<UserComment[]>([]);
+
+  useEffect(() => {
+    const handleClick = (event: MouseEvent): void => {
+      const element = event.target;
+      if (element instanceof HTMLElement) {
+        const xpath = getXPath(element);
+
+        setComments((prev) => [
+          ...prev,
+          {
+            uuid: uuidv4(),
+            createdAt: MOCKED_CREATED_AT,
+            user: MOCKED_USER,
+            comment: 'Hello World',
+            xpath,
+          },
+        ]);
+      }
+    };
+    document.addEventListener('click', handleClick);
+
+    return () => {
+      document.removeEventListener('click', handleClick);
+    };
+  }, []);
 
   return (
     <Layout
@@ -35,21 +68,9 @@ const HomePage: NextPage = () => {
               gap: 8,
             }}
           >
-            <UserCommentCard
-              comment="Wow, awesome!"
-              createdAt={MOCKED_CREATED_AT}
-              user={MOCKED_USER}
-            />
-            <UserCommentCard
-              comment="Wow, awesome!"
-              createdAt={MOCKED_CREATED_AT}
-              user={MOCKED_USER}
-            />
-            <UserCommentCard
-              comment="Wow, awesome!"
-              createdAt={MOCKED_CREATED_AT}
-              user={MOCKED_USER}
-            />
+            {comments.map((comment) => (
+              <UserCommentCard key={comment.uuid} {...comment} />
+            ))}
           </div>
         </>
       }
