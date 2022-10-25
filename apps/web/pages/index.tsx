@@ -129,7 +129,7 @@ const HomePage: NextPage = () => {
                     <Avatar src={MOCKED_USER.avatarURL} />
                   </BubbleItem>
                   <EditorContainer shadow>
-                    <Description
+                    <EditorDescription
                       title="Leave a comment"
                       // eslint-disable-next-line react/jsx-sort-props
                       content={
@@ -259,4 +259,9 @@ const EditorContainer = styled(Card)`
   display: flex;
   flex-direction: column;
   gap: 8px;
+`;
+const EditorDescription = styled(Description)`
+  && dt {
+    margin-bottom: 1rem;
+  }
 `;
