@@ -83,7 +83,7 @@ const HomePage: NextPage = () => {
     return () => {
       document.removeEventListener('click', handleClick);
     };
-  }, []);
+  }, [editor]);
 
   return (
     <Layout
