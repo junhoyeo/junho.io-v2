@@ -20,6 +20,7 @@ module.exports = {
   ],
   rules: {
     'import/order': 'off',
+    'no-console': 'off',
     'no-implicit-coercion': 'off',
     'no-constant-binary-expression': 'off',
     '@next/next/no-html-link-for-pages': 'off',
