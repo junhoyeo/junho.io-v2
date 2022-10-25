@@ -1,12 +1,13 @@
+import { type SerializedStyles, css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Page, useTheme } from '@geist-ui/core';
 
-export interface LayoutProps {
+export type LayoutProps = {
   header?: React.ReactNode;
   leftContent?: React.ReactNode;
   rightContent?: React.ReactNode;
   children: React.ReactNode;
-}
+};
 
 export const Layout: React.FC<LayoutProps> = ({
   header,
@@ -18,18 +19,24 @@ export const Layout: React.FC<LayoutProps> = ({
   return (
     <Wrapper>
       {!!leftContent && (
-        <Sidebar style={{ borderRight: `1px solid ${palette.accents_2}` }}>
+        <Sidebar
+          style={{ borderRight: `1px solid ${palette.accents_2}` }}
+          width={200}
+        >
           {leftContent}
         </Sidebar>
       )}
       <Container>
         {header}
-        <Page style={{ minHeight: 'unset' }}>
+        <Page style={{ minHeight: 'unset', width: 'unset' }}>
           <div>{children}</div>
         </Page>
       </Container>
       {!!rightContent && (
-        <Sidebar style={{ borderLeft: `1px solid ${palette.accents_2}` }}>
+        <Sidebar
+          style={{ borderLeft: `1px solid ${palette.accents_2}` }}
+          width={380}
+        >
           {rightContent}
         </Sidebar>
       )}
@@ -46,10 +53,19 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const Sidebar = styled.div`
+
+type SidebarProps = {
+  width: number;
+};
+const Sidebar = styled.div<SidebarProps>`
   padding: 24px 28px;
-  width: 380px;
-  min-width: 380px;
   display: flex;
   flex-direction: column;
+
+  ${({ width }): 0 | SerializedStyles =>
+    width &&
+    css`
+      width: ${width}px;
+      min-width: ${width}px;
+    `};
 `;

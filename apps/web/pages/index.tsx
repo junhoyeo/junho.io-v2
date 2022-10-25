@@ -1,10 +1,17 @@
 import styled from '@emotion/styled';
-import { Breadcrumbs, Card, Text, User, useTheme } from '@geist-ui/core';
+import { Breadcrumbs, Text, useTheme } from '@geist-ui/core';
 import { Info } from '@geist-ui/icons';
 import { type NextPage } from 'next';
 
 import { Layout } from '../components/Layout';
+import { UserCommentCard } from '../components/UserCommentCard';
 import { Header } from '../home/Header';
+
+const MOCKED_CREATED_AT = new Date();
+const MOCKED_USER = {
+  displayName: 'Junho Yeo',
+  avatarURL: 'https://github.com/junhoyeo.png',
+};
 
 const HomePage: NextPage = () => {
   const { palette } = useTheme();
@@ -28,22 +35,21 @@ const HomePage: NextPage = () => {
               gap: 8,
             }}
           >
-            <Card shadow>
-              <User name="Junho Yeo" src="https://github.com/junhoyeo.png">
-                8 minutes ago
-              </User>
-              <Text font="14px" p>
-                Wow
-              </Text>
-            </Card>
-            <Card>
-              <User name="Junho Yeo" src="https://github.com/junhoyeo.png">
-                8 minutes ago
-              </User>
-              <Text font="14px" p>
-                Wow
-              </Text>
-            </Card>
+            <UserCommentCard
+              comment="Wow, awesome!"
+              createdAt={MOCKED_CREATED_AT}
+              user={MOCKED_USER}
+            />
+            <UserCommentCard
+              comment="Wow, awesome!"
+              createdAt={MOCKED_CREATED_AT}
+              user={MOCKED_USER}
+            />
+            <UserCommentCard
+              comment="Wow, awesome!"
+              createdAt={MOCKED_CREATED_AT}
+              user={MOCKED_USER}
+            />
           </div>
         </>
       }
