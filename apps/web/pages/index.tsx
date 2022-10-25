@@ -10,28 +10,24 @@ const HomePage: NextPage = () => {
   const { palette } = useTheme();
 
   return (
-    <>
-      <Header />
+    <Layout header={<Header />}>
+      <Text blockquote>
+        <InfoIcon size={20} />
 
-      <Layout>
-        <Text blockquote>
-          <InfoIcon size={20} />
-
-          <Text span style={{ color: palette.accents_6 }}>
-            A{' '}
-            <Text b i span style={{ color: palette.accents_8 }}>
-              paracosm
-            </Text>{' '}
-            is{' '}
-            <Text span style={{ color: palette.accents_8 }}>
-              a detailed imaginary world
-            </Text>{' '}
-            having its own geography, history, and language, which may
-            incorporate real-world or fictitious characters and conventions.
-          </Text>
+        <Text span style={{ color: palette.accents_6 }}>
+          A{' '}
+          <Text b i span style={{ color: palette.accents_8 }}>
+            paracosm
+          </Text>{' '}
+          is{' '}
+          <Text span style={{ color: palette.accents_8 }}>
+            a detailed imaginary world
+          </Text>{' '}
+          having its own geography, history, and language, which may incorporate
+          real-world or fictitious characters and conventions.
         </Text>
-      </Layout>
-    </>
+      </Text>
+    </Layout>
   );
 };
 
