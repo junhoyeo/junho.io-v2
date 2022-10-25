@@ -10,7 +10,7 @@ import {
 import { Info } from '@geist-ui/icons';
 import getXPath from 'get-xpath';
 import { type NextPage } from 'next';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { type Descendant, Editor, Node, Transforms, createEditor } from 'slate';
 import { Editable, ReactEditor, Slate, withReact } from 'slate-react';
 import { v4 as uuidv4 } from 'uuid';
@@ -64,6 +64,7 @@ const HomePage: NextPage = () => {
   const [positionDraft, setPositionDraft] = useState<PositionDraft | null>(
     null,
   );
+  const hasPositionDraftRef = useRef<boolean>(false);
 
   useEffect(() => {
     const handleClick = (event: MouseEvent): void => {
@@ -75,10 +76,19 @@ const HomePage: NextPage = () => {
           return;
         }
 
+        console.log(hasPositionDraftRef.current);
+
+        if (hasPositionDraftRef.current) {
+          setPositionDraft(null);
+          hasPositionDraftRef.current = false;
+          return;
+        }
+
         const xpath = getXPath(element);
         const x = event.clientX + window.pageXOffset;
         const y = event.clientY + window.pageYOffset;
         setPositionDraft({ x, y, xpath });
+        hasPositionDraftRef.current = true;
 
         setTimeout(() => {
           ReactEditor.focus(editor);
@@ -152,6 +162,7 @@ const HomePage: NextPage = () => {
                               };
                               setComments((prev) => [...prev, newComment]);
                               setPositionDraft(null);
+                              hasPositionDraftRef.current = false;
                               resetNodes(editor, INITIAL_EDITOR_NODES);
                             }
                           }}
