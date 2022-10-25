@@ -4,7 +4,7 @@ import { Info } from '@geist-ui/icons';
 import getXPath from 'get-xpath';
 import { type NextPage } from 'next';
 import { useEffect, useState } from 'react';
-import { type Descendant, Node, createEditor } from 'slate';
+import { type Descendant, Editor, Node, Transforms, createEditor } from 'slate';
 import { Editable, Slate, withReact } from 'slate-react';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -17,6 +17,21 @@ import { Header } from '../home/Header';
 
 const serializeDescendants = (descendants: Descendant[]): string =>
   descendants.map((n) => Node.string(n)).join('\n');
+
+const resetNodes = (editor: Editor, defaultNodes: Node | Node[]): void => {
+  const children = [...editor.children];
+  children.forEach((node) =>
+    editor.apply({ type: 'remove_node', path: [0], node }),
+  );
+
+  const nodes = Node.isNode(defaultNodes) ? [defaultNodes] : defaultNodes;
+  nodes.forEach((node, i) =>
+    editor.apply({ type: 'insert_node', path: [i], node }),
+  );
+
+  const point = Editor.end(editor, []);
+  Transforms.select(editor, point);
+};
 
 const MOCKED_CREATED_AT = new Date();
 const MOCKED_USER = {
@@ -42,8 +57,7 @@ const HomePage: NextPage = () => {
 
   // eslint-disable-next-line react/hook-use-state
   const [editor] = useState(() => withReact(createEditor()));
-  const [initialEditorNodes, setInitialEditorNodes] =
-    useState(INITIAL_EDITOR_NODES);
+
   const [comments, setComments] = useState<UserComment[]>([]);
   const [positionDraft, setPositionDraft] = useState<PositionDraft | null>(
     null,
@@ -83,7 +97,7 @@ const HomePage: NextPage = () => {
       header={
         <>
           <Header />
-          <Slate editor={editor} value={initialEditorNodes}>
+          <Slate editor={editor} value={INITIAL_EDITOR_NODES}>
             <BubbleList>
               {comments.map((comment) => (
                 <BubbleItem
@@ -132,8 +146,7 @@ const HomePage: NextPage = () => {
                           };
                           setComments((prev) => [...prev, newComment]);
                           setPositionDraft(null);
-
-                          setInitialEditorNodes(INITIAL_EDITOR_NODES);
+                          resetNodes(editor, INITIAL_EDITOR_NODES);
                         }
                       }}
                     />
