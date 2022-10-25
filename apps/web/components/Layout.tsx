@@ -29,7 +29,9 @@ export const Layout: React.FC<LayoutProps> = ({
       <Container>
         {header}
         <Page style={{ minHeight: 'unset', width: 'unset' }}>
-          <div>{children}</div>
+          <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+            {children}
+          </div>
         </Page>
       </Container>
       {!!rightContent && (

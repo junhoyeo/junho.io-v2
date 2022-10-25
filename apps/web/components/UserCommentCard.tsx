@@ -10,7 +10,11 @@ export type UserComment = {
   };
   comment: string;
   createdAt: Date;
-  xpath: string;
+  position: {
+    x: number;
+    y: number;
+    xpath: string;
+  };
 };
 
 type UserCommentCardProps = UserComment;

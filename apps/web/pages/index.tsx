@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Breadcrumbs, Text, useTheme } from '@geist-ui/core';
+import { Avatar, Breadcrumbs, Text, useTheme } from '@geist-ui/core';
 import { Info } from '@geist-ui/icons';
 import getXPath from 'get-xpath';
 import { type NextPage } from 'next';
@@ -30,16 +30,19 @@ const HomePage: NextPage = () => {
       if (element instanceof HTMLElement) {
         const xpath = getXPath(element);
 
-        setComments((prev) => [
-          ...prev,
-          {
-            uuid: uuidv4(),
-            createdAt: MOCKED_CREATED_AT,
-            user: MOCKED_USER,
-            comment: 'Hello World',
-            xpath,
-          },
-        ]);
+        const x = event.clientX + window.pageXOffset;
+        const y = event.clientY + window.pageYOffset;
+
+        console.log(event, element);
+
+        const newComment = {
+          uuid: uuidv4(),
+          createdAt: MOCKED_CREATED_AT,
+          user: MOCKED_USER,
+          comment: 'Hello World',
+          position: { xpath, x, y },
+        };
+        setComments((prev) => [...prev, newComment]);
       }
     };
     document.addEventListener('click', handleClick);
@@ -51,7 +54,26 @@ const HomePage: NextPage = () => {
 
   return (
     <Layout
-      header={<Header />}
+      header={
+        <>
+          <Header />
+          <BubbleList>
+            {comments.map((comment) => (
+              <BubbleItem
+                key={comment.uuid}
+                style={{
+                  backgroundColor: palette.cyan,
+                  position: 'absolute',
+                  top: comment.position.y,
+                  left: comment.position.x,
+                }}
+              >
+                <Avatar src={comment.user.avatarURL} />
+              </BubbleItem>
+            ))}
+          </BubbleList>
+        </>
+      }
       leftContent={<div />}
       rightContent={
         <>
@@ -101,4 +123,29 @@ const InfoIcon = styled(Info)`
   margin-right: 8px;
   display: inline-block;
   vertical-align: text-bottom;
+`;
+
+const BubbleList = styled.div`
+  position: absolute;
+  pointer-events: none;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+`;
+const BubbleItem = styled.div`
+  padding: 3px;
+  border-radius: 50%;
+  cursor: pointer;
+  pointer-events: auto;
+
+  && > span {
+    border: 0;
+    background-color: transparent;
+
+    & > img {
+      background-color: black;
+    }
+  }
 `;
