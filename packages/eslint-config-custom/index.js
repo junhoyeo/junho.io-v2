@@ -23,6 +23,7 @@ module.exports = {
     'no-implicit-coercion': 'off',
     'no-constant-binary-expression': 'off',
     '@next/next/no-html-link-for-pages': 'off',
+    '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
     'react/jsx-key': 'off',
   },
 };
