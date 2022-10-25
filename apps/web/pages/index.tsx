@@ -1,9 +1,11 @@
 import styled from '@emotion/styled';
-import { Avatar, Breadcrumbs, Text, useTheme } from '@geist-ui/core';
+import { Avatar, Breadcrumbs, Card, Text, useTheme } from '@geist-ui/core';
 import { Info } from '@geist-ui/icons';
 import getXPath from 'get-xpath';
 import { type NextPage } from 'next';
 import { useEffect, useState } from 'react';
+import { type Descendant, Node, createEditor } from 'slate';
+import { Editable, Slate, withReact } from 'slate-react';
 import { v4 as uuidv4 } from 'uuid';
 
 import { Layout } from '../components/Layout';
@@ -13,36 +15,60 @@ import {
 } from '../components/UserCommentCard';
 import { Header } from '../home/Header';
 
+const serializeDescendants = (descendants: Descendant[]): string =>
+  descendants.map((n) => Node.string(n)).join('\n');
+
 const MOCKED_CREATED_AT = new Date();
 const MOCKED_USER = {
   displayName: 'Junho Yeo',
   avatarURL: 'https://github.com/junhoyeo.png',
 };
 
+type PositionDraft = {
+  x: number;
+  y: number;
+  xpath: string;
+};
+
+const INITIAL_EDITOR_NODES = [
+  {
+    type: 'paragraph',
+    children: [{ text: '' }],
+  },
+];
+
 const HomePage: NextPage = () => {
   const { palette } = useTheme();
 
+  // eslint-disable-next-line react/hook-use-state
+  const [editor] = useState(() => withReact(createEditor()));
+  const [initialEditorNodes, setInitialEditorNodes] =
+    useState(INITIAL_EDITOR_NODES);
   const [comments, setComments] = useState<UserComment[]>([]);
+  const [positionDraft, setPositionDraft] = useState<PositionDraft | null>(
+    null,
+  );
 
   useEffect(() => {
     const handleClick = (event: MouseEvent): void => {
       const element = event.target;
+
       if (element instanceof HTMLElement) {
+        const draft = element.closest('.draft');
+        if (draft) {
+          return;
+        }
+
         const xpath = getXPath(element);
 
         const x = event.clientX + window.pageXOffset;
         const y = event.clientY + window.pageYOffset;
 
-        console.log(event, element);
-
-        const newComment = {
-          uuid: uuidv4(),
-          createdAt: MOCKED_CREATED_AT,
-          user: MOCKED_USER,
-          comment: 'Hello World',
-          position: { xpath, x, y },
-        };
-        setComments((prev) => [...prev, newComment]);
+        setPositionDraft({
+          x,
+          y,
+          xpath,
+        });
       }
     };
     document.addEventListener('click', handleClick);
@@ -57,21 +83,65 @@ const HomePage: NextPage = () => {
       header={
         <>
           <Header />
-          <BubbleList>
-            {comments.map((comment) => (
-              <BubbleItem
-                key={comment.uuid}
-                style={{
-                  backgroundColor: palette.cyan,
-                  position: 'absolute',
-                  top: comment.position.y,
-                  left: comment.position.x,
-                }}
-              >
-                <Avatar src={comment.user.avatarURL} />
-              </BubbleItem>
-            ))}
-          </BubbleList>
+          <Slate editor={editor} value={initialEditorNodes}>
+            <BubbleList>
+              {comments.map((comment) => (
+                <BubbleItem
+                  key={comment.uuid}
+                  style={{
+                    backgroundColor: palette.cyan,
+                    position: 'absolute',
+                    top: comment.position.y,
+                    left: comment.position.x,
+                  }}
+                >
+                  <Avatar src={comment.user.avatarURL} />
+                </BubbleItem>
+              ))}
+
+              {!!positionDraft && (
+                <UserCommentEditorContainer
+                  className="draft"
+                  style={{
+                    top: positionDraft.y,
+                    left: positionDraft.x,
+                  }}
+                >
+                  <BubbleItem
+                    style={{
+                      backgroundColor: palette.cyan,
+                    }}
+                  >
+                    <Avatar src={MOCKED_USER.avatarURL} />
+                  </BubbleItem>
+                  <EditorContainer>
+                    <Editable
+                      // eslint-disable-next-line jsx-a11y/no-autofocus
+                      autoFocus
+                      onKeyDown={(event): void => {
+                        if (event.key === 'Enter') {
+                          event.preventDefault();
+                          const comment = serializeDescendants(editor.children);
+
+                          const newComment = {
+                            uuid: uuidv4(),
+                            createdAt: MOCKED_CREATED_AT,
+                            user: MOCKED_USER,
+                            comment,
+                            position: positionDraft,
+                          };
+                          setComments((prev) => [...prev, newComment]);
+                          setPositionDraft(null);
+
+                          setInitialEditorNodes(INITIAL_EDITOR_NODES);
+                        }
+                      }}
+                    />
+                  </EditorContainer>
+                </UserCommentEditorContainer>
+              )}
+            </BubbleList>
+          </Slate>
         </>
       }
       leftContent={<div />}
@@ -148,4 +218,23 @@ const BubbleItem = styled.div`
       background-color: black;
     }
   }
+`;
+
+const UserCommentEditorContainer = styled.div`
+  position: absolute;
+  display: flex;
+  pointer-events: auto;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 4px;
+`;
+
+const EditorContainer = styled(Card)`
+  width: 300px;
+  min-width: 300px;
+  max-width: 300px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 `;
