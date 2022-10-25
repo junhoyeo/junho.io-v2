@@ -39,6 +39,7 @@ const ShipIllust = styled(Image)`
   object-position: bottom center;
   filter: brightness(0.85);
   user-select: none;
+  -webkit-user-drag: none;
 `;
 
 const Content = styled.div`
