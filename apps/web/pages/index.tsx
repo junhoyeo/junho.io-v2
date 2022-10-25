@@ -1,5 +1,12 @@
 import styled from '@emotion/styled';
-import { Avatar, Breadcrumbs, Card, Text, useTheme } from '@geist-ui/core';
+import {
+  Avatar,
+  Breadcrumbs,
+  Card,
+  Description,
+  Text,
+  useTheme,
+} from '@geist-ui/core';
 import { Info } from '@geist-ui/icons';
 import getXPath from 'get-xpath';
 import { type NextPage } from 'next';
@@ -122,27 +129,35 @@ const HomePage: NextPage = () => {
                     <Avatar src={MOCKED_USER.avatarURL} />
                   </BubbleItem>
                   <EditorContainer shadow>
-                    <Editable
-                      // eslint-disable-next-line jsx-a11y/no-autofocus
-                      autoFocus
-                      onKeyDown={(event): void => {
-                        if (event.key === 'Enter') {
-                          event.preventDefault();
-                          const comment = serializeDescendants(editor.children);
+                    <Description
+                      title="Leave a comment"
+                      // eslint-disable-next-line react/jsx-sort-props
+                      content={
+                        <Editable
+                          // eslint-disable-next-line jsx-a11y/no-autofocus
+                          autoFocus
+                          onKeyDown={(event): void => {
+                            if (event.key === 'Enter') {
+                              event.preventDefault();
+                              const comment = serializeDescendants(
+                                editor.children,
+                              );
 
-                          const newComment = {
-                            uuid: uuidv4(),
-                            createdAt: MOCKED_CREATED_AT,
-                            user: MOCKED_USER,
-                            comment,
-                            position: positionDraft,
-                          };
-                          setComments((prev) => [...prev, newComment]);
-                          setPositionDraft(null);
-                          resetNodes(editor, INITIAL_EDITOR_NODES);
-                        }
-                      }}
-                      placeholder="Start a new thread"
+                              const newComment = {
+                                uuid: uuidv4(),
+                                createdAt: MOCKED_CREATED_AT,
+                                user: MOCKED_USER,
+                                comment,
+                                position: positionDraft,
+                              };
+                              setComments((prev) => [...prev, newComment]);
+                              setPositionDraft(null);
+                              resetNodes(editor, INITIAL_EDITOR_NODES);
+                            }
+                          }}
+                          placeholder="Start a new thread"
+                        />
+                      }
                     />
                   </EditorContainer>
                 </UserCommentEditorContainer>
