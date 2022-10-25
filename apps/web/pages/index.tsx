@@ -45,12 +45,7 @@ type PositionDraft = {
   xpath: string;
 };
 
-const INITIAL_EDITOR_NODES = [
-  {
-    type: 'paragraph',
-    children: [{ text: '' }],
-  },
-];
+const INITIAL_EDITOR_NODES = [{ type: 'paragraph', children: [{ text: '' }] }];
 
 const HomePage: NextPage = () => {
   const { palette } = useTheme();
@@ -74,15 +69,9 @@ const HomePage: NextPage = () => {
         }
 
         const xpath = getXPath(element);
-
         const x = event.clientX + window.pageXOffset;
         const y = event.clientY + window.pageYOffset;
-
-        setPositionDraft({
-          x,
-          y,
-          xpath,
-        });
+        setPositionDraft({ x, y, xpath });
       }
     };
     document.addEventListener('click', handleClick);
