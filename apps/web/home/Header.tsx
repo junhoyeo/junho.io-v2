@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { Text, useTheme } from '@geist-ui/core';
-import Image from 'next/future/image';
+import Image from 'next/image';
 
 import shipIllust from '../assets/ship.png';
 
