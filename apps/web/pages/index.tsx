@@ -11,14 +11,14 @@ import { Info } from '@geist-ui/icons';
 import getXPath from 'get-xpath';
 import { type NextPage } from 'next';
 import { useEffect, useRef, useState } from 'react';
-import { type Descendant, Editor, Node, Transforms, createEditor } from 'slate';
+import { Editor, Node, Transforms, createEditor, type Descendant } from 'slate';
 import { Editable, ReactEditor, Slate, withReact } from 'slate-react';
 import { v4 as uuidv4 } from 'uuid';
 
 import { Layout } from '../components/Layout';
 import {
-  type UserComment,
   UserCommentCard,
+  type UserComment,
 } from '../components/UserCommentCard';
 import { Header } from '../home/Header';
 

@@ -1,4 +1,4 @@
-import { type SerializedStyles, css } from '@emotion/react';
+import { css, type SerializedStyles } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Page, useTheme } from '@geist-ui/core';
 
