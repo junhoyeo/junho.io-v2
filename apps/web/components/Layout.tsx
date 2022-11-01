@@ -34,7 +34,7 @@ export const Layout: React.FC<LayoutProps> = ({
         {!!leftContent && (
           <Sidebar
             style={{ borderRight: `1px solid ${palette.accents_2}` }}
-            width={200}
+            width={280}
           >
             {leftContent}
           </Sidebar>
@@ -55,7 +55,7 @@ export const Layout: React.FC<LayoutProps> = ({
           </Page.Content>
         </Page>
 
-        <Sidebar width={100} />
+        <Sidebar width={200} />
 
         <Drawer
           onClose={(): void => setCommentDrawerOpen(false)}
