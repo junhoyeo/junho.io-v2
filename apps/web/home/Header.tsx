@@ -9,7 +9,9 @@ export const Header: React.FC = () => {
 
   return (
     <Container>
-      <ShipIllust alt="" placeholder="blur" sizes="100vw" src={shipIllust} />
+      <ShipIllustContainer>
+        <ShipIllust alt="" placeholder="blur" sizes="100vw" src={shipIllust} />
+      </ShipIllustContainer>
       <Content>
         <Title h1>Paracøsm</Title>
         <Subtitle h2 style={{ color: palette.accents_5 }}>
@@ -27,13 +29,19 @@ const Container = styled.header`
   position: relative;
   z-index: 0;
 `;
-const ShipIllust = styled(Image)`
+const ShipIllustContainer = styled.div`
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   width: 100%;
+`;
+const ShipIllust = styled(Image)`
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1272px;
   height: 420px;
+  display: flex;
 
   object-fit: cover;
   object-position: bottom center;
