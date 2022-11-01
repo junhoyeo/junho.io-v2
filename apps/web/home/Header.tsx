@@ -1,14 +1,20 @@
+import { css, type SerializedStyles } from '@emotion/react';
 import styled from '@emotion/styled';
-import { Text, useTheme } from '@geist-ui/core';
+import { Text, useScale, useTheme } from '@geist-ui/core';
 import Image from 'next/image';
 
 import shipIllust from '../assets/ship.jpg';
 
+const negativeToCalc = (calcString: string): string =>
+  calcString.replace('(', '(-');
+
 export const Header: React.FC = () => {
   const { palette } = useTheme();
 
+  const { SCALES } = useScale();
+
   return (
-    <Container>
+    <Container pl={SCALES.pl(1.34)} pr={SCALES.pr(1.34)}>
       <ShipIllustContainer>
         <ShipIllust alt="" placeholder="blur" sizes="100vw" src={shipIllust} />
       </ShipIllustContainer>
@@ -22,12 +28,20 @@ export const Header: React.FC = () => {
   );
 };
 
-const Container = styled.header`
+const Container = styled.header<{ pl: string; pr: string }>`
   margin-bottom: -64px;
   height: 600px;
 
   position: relative;
   z-index: 0;
+
+  ${({ pl, pr }): SerializedStyles => css`
+    @media screen and (max-width: 982px) {
+      width: 100vw;
+      margin-left: ${negativeToCalc(pl)};
+      margin-right: ${negativeToCalc(pr)};
+    }
+  `}
 `;
 const ShipIllustContainer = styled.div`
   position: absolute;
