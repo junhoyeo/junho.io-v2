@@ -270,6 +270,10 @@ const EditorContainer = styled(Card)`
   display: flex;
   flex-direction: column;
   gap: 8px;
+
+  &&& {
+    transition: all 0.2s ease, border 0s;
+  }
 `;
 const EditorDescription = styled(Description)`
   && dt {
