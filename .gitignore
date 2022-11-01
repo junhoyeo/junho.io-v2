@@ -13,7 +13,6 @@ coverage
 .next
 out
 build
-lib
 
 ## Yarn
 .yarn/cache

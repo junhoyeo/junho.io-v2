@@ -41,7 +41,11 @@ export const Layout: React.FC<LayoutProps> = ({
         )}
         <Page>
           <Page.Content
-            style={{ paddingTop: 0, minHeight: 'unset', width: 'unset' }}
+            style={{
+              paddingTop: !header ? 64 : 0,
+              minHeight: 'unset',
+              width: 'unset',
+            }}
           >
             <Container className="page-container" ref={containerRef}>
               {header}
