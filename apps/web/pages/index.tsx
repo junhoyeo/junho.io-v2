@@ -1,12 +1,5 @@
 import styled from '@emotion/styled';
-import {
-  Avatar,
-  Breadcrumbs,
-  Card,
-  Description,
-  Text,
-  useTheme,
-} from '@geist-ui/core';
+import { Avatar, Card, Description, Text, useTheme } from '@geist-ui/core';
 import { Info } from '@geist-ui/icons';
 import getXPath from 'get-xpath';
 import { type NextPage } from 'next';
@@ -16,10 +9,7 @@ import { Editable, ReactEditor, Slate, withReact } from 'slate-react';
 import { v4 as uuidv4 } from 'uuid';
 
 import { Layout } from '../components/Layout';
-import {
-  UserCommentCard,
-  type UserComment,
-} from '../components/UserCommentCard';
+import { type UserComment } from '../components/UserCommentCard';
 import { Header } from '../home/Header';
 
 const serializeDescendants = (descendants: Descendant[]): string =>
@@ -178,27 +168,6 @@ const HomePage: NextPage = () => {
         </>
       }
       leftContent={<div />}
-      rightContent={
-        <>
-          <Breadcrumbs>
-            <Breadcrumbs.Item>Paracosm</Breadcrumbs.Item>
-            <Breadcrumbs.Item>Home</Breadcrumbs.Item>
-          </Breadcrumbs>
-
-          <div
-            style={{
-              marginTop: 16,
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 8,
-            }}
-          >
-            {comments.map((comment) => (
-              <UserCommentCard key={comment.uuid} {...comment} />
-            ))}
-          </div>
-        </>
-      }
     >
       <Text blockquote>
         <InfoIcon size={20} />

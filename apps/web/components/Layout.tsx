@@ -1,21 +1,22 @@
 import { css, type SerializedStyles } from '@emotion/react';
 import styled from '@emotion/styled';
-import { Page, useTheme } from '@geist-ui/core';
+import { Breadcrumbs, Drawer, Page, useTheme } from '@geist-ui/core';
+import { useState } from 'react';
 
 export type LayoutProps = {
   header?: React.ReactNode;
   leftContent?: React.ReactNode;
-  rightContent?: React.ReactNode;
   children: React.ReactNode;
 };
 
 export const Layout: React.FC<LayoutProps> = ({
   header,
   leftContent,
-  rightContent,
   children,
 }) => {
   const { palette } = useTheme();
+  const [isCommentDrawerOpen, setCommentDrawerOpen] = useState<boolean>(false);
+
   return (
     <Wrapper>
       {!!leftContent && (
@@ -34,14 +35,34 @@ export const Layout: React.FC<LayoutProps> = ({
           </div>
         </Page>
       </Container>
-      {!!rightContent && (
-        <Sidebar
-          style={{ borderLeft: `1px solid ${palette.accents_2}` }}
-          width={380}
-        >
-          {rightContent}
-        </Sidebar>
-      )}
+
+      <Drawer
+        onClose={(): void => setCommentDrawerOpen(false)}
+        placement="right"
+        visible={isCommentDrawerOpen}
+      >
+        <Drawer.Title>Drawer</Drawer.Title>
+        <Drawer.Subtitle>This is a drawer</Drawer.Subtitle>
+        <Drawer.Content>
+          <Breadcrumbs>
+            <Breadcrumbs.Item>Paracosm</Breadcrumbs.Item>
+            <Breadcrumbs.Item>Home</Breadcrumbs.Item>
+          </Breadcrumbs>
+
+          <div
+            style={{
+              marginTop: 16,
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 8,
+            }}
+          >
+            {comments.map((comment) => (
+              <UserCommentCard key={comment.uuid} {...comment} />
+            ))}
+          </div>
+        </Drawer.Content>
+      </Drawer>
     </Wrapper>
   );
 };
