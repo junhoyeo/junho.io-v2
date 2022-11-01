@@ -16,7 +16,14 @@ export const Header: React.FC = () => {
   return (
     <Container pl={SCALES.pl(1.34)} pr={SCALES.pr(1.34)}>
       <ShipIllustContainer>
-        <ShipIllust alt="" placeholder="blur" sizes="100vw" src={shipIllust} />
+        <ShipIllust
+          alt=""
+          placeholder="blur"
+          priority
+          quality={100}
+          sizes="(max-width: 576px) 864px, 100vw"
+          src={shipIllust}
+        />
       </ShipIllustContainer>
       <Content>
         <Title h1>Paracøsm</Title>
