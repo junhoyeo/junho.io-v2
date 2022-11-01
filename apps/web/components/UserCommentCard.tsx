@@ -27,7 +27,11 @@ export const UserCommentCard: React.FC<UserCommentCardProps> = ({
   const relativeTime = useTimeAgo(createdAt);
   return (
     <Card shadow>
-      <User name={user.displayName} src={user.avatarURL}>
+      <User
+        name={user.displayName}
+        src={user.avatarURL}
+        style={{ paddingLeft: 0, paddingRight: 0 }}
+      >
         {relativeTime}
       </User>
       <Text font="14px" p>

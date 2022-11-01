@@ -2,14 +2,16 @@ import styled from '@emotion/styled';
 import { Text, useTheme } from '@geist-ui/core';
 import Image from 'next/image';
 
-import shipIllust from '../assets/ship.png';
+import shipIllust from '../assets/ship.jpg';
 
 export const Header: React.FC = () => {
   const { palette } = useTheme();
 
   return (
     <Container>
-      <ShipIllust alt="" placeholder="blur" sizes="100vw" src={shipIllust} />
+      <ShipIllustContainer>
+        <ShipIllust alt="" placeholder="blur" sizes="100vw" src={shipIllust} />
+      </ShipIllustContainer>
       <Content>
         <Title h1>Paracøsm</Title>
         <Subtitle h2 style={{ color: palette.accents_5 }}>
@@ -27,13 +29,22 @@ const Container = styled.header`
   position: relative;
   z-index: 0;
 `;
-const ShipIllust = styled(Image)`
+const ShipIllustContainer = styled.div`
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   width: 100%;
-  height: 420px;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: -10px;
+`;
+const ShipIllust = styled(Image)`
+  width: 100%;
+  min-width: 1400px;
+  max-width: 1400px;
+  height: 430px;
 
   object-fit: cover;
   object-position: bottom center;

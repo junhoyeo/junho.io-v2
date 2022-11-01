@@ -1,11 +1,11 @@
 import { CssBaseline } from '@geist-ui/core';
 import Document, {
-  type DocumentContext,
-  type DocumentInitialProps,
   Head,
   Html,
   Main,
   NextScript,
+  type DocumentContext,
+  type DocumentInitialProps,
 } from 'next/document';
 import { Fragment } from 'react';
 

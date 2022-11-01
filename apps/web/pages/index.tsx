@@ -1,14 +1,16 @@
 import styled from '@emotion/styled';
 import {
   Avatar,
-  Breadcrumbs,
   Card,
+  Collapse,
   Description,
+  Spacer,
   Text,
   useTheme,
 } from '@geist-ui/core';
 import { Info } from '@geist-ui/icons';
 import getXPath from 'get-xpath';
+import { useAtom } from 'jotai';
 import { type NextPage } from 'next';
 import { useEffect, useRef, useState } from 'react';
 import { Editor, Node, Transforms, createEditor, type Descendant } from 'slate';
@@ -16,11 +18,8 @@ import { Editable, ReactEditor, Slate, withReact } from 'slate-react';
 import { v4 as uuidv4 } from 'uuid';
 
 import { Layout } from '../components/Layout';
-import {
-  UserCommentCard,
-  type UserComment,
-} from '../components/UserCommentCard';
 import { Header } from '../home/Header';
+import { commentsAtom } from '../state/comments';
 
 const serializeDescendants = (descendants: Descendant[]): string =>
   descendants.map((n) => Node.string(n)).join('\n');
@@ -60,10 +59,12 @@ const HomePage: NextPage = () => {
   // eslint-disable-next-line react/hook-use-state
   const [editor] = useState(() => withReact(createEditor()));
 
-  const [comments, setComments] = useState<UserComment[]>([]);
+  const [comments, setComments] = useAtom(commentsAtom);
   const [positionDraft, setPositionDraft] = useState<PositionDraft | null>(
     null,
   );
+
+  const containerRef = useRef<HTMLDivElement>(null);
   const hasPositionDraftRef = useRef<boolean>(false);
 
   useEffect(() => {
@@ -76,17 +77,29 @@ const HomePage: NextPage = () => {
           return;
         }
 
-        console.log(hasPositionDraftRef.current);
-
         if (hasPositionDraftRef.current) {
           setPositionDraft(null);
           hasPositionDraftRef.current = false;
           return;
         }
 
+        const hasValidAncestor = element.closest('.page-container');
+        if (!hasValidAncestor) {
+          return;
+        }
+
         const xpath = getXPath(element);
-        const x = event.clientX + window.pageXOffset;
-        const y = event.clientY + window.pageYOffset;
+
+        const rect = containerRef.current?.getBoundingClientRect();
+        const x =
+          event.clientX -
+          (rect?.left || 0) +
+          (containerRef.current?.offsetLeft || 0);
+        const y =
+          event.clientY -
+          (rect?.top || 0) +
+          (containerRef.current?.offsetTop || 0);
+
         setPositionDraft({ x, y, xpath });
         hasPositionDraftRef.current = true;
 
@@ -104,6 +117,7 @@ const HomePage: NextPage = () => {
 
   return (
     <Layout
+      containerRef={containerRef}
       header={
         <>
           <Header />
@@ -178,28 +192,8 @@ const HomePage: NextPage = () => {
         </>
       }
       leftContent={<div />}
-      rightContent={
-        <>
-          <Breadcrumbs>
-            <Breadcrumbs.Item>Paracosm</Breadcrumbs.Item>
-            <Breadcrumbs.Item>Home</Breadcrumbs.Item>
-          </Breadcrumbs>
-
-          <div
-            style={{
-              marginTop: 16,
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 8,
-            }}
-          >
-            {comments.map((comment) => (
-              <UserCommentCard key={comment.uuid} {...comment} />
-            ))}
-          </div>
-        </>
-      }
     >
+      <Spacer h={3} />
       <Text blockquote>
         <InfoIcon size={20} />
 
@@ -216,6 +210,42 @@ const HomePage: NextPage = () => {
           real-world or fictitious characters and conventions.
         </Text>
       </Text>
+      <Collapse.Group>
+        <Collapse title="Question A">
+          <Text>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat.
+          </Text>
+        </Collapse>
+        <Collapse title="Question B">
+          <Text>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat.
+          </Text>
+        </Collapse>
+      </Collapse.Group>{' '}
+      <Collapse.Group>
+        <Collapse title="Question A">
+          <Text>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat.
+          </Text>
+        </Collapse>
+        <Collapse title="Question B">
+          <Text>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat.
+          </Text>
+        </Collapse>
+      </Collapse.Group>
     </Layout>
   );
 };
@@ -270,6 +300,10 @@ const EditorContainer = styled(Card)`
   display: flex;
   flex-direction: column;
   gap: 8px;
+
+  &&& {
+    transition: all 0.2s ease, border 0s;
+  }
 `;
 const EditorDescription = styled(Description)`
   && dt {
