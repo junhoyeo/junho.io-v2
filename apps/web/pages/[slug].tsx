@@ -15,7 +15,7 @@ const components = {};
 
 const PostPage: NextPage<Props> = (props: Props) => {
   return (
-    <Layout>
+    <Layout leftContent={<div />}>
       <Text h1>{props.meta.title}</Text>
       <MDXRemote {...props} components={components} />
     </Layout>
