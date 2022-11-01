@@ -1,7 +1,11 @@
 import { css, type SerializedStyles } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Breadcrumbs, Drawer, Page, useTheme } from '@geist-ui/core';
-import { useState } from 'react';
+import { useAtom, useAtomValue } from 'jotai';
+
+import { commentsAtom, isCommentDrawerOpenAtom } from '../state/comments';
+import { NavigationBar } from './NavigationBar';
+import { UserCommentCard } from './UserCommentCard';
 
 export type LayoutProps = {
   header?: React.ReactNode;
@@ -15,7 +19,10 @@ export const Layout: React.FC<LayoutProps> = ({
   children,
 }) => {
   const { palette } = useTheme();
-  const [isCommentDrawerOpen, setCommentDrawerOpen] = useState<boolean>(false);
+  const [isCommentDrawerOpen, setCommentDrawerOpen] = useAtom(
+    isCommentDrawerOpenAtom,
+  );
+  const comments = useAtomValue(commentsAtom);
 
   return (
     <Wrapper>
@@ -28,7 +35,10 @@ export const Layout: React.FC<LayoutProps> = ({
         </Sidebar>
       )}
       <Container>
+        <NavigationBar />
+
         {header}
+
         <Page style={{ minHeight: 'unset', width: 'unset' }}>
           <div style={{ width: '100%', height: '100%', position: 'relative' }}>
             {children}
@@ -41,9 +51,7 @@ export const Layout: React.FC<LayoutProps> = ({
         placement="right"
         visible={isCommentDrawerOpen}
       >
-        <Drawer.Title>Drawer</Drawer.Title>
-        <Drawer.Subtitle>This is a drawer</Drawer.Subtitle>
-        <Drawer.Content>
+        <Drawer.Content style={{ width: 380, paddingTop: 0 }}>
           <Breadcrumbs>
             <Breadcrumbs.Item>Paracosm</Breadcrumbs.Item>
             <Breadcrumbs.Item>Home</Breadcrumbs.Item>

@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { Avatar, Card, Description, Text, useTheme } from '@geist-ui/core';
 import { Info } from '@geist-ui/icons';
 import getXPath from 'get-xpath';
+import { useAtom } from 'jotai';
 import { type NextPage } from 'next';
 import { useEffect, useRef, useState } from 'react';
 import { Editor, Node, Transforms, createEditor, type Descendant } from 'slate';
@@ -9,8 +10,8 @@ import { Editable, ReactEditor, Slate, withReact } from 'slate-react';
 import { v4 as uuidv4 } from 'uuid';
 
 import { Layout } from '../components/Layout';
-import { type UserComment } from '../components/UserCommentCard';
 import { Header } from '../home/Header';
+import { commentsAtom } from '../state/comments';
 
 const serializeDescendants = (descendants: Descendant[]): string =>
   descendants.map((n) => Node.string(n)).join('\n');
@@ -50,7 +51,7 @@ const HomePage: NextPage = () => {
   // eslint-disable-next-line react/hook-use-state
   const [editor] = useState(() => withReact(createEditor()));
 
-  const [comments, setComments] = useState<UserComment[]>([]);
+  const [comments, setComments] = useAtom(commentsAtom);
   const [positionDraft, setPositionDraft] = useState<PositionDraft | null>(
     null,
   );
@@ -66,11 +67,14 @@ const HomePage: NextPage = () => {
           return;
         }
 
-        console.log(hasPositionDraftRef.current);
-
         if (hasPositionDraftRef.current) {
           setPositionDraft(null);
           hasPositionDraftRef.current = false;
+          return;
+        }
+
+        const ignored = element.closest('.navigation');
+        if (ignored) {
           return;
         }
 
