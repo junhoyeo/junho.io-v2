@@ -83,8 +83,8 @@ const HomePage: NextPage = () => {
           return;
         }
 
-        const ignored = element.closest('.navigation');
-        if (ignored) {
+        const hasValidAncestor = element.closest('.container');
+        if (!hasValidAncestor) {
           return;
         }
 
