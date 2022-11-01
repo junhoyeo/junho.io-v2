@@ -50,6 +50,10 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media screen and (max-width: 576px) {
+    padding: 12px 20px;
+  }
 `;
 
 const Brand = styled.div`
