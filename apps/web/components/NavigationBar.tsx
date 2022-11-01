@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { Button, Text, useTheme } from '@geist-ui/core';
 import { Anchor, MessageCircle } from '@geist-ui/icons';
 import { useSetAtom } from 'jotai';
+import Link from 'next/link';
 
 import { isCommentDrawerOpenAtom } from '../state/comments';
 
@@ -12,12 +13,14 @@ export const NavigationBar: React.FC = () => {
   return (
     <Wrapper style={{ borderBottom: `1px solid ${palette.accents_1}` }}>
       <Container>
-        <Brand>
-          <Anchor size={28} />
-          <Text b span style={{ fontSize: 24 }}>
-            Paracøsm
-          </Text>
-        </Brand>
+        <Link href="/">
+          <Brand style={{ color: palette.accents_8 }}>
+            <Anchor size={28} />
+            <Text b span style={{ fontSize: 24 }}>
+              Paracøsm
+            </Text>
+          </Brand>
+        </Link>
 
         <Button
           auto
