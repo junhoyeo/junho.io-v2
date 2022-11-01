@@ -1,12 +1,10 @@
 import { css, type SerializedStyles } from '@emotion/react';
 import styled from '@emotion/styled';
-import { Breadcrumbs, Drawer, Page, useTheme } from '@geist-ui/core';
-import { useAtom, useAtomValue } from 'jotai';
+import { Page, useTheme } from '@geist-ui/core';
 import React from 'react';
 
-import { commentsAtom, isCommentDrawerOpenAtom } from '../state/comments';
+import { CommentDrawer } from './CommentDrawer';
 import { NavigationBar } from './NavigationBar';
-import { UserCommentCard } from './UserCommentCard';
 
 export type LayoutProps = {
   containerRef?: React.RefObject<HTMLDivElement>;
@@ -22,10 +20,6 @@ export const Layout: React.FC<LayoutProps> = ({
   children,
 }) => {
   const { palette } = useTheme();
-  const [isCommentDrawerOpen, setCommentDrawerOpen] = useAtom(
-    isCommentDrawerOpenAtom,
-  );
-  const comments = useAtomValue(commentsAtom);
 
   return (
     <>
@@ -61,31 +55,7 @@ export const Layout: React.FC<LayoutProps> = ({
 
         <Sidebar width={200} />
 
-        <Drawer
-          onClose={(): void => setCommentDrawerOpen(false)}
-          placement="right"
-          visible={isCommentDrawerOpen}
-        >
-          <Drawer.Content style={{ width: 380, paddingTop: 0 }}>
-            <Breadcrumbs>
-              <Breadcrumbs.Item>Paracosm</Breadcrumbs.Item>
-              <Breadcrumbs.Item>Home</Breadcrumbs.Item>
-            </Breadcrumbs>
-
-            <div
-              style={{
-                marginTop: 16,
-                display: 'flex',
-                flexDirection: 'column',
-                gap: 8,
-              }}
-            >
-              {comments.map((comment) => (
-                <UserCommentCard key={comment.uuid} {...comment} />
-              ))}
-            </div>
-          </Drawer.Content>
-        </Drawer>
+        <CommentDrawer />
       </Wrapper>
     </>
   );
