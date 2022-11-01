@@ -83,7 +83,7 @@ const HomePage: NextPage = () => {
           return;
         }
 
-        const hasValidAncestor = element.closest('.container');
+        const hasValidAncestor = element.closest('.page-container');
         if (!hasValidAncestor) {
           return;
         }
