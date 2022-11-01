@@ -16,6 +16,7 @@
     "@geist-ui/icons": "git+https://github.com/junhoyeo/icons.git#dist",
     "get-xpath": "^3.0.1",
     "javascript-time-ago": "^2.5.7",
+    "jotai": "^1.9.1",
     "next": "^13.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
