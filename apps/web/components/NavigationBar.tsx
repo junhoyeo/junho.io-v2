@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import { Button, useTheme } from '@geist-ui/core';
-import { MessageCircle } from '@geist-ui/icons';
+import { Button, Text, useTheme } from '@geist-ui/core';
+import { Anchor, MessageCircle } from '@geist-ui/icons';
 import { useSetAtom } from 'jotai';
 
 import { isCommentDrawerOpenAtom } from '../state/comments';
@@ -12,6 +12,13 @@ export const NavigationBar: React.FC = () => {
   return (
     <Wrapper style={{ borderBottom: `1px solid ${palette.accents_1}` }}>
       <Container>
+        <Brand>
+          <Anchor size={28} />
+          <Text b span style={{ fontSize: 24 }}>
+            Paracøsm
+          </Text>
+        </Brand>
+
         <Button
           auto
           iconRight={<MessageCircle />}
@@ -32,11 +39,19 @@ const Wrapper = styled.div`
   z-index: 10;
   background-color: rgba(0, 0, 0, 0.4);
   backdrop-filter: saturate(140%) blur(16px);
+  display: flex;
 `;
 const Container = styled.div`
   width: 100%;
-  padding: 12px;
-
+  padding: 12px 32px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+`;
+
+const Brand = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  user-select: none;
 `;
