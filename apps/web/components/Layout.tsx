@@ -9,12 +9,14 @@ import { NavigationBar } from './NavigationBar';
 import { UserCommentCard } from './UserCommentCard';
 
 export type LayoutProps = {
+  containerRef?: React.RefObject<HTMLDivElement>;
   header?: React.ReactNode;
   leftContent?: React.ReactNode;
   children: React.ReactNode;
 };
 
 export const Layout: React.FC<LayoutProps> = ({
+  containerRef,
   header,
   leftContent,
   children,
@@ -41,7 +43,7 @@ export const Layout: React.FC<LayoutProps> = ({
           <Page.Content
             style={{ paddingTop: 0, minHeight: 'unset', width: 'unset' }}
           >
-            <Container>
+            <Container ref={containerRef}>
               {header}
 
               <div

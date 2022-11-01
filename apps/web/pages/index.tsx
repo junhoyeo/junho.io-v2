@@ -63,6 +63,8 @@ const HomePage: NextPage = () => {
   const [positionDraft, setPositionDraft] = useState<PositionDraft | null>(
     null,
   );
+
+  const containerRef = useRef<HTMLDivElement>(null);
   const hasPositionDraftRef = useRef<boolean>(false);
 
   useEffect(() => {
@@ -87,8 +89,17 @@ const HomePage: NextPage = () => {
         }
 
         const xpath = getXPath(element);
-        const x = event.clientX + window.pageXOffset;
-        const y = event.clientY + window.pageYOffset;
+
+        const rect = containerRef.current?.getBoundingClientRect();
+        const x =
+          event.clientX -
+          (rect?.left || 0) +
+          (containerRef.current?.offsetLeft || 0);
+        const y =
+          event.clientY -
+          (rect?.top || 0) +
+          (containerRef.current?.offsetTop || 0);
+
         setPositionDraft({ x, y, xpath });
         hasPositionDraftRef.current = true;
 
@@ -106,6 +117,7 @@ const HomePage: NextPage = () => {
 
   return (
     <Layout
+      containerRef={containerRef}
       header={
         <>
           <Header />
