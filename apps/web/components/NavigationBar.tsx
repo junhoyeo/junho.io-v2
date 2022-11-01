@@ -9,7 +9,7 @@ export const NavigationBar: React.FC = () => {
   const setCommentDrawerOpen = useSetAtom(isCommentDrawerOpenAtom);
 
   return (
-    <Wrapper className="navigation">
+    <Wrapper>
       <Container>
         <Button
           auto
@@ -23,16 +23,14 @@ export const NavigationBar: React.FC = () => {
 };
 
 const Wrapper = styled.div`
-  position: relative;
+  position: fixed;
   width: 100%;
-`;
-const Container = styled.div`
-  position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 100;
-
+  z-index: 10;
+`;
+const Container = styled.div`
   width: 100%;
   padding: 16px;
 

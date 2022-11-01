@@ -1,5 +1,13 @@
 import styled from '@emotion/styled';
-import { Avatar, Card, Description, Text, useTheme } from '@geist-ui/core';
+import {
+  Avatar,
+  Card,
+  Collapse,
+  Description,
+  Spacer,
+  Text,
+  useTheme,
+} from '@geist-ui/core';
 import { Info } from '@geist-ui/icons';
 import getXPath from 'get-xpath';
 import { useAtom } from 'jotai';
@@ -173,6 +181,7 @@ const HomePage: NextPage = () => {
       }
       leftContent={<div />}
     >
+      <Spacer h={3} />
       <Text blockquote>
         <InfoIcon size={20} />
 
@@ -189,6 +198,42 @@ const HomePage: NextPage = () => {
           real-world or fictitious characters and conventions.
         </Text>
       </Text>
+      <Collapse.Group>
+        <Collapse title="Question A">
+          <Text>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat.
+          </Text>
+        </Collapse>
+        <Collapse title="Question B">
+          <Text>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat.
+          </Text>
+        </Collapse>
+      </Collapse.Group>{' '}
+      <Collapse.Group>
+        <Collapse title="Question A">
+          <Text>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat.
+          </Text>
+        </Collapse>
+        <Collapse title="Question B">
+          <Text>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat.
+          </Text>
+        </Collapse>
+      </Collapse.Group>
     </Layout>
   );
 };

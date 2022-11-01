@@ -2,6 +2,7 @@ import { css, type SerializedStyles } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Breadcrumbs, Drawer, Page, useTheme } from '@geist-ui/core';
 import { useAtom, useAtomValue } from 'jotai';
+import React from 'react';
 
 import { commentsAtom, isCommentDrawerOpenAtom } from '../state/comments';
 import { NavigationBar } from './NavigationBar';
@@ -25,53 +26,62 @@ export const Layout: React.FC<LayoutProps> = ({
   const comments = useAtomValue(commentsAtom);
 
   return (
-    <Wrapper>
-      {!!leftContent && (
-        <Sidebar
-          style={{ borderRight: `1px solid ${palette.accents_2}` }}
-          width={200}
-        >
-          {leftContent}
-        </Sidebar>
-      )}
-      <Container>
-        <NavigationBar />
-
-        {header}
-
-        <Page style={{ minHeight: 'unset', width: 'unset' }}>
-          <div style={{ width: '100%', height: '100%', position: 'relative' }}>
-            {children}
-          </div>
-        </Page>
-      </Container>
-
-      <Drawer
-        onClose={(): void => setCommentDrawerOpen(false)}
-        placement="right"
-        visible={isCommentDrawerOpen}
-      >
-        <Drawer.Content style={{ width: 380, paddingTop: 0 }}>
-          <Breadcrumbs>
-            <Breadcrumbs.Item>Paracosm</Breadcrumbs.Item>
-            <Breadcrumbs.Item>Home</Breadcrumbs.Item>
-          </Breadcrumbs>
-
-          <div
-            style={{
-              marginTop: 16,
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 8,
-            }}
+    <>
+      <NavigationBar />
+      <Wrapper>
+        {!!leftContent && (
+          <Sidebar
+            style={{ borderRight: `1px solid ${palette.accents_2}` }}
+            width={200}
           >
-            {comments.map((comment) => (
-              <UserCommentCard key={comment.uuid} {...comment} />
-            ))}
-          </div>
-        </Drawer.Content>
-      </Drawer>
-    </Wrapper>
+            {leftContent}
+          </Sidebar>
+        )}
+        <Page>
+          <Page.Content
+            style={{ paddingTop: 0, minHeight: 'unset', width: 'unset' }}
+          >
+            <Container>
+              {header}
+
+              <div
+                style={{ width: '100%', height: '100%', position: 'relative' }}
+              >
+                {children}
+              </div>
+            </Container>
+          </Page.Content>
+        </Page>
+
+        <Sidebar width={100} />
+
+        <Drawer
+          onClose={(): void => setCommentDrawerOpen(false)}
+          placement="right"
+          visible={isCommentDrawerOpen}
+        >
+          <Drawer.Content style={{ width: 380, paddingTop: 0 }}>
+            <Breadcrumbs>
+              <Breadcrumbs.Item>Paracosm</Breadcrumbs.Item>
+              <Breadcrumbs.Item>Home</Breadcrumbs.Item>
+            </Breadcrumbs>
+
+            <div
+              style={{
+                marginTop: 16,
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 8,
+              }}
+            >
+              {comments.map((comment) => (
+                <UserCommentCard key={comment.uuid} {...comment} />
+              ))}
+            </div>
+          </Drawer.Content>
+        </Drawer>
+      </Wrapper>
+    </>
   );
 };
 
