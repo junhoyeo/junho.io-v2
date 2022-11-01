@@ -19,7 +19,7 @@ export const CommentDrawer: React.FC = () => {
       placement="right"
       visible={isCommentDrawerOpen}
     >
-      <Drawer.Content style={{ width: 380, paddingTop: 0 }}>
+      <StyledDrawerContent>
         <Header>
           <Breadcrumbs>
             <Breadcrumbs.Item>Paracosm</Breadcrumbs.Item>
@@ -46,7 +46,7 @@ export const CommentDrawer: React.FC = () => {
             <UserCommentCard key={comment.uuid} {...comment} />
           ))}
         </div>
-      </Drawer.Content>
+      </StyledDrawerContent>
     </StyledDrawer>
   );
 };
@@ -54,8 +54,23 @@ export const CommentDrawer: React.FC = () => {
 const StyledDrawer = styled(Drawer)`
   &&& {
     padding: 16px 32px;
+
+    @media screen and (max-width: 576px) {
+      padding: 12px 20px;
+    }
   }
 `;
+const StyledDrawerContent = styled(Drawer.Content)`
+  &&& {
+    width: 380px;
+    padding-top: 0px;
+
+    @media screen and (max-width: 576px) {
+      width: 100vw;
+    }
+  }
+`;
+
 const Header = styled.div`
   display: flex;
   align-items: center;

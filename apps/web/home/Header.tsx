@@ -1,16 +1,29 @@
+import { css, type SerializedStyles } from '@emotion/react';
 import styled from '@emotion/styled';
-import { Text, useTheme } from '@geist-ui/core';
+import { Text, useScale, useTheme } from '@geist-ui/core';
 import Image from 'next/image';
 
 import shipIllust from '../assets/ship.jpg';
 
+const negativeToCalc = (calcString: string): string =>
+  calcString.replace('(', '(-');
+
 export const Header: React.FC = () => {
   const { palette } = useTheme();
 
+  const { SCALES } = useScale();
+
   return (
-    <Container>
+    <Container pl={SCALES.pl(1.34)} pr={SCALES.pr(1.34)}>
       <ShipIllustContainer>
-        <ShipIllust alt="" placeholder="blur" sizes="100vw" src={shipIllust} />
+        <ShipIllust
+          alt=""
+          placeholder="blur"
+          priority
+          quality={100}
+          sizes="(max-width: 576px) 864px, 100vw"
+          src={shipIllust}
+        />
       </ShipIllustContainer>
       <Content>
         <Title h1>Paracøsm</Title>
@@ -22,12 +35,20 @@ export const Header: React.FC = () => {
   );
 };
 
-const Container = styled.header`
+const Container = styled.header<{ pl: string; pr: string }>`
   margin-bottom: -64px;
   height: 600px;
 
   position: relative;
   z-index: 0;
+
+  ${({ pl, pr }): SerializedStyles => css`
+    @media screen and (max-width: 982px) {
+      width: 100vw;
+      margin-left: ${negativeToCalc(pl)};
+      margin-right: ${negativeToCalc(pr)};
+    }
+  `}
 `;
 const ShipIllustContainer = styled.div`
   position: absolute;
@@ -73,10 +94,27 @@ const Title = styled(Text)`
   line-height: 1;
   font-size: 84px;
   text-align: center;
+
+  @media screen and (max-width: 576px) {
+    font-size: 64px;
+  }
+
+  @media screen and (max-width: 480px) {
+    font-size: 52px;
+  }
 `;
 const Subtitle = styled(Text)`
   margin: 0;
   margin-top: 16px;
   line-height: 1;
   text-align: center;
+
+  @media screen and (max-width: 576px) {
+    margin-top: 12px;
+    font-size: 32px;
+  }
+
+  @media screen and (max-width: 480px) {
+    font-size: 24px;
+  }
 `;

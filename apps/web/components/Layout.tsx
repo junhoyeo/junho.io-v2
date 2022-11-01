@@ -1,4 +1,3 @@
-import { css, type SerializedStyles } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Page, useTheme } from '@geist-ui/core';
 import React from 'react';
@@ -10,6 +9,7 @@ export type LayoutProps = {
   containerRef?: React.RefObject<HTMLDivElement>;
   header?: React.ReactNode;
   leftContent?: React.ReactNode;
+  rightContent?: React.ReactNode;
   children: React.ReactNode;
 };
 
@@ -17,6 +17,7 @@ export const Layout: React.FC<LayoutProps> = ({
   containerRef,
   header,
   leftContent,
+  rightContent,
   children,
 }) => {
   const { palette } = useTheme();
@@ -25,14 +26,10 @@ export const Layout: React.FC<LayoutProps> = ({
     <>
       <NavigationBar />
       <Wrapper>
-        {!!leftContent && (
-          <Sidebar
-            style={{ borderRight: `1px solid ${palette.accents_2}` }}
-            width={280}
-          >
-            {leftContent}
-          </Sidebar>
-        )}
+        <LeftSidebar style={{ borderRight: `1px solid ${palette.accents_2}` }}>
+          {leftContent}
+        </LeftSidebar>
+
         <Page>
           <Page.Content
             style={{
@@ -53,7 +50,7 @@ export const Layout: React.FC<LayoutProps> = ({
           </Page.Content>
         </Page>
 
-        <Sidebar width={200} />
+        <RightSidebar>{rightContent}</RightSidebar>
 
         <CommentDrawer />
       </Wrapper>
@@ -65,24 +62,62 @@ const Wrapper = styled.div`
   display: flex;
   height: 100%;
   min-height: 100vh;
+
+  @media screen and (max-width: 982px) {
+    &&& section {
+      width: 100%;
+    }
+  }
 `;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
-type SidebarProps = {
-  width: number;
-};
-const Sidebar = styled.div<SidebarProps>`
+const Sidebar = styled.div`
   padding: 24px 28px;
   display: flex;
   flex-direction: column;
+`;
 
-  ${({ width }): 0 | SerializedStyles =>
-    width &&
-    css`
-      width: ${width}px;
-      min-width: ${width}px;
-    `};
+const LeftSidebar = styled(Sidebar)`
+  width: 280px;
+  min-width: 280px;
+
+  @media screen and (max-width: 1440px) {
+    width: 260px;
+    min-width: 260px;
+  }
+
+  @media screen and (max-width: 1360px) {
+    width: 240px;
+    min-width: 240px;
+  }
+
+  @media screen and (max-width: 1200px) {
+    width: 200px;
+    min-width: 200px;
+  }
+
+  @media screen and (max-width: 982px) {
+    display: none;
+  }
+`;
+const RightSidebar = styled(Sidebar)`
+  width: 200px;
+  min-width: 200px;
+
+  @media screen and (max-width: 1360px) {
+    width: 180px;
+    min-width: 180px;
+  }
+
+  @media screen and (max-width: 1200px) {
+    width: 140px;
+    min-width: 140px;
+  }
+
+  @media screen and (max-width: 982px) {
+    display: none;
+  }
 `;
