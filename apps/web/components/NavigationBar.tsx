@@ -1,15 +1,16 @@
 import styled from '@emotion/styled';
-import { Button } from '@geist-ui/core';
+import { Button, useTheme } from '@geist-ui/core';
 import { MessageCircle } from '@geist-ui/icons';
 import { useSetAtom } from 'jotai';
 
 import { isCommentDrawerOpenAtom } from '../state/comments';
 
 export const NavigationBar: React.FC = () => {
+  const { palette } = useTheme();
   const setCommentDrawerOpen = useSetAtom(isCommentDrawerOpenAtom);
 
   return (
-    <Wrapper>
+    <Wrapper style={{ borderBottom: `1px solid ${palette.accents_1}` }}>
       <Container>
         <Button
           auto
@@ -29,10 +30,12 @@ const Wrapper = styled.div`
   left: 0;
   right: 0;
   z-index: 10;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: saturate(140%) blur(16px);
 `;
 const Container = styled.div`
   width: 100%;
-  padding: 16px;
+  padding: 12px;
 
   display: flex;
   align-items: center;

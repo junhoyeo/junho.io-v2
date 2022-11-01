@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { Text, useTheme } from '@geist-ui/core';
 import Image from 'next/image';
 
-import shipIllust from '../assets/ship.png';
+import shipIllust from '../assets/ship.jpg';
 
 export const Header: React.FC = () => {
   const { palette } = useTheme();
@@ -35,13 +35,16 @@ const ShipIllustContainer = styled.div`
   left: 0;
   right: 0;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: -10px;
 `;
 const ShipIllust = styled(Image)`
-  margin: 0 auto;
   width: 100%;
-  max-width: 1272px;
-  height: 420px;
-  display: flex;
+  min-width: 1400px;
+  max-width: 1400px;
+  height: 430px;
 
   object-fit: cover;
   object-position: bottom center;
