@@ -4,6 +4,7 @@ import React from 'react';
 
 import { CommentDrawer } from './CommentDrawer';
 import { NavigationBar } from './NavigationBar';
+import { PostList } from './PostList';
 
 export type LayoutProps = {
   containerRef?: React.RefObject<HTMLDivElement>;
@@ -27,7 +28,7 @@ export const Layout: React.FC<LayoutProps> = ({
       <NavigationBar />
       <Wrapper>
         <LeftSidebar style={{ borderRight: `1px solid ${palette.accents_2}` }}>
-          {leftContent}
+          {!leftContent && <PostList />}
         </LeftSidebar>
 
         <Page>

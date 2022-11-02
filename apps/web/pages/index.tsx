@@ -191,7 +191,6 @@ const HomePage: NextPage = () => {
           </Slate>
         </>
       }
-      leftContent={<div />}
     >
       <Spacer h={3} />
       <Text blockquote>
