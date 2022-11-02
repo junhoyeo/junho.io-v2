@@ -5,12 +5,17 @@ import { useRouter } from 'next/router';
 import blogPosts from '../lib/constants/posts/blog';
 import tweets from '../lib/constants/posts/tweets';
 
-export const PostList: React.FC = () => {
+export type PostListProps = {
+  // TODO: Support expanding only current folder
+  initialExpand?: boolean;
+};
+
+export const PostList: React.FC<PostListProps> = ({ initialExpand }) => {
   const router = useRouter();
 
   return (
     <Container>
-      <Tree>
+      <Tree initialExpand={initialExpand}>
         <Tree.File
           extra="Home"
           name="README.md"

@@ -15,7 +15,7 @@ const components = {};
 
 const TweetPage: NextPage<Props> = (props: Props) => {
   return (
-    <Layout>
+    <Layout defaultPostListProps={{ initialExpand: true }}>
       <Text h1>{props.meta.title}</Text>
       <MDXRemote {...props} components={components} />
     </Layout>
