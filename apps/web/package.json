@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "prebuild": "ts-node ./scripts/generate-posts.ts",
     "build": "next build",
     "dev": "next dev",
     "lint": "next lint",
@@ -21,22 +22,26 @@
     "jotai": "^1.9.1",
     "next": "^13.0.0",
     "next-mdx-remote": "^4.1.0",
+    "prettier": "^2.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "slate": "^0.84.0",
     "slate-react": "^0.83.2",
+    "swr": "^1.3.0",
     "ui": "*",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.19.6",
     "@types/node": "^18.11.5",
+    "@types/prettier": "^2.7.1",
     "@types/react": "^18.0.23",
     "@types/react-dom": "^18.0.7",
     "@types/uuid": "^8.3.4",
     "eslint": "latest",
     "eslint-config-custom": "*",
     "next-transpile-modules": "9.1.0",
+    "ts-node": "^10.9.1",
     "tsconfig": "*",
     "typescript": "^4.8.4"
   }

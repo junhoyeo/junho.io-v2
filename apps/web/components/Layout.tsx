@@ -4,11 +4,13 @@ import React from 'react';
 
 import { CommentDrawer } from './CommentDrawer';
 import { NavigationBar } from './NavigationBar';
+import { PostList, type PostListProps } from './PostList';
 
 export type LayoutProps = {
   containerRef?: React.RefObject<HTMLDivElement>;
   header?: React.ReactNode;
   leftContent?: React.ReactNode;
+  defaultPostListProps?: PostListProps;
   rightContent?: React.ReactNode;
   children: React.ReactNode;
 };
@@ -19,6 +21,7 @@ export const Layout: React.FC<LayoutProps> = ({
   leftContent,
   rightContent,
   children,
+  defaultPostListProps,
 }) => {
   const { palette } = useTheme();
 
@@ -27,7 +30,7 @@ export const Layout: React.FC<LayoutProps> = ({
       <NavigationBar />
       <Wrapper>
         <LeftSidebar style={{ borderRight: `1px solid ${palette.accents_2}` }}>
-          {leftContent}
+          {!leftContent && <PostList {...defaultPostListProps} />}
         </LeftSidebar>
 
         <Page>
