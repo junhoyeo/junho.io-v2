@@ -12,6 +12,9 @@ module.exports = {
     {
       files: ['*.tsx'],
       rules: {
+        '@typescript-eslint/explicit-function-return-type': 'off',
+        '@typescript-eslint/no-floating-promises': 'off',
+        '@typescript-eslint/no-misused-promises': 'off',
         'unicorn/filename-case': 'off',
         'react/function-component-definition': 'off',
         'import/no-default-export': 'off',

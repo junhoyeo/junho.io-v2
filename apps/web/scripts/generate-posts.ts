@@ -3,15 +3,33 @@ import { format } from 'prettier';
 
 import { getPosts } from '../lib/get-posts';
 
-const main = async (): Promise<void> => {
-  const posts = getPosts();
-  const postsWithoutBody = posts.map(({ body: _body, ...v }) => v);
+const savePostsWithoutBody = async (type: 'blog' | 'tweets'): Promise<void> => {
+  const blogPosts = getPosts(type);
+  const blogPostsWithoutBody = blogPosts.map(
+    ({ body: _body, slug, ...rest }) => ({ ...rest, slug: slug || '' }),
+  );
 
   await fs.writeFile(
-    './lib/constants/posts.json',
-    format(JSON.stringify(postsWithoutBody), { parser: 'json' }),
+    `./lib/constants/posts/${type}.ts`,
+    format(
+      `
+      import { type PostSummary } from '../../get-posts';
+      const posts: PostSummary[] = ${JSON.stringify(blogPostsWithoutBody)};
+
+      // eslint-disable-next-line import/no-default-export
+      export default posts;
+    `,
+      { parser: 'typescript' },
+    ),
     'utf8',
   );
+};
+
+const main = async (): Promise<void> => {
+  await Promise.all([
+    savePostsWithoutBody('blog'),
+    savePostsWithoutBody('tweets'),
+  ]);
 };
 
 main()

@@ -25,7 +25,7 @@ export const NavigationBar: React.FC = () => {
         <Button
           auto
           iconRight={<MessageCircle />}
-          onClick={(): void => setCommentDrawerOpen(true)}
+          onClick={() => setCommentDrawerOpen(true)}
           px={0.6}
         />
       </Container>

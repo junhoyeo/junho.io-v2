@@ -15,7 +15,7 @@ export const CommentDrawer: React.FC = () => {
 
   return (
     <StyledDrawer
-      onClose={(): void => setCommentDrawerOpen(false)}
+      onClose={() => setCommentDrawerOpen(false)}
       placement="right"
       visible={isCommentDrawerOpen}
     >
@@ -29,7 +29,7 @@ export const CommentDrawer: React.FC = () => {
           <Button
             auto
             iconRight={<XIcon />}
-            onClick={(): void => setCommentDrawerOpen(false)}
+            onClick={() => setCommentDrawerOpen(false)}
             px={0.6}
           />
         </Header>

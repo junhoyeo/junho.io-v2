@@ -1,24 +1,41 @@
 import styled from '@emotion/styled';
 import { Tree } from '@geist-ui/core';
-import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-import posts from '../lib/constants/posts.json';
+import blogPosts from '../lib/constants/posts/blog';
+import tweets from '../lib/constants/posts/tweets';
 
 export const PostList: React.FC = () => {
+  const router = useRouter();
+
   return (
     <Container>
       <Tree>
-        <Link href="/">
-          <Tree.File extra="Home" name="README.md" />
-        </Link>
-        {posts.map((post) => (
-          <Link href={post.slug}>
-            <Tree.File name={post.title} />
-          </Link>
-        ))}
+        <Tree.File
+          extra="Home"
+          name="README.md"
+          onClick={() => router.push('/')}
+        />
         <Tree.Folder name="Tweets">
-          <Tree.File name="README.md" />
+          {tweets.map((post) => {
+            const slug = post.slug === '/' ? '' : post.slug || '';
+            return (
+              <Tree.File
+                extra={post.date}
+                key={`tweets/${slug}`}
+                name={!slug ? 'README.md' : post.title}
+                onClick={() => router.push(`/tweets/${slug}`)}
+              />
+            );
+          })}
         </Tree.Folder>
+        {blogPosts.map((post) => (
+          <Tree.File
+            key={post.slug}
+            name={post.title}
+            onClick={() => router.push(`/${post.slug}`)}
+          />
+        ))}
       </Tree>
     </Container>
   );
