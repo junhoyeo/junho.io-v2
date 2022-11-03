@@ -4,9 +4,9 @@ import { useSetAtom } from 'jotai';
 import { useRouter } from 'next/router';
 import { useCallback } from 'react';
 
-import blogPosts from '../lib/constants/posts/blog';
-import memex from '../lib/constants/posts/memex';
-import tweets from '../lib/constants/posts/tweets';
+import blogPosts from '../posts/generated/blog';
+import memex from '../posts/generated/memex';
+import tweets from '../posts/generated/tweets';
 import { isPostDrawerOpenAtom } from '../state/posts';
 
 export type PostListProps = {

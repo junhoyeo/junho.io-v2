@@ -9,7 +9,7 @@ import {
   getPosts,
   type Post,
   type PostCategoryType,
-} from '../../lib/get-posts';
+} from '../../posts/lib/get-posts';
 
 type Props = MDXRemoteSerializeResult & {
   meta: Omit<Post, 'body'>;

@@ -18,10 +18,13 @@ export type Post = PostSummary & {
 
 export const getPosts = (type: PostCategoryType): Post[] => {
   const posts = fs
-    .readdirSync(`./posts/${type}`)
+    .readdirSync(`./posts/data/${type}`)
     .filter((file) => ['.md', '.mdx'].includes(path.extname(file)))
     .flatMap((file) => {
-      const postContent = fs.readFileSync(`./posts/${type}/${file}`, 'utf8');
+      const postContent = fs.readFileSync(
+        `./posts/data/${type}/${file}`,
+        'utf8',
+      );
       const { data, content } = matter(postContent);
 
       if (data.published === false) {
