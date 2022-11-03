@@ -13,7 +13,7 @@ const savePostsWithoutBody = async (type: PostCategoryType): Promise<void> => {
     `./posts/generated/${type}.ts`,
     format(
       `
-      import { type PostSummary } from '../../get-posts';
+      import { type PostSummary } from '../lib/get-posts';
       const posts: PostSummary[] = ${JSON.stringify(blogPostsWithoutBody)};
 
       // eslint-disable-next-line import/no-default-export
