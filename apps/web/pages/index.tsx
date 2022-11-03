@@ -20,6 +20,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Layout } from '../components/Layout';
 import { Header } from '../home/Header';
 import { commentsAtom } from '../state/comments';
+import { fixedWidth } from '../utils/css';
 
 const serializeDescendants = (descendants: Descendant[]): string =>
   descendants.map((n) => Node.string(n)).join('\n');
@@ -292,9 +293,7 @@ const UserCommentEditorContainer = styled.div`
 `;
 
 const EditorContainer = styled(Card)`
-  width: 300px;
-  min-width: 300px;
-  max-width: 300px;
+  ${fixedWidth(300)}
 
   display: flex;
   flex-direction: column;

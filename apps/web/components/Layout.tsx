@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { Page, useTheme } from '@geist-ui/core';
 import React from 'react';
 
+import { fixedWidth } from '../utils/css';
 import { CommentDrawer } from './CommentDrawer';
 import { NavigationBar } from './NavigationBar';
 import { PostList, type PostListProps } from './PostList';
@@ -81,26 +82,18 @@ const Sidebar = styled.div`
 `;
 
 const LeftSidebar = styled(Sidebar)`
-  width: 280px;
-  min-width: 280px;
-  max-width: 280px;
+  ${fixedWidth(280)}
 
   @media screen and (max-width: 1440px) {
-    width: 260px;
-    min-width: 260px;
-    max-width: 260px;
+    ${fixedWidth(260)}
   }
 
   @media screen and (max-width: 1360px) {
-    width: 240px;
-    min-width: 240px;
-    max-width: 240px;
+    ${fixedWidth(240)}
   }
 
   @media screen and (max-width: 1200px) {
-    width: 200px;
-    min-width: 200px;
-    max-width: 200px;
+    ${fixedWidth(200)}
   }
 
   @media screen and (max-width: 982px) {
@@ -108,20 +101,14 @@ const LeftSidebar = styled(Sidebar)`
   }
 `;
 const RightSidebar = styled(Sidebar)`
-  width: 200px;
-  min-width: 200px;
-  max-width: 200px;
+  ${fixedWidth(200)}
 
   @media screen and (max-width: 1360px) {
-    width: 180px;
-    min-width: 180px;
-    max-width: 180px;
+    ${fixedWidth(180)}
   }
 
   @media screen and (max-width: 1200px) {
-    width: 140px;
-    min-width: 140px;
-    max-width: 140px;
+    ${fixedWidth(140)}
   }
 
   @media screen and (max-width: 982px) {
