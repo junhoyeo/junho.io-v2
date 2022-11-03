@@ -88,20 +88,16 @@ const LeftSidebar = styled(Sidebar)`
     ${fixedWidth(300)}
   }
 
-  /* @media screen and (max-width: 1360px) {
-    ${fixedWidth(240)}
-  }
-
-  @media screen and (max-width: 1200px) {
-    ${fixedWidth(200)}
-  } */
-
   @media screen and (max-width: 982px) {
     display: none;
   }
 `;
 const RightSidebar = styled(Sidebar)`
-  ${fixedWidth(200)}
+  ${fixedWidth(300)}
+
+  @media screen and (max-width: 1440px) {
+    ${fixedWidth(200)}
+  }
 
   @media screen and (max-width: 1360px) {
     ${fixedWidth(180)}
