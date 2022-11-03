@@ -1,9 +1,12 @@
 import styled from '@emotion/styled';
 import { Tree } from '@geist-ui/core';
+import { useSetAtom } from 'jotai';
 import { useRouter } from 'next/router';
+import { useCallback } from 'react';
 
 import blogPosts from '../lib/constants/posts/blog';
 import tweets from '../lib/constants/posts/tweets';
+import { isPostDrawerOpenAtom } from '../state/posts';
 
 export type PostListProps = {
   // TODO: Support expanding only current folder
@@ -12,6 +15,15 @@ export type PostListProps = {
 
 export const PostList: React.FC<PostListProps> = ({ initialExpand }) => {
   const router = useRouter();
+  const setPostDrawerOpen = useSetAtom(isPostDrawerOpenAtom);
+
+  const pushRoute = useCallback(
+    (route: string) => {
+      router.push(route);
+      setPostDrawerOpen(false);
+    },
+    [router, setPostDrawerOpen],
+  );
 
   return (
     <Wrapper>
@@ -20,7 +32,7 @@ export const PostList: React.FC<PostListProps> = ({ initialExpand }) => {
           <Tree.File
             extra="Home"
             name="README.md"
-            onClick={() => router.push('/')}
+            onClick={() => pushRoute('/')}
           />
           <Tree.Folder name="Tweets">
             {tweets.map((post) => {
@@ -30,7 +42,7 @@ export const PostList: React.FC<PostListProps> = ({ initialExpand }) => {
                   extra={post.date}
                   key={`tweets/${slug}`}
                   name={!slug ? 'README.md' : post.title}
-                  onClick={() => router.push(`/tweets/${slug}`)}
+                  onClick={() => pushRoute(`/tweets/${slug}`)}
                 />
               );
             })}
@@ -39,7 +51,7 @@ export const PostList: React.FC<PostListProps> = ({ initialExpand }) => {
             <Tree.File
               key={post.slug}
               name={post.title}
-              onClick={() => router.push(`/${post.slug}`)}
+              onClick={() => pushRoute(`/${post.slug}`)}
             />
           ))}
         </StyledTree>
