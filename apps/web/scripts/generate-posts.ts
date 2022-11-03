@@ -29,7 +29,7 @@ const main = async (): Promise<void> => {
   await Promise.all([
     savePostsWithoutBody('blog'),
     savePostsWithoutBody('tweets'),
-    savePostsWithoutBody('research'),
+    savePostsWithoutBody('memex'),
   ]);
 };
 

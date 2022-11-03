@@ -2,7 +2,7 @@ import matter from 'gray-matter';
 import fs from 'node:fs';
 import path from 'node:path';
 
-export type PostCategoryType = 'blog' | 'tweets' | 'research';
+export type PostCategoryType = 'blog' | 'tweets' | 'memex';
 
 export type PostSummary = {
   emoji?: string;

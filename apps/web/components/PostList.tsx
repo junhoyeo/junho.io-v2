@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { useCallback } from 'react';
 
 import blogPosts from '../lib/constants/posts/blog';
-import researches from '../lib/constants/posts/research';
+import memex from '../lib/constants/posts/memex';
 import tweets from '../lib/constants/posts/tweets';
 import { isPostDrawerOpenAtom } from '../state/posts';
 
@@ -60,7 +60,7 @@ export const PostList: React.FC<PostListProps> = ({ initialExpand }) => {
             })}
           </Tree.Folder>
           <Tree.Folder name="Memex">
-            {researches.map((post) => (
+            {memex.map((post) => (
               <Tree.File
                 key={post.slug}
                 name={post.title}
