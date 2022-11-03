@@ -21,6 +21,7 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
 
           * {
             box-sizing: border-box !important;
+            word-break: keep-all;
           }
         `}
       />
