@@ -2,6 +2,8 @@ import matter from 'gray-matter';
 import fs from 'node:fs';
 import path from 'node:path';
 
+export type PostCategoryType = 'blog' | 'tweets' | 'research';
+
 export type PostSummary = {
   emoji?: string;
   title: string;
@@ -14,7 +16,7 @@ export type Post = PostSummary & {
   body: string;
 };
 
-export const getPosts = (type: 'blog' | 'tweets'): Post[] => {
+export const getPosts = (type: PostCategoryType): Post[] => {
   const posts = fs
     .readdirSync(`./posts/${type}`)
     .filter((file) => ['.md', '.mdx'].includes(path.extname(file)))

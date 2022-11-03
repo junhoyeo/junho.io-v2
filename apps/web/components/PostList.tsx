@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { useCallback } from 'react';
 
 import blogPosts from '../lib/constants/posts/blog';
+import researches from '../lib/constants/posts/research';
 import tweets from '../lib/constants/posts/tweets';
 import { isPostDrawerOpenAtom } from '../state/posts';
 
@@ -47,7 +48,18 @@ export const PostList: React.FC<PostListProps> = ({ initialExpand }) => {
               );
             })}
           </Tree.Folder>
-          {blogPosts.map((post) => (
+          <Tree.Folder name="Blog">
+            {blogPosts.map((post) => {
+              return (
+                <Tree.File
+                  key={post.slug}
+                  name={post.title}
+                  onClick={() => pushRoute(`/${post.slug}`)}
+                />
+              );
+            })}
+          </Tree.Folder>
+          {researches.map((post) => (
             <Tree.File
               key={post.slug}
               name={post.title}
