@@ -82,18 +82,10 @@ const Sidebar = styled.div`
 `;
 
 const LeftSidebar = styled(Sidebar)`
-  ${fixedWidth(280)}
+  ${fixedWidth(380)}
 
   @media screen and (max-width: 1440px) {
-    ${fixedWidth(260)}
-  }
-
-  @media screen and (max-width: 1360px) {
-    ${fixedWidth(240)}
-  }
-
-  @media screen and (max-width: 1200px) {
-    ${fixedWidth(200)}
+    ${fixedWidth(300)}
   }
 
   @media screen and (max-width: 982px) {
@@ -101,17 +93,21 @@ const LeftSidebar = styled(Sidebar)`
   }
 `;
 const RightSidebar = styled(Sidebar)`
-  ${fixedWidth(200)}
+  ${fixedWidth(300)}
+
+  @media screen and (max-width: 1440px) {
+    ${fixedWidth(200)}
+  }
 
   @media screen and (max-width: 1360px) {
     ${fixedWidth(180)}
   }
 
   @media screen and (max-width: 1200px) {
-    ${fixedWidth(140)}
+    /* ${fixedWidth(140)}
   }
 
-  @media screen and (max-width: 982px) {
+  @media screen and (max-width: 982px) { */
     display: none;
   }
 `;
