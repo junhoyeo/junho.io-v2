@@ -7,11 +7,10 @@ import { isPostDrawerOpenAtom } from '../state/posts';
 import { PostList } from './PostList';
 
 export const PostMenuDrawer: React.FC = () => {
-  const [isCommentDrawerOpen, setCommentDrawerOpen] =
-    useAtom(isPostDrawerOpenAtom);
+  const [isPostDrawerOpen, setPostDrawerOpen] = useAtom(isPostDrawerOpenAtom);
 
   useEffect(() => {
-    if (!isCommentDrawerOpen) {
+    if (!isPostDrawerOpen) {
       return;
     }
     setTimeout(() => {
@@ -23,13 +22,13 @@ export const PostMenuDrawer: React.FC = () => {
         backdrop.style.zIndex = '10';
       }
     });
-  }, [isCommentDrawerOpen]);
+  }, [isPostDrawerOpen]);
 
   return (
     <StyledDrawer
-      onClose={() => setCommentDrawerOpen(false)}
+      onClose={() => setPostDrawerOpen(false)}
       placement="left"
-      visible={isCommentDrawerOpen}
+      visible={isPostDrawerOpen}
     >
       <StyledDrawerContent>
         <PostListContainer>
