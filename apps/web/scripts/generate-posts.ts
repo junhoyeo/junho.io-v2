@@ -1,9 +1,9 @@
 import { promises as fs } from 'node:fs';
 import { format } from 'prettier';
 
-import { getPosts } from '../lib/get-posts';
+import { getPosts, type PostCategoryType } from '../lib/get-posts';
 
-const savePostsWithoutBody = async (type: 'blog' | 'tweets'): Promise<void> => {
+const savePostsWithoutBody = async (type: PostCategoryType): Promise<void> => {
   const blogPosts = getPosts(type);
   const blogPostsWithoutBody = blogPosts.map(
     ({ body: _body, slug, ...rest }) => ({ ...rest, slug: slug || '' }),
@@ -29,6 +29,7 @@ const main = async (): Promise<void> => {
   await Promise.all([
     savePostsWithoutBody('blog'),
     savePostsWithoutBody('tweets'),
+    savePostsWithoutBody('memex'),
   ]);
 };
 
