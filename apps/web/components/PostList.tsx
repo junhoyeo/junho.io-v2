@@ -16,7 +16,7 @@ export const PostList: React.FC<PostListProps> = ({ initialExpand }) => {
   return (
     <Wrapper>
       <Container>
-        <Tree initialExpand={initialExpand}>
+        <StyledTree initialExpand={initialExpand}>
           <Tree.File
             extra="Home"
             name="README.md"
@@ -42,7 +42,7 @@ export const PostList: React.FC<PostListProps> = ({ initialExpand }) => {
               onClick={() => router.push(`/${post.slug}`)}
             />
           ))}
-        </Tree>
+        </StyledTree>
       </Container>
     </Wrapper>
   );
@@ -65,4 +65,12 @@ const Container = styled.div`
 
   display: flex;
   flex-direction: column;
+`;
+
+const StyledTree = styled(Tree)`
+  &&& .name {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 `;
