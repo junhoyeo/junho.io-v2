@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Text } from '@geist-ui/core';
+import { Breadcrumbs, Text } from '@geist-ui/core';
 import { type MDXProvider } from '@mdx-js/react';
 import { type GetStaticPaths, type GetStaticProps } from 'next';
 import { type MDXRemoteSerializeResult } from 'next-mdx-remote';
@@ -25,23 +25,62 @@ export type Post = PostSummary & {
 };
 
 export type BlogPageProps = MDXRemoteSerializeResult & {
+  type: PostCategoryType;
   meta: Omit<Post, 'body'>;
 };
 
 const components: React.ComponentProps<typeof MDXProvider>['components'] = {
-  h1: styled.h1`
-    line-height: 1.25;
+  h2: styled.h2`
+    margin-top: 42px;
+  `,
+  h3: styled.h3`
+    margin-top: 42px;
+  `,
+  h4: styled.h3`
+    margin-top: 42px;
+  `,
+  h5: styled.h3`
+    margin-top: 42px;
+  `,
+  h6: styled.h3`
+    margin-top: 42px;
   `,
 };
+
+const capitalize = (value: string) =>
+  value.charAt(0).toUpperCase() + value.slice(1);
 
 export const BlogPage: React.FC<BlogPageProps> = (props: BlogPageProps) => {
   return (
     <Layout defaultPostListProps={{ initialExpand: true }}>
-      <Text h1>{props.meta.title}</Text>
+      <Breadcrumbs>
+        <Breadcrumbs.Item>Paracøsm</Breadcrumbs.Item>
+        <Breadcrumbs.Item>{capitalize(props.type)}</Breadcrumbs.Item>
+        <Breadcrumbs.Item
+          href="#"
+          style={{
+            display: 'inline-block',
+            overflow: 'hidden',
+            whiteSpace: 'nowrap',
+            textOverflow: 'ellipsis',
+          }}
+        >
+          {props.meta.title}
+        </Breadcrumbs.Item>
+      </Breadcrumbs>
+      <Title h1>{props.meta.title}</Title>
       <MDXRemote {...props} components={components} />
     </Layout>
   );
 };
+
+const Title = styled(Text)`
+  margin-top: 42px;
+
+  font-weight: 900;
+  line-height: 1.25;
+  margin-bottom: 1.5rem;
+`;
 
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-constraint, @typescript-eslint/no-explicit-any
 export const withCache = <ReturnType extends any, Params extends any[]>(
@@ -97,6 +136,7 @@ export const buildGetStaticProps: (type: PostCategoryType) => GetStaticProps =
     return {
       props: {
         meta,
+        type,
         ...serializedResult,
       },
     };
