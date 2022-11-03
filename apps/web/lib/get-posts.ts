@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 export type PostSummary = {
+  emoji?: string;
   title: string;
   slug: string;
   description?: string;
@@ -16,7 +17,7 @@ export type Post = PostSummary & {
 export const getPosts = (type: 'blog' | 'tweets'): Post[] => {
   const posts = fs
     .readdirSync(`./posts/${type}`)
-    .filter((file) => path.extname(file) === '.md')
+    .filter((file) => ['.md', '.mdx'].includes(path.extname(file)))
     .flatMap((file) => {
       const postContent = fs.readFileSync(`./posts/${type}/${file}`, 'utf8');
       const { data, content } = matter(postContent);

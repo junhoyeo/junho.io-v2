@@ -34,13 +34,7 @@ export const Layout: React.FC<LayoutProps> = ({
         </LeftSidebar>
 
         <Page>
-          <Page.Content
-            style={{
-              paddingTop: !header ? 64 : 0,
-              minHeight: 'unset',
-              width: 'unset',
-            }}
-          >
+          <Page.Content style={{ paddingTop: !header ? 64 : 0 }}>
             <Container className="page-container" ref={containerRef}>
               {header}
 
@@ -66,6 +60,10 @@ const Wrapper = styled.div`
   height: 100%;
   min-height: 100vh;
 
+  &&& section {
+    min-width: 0;
+  }
+
   @media screen and (max-width: 982px) {
     &&& section {
       width: 100%;
@@ -73,6 +71,7 @@ const Wrapper = styled.div`
   }
 `;
 const Container = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
 `;
@@ -84,20 +83,24 @@ const Sidebar = styled.div`
 const LeftSidebar = styled(Sidebar)`
   width: 280px;
   min-width: 280px;
+  max-width: 280px;
 
   @media screen and (max-width: 1440px) {
     width: 260px;
     min-width: 260px;
+    max-width: 260px;
   }
 
   @media screen and (max-width: 1360px) {
     width: 240px;
     min-width: 240px;
+    max-width: 240px;
   }
 
   @media screen and (max-width: 1200px) {
     width: 200px;
     min-width: 200px;
+    max-width: 200px;
   }
 
   @media screen and (max-width: 982px) {
@@ -107,15 +110,18 @@ const LeftSidebar = styled(Sidebar)`
 const RightSidebar = styled(Sidebar)`
   width: 200px;
   min-width: 200px;
+  max-width: 200px;
 
   @media screen and (max-width: 1360px) {
     width: 180px;
     min-width: 180px;
+    max-width: 180px;
   }
 
   @media screen and (max-width: 1200px) {
     width: 140px;
     min-width: 140px;
+    max-width: 140px;
   }
 
   @media screen and (max-width: 982px) {

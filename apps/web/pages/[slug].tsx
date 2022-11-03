@@ -1,3 +1,4 @@
+import styled from '@emotion/styled';
 import { Text } from '@geist-ui/core';
 import { type GetStaticPaths, type GetStaticProps, type NextPage } from 'next';
 import { type MDXRemoteSerializeResult } from 'next-mdx-remote';
@@ -16,11 +17,20 @@ const components = {};
 const PostPage: NextPage<Props> = (props: Props) => {
   return (
     <Layout>
-      <Text h1>{props.meta.title}</Text>
-      <MDXRemote {...props} components={components} />
+      <BlogContent>
+        <Text h1>{props.meta.title}</Text>
+        <MDXRemote {...props} components={components} />
+      </BlogContent>
     </Layout>
   );
 };
+
+const BlogContent = styled.div`
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+`;
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slug = (params?.slug as string) || '';

@@ -1,0 +1,194 @@
+---
+emoji: 💸
+title: 고소득자의 자부심 증명서 만들기
+description: 고소득자들에겐 25만원 대신 자부심을 드립니다.
+slug: pride-stimulus
+date: Jul 19, 2021
+---
+
+## 📰 뉴스를 보던 나
+
+![뉴스](<https://images.velog.io/images/junhoyeo/post/f07fb45d-208d-4dba-afcc-4047b82682d3/image%20(3).png>)
+
+얼마 전에 [이런 뉴스](https://news.mt.co.kr/mtview.php?no=2021071415374469796)를 보고, 언젠가 자부심(?)을 가질 자격을 증명할 수 있는 무언가가 생기는 게 아닐까 하는 상상을 해봤어요.
+
+마침 지인이 백신을 맞고 나서 앱으로 예방접종 증명서를 받았다고 한 게 떠올라서, 이것도 **증명서 앱/웹의 형태로 패러디**해서 만들면 재미있을 것 같았죠!
+
+## 🔨 증명서 만들기
+
+### ✍️ 슥삭슥삭 디자인
+
+![피그마로 디자인한 자부심 증명서](https://images.velog.io/images/junhoyeo/post/f5b6a28e-7952-4632-9b40-46b50e0fe85a/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202021-07-19%20%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB%202.45.07.png)
+
+다 만들고 나서 보니 생각보다 많은 시간을 보낸 것 같지만, 처음에는 최대한 빠르게 만들고 싶었기 때문에 **증명서? 그냥 이미지로 대충 그려서 넣고 페이지 중앙 정렬만 시켜서 보여주자!** 했습니다.
+
+저는 백신을 못 맞고 있기 때문에...! 인터넷에서 굴러다니는 예방접종 증명서의 스크린샷(위에 첨부한 이미지와 같이 테스트용 앱의 스크린샷을 사용했습니다)을 구해 옆에 두고 비슷한 느낌으로 하나 그려봤습니다... 😚
+
+### ⭐️ 이미지 표시하기
+
+![](https://images.velog.io/images/junhoyeo/post/e7a3f168-33bb-4b7c-8c0c-5df984143f6c/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202021-07-19%20%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB%202.59.07.png)
+
+이미지를 표시하고, 화면 중앙에 정렬시켜 봤어요. 텅 비어 있어서 많이 외로워 보이네요.
+
+```css
+width: 300px;
+border-radius: 8px;
+box-shadow: 0px 16px 36px rgba(0, 0, 0, 0.05);
+
+@media (max-width: 400px) {
+  width: 285px;
+}
+```
+
+- 모서리를 둥글게 합니다.
+- 입체감을 위해 약간의 그림자를 넣어 봤어요.
+- 넓이를 설정해 줬어요. 조그만 모바일 화면에서도 자연스럽게 보일 수 있도록 미디어 쿼리로 처리도 해줍니다.
+
+### 🎉 이모지 폭죽 터뜨리기
+
+저는 증명서 화면에 들어가자마자 이모지가 쏟아져 내리길 원했어요!
+어떤 라이브러리가 있나 하고 깃허브에서 여러 개의 모듈을 비교해 봤었는데요.
+[js-confetti](https://github.com/loonywizard/js-confetti)가 가장 깔끔한 것 같았어요. 처음에는 [react-rewards](https://github.com/thedevelobear/react-rewards)를 사용하려고 했었는데, 이 모듈은 오프닝 폭죽으로 사용하는 것보다는 사용자의 인터렉션에 따른 보상이나 처벌을 내리는 역할(실제로 메소드 이름이 `rewardMe`, `punishMe`네요 ㄷㄷ)이 더 적절해 보였죠. ~~사실 스크롤 버그가 하나 있었는데 고치기 어려워서 패스했습니다.~~
+
+![](https://images.velog.io/images/junhoyeo/post/d3d088d7-5d7c-4dc5-b55b-7c424e33c069/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202021-07-19%20%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB%202.59.39.png)
+
+```tsx
+export const Card: React.FC<CardProps> = () => {
+  useEffect(() => {
+    const confetti = new JSConfetti();
+    confetti.addConfetti({
+      emojis: ['🇰🇷', '💸', '💵', '💖'],
+      emojiSize: 256,
+      confettiNumber: 30,
+      confettiRadius: 6,
+    });
+  }, []);
+
+  return (
+    <CardContainer>
+      <CardImage src="/images/card.svg" />
+    </CardContainer>
+  );
+};
+```
+
+이렇게 처음 한 번만 `JSConfetti` 클래스를 만들면, Canvas 엘리먼트를 현재 `document`에 추가하면서 모듈이 초기화됩니다. 그 뒤로 `addConfetti` 메소드를 호출할 때마다 폭죽이 터지죠!
+
+앗 그런데 저는 Next.js를 사용하고 있었는데요. 저렇게 코드를 짜니 서버사이드에서 렌더링될 때 `new JSConfetti()`가 실행되면서 `ReferenceError: document is not defined` 에러가 발생하는 문제가 있었어요.
+
+```tsx
+useEffect(() => {
+  if (typeof document === 'undefined') {
+    return;
+  }
+
+  // client only
+  const confetti = new JSConfetti();
+  confetti.addConfetti({
+    emojis: ['🇰🇷', '💸', '💵', '💖'],
+    emojiSize: 256,
+    confettiNumber: 30,
+    confettiRadius: 6,
+  });
+}, []);
+```
+
+Node 환경에서는 `document` global이 선언되지 않았기 때문에 생기는 것이죠! 클라이언트 사이드에서만 실행하기 위해서는 위 코드처럼 `typeof document`로 분기할 수 있겠네요.
+
+![](https://images.velog.io/images/junhoyeo/post/b1666416-e80e-4ed7-83dd-846843bf0629/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202021-07-19%20%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB%203.00.16.png)
+
+예쁜 배경도 넣어줍니다. 이제 드디어 좀 **증명서 같은 느낌**이 납니다!
+
+```tsx
+const Container = styled.div`
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: url('/images/gradient.webp');
+  background-size: cover;
+`;
+```
+
+## 🖨 누를 때마다 돈 찍기
+
+그런데 아직 뭔가 썰렁한 느낌이 들어서, 뭘 하면 좋을까 생각했었는데요.
+**인증서를 클릭할 때마다 25만원(재난지원금 액수)씩 카운트가 올라가는(돈이 찍히는?) 게 보이면 어떨까** 해서 그냥 그렇게 하기로 했습니다.
+별 뜻이 있는 동작은 아니지만 보시는 분들께서 처음 3초 동안이라도 그냥 재미있어서 몇 번 누를 것 같았어요.
+
+### ⚓️ 커스텀 훅 `useCount` 구현
+
+**클릭은 누군가의 노력이죠!** 사이트를 새로고침하는 바람에 상태가 모두 날아가면 너무 슬프기 때문에 이번에는 그 값을 `localStorage`에 저장하기로 했습니다.
+
+```ts
+export const useCount = (): [number, () => void] => {
+  const [count, setCount] = useState<number>(() => {
+    if (typeof localStorage === 'undefined') {
+      return 0;
+    }
+
+    const storedNumber = parseInt(localStorage.getItem('@count'));
+    return storedNumber || 0;
+  });
+
+  const updateCount = useCallback(() => {
+    const nextCount = count + 1;
+    localStorage.setItem('@count', nextCount.toString());
+    setCount(nextCount);
+  }, [count]);
+
+  return [count, updateCount];
+};
+```
+
+`localStorage`는 문자열 키와 문자열 값을 매핑해 주기 때문에, 현재 `count` 상태를 업데이트할 때마다 그 값을 `String`으로 바꿔 저장하도록 했어요. 처음에 저장된 상태가 있는지 확인하고, 가져올 때는 그 값에서 파싱하고요!
+
+### 📖 클릭 수에 따라 찍은 돈 표시하기
+
+만든 훅은 이렇게 사용할 수 있어요!
+
+```tsx
+const [clicks, updateClicks] = useCount();
+const message = useMemo(() => {
+  if (!clicks) {
+    return '인증서를 눌러 돈을 찍어 보세요.';
+  }
+  return `${convert(',$.3s', STIMULUS * clicks)}을 찍어내셨네요.`;
+}, [clicks]);
+
+...
+
+<Card onClick={updateClicks} />
+```
+
+여기서 `convert` 함수는 [uck](https://github.com/JunhoeKim/uck)이라는 모듈의 것입니다. 숫자를 자연스럽게 한글로 읽어주는 역할을 합니다.
+
+- `,$.3s` 문자열은 `convert` 함수의 조건을 나타냅니다(위 링크 README 참고).
+  - `,`: 천 자리마다 콤마(`,`)를 표시할 것
+  - `$`: 완성된 한글 문자열에 `원` 단위를 붙일 것
+  - `.3`: precision 수 설정(여기선 크게 중요하지 않아서 패스하고 예제 그대로 붙였던 것 같아요)
+  - `s`: 단위마다 공백 한 칸 추가(`space`의 `s`를 의도하신 듯)
+- 2년 정도 지난 라이브러리이기는 하지만, 사용하면서 굳이 따로 독자 포맷을 만들 필요가 있었을까 하는 아쉬움이 있었습니다(이것 말고는 가장 깔끔하기도 했고 좋았어요). 물론 코드가 짧아지긴 했지만 `uck`을 모르는 사람이 한눈에 알기는 좀 어렵지 않나 싶네요. 아래처럼 그냥 옵션을 다루는 Object를 전달할 수 있었다면 훨씬 잘 읽히기도 하고 TypeScript 모듈의 장점을 더욱 활용할 수 있었을 것 같아요.
+
+```ts
+convert(value, {
+  suffix: '원',
+  precision: 3,
+  addComma: true,
+  addSpace: true,
+});
+```
+
+## ✅ 완성
+
+클릭할 때도 이모지 폭죽을 터뜨리게 하고, 약간의 애니메이션과 스타일을 더하자 아래 같은 결과물이 나왔어요!
+
+![클릭 애니메이션](https://images.velog.io/images/junhoyeo/post/4a015357-6e40-443b-ad9b-11fccac83300/%E1%84%92%E1%85%AA%E1%84%86%E1%85%A7%E1%86%AB%20%E1%84%80%E1%85%B5%E1%84%85%E1%85%A9%E1%86%A8%202021-07-18%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%2011.51.12.gif)
+
+> **자부심은 스스로 가지는 것입니다.**
+
+읽어주셔서 감사합니다 🙇
+서비스는 https://pride-stimulus.vercel.app 에서,
+코드는 https://github.com/junhoyeo/pride-stimulus 에서 확인하실 수 있습니다!
