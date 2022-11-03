@@ -59,13 +59,15 @@ export const PostList: React.FC<PostListProps> = ({ initialExpand }) => {
               );
             })}
           </Tree.Folder>
-          {researches.map((post) => (
-            <Tree.File
-              key={post.slug}
-              name={post.title}
-              onClick={() => pushRoute(`/${post.slug}`)}
-            />
-          ))}
+          <Tree.Folder name="Memex">
+            {researches.map((post) => (
+              <Tree.File
+                key={post.slug}
+                name={post.title}
+                onClick={() => pushRoute(`/${post.slug}`)}
+              />
+            ))}
+          </Tree.Folder>
         </StyledTree>
       </Container>
     </Wrapper>
