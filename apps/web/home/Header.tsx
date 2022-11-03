@@ -43,10 +43,13 @@ const Container = styled.header<{ pl: string; pr: string }>`
   z-index: 0;
 
   ${({ pl, pr }): SerializedStyles => css`
-    @media screen and (max-width: 982px) {
-      width: 100vw;
+    @media screen and (max-width: 1200px) {
       margin-left: ${negativeToCalc(pl)};
       margin-right: ${negativeToCalc(pr)};
+    }
+
+    @media screen and (max-width: 982px) {
+      width: 100vw;
     }
   `}
 `;
