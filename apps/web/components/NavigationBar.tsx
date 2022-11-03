@@ -1,14 +1,14 @@
 import styled from '@emotion/styled';
 import { Button, Text, useTheme } from '@geist-ui/core';
-import { Anchor, MessageCircle } from '@geist-ui/icons';
+import { Anchor, Menu } from '@geist-ui/icons';
 import { useSetAtom } from 'jotai';
 import Link from 'next/link';
 
-import { isCommentDrawerOpenAtom } from '../state/comments';
+import { isPostDrawerOpenAtom } from '../state/posts';
 
 export const NavigationBar: React.FC = () => {
   const { palette } = useTheme();
-  const setCommentDrawerOpen = useSetAtom(isCommentDrawerOpenAtom);
+  const setPostDrawerOpen = useSetAtom(isPostDrawerOpenAtom);
 
   return (
     <Wrapper style={{ borderBottom: `1px solid ${palette.accents_1}` }}>
@@ -22,10 +22,10 @@ export const NavigationBar: React.FC = () => {
           </Brand>
         </Link>
 
-        <Button
+        <PostDrawerButton
           auto
-          iconRight={<MessageCircle />}
-          onClick={() => setCommentDrawerOpen(true)}
+          iconRight={<Menu />}
+          onClick={() => setPostDrawerOpen(true)}
           px={0.6}
         />
       </Container>
@@ -61,4 +61,14 @@ const Brand = styled.div`
   align-items: center;
   gap: 8px;
   user-select: none;
+`;
+
+const PostDrawerButton = styled(Button)`
+  &&& {
+    display: none;
+
+    @media screen and (max-width: 982px) {
+      display: inline-block;
+    }
+  }
 `;

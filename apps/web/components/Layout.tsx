@@ -6,6 +6,7 @@ import { fixedWidth } from '../utils/css';
 import { CommentDrawer } from './CommentDrawer';
 import { NavigationBar } from './NavigationBar';
 import { PostList, type PostListProps } from './PostList';
+import { PostMenuDrawer } from './PostMenuDrawer';
 
 export type LayoutProps = {
   containerRef?: React.RefObject<HTMLDivElement>;
@@ -51,6 +52,7 @@ export const Layout: React.FC<LayoutProps> = ({
         <RightSidebar>{rightContent}</RightSidebar>
 
         <CommentDrawer />
+        <PostMenuDrawer />
       </Wrapper>
     </>
   );
@@ -104,10 +106,6 @@ const RightSidebar = styled(Sidebar)`
   }
 
   @media screen and (max-width: 1200px) {
-    /* ${fixedWidth(140)}
-  }
-
-  @media screen and (max-width: 982px) { */
     display: none;
   }
 `;
