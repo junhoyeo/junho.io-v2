@@ -1,8 +1,7 @@
 import styled from '@emotion/styled';
-import { Button, Drawer } from '@geist-ui/core';
-import { X as XIcon } from '@geist-ui/icons';
+import { Drawer } from '@geist-ui/core';
 import { useAtom } from 'jotai';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { isPostDrawerOpenAtom } from '../state/posts';
 import { PostList } from './PostList';
@@ -11,6 +10,21 @@ export const PostMenuDrawer: React.FC = () => {
   const [isCommentDrawerOpen, setCommentDrawerOpen] =
     useAtom(isPostDrawerOpenAtom);
 
+  useEffect(() => {
+    if (!isCommentDrawerOpen) {
+      return;
+    }
+    setTimeout(() => {
+      const backdrop = document.querySelector(
+        '#geist-ui-drawer > div.backdrop',
+      ) as HTMLDivElement | undefined;
+
+      if (backdrop) {
+        backdrop.style.zIndex = 'unset';
+      }
+    });
+  }, [isCommentDrawerOpen]);
+
   return (
     <StyledDrawer
       onClose={() => setCommentDrawerOpen(false)}
@@ -18,17 +32,6 @@ export const PostMenuDrawer: React.FC = () => {
       visible={isCommentDrawerOpen}
     >
       <StyledDrawerContent>
-        <Header>
-          <div />
-
-          <Button
-            auto
-            iconRight={<XIcon />}
-            onClick={() => setCommentDrawerOpen(false)}
-            px={0.6}
-          />
-        </Header>
-
         <PostListContainer>
           <PostList initialExpand />
         </PostListContainer>
@@ -57,16 +60,13 @@ const StyledDrawerContent = styled(Drawer.Content)`
   }
 `;
 
-const Header = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  user-select: none;
-`;
 const PostListContainer = styled.div`
-  margin-left: -16px;
+  &&&& {
+    margin-top: 48px;
+    margin-left: -16px;
 
-  @media screen and (max-width: 576px) {
-    margin-left: -12px;
+    @media screen and (max-width: 576px) {
+      margin-left: -12px;
+    }
   }
 `;

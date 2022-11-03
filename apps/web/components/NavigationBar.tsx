@@ -1,14 +1,14 @@
 import styled from '@emotion/styled';
 import { Button, Text, useTheme } from '@geist-ui/core';
-import { Anchor, Menu } from '@geist-ui/icons';
-import { useSetAtom } from 'jotai';
+import { Anchor, X as Cross, Menu } from '@geist-ui/icons';
+import { useAtom } from 'jotai';
 import Link from 'next/link';
 
 import { isPostDrawerOpenAtom } from '../state/posts';
 
 export const NavigationBar: React.FC = () => {
   const { palette } = useTheme();
-  const setPostDrawerOpen = useSetAtom(isPostDrawerOpenAtom);
+  const [isPostDrawerOpen, setPostDrawerOpen] = useAtom(isPostDrawerOpenAtom);
 
   return (
     <Wrapper style={{ borderBottom: `1px solid ${palette.accents_1}` }}>
@@ -24,8 +24,8 @@ export const NavigationBar: React.FC = () => {
 
         <PostDrawerButton
           auto
-          iconRight={<Menu />}
-          onClick={() => setPostDrawerOpen(true)}
+          iconRight={isPostDrawerOpen ? <Cross /> : <Menu />}
+          onClick={() => setPostDrawerOpen((prev) => !prev)}
           px={0.6}
         />
       </Container>
