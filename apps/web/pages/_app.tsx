@@ -18,6 +18,10 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
           #__next {
             overflow-x: unset !important;
           }
+
+          * {
+            box-sizing: border-box !important;
+          }
         `}
       />
       <Component {...pageProps} />

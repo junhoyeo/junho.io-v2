@@ -58,6 +58,8 @@ const Wrapper = styled.aside`
 const Container = styled.div`
   padding: 24px 28px;
 
+  max-width: 100%;
+  overflow-x: hidden;
   width: 100%;
   height: 100%;
 

@@ -84,7 +84,6 @@ const LeftSidebar = styled(Sidebar)`
   width: 280px;
   min-width: 280px;
   max-width: 280px;
-  overflow-x: hidden;
 
   @media screen and (max-width: 1440px) {
     width: 260px;
