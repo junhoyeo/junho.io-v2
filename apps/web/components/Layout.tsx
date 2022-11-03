@@ -78,9 +78,7 @@ const Container = styled.div`
 `;
 
 const Sidebar = styled.div`
-  padding: 24px 28px;
-  display: flex;
-  flex-direction: column;
+  flex: 1;
 `;
 
 const LeftSidebar = styled(Sidebar)`

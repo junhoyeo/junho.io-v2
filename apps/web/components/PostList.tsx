@@ -14,38 +14,53 @@ export const PostList: React.FC<PostListProps> = ({ initialExpand }) => {
   const router = useRouter();
 
   return (
-    <Container>
-      <Tree initialExpand={initialExpand}>
-        <Tree.File
-          extra="Home"
-          name="README.md"
-          onClick={() => router.push('/')}
-        />
-        <Tree.Folder name="Tweets">
-          {tweets.map((post) => {
-            const slug = post.slug === '/' ? '' : post.slug || '';
-            return (
-              <Tree.File
-                extra={post.date}
-                key={`tweets/${slug}`}
-                name={!slug ? 'README.md' : post.title}
-                onClick={() => router.push(`/tweets/${slug}`)}
-              />
-            );
-          })}
-        </Tree.Folder>
-        {blogPosts.map((post) => (
+    <Wrapper>
+      <Container>
+        <Tree initialExpand={initialExpand}>
           <Tree.File
-            key={post.slug}
-            name={post.title}
-            onClick={() => router.push(`/${post.slug}`)}
+            extra="Home"
+            name="README.md"
+            onClick={() => router.push('/')}
           />
-        ))}
-      </Tree>
-    </Container>
+          <Tree.Folder name="Tweets">
+            {tweets.map((post) => {
+              const slug = post.slug === '/' ? '' : post.slug || '';
+              return (
+                <Tree.File
+                  extra={post.date}
+                  key={`tweets/${slug}`}
+                  name={!slug ? 'README.md' : post.title}
+                  onClick={() => router.push(`/tweets/${slug}`)}
+                />
+              );
+            })}
+          </Tree.Folder>
+          {blogPosts.map((post) => (
+            <Tree.File
+              key={post.slug}
+              name={post.title}
+              onClick={() => router.push(`/${post.slug}`)}
+            />
+          ))}
+        </Tree>
+      </Container>
+    </Wrapper>
   );
 };
 
+const Wrapper = styled.aside`
+  width: 100%;
+  height: calc(100vh - 64px);
+
+  position: sticky;
+  top: 64px;
+`;
 const Container = styled.div`
-  margin-top: 64px;
+  padding: 24px 28px;
+
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
 `;
