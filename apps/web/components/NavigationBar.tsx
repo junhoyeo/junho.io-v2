@@ -1,14 +1,14 @@
 import styled from '@emotion/styled';
 import { Button, Text, useTheme } from '@geist-ui/core';
-import { Anchor, MessageCircle } from '@geist-ui/icons';
-import { useSetAtom } from 'jotai';
+import { Anchor, X as Cross, Menu } from '@geist-ui/icons';
+import { useAtom } from 'jotai';
 import Link from 'next/link';
 
-import { isCommentDrawerOpenAtom } from '../state/comments';
+import { isPostDrawerOpenAtom } from '../state/posts';
 
 export const NavigationBar: React.FC = () => {
   const { palette } = useTheme();
-  const setCommentDrawerOpen = useSetAtom(isCommentDrawerOpenAtom);
+  const [isPostDrawerOpen, setPostDrawerOpen] = useAtom(isPostDrawerOpenAtom);
 
   return (
     <Wrapper style={{ borderBottom: `1px solid ${palette.accents_1}` }}>
@@ -22,10 +22,10 @@ export const NavigationBar: React.FC = () => {
           </Brand>
         </Link>
 
-        <Button
+        <PostDrawerButton
           auto
-          iconRight={<MessageCircle />}
-          onClick={() => setCommentDrawerOpen(true)}
+          iconRight={isPostDrawerOpen ? <Cross /> : <Menu />}
+          onClick={() => setPostDrawerOpen((prev) => !prev)}
           px={0.6}
         />
       </Container>
@@ -39,7 +39,7 @@ const Wrapper = styled.div`
   top: 0;
   left: 0;
   right: 0;
-  z-index: 20;
+  z-index: 100;
   background-color: rgba(0, 0, 0, 0.4);
   backdrop-filter: saturate(140%) blur(16px);
   display: flex;
@@ -61,4 +61,14 @@ const Brand = styled.div`
   align-items: center;
   gap: 8px;
   user-select: none;
+`;
+
+const PostDrawerButton = styled(Button)`
+  &&& {
+    display: none;
+
+    @media screen and (max-width: 982px) {
+      display: inline-block;
+    }
+  }
 `;
