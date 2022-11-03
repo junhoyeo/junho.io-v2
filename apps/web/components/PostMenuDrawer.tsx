@@ -20,7 +20,7 @@ export const PostMenuDrawer: React.FC = () => {
       ) as HTMLDivElement | undefined;
 
       if (backdrop) {
-        backdrop.style.zIndex = 'unset';
+        backdrop.style.zIndex = '10';
       }
     });
   }, [isCommentDrawerOpen]);
