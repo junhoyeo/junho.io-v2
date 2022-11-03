@@ -5,7 +5,11 @@ import { serialize } from 'next-mdx-remote/serialize';
 
 import { Layout } from '../../components/Layout';
 import { MDXRemote } from '../../components/MDXRemote';
-import { getPosts, type Post } from '../../lib/get-posts';
+import {
+  getPosts,
+  type Post,
+  type PostCategoryType,
+} from '../../lib/get-posts';
 
 type Props = MDXRemoteSerializeResult & {
   meta: Omit<Post, 'body'>;
@@ -22,10 +26,12 @@ const TweetPage: NextPage<Props> = (props: Props) => {
   );
 };
 
+const POST_CATEGORY_TYPE: PostCategoryType = 'blog';
+
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slug = ((params?.slug || []) as string[]).join('/');
 
-  const posts = getPosts('tweets');
+  const posts = getPosts(POST_CATEGORY_TYPE);
   const postIndex = posts.findIndex((p) => p.slug === slug);
   const post = posts[postIndex];
 
@@ -48,7 +54,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 export const getStaticPaths: GetStaticPaths = () => {
   return {
-    paths: getPosts('tweets').map((p) => ({
+    paths: getPosts(POST_CATEGORY_TYPE).map((p) => ({
       params: { slug: !p.slug ? [''] : p.slug.split('/') },
     })),
     fallback: false,

@@ -41,9 +41,9 @@ export const PostList: React.FC<PostListProps> = ({ initialExpand }) => {
               return (
                 <Tree.File
                   extra={post.date}
-                  key={`tweets/${slug}`}
+                  key={`t/${slug}`}
                   name={!slug ? 'README.md' : post.title}
-                  onClick={() => pushRoute(`/tweets/${slug}`)}
+                  onClick={() => pushRoute(`/t/${slug}`)}
                 />
               );
             })}
@@ -52,9 +52,9 @@ export const PostList: React.FC<PostListProps> = ({ initialExpand }) => {
             {blogPosts.map((post) => {
               return (
                 <Tree.File
-                  key={post.slug}
+                  key={`s/${post.slug}`}
                   name={post.title}
-                  onClick={() => pushRoute(`/${post.slug}`)}
+                  onClick={() => pushRoute(`/w/${post.slug}`)}
                 />
               );
             })}
@@ -62,9 +62,9 @@ export const PostList: React.FC<PostListProps> = ({ initialExpand }) => {
           <Tree.Folder name="Memex">
             {memex.map((post) => (
               <Tree.File
-                key={post.slug}
+                key={`r/${post.slug}`}
                 name={post.title}
-                onClick={() => pushRoute(`/${post.slug}`)}
+                onClick={() => pushRoute(`/r/${post.slug}`)}
               />
             ))}
           </Tree.Folder>

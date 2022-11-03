@@ -1,12 +1,15 @@
-import styled from '@emotion/styled';
 import { Text } from '@geist-ui/core';
 import { type GetStaticPaths, type GetStaticProps, type NextPage } from 'next';
 import { type MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 
-import { Layout } from '../components/Layout';
-import { MDXRemote } from '../components/MDXRemote';
-import { getPosts, type Post } from '../lib/get-posts';
+import { Layout } from '../../components/Layout';
+import { MDXRemote } from '../../components/MDXRemote';
+import {
+  getPosts,
+  type Post,
+  type PostCategoryType,
+} from '../../lib/get-posts';
 
 type Props = MDXRemoteSerializeResult & {
   meta: Omit<Post, 'body'>;
@@ -14,29 +17,24 @@ type Props = MDXRemoteSerializeResult & {
 
 const components = {};
 
-const PostPage: NextPage<Props> = (props: Props) => {
+const TweetPage: NextPage<Props> = (props: Props) => {
   return (
-    <Layout>
-      <BlogContent>
-        <Text h1>{props.meta.title}</Text>
-        <MDXRemote {...props} components={components} />
-      </BlogContent>
+    <Layout defaultPostListProps={{ initialExpand: true }}>
+      <Text h1>{props.meta.title}</Text>
+      <MDXRemote {...props} components={components} />
     </Layout>
   );
 };
 
-const BlogContent = styled.div`
-  width: 100%;
-
-  display: flex;
-  flex-direction: column;
-`;
+const POST_CATEGORY_TYPE: PostCategoryType = 'tweets';
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const slug = (params?.slug as string) || '';
-  const posts = getPosts('blog');
+  const slug = ((params?.slug || []) as string[]).join('/');
+
+  const posts = getPosts(POST_CATEGORY_TYPE);
   const postIndex = posts.findIndex((p) => p.slug === slug);
   const post = posts[postIndex];
+
   if (!post) {
     return {
       notFound: true,
@@ -56,9 +54,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 export const getStaticPaths: GetStaticPaths = () => {
   return {
-    paths: getPosts('blog').map((p) => `/${p.slug}`),
+    paths: getPosts(POST_CATEGORY_TYPE).map((p) => ({
+      params: { slug: !p.slug ? [''] : p.slug.split('/') },
+    })),
     fallback: false,
   };
 };
 
-export default PostPage;
+export default TweetPage;
