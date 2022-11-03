@@ -1,4 +1,6 @@
+import styled from '@emotion/styled';
 import { Text } from '@geist-ui/core';
+import { type MDXProvider } from '@mdx-js/react';
 import { type GetStaticPaths, type GetStaticProps } from 'next';
 import { type MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
@@ -26,7 +28,11 @@ export type BlogPageProps = MDXRemoteSerializeResult & {
   meta: Omit<Post, 'body'>;
 };
 
-const components = {};
+const components: React.ComponentProps<typeof MDXProvider>['components'] = {
+  h1: styled.h1`
+    line-height: 1.25;
+  `,
+};
 
 export const BlogPage: React.FC<BlogPageProps> = (props: BlogPageProps) => {
   return (
