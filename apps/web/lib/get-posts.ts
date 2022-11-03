@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 export type PostSummary = {
+  emoji?: string;
   title: string;
   slug: string;
   description?: string;
