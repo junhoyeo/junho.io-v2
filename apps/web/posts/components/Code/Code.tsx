@@ -1,7 +1,13 @@
 import styled from '@emotion/styled';
+import { Button } from '@geist-ui/core';
+import {
+  Copy as CopyIcon,
+  CornerDownLeft as CornerDownLeftIcon,
+} from '@geist-ui/icons';
 import Highlight, { defaultProps, type Language } from 'prism-react-renderer';
 import React, { useMemo } from 'react';
 
+import { copyToClipboard } from '../../../utils/clipboard';
 import { useCodeWordWrap } from './useCodeWordWrap';
 
 type CodeProps = React.DetailedHTMLProps<
@@ -10,11 +16,10 @@ type CodeProps = React.DetailedHTMLProps<
 >;
 
 export const Code: React.FC<CodeProps> = ({ children, ...props }) => {
-  const wordWrap = useCodeWordWrap();
-
   const language = /language-(?<lang>\w+)/.exec(props.className || '')?.[1] as
     | Language
     | undefined;
+  const wordWrap = useCodeWordWrap({ skip: !language });
 
   const code = children?.toString() || '';
 
@@ -41,6 +46,8 @@ export const Code: React.FC<CodeProps> = ({ children, ...props }) => {
   );
 
   if (!language) return <code {...props}>{code}</code>;
+
+  console.log(code, wordWrap);
 
   return (
     <Container>
@@ -80,12 +87,19 @@ export const Code: React.FC<CodeProps> = ({ children, ...props }) => {
       </Highlight>
       <ButtonGroup>
         {wordWrap.isEnabled || wordWrap.isCodeScrollable ? (
-          <WordWrapButton
-            isEnabled={wordWrap.isEnabled}
+          <Button
+            auto
+            iconRight={<CornerDownLeftIcon />}
             onClick={() => wordWrap.toggle()}
+            px={0.6}
           />
         ) : null}
-        <CopyButton code={code} />
+        <Button
+          auto
+          iconRight={<CopyIcon />}
+          onClick={() => copyToClipboard(code)}
+          px={0.6}
+        />
       </ButtonGroup>
     </Container>
   );
@@ -93,37 +107,3 @@ export const Code: React.FC<CodeProps> = ({ children, ...props }) => {
 
 const Container = styled.div``;
 const ButtonGroup = styled.div``;
-
-const WordWrapButton: React.FC<
-  React.DetailedHTMLProps<
-    React.HTMLAttributes<HTMLButtonElement>,
-    HTMLButtonElement
-  > & { isEnabled: boolean }
-> = ({ isEnabled: _isEnabled, ...props }) => (
-  <button type="button" {...props}>
-    <svg aria-hidden="true" viewBox="0 0 24 24">
-      <path
-        d="M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"
-        fill="currentColor"
-      />
-    </svg>
-  </button>
-);
-
-const CopyButton: React.FC<
-  React.DetailedHTMLProps<
-    React.HTMLAttributes<HTMLButtonElement>,
-    HTMLButtonElement
-  > & { code: string }
-> = ({ code: _code, ...props }) => (
-  <button type="button" {...props}>
-    <span aria-hidden="true">
-      <svg viewBox="0 0 24 24">
-        <path d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z" />
-      </svg>
-      <svg viewBox="0 0 24 24">
-        <path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z" />
-      </svg>
-    </span>
-  </button>
-);

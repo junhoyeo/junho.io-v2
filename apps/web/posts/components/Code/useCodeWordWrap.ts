@@ -13,6 +13,7 @@ import { useMutationObserver } from './useMutationObserver';
 function useTabBecameVisibleCallback(
   codeBlockRef: RefObject<HTMLPreElement>,
   callback: () => void,
+  skip = false,
 ): void {
   const [hiddenTabElement, setHiddenTabElement] = useState<
     Element | null | undefined
@@ -27,11 +28,14 @@ function useTabBecameVisibleCallback(
   }, [codeBlockRef, setHiddenTabElement]);
 
   useEffect(() => {
+    if (skip) {
+      return;
+    }
     updateHiddenTabElement();
-  }, [updateHiddenTabElement]);
+  }, [skip, updateHiddenTabElement]);
 
   useMutationObserver(
-    hiddenTabElement,
+    skip ? undefined : hiddenTabElement,
     (mutations: MutationRecord[]) => {
       mutations.forEach((mutation) => {
         if (
@@ -52,7 +56,10 @@ function useTabBecameVisibleCallback(
   );
 }
 
-export function useCodeWordWrap(): {
+type UseCodeWordWrapOptions = {
+  skip?: boolean;
+};
+export function useCodeWordWrap({ skip = false }: UseCodeWordWrapOptions): {
   readonly codeBlockRef: RefObject<HTMLPreElement>;
   readonly isEnabled: boolean;
   readonly isCodeScrollable: boolean;
@@ -65,16 +72,15 @@ export function useCodeWordWrap(): {
   const toggle = useCallback(() => {
     const codeElement = codeBlockRef.current?.querySelector('code');
 
-    if (!codeElement) {
-      return;
-    }
-    if (isEnabled) {
-      codeElement.removeAttribute('style');
-    } else {
-      codeElement.style.whiteSpace = 'pre-wrap';
-      // When code wrap is enabled, we want to avoid a scrollbar in any case
-      // Ensure that very very long words/strings/tokens still wrap
-      codeElement.style.overflowWrap = 'anywhere';
+    if (codeElement) {
+      if (isEnabled) {
+        codeElement.removeAttribute('style');
+      } else {
+        codeElement.style.whiteSpace = 'pre-wrap';
+        // When code wrap is enabled, we want to avoid a scrollbar in any case
+        // Ensure that very very long words/strings/tokens still wrap
+        codeElement.style.overflowWrap = 'anywhere';
+      }
     }
 
     setIsEnabled((value) => !value);
@@ -83,20 +89,23 @@ export function useCodeWordWrap(): {
   const updateCodeIsScrollable = useCallback(() => {
     const scrollWidth = codeBlockRef.current?.scrollWidth || 0;
     const clientWidth = codeBlockRef.current?.clientWidth || 0;
-    const isScrollable =
-      scrollWidth > clientWidth ||
-      codeBlockRef.current?.querySelector('code')?.hasAttribute('style') ||
-      false;
+    const isScrollable = scrollWidth > clientWidth || false;
     setIsCodeScrollable(isScrollable);
   }, [codeBlockRef]);
 
-  useTabBecameVisibleCallback(codeBlockRef, updateCodeIsScrollable);
+  useTabBecameVisibleCallback(codeBlockRef, updateCodeIsScrollable, skip);
 
   useEffect(() => {
+    if (skip) {
+      return;
+    }
     updateCodeIsScrollable();
-  }, [isEnabled, updateCodeIsScrollable]);
+  }, [skip, isEnabled, updateCodeIsScrollable]);
 
   useEffect(() => {
+    if (skip) {
+      return;
+    }
     window.addEventListener('resize', updateCodeIsScrollable, {
       passive: true,
     });
@@ -104,7 +113,7 @@ export function useCodeWordWrap(): {
     return () => {
       window.removeEventListener('resize', updateCodeIsScrollable);
     };
-  }, [updateCodeIsScrollable]);
+  }, [skip, updateCodeIsScrollable]);
 
   return { codeBlockRef, isEnabled, isCodeScrollable, toggle };
 }
