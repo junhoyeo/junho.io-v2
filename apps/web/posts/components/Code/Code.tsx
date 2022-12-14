@@ -48,15 +48,13 @@ export const Code: React.FC<CodeProps> = ({ children, ...props }) => {
 
   if (!language) return <code {...props}>{code}</code>;
 
-  console.log(code, wordWrap);
-
   return (
     <Container>
       <Highlight
         {...defaultProps}
-        theme={theme}
         code={code.trim()}
         language={language}
+        theme={theme}
       >
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <pre
@@ -94,22 +92,50 @@ export const Code: React.FC<CodeProps> = ({ children, ...props }) => {
       <ButtonGroup>
         {wordWrap.isEnabled || wordWrap.isCodeScrollable ? (
           <Button
-            auto
             iconRight={<CornerDownLeftIcon />}
             onClick={() => wordWrap.toggle()}
-            px={0.6}
           />
         ) : null}
         <Button
-          auto
           iconRight={<CopyIcon />}
           onClick={() => copyToClipboard(code)}
-          px={0.6}
         />
       </ButtonGroup>
     </Container>
   );
 };
 
-const Container = styled.div``;
-const ButtonGroup = styled.div``;
+const Container = styled.div`
+  position: relative;
+  padding: 48px 16px 20px;
+  border-radius: 8px;
+  background-color: ${theme.plain.backgroundColor};
+
+  pre {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+`;
+const ButtonGroup = styled.div`
+  position: absolute;
+  top: 8px;
+  right: 8px;
+
+  display: flex;
+  gap: 4px;
+
+  && button {
+    padding: 6px;
+    width: unset;
+    min-width: unset;
+    height: unset;
+
+    background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(8px);
+
+    &:hover {
+      background-color: ${theme.plain.backgroundColor};
+    }
+  }
+`;
