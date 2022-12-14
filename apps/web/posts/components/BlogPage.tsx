@@ -7,8 +7,7 @@ import { serialize } from 'next-mdx-remote/serialize';
 
 import { Layout } from '../../components/Layout';
 import { MDXRemote } from '../../components/MDXRemote';
-
-// import { type Post, type PostCategoryType } from '../lib/get-posts';
+import { Code } from './Code';
 
 export type PostCategoryType = 'blog';
 
@@ -45,6 +44,8 @@ const components: React.ComponentProps<typeof MDXProvider>['components'] = {
   h6: styled.h3`
     margin-top: 42px;
   `,
+  code: Code,
+  pre: (props: { children?: React.ReactNode }) => <div>{props.children}</div>,
 };
 
 const capitalize = (value: string) =>

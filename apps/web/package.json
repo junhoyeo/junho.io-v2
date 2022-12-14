@@ -23,6 +23,7 @@
     "next": "^13.0.0",
     "next-mdx-remote": "^4.1.0",
     "prettier": "^2.7.1",
+    "prism-react-renderer": "^1.3.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "slate": "^0.84.0",
