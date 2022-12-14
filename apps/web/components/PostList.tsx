@@ -5,8 +5,6 @@ import { useRouter } from 'next/router';
 import { useCallback } from 'react';
 
 import blogPosts from '../posts/generated/blog';
-import memex from '../posts/generated/memex';
-import tweets from '../posts/generated/tweets';
 import { isPostDrawerOpenAtom } from '../state/posts';
 
 export type PostListProps = {
@@ -30,24 +28,6 @@ export const PostList: React.FC<PostListProps> = ({ initialExpand }) => {
     <Wrapper>
       <Container>
         <StyledTree initialExpand={initialExpand}>
-          <Tree.File
-            extra="Home"
-            name="README.md"
-            onClick={() => pushRoute('/')}
-          />
-          <Tree.Folder name="Tweets">
-            {tweets.map((post) => {
-              const slug = post.slug === '/' ? '' : post.slug || '';
-              return (
-                <Tree.File
-                  extra={post.date}
-                  key={`t/${slug}`}
-                  name={!slug ? 'README.md' : post.title}
-                  onClick={() => pushRoute(`/t/${slug}`)}
-                />
-              );
-            })}
-          </Tree.Folder>
           <Tree.Folder name="Blog">
             {blogPosts.map((post) => {
               return (
@@ -58,15 +38,6 @@ export const PostList: React.FC<PostListProps> = ({ initialExpand }) => {
                 />
               );
             })}
-          </Tree.Folder>
-          <Tree.Folder name="Memex">
-            {memex.map((post) => (
-              <Tree.File
-                key={`r/${post.slug}`}
-                name={post.title}
-                onClick={() => pushRoute(`/r/${post.slug}`)}
-              />
-            ))}
           </Tree.Folder>
         </StyledTree>
       </Container>

@@ -26,11 +26,7 @@ const savePostsWithoutBody = async (type: PostCategoryType): Promise<void> => {
 };
 
 const main = async (): Promise<void> => {
-  await Promise.all([
-    savePostsWithoutBody('blog'),
-    savePostsWithoutBody('tweets'),
-    savePostsWithoutBody('memex'),
-  ]);
+  await Promise.all([savePostsWithoutBody('blog')]);
 };
 
 main()
