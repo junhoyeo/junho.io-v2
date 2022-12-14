@@ -10,7 +10,7 @@ import { MDXRemote } from '../../components/MDXRemote';
 
 // import { type Post, type PostCategoryType } from '../lib/get-posts';
 
-export type PostCategoryType = 'blog' | 'tweets' | 'memex';
+export type PostCategoryType = 'blog';
 
 export type PostSummary = {
   emoji?: string;
