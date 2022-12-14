@@ -45,6 +45,7 @@ const components: React.ComponentProps<typeof MDXProvider>['components'] = {
     margin-top: 42px;
   `,
   code: Code,
+  pre: (props: { children?: React.ReactNode }) => <div>{props.children}</div>,
 };
 
 const capitalize = (value: string) =>
