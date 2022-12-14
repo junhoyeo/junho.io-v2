@@ -1,5 +1,5 @@
 import Highlight, { defaultProps, type Language } from 'prism-react-renderer';
-import React from 'react';
+import React, { useMemo } from 'react';
 
 type CodeProps = React.DetailedHTMLProps<
   React.HTMLAttributes<HTMLElement>,
@@ -16,22 +16,26 @@ export const Code: React.FC<CodeProps> = ({ children, ...props }) => {
   // TODO: Highlight Support
   const highlight: string | undefined = '';
 
+  const highlightedLines = useMemo(
+    () =>
+      highlight
+        ? highlight.split(',').reduce<number[]>((lines, h) => {
+            if (h.includes('-')) {
+              // Expand ranges like 3-5 into [3,4,5]
+              const [start = 0, end = 0] = h.split('-').map(Number);
+              const x = Array(end - start + 1)
+                .fill(undefined)
+                .map((_, i) => i + start);
+              return [...lines, ...x];
+            }
+
+            return [...lines, Number(h)];
+          }, [])
+        : [],
+    [highlight],
+  );
+
   if (!language) return <code {...props}>{code}</code>;
-
-  const highlightedLines = highlight
-    ? highlight.split(',').reduce<number[]>((lines, h) => {
-        if (h.includes('-')) {
-          // Expand ranges like 3-5 into [3,4,5]
-          const [start = 0, end = 0] = h.split('-').map(Number);
-          const x = Array(end - start + 1)
-            .fill(undefined)
-            .map((_, i) => i + start);
-          return [...lines, ...x];
-        }
-
-        return [...lines, Number(h)];
-      }, [])
-    : [];
 
   return (
     <Highlight {...defaultProps} code={code.trim()} language={language}>
