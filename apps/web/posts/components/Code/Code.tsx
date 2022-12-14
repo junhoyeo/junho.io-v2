@@ -8,6 +8,7 @@ import Highlight, { defaultProps, type Language } from 'prism-react-renderer';
 import React, { useMemo } from 'react';
 
 import { copyToClipboard } from '../../../utils/clipboard';
+import { theme } from './theme';
 import { useCodeWordWrap } from './useCodeWordWrap';
 
 type CodeProps = React.DetailedHTMLProps<
@@ -51,7 +52,12 @@ export const Code: React.FC<CodeProps> = ({ children, ...props }) => {
 
   return (
     <Container>
-      <Highlight {...defaultProps} code={code.trim()} language={language}>
+      <Highlight
+        {...defaultProps}
+        theme={theme}
+        code={code.trim()}
+        language={language}
+      >
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <pre
             ref={wordWrap.codeBlockRef}
