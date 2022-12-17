@@ -1,8 +1,8 @@
+import { Box, Center, Flex, HStack, Heading, Text } from '@chakra-ui/react';
 import styled from '@emotion/styled';
-import { Tree } from '@geist-ui/core';
 import { useSetAtom } from 'jotai';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useCallback } from 'react';
 
 import blogPosts from '../posts/generated/blog';
 import { isPostDrawerOpenAtom } from '../state/posts';
@@ -12,34 +12,77 @@ export type PostListProps = {
   initialExpand?: boolean;
 };
 
-export const PostList: React.FC<PostListProps> = ({ initialExpand }) => {
+export const PostList: React.FC<PostListProps> = ({
+  initialExpand: _initialExpand,
+}) => {
   const router = useRouter();
   const setPostDrawerOpen = useSetAtom(isPostDrawerOpenAtom);
-
-  const pushRoute = useCallback(
-    (route: string) => {
-      router.push(route);
-      setPostDrawerOpen(false);
-    },
-    [router, setPostDrawerOpen],
-  );
 
   return (
     <Wrapper>
       <Container>
-        <StyledTree initialExpand={initialExpand}>
-          <Tree.Folder name="Blog">
-            {blogPosts.map((post) => {
-              return (
-                <Tree.File
-                  key={`s/${post.slug}`}
-                  name={post.title}
-                  onClick={() => pushRoute(`/w/${post.slug}`)}
-                />
-              );
-            })}
-          </Tree.Folder>
-        </StyledTree>
+        <Flex>
+          <Box>
+            <Box>
+              {blogPosts.map((post) => {
+                const active = router.asPath === `/w/${post.slug}`;
+
+                return (
+                  <Link
+                    href={`/w/${post.slug}`}
+                    key={`/w/${post.slug}`}
+                    passHref
+                    onClick={() => setPostDrawerOpen(false)}
+                  >
+                    <HStack
+                      _hover={{ color: active ? undefined : 'fg' }}
+                      color={active ? 'accent' : 'fg-muted'}
+                      fontSize="sm"
+                      fontWeight={active ? 'semibold' : 'medium'}
+                      spacing="3"
+                    >
+                      {!!post.emoji && (
+                        <Center
+                          borderColor={active ? 'purple.300' : 'gray.700'}
+                          borderWidth="2px"
+                          color={active ? 'white' : 'accent'}
+                          h="8"
+                          rounded="base"
+                          w="8"
+                          minW="8"
+                        >
+                          <Text
+                            as="span"
+                            fontSize="xl"
+                            fontWeight="bold"
+                            my="4"
+                            textTransform="uppercase"
+                            noOfLines={2}
+                          >
+                            {post.emoji}
+                          </Text>
+                        </Center>
+                      )}
+                      <span>
+                        <Heading
+                          as="h4"
+                          fontSize="xl"
+                          fontWeight="bold"
+                          my="4"
+                          textTransform="uppercase"
+                          noOfLines={2}
+                          color={active ? 'purple.100' : 'gray.600'}
+                        >
+                          {post.title}
+                        </Heading>
+                      </span>
+                    </HStack>
+                  </Link>
+                );
+              })}
+            </Box>
+          </Box>
+        </Flex>
       </Container>
     </Wrapper>
   );
@@ -62,12 +105,4 @@ const Container = styled.div`
 
   display: flex;
   flex-direction: column;
-`;
-
-const StyledTree = styled(Tree)`
-  &&& .name {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
 `;
