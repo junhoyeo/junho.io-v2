@@ -5,17 +5,20 @@
   "scripts": {
     "prebuild": "ts-node ./scripts/generate-posts.ts",
     "build": "next build",
+    "predev": "yarn prebuild",
     "dev": "next dev",
     "lint": "next lint",
     "start": "next start"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.4.4",
     "@emotion/core": "^11.0.0",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@geist-ui/core": "^2.3.8",
     "@geist-ui/icons": "git+https://github.com/junhoyeo/icons.git#dist",
     "@mdx-js/react": "^2.2.1",
+    "framer-motion": "^7.10.2",
     "get-xpath": "^3.0.1",
     "gray-matter": "^4.0.3",
     "javascript-time-ago": "^2.5.9",

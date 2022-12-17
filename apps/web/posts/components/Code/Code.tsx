@@ -92,8 +92,8 @@ export const Code: React.FC<CodeProps> = ({ children, ...props }) => {
         )}
       </Highlight>
       <TopRow>
-        <Text span style={{ color: palette.accents_5 }}>
-          {language}
+        <Text span>
+          <code style={{ color: palette.accents_5 }}>{language}</code>
         </Text>
 
         <ButtonGroup>
