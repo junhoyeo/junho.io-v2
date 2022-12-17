@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Button } from '@geist-ui/core';
+import { Button, Text, useTheme } from '@geist-ui/core';
 import {
   Copy as CopyIcon,
   CornerDownLeft as CornerDownLeftIcon,
@@ -17,6 +17,8 @@ type CodeProps = React.DetailedHTMLProps<
 >;
 
 export const Code: React.FC<CodeProps> = ({ children, ...props }) => {
+  const { palette } = useTheme();
+
   const language = /language-(?<lang>\w+)/.exec(props.className || '')?.[1] as
     | Language
     | undefined;
@@ -89,18 +91,24 @@ export const Code: React.FC<CodeProps> = ({ children, ...props }) => {
           </pre>
         )}
       </Highlight>
-      <ButtonGroup>
-        {wordWrap.isEnabled || wordWrap.isCodeScrollable ? (
+      <TopRow>
+        <Text span style={{ color: palette.accents_5 }}>
+          {language}
+        </Text>
+
+        <ButtonGroup>
+          {wordWrap.isEnabled || wordWrap.isCodeScrollable ? (
+            <Button
+              iconRight={<CornerDownLeftIcon />}
+              onClick={() => wordWrap.toggle()}
+            />
+          ) : null}
           <Button
-            iconRight={<CornerDownLeftIcon />}
-            onClick={() => wordWrap.toggle()}
+            iconRight={<CopyIcon />}
+            onClick={() => copyToClipboard(code)}
           />
-        ) : null}
-        <Button
-          iconRight={<CopyIcon />}
-          onClick={() => copyToClipboard(code)}
-        />
-      </ButtonGroup>
+        </ButtonGroup>
+      </TopRow>
     </Container>
   );
 };
@@ -117,11 +125,22 @@ const Container = styled.div`
     border: 0;
   }
 `;
-const ButtonGroup = styled.div`
+
+const TopRow = styled.div`
+  width: 100%;
+  padding-right: 8px;
+  padding-left: 16px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
   position: absolute;
   top: 8px;
-  right: 8px;
-
+  left: 0;
+  right: 0;
+`;
+const ButtonGroup = styled.div`
   display: flex;
   gap: 4px;
 
