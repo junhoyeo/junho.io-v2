@@ -5,6 +5,7 @@
   "scripts": {
     "prebuild": "ts-node ./scripts/generate-posts.ts",
     "build": "next build",
+    "predev": "yarn prebuild",
     "dev": "next dev",
     "lint": "next lint",
     "start": "next start"
