@@ -5,6 +5,14 @@ export const theme = extendTheme({
     initialColorMode: 'dark',
     useSystemColorMode: false,
   },
+  global: () => ({
+    html: {
+      bg: 'black',
+    },
+    body: {
+      bg: 'transparent',
+    },
+  }),
   textStyles: {
     h4: {
       letterSpacing: '0',
