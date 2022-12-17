@@ -29,5 +29,6 @@ module.exports = {
     '@next/next/no-html-link-for-pages': 'off',
     '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
     'react/jsx-key': 'off',
+    'react/jsx-sort-props': 'off',
   },
 };
