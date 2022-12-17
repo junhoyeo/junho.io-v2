@@ -11,7 +11,6 @@
     "start": "next start"
   },
   "dependencies": {
-    "@chakra-ui/react": "^2.4.4",
     "@emotion/core": "^11.0.0",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",

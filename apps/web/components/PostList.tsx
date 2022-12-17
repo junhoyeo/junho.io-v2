@@ -1,5 +1,5 @@
-import { Box, Center, Flex, HStack, Heading, Text } from '@chakra-ui/react';
 import styled from '@emotion/styled';
+import { useTheme } from '@geist-ui/core';
 import { useSetAtom } from 'jotai';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -15,74 +15,50 @@ export type PostListProps = {
 export const PostList: React.FC<PostListProps> = ({
   initialExpand: _initialExpand,
 }) => {
+  const { palette } = useTheme();
   const router = useRouter();
   const setPostDrawerOpen = useSetAtom(isPostDrawerOpenAtom);
 
   return (
     <Wrapper>
       <Container>
-        <Flex>
-          <Box>
-            <Box>
-              {blogPosts.map((post) => {
-                const active = router.asPath === `/w/${post.slug}`;
+        {blogPosts.map((post) => {
+          const active = router.asPath === `/w/${post.slug}`;
 
-                return (
-                  <Link
-                    href={`/w/${post.slug}`}
-                    key={`/w/${post.slug}`}
-                    passHref
-                    onClick={() => setPostDrawerOpen(false)}
+          return (
+            <Link
+              href={`/w/${post.slug}`}
+              key={`/w/${post.slug}`}
+              passHref
+              onClick={() => setPostDrawerOpen(false)}
+            >
+              <HStack>
+                {!!post.emoji && (
+                  <EmojiContainer
+                    style={{
+                      // backgroundColor: active
+                      //   ? palette.accents_1
+                      //   : palette.accents_1,
+                      backgroundColor: palette.accents_1,
+                      borderColor: active ? 'white' : palette.accents_2,
+                    }}
                   >
-                    <HStack
-                      _hover={{ color: active ? undefined : 'fg' }}
-                      color={active ? 'accent' : 'fg-muted'}
-                      fontSize="sm"
-                      fontWeight={active ? 'semibold' : 'medium'}
-                      spacing="3"
-                    >
-                      {!!post.emoji && (
-                        <Center
-                          borderColor={active ? 'purple.300' : 'gray.700'}
-                          borderWidth="2px"
-                          color={active ? 'white' : 'accent'}
-                          h="8"
-                          rounded="base"
-                          w="8"
-                          minW="8"
-                        >
-                          <Text
-                            as="span"
-                            fontSize="xl"
-                            fontWeight="bold"
-                            my="4"
-                            textTransform="uppercase"
-                            noOfLines={2}
-                          >
-                            {post.emoji}
-                          </Text>
-                        </Center>
-                      )}
-                      <span>
-                        <Heading
-                          as="h4"
-                          fontSize="xl"
-                          fontWeight="bold"
-                          my="4"
-                          textTransform="uppercase"
-                          noOfLines={2}
-                          color={active ? 'purple.100' : 'gray.600'}
-                        >
-                          {post.title}
-                        </Heading>
-                      </span>
-                    </HStack>
-                  </Link>
-                );
-              })}
-            </Box>
-          </Box>
-        </Flex>
+                    <span>{post.emoji}</span>
+                  </EmojiContainer>
+                )}
+                <span>
+                  <PostTitle
+                    style={{
+                      color: active ? palette.accents_7 : palette.accents_3,
+                    }}
+                  >
+                    {post.title}
+                  </PostTitle>
+                </span>
+              </HStack>
+            </Link>
+          );
+        })}
       </Container>
     </Wrapper>
   );
@@ -90,7 +66,8 @@ export const PostList: React.FC<PostListProps> = ({
 
 const Wrapper = styled.aside`
   width: 100%;
-  height: calc(100vh - 64px);
+  /* height: calc(100vh - 64px); */
+  height: calc(100vh - 96px);
 
   position: sticky;
   top: 64px;
@@ -105,4 +82,47 @@ const Container = styled.div`
 
   display: flex;
   flex-direction: column;
+
+  @media screen and (max-width: 982px) {
+    padding: 24px 12px;
+  }
+`;
+
+const HStack = styled.div`
+  padding: 8px 0;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+
+  span {
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 160%;
+  }
+`;
+const EmojiContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  min-width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  border: 2px solid;
+
+  span {
+    font-size: 20px;
+  }
+`;
+const PostTitle = styled.h4`
+  margin: 0;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 `;
