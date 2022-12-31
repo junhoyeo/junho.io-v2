@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "prebuild": "ts-node ./scripts/generate-posts.ts",
+    "prebuild": "ts-node -r tsconfig-paths/register ./scripts/generate-posts.ts",
     "build": "next build",
     "predev": "yarn prebuild",
     "dev": "next dev",
