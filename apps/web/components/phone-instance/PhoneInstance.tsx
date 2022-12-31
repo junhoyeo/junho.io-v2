@@ -1,27 +1,24 @@
 import styled from '@emotion/styled';
-import { Phone } from '@junhoyeo/iphone';
+import { Phone, type PhoneProps } from '@junhoyeo/iphone';
 import { type DynamicIslandProps } from '@junhoyeo/iphone/dist/dynamic-island/src/DynamicIsland';
 
 import { BACKGROUND_IMAGE_URL, DOCK } from './constants';
+import { INSTALLED_APPS } from './constants/grid';
 
-export type PhoneInstanceProps = {
+export type PhoneInstanceProps = Partial<PhoneProps> & {
   dynamicIslandProps: Omit<DynamicIslandProps, 'children'>;
 };
 
-export const PhoneInstance: React.FC<PhoneInstanceProps> = ({
-  dynamicIslandProps,
-}) => {
+export const PhoneInstance: React.FC<PhoneInstanceProps> = ({ ...props }) => {
   return (
     <Container>
       <Phone
+        backgroundImage={BACKGROUND_IMAGE_URL}
+        {...props}
         appBarBrightness="dark"
         frameColor="purple"
-        transformScale={0.85}
-        apps={[]}
+        apps={INSTALLED_APPS}
         dock={DOCK}
-        // dock={DOCK.map((v) => ({ ...v, onClick: () => setHasApp(true) }))}
-        backgroundImage={BACKGROUND_IMAGE_URL}
-        dynamicIslandProps={dynamicIslandProps}
       />
     </Container>
   );

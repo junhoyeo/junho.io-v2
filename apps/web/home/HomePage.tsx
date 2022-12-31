@@ -20,11 +20,14 @@ const HomePage: NextPage = () => {
 
   useEffect(() => {
     if (screenWidth > 500) {
-      setTransformScale(1);
+      setTransformScale(0.85);
       return;
     }
     const containerWidth = screenWidth * 0.9;
-    setTransformScale(containerWidth / DEVICE_WIDTH);
+
+    let scale = containerWidth / DEVICE_WIDTH;
+    scale = Math.min(scale, 0.85);
+    setTransformScale(scale);
   }, [screenWidth]);
 
   const phoneContainerRef = useRef<HTMLDivElement>(null);
@@ -33,7 +36,7 @@ const HomePage: NextPage = () => {
       return;
     }
     const deviceHeight = transformScale * DEVICE_HEIGHT;
-    const bottom = deviceHeight * -0.55;
+    const bottom = deviceHeight * -0.45;
     document.documentElement.style.setProperty(
       '--device-height',
       `${deviceHeight}px`,
@@ -50,6 +53,7 @@ const HomePage: NextPage = () => {
       </Container>
       <PhoneContainer ref={phoneContainerRef}>
         <PhoneInstance
+          transformScale={transformScale}
           dynamicIslandProps={{
             default: 'default',
             state: 'default',
@@ -107,6 +111,7 @@ const PhoneContainer = styled.div`
   top: 0;
   right: 0;
   height: 100vh;
+  z-index: 100;
 
   display: flex;
   justify-content: center;
@@ -119,13 +124,19 @@ const PhoneContainer = styled.div`
 
   @media screen and (max-width: 1000px) {
     padding-top: unset;
+    height: fit-content;
 
     position: fixed;
     top: unset;
     left: 0;
     right: 0;
-    bottom: -500px;
+    bottom: var(--bottom);
     pointer-events: none;
+
+    &,
+    & > div {
+      height: var(--device-height);
+    }
 
     & > div {
       pointer-events: auto;
@@ -133,12 +144,8 @@ const PhoneContainer = styled.div`
   }
 
   @media screen and (max-width: 600px) {
-    .phone-container {
-      bottom: var(--bottom);
-    }
-
-    .phone-container,
-    .phone-container > div {
+    &,
+    & > div {
       height: var(--device-height);
     }
   }

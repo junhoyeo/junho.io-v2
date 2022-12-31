@@ -1,14 +1,14 @@
 import styled from '@emotion/styled';
-import { Button, Text, useTheme } from '@geist-ui/core';
-import { Anchor, X as Cross, Menu } from '@geist-ui/icons';
-import { useAtom } from 'jotai';
+import { /* Button, */ Text, useTheme } from '@geist-ui/core';
+import { Anchor /* X as Cross, Menu */ } from '@geist-ui/icons';
+// import { useAtom } from 'jotai';
 import Link from 'next/link';
 
-import { isPostDrawerOpenAtom } from '@/state/posts';
+// import { isPostDrawerOpenAtom } from '@/state/posts';
 
 export const NavigationBar: React.FC = () => {
   const { palette } = useTheme();
-  const [isPostDrawerOpen, setPostDrawerOpen] = useAtom(isPostDrawerOpenAtom);
+  // const [isPostDrawerOpen, setPostDrawerOpen] = useAtom(isPostDrawerOpenAtom);
 
   return (
     <Wrapper>
@@ -22,12 +22,13 @@ export const NavigationBar: React.FC = () => {
           </Brand>
         </Link>
 
+        {/*
         <PostDrawerButton
           auto
           iconRight={isPostDrawerOpen ? <Cross /> : <Menu />}
           onClick={() => setPostDrawerOpen((prev) => !prev)}
           px={0.6}
-        />
+        /> */}
       </Container>
     </Wrapper>
   );
@@ -68,12 +69,12 @@ const Brand = styled.div`
   user-select: none;
 `;
 
-const PostDrawerButton = styled(Button)`
-  &&& {
-    display: none;
+// const PostDrawerButton = styled(Button)`
+//   &&& {
+//     display: none;
 
-    @media screen and (max-width: 982px) {
-      display: inline-block;
-    }
-  }
-`;
+//     @media screen and (max-width: 982px) {
+//       display: inline-block;
+//     }
+//   }
+// `;
