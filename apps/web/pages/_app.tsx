@@ -3,7 +3,14 @@ import { CssBaseline, GeistProvider } from '@geist-ui/core';
 import { type AppProps } from 'next/app';
 import { useEffect } from 'react';
 
+import '@/styles/fonts.css';
+
 const themeType = 'dark';
+const systemFontStack = `
+  'Pretendard Variable', Inter, ui-sans-serif, system-ui, -apple-system,
+  BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+  Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji
+`;
 
 export default function App({ Component, pageProps }: AppProps): JSX.Element {
   useEffect(() => {
@@ -15,6 +22,10 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
       <CssBaseline />
       <Global
         styles={css`
+          :root {
+            --SystemFontStack: ${systemFontStack};
+          }
+
           #__next {
             overflow-x: unset !important;
           }
@@ -22,6 +33,7 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
           * {
             box-sizing: border-box !important;
             word-break: keep-all;
+            font-family: var(--SystemFontStack) !important;
           }
         `}
       />

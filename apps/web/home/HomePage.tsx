@@ -52,7 +52,7 @@ const HomePage: NextPage<PostDocument> = (props) => {
       <Container>
         <Title style={{ color: palette.accents_7 }}>
           {`Hi, I'm `}
-          <span>@junhoyeo</span>
+          <span>Junho Yeo</span>
         </Title>
         <Description style={{ color: palette.accents_6 }}>
           {`Welcome to my site. I'm a 19-yo generalist hacker, shaping the 2nd/3rd
@@ -125,7 +125,7 @@ const Title = styled.h1`
   margin: 0;
   margin-bottom: 28px;
 
-  font-weight: bold;
+  font-weight: 800;
   font-size: 2rem;
   line-height: 1.25;
   letter-spacing: -0.25px;
