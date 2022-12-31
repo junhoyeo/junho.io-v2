@@ -13,6 +13,8 @@ import { PhoneInstance } from '@/components/phone-instance';
 import { useWindowSize } from '@/hooks/use-window-size';
 import { type PostDocument } from '@/posts/lib/types';
 
+import { Head } from './components/head';
+
 const HomePage: NextPage<PostDocument> = (props) => {
   const { palette } = useTheme();
   const { screenWidth = 1980 } = useWindowSize();
@@ -47,6 +49,7 @@ const HomePage: NextPage<PostDocument> = (props) => {
 
   return (
     <Wrapper>
+      <Head />
       <NavigationBar />
 
       <Container>
