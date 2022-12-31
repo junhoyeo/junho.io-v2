@@ -17,7 +17,17 @@ export const PhoneInstance: React.FC<PhoneInstanceProps> = ({ ...props }) => {
         {...props}
         appBarBrightness="dark"
         frameColor="purple"
-        apps={INSTALLED_APPS}
+        apps={INSTALLED_APPS.map((app) => ({
+          ...app,
+          onClick: () => {
+            if (!app.id) {
+              return;
+            }
+            document.querySelector(`#${app.id}`)?.scrollIntoView({
+              behavior: 'smooth',
+            });
+          },
+        }))}
         dock={DOCK}
       />
     </Container>
