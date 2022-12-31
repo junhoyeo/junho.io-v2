@@ -1,0 +1,20 @@
+import { MDXRemoteSerializeResult } from 'next-mdx-remote';
+
+export type PostCategoryType = 'blog';
+
+export type PostSummary = {
+  emoji?: string;
+  title: string;
+  slug: string;
+  description?: string;
+  date?: string;
+};
+
+export type Post = PostSummary & {
+  body: string;
+};
+
+export type PostDocument = MDXRemoteSerializeResult & {
+  type: PostCategoryType;
+  meta: Omit<Post, 'body'>;
+};

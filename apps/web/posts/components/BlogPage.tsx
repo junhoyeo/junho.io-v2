@@ -1,53 +1,14 @@
 import styled from '@emotion/styled';
 import { Breadcrumbs, Text } from '@geist-ui/core';
-import { type MDXProvider } from '@mdx-js/react';
 import { type GetStaticPaths, type GetStaticProps } from 'next';
-import { type MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 
 import { Layout } from '@/components/Layout';
-import { MDXRemote } from '@/components/MDXRemote';
+import { MDXRenderer } from '@/components/mdx-renderer';
 
-import { Code } from './Code';
+import type { Post, PostCategoryType, PostDocument } from '../lib/types';
 
-export type PostCategoryType = 'blog';
-
-export type PostSummary = {
-  emoji?: string;
-  title: string;
-  slug: string;
-  description?: string;
-  date?: string;
-};
-
-export type Post = PostSummary & {
-  body: string;
-};
-
-export type BlogPageProps = MDXRemoteSerializeResult & {
-  type: PostCategoryType;
-  meta: Omit<Post, 'body'>;
-};
-
-const components: React.ComponentProps<typeof MDXProvider>['components'] = {
-  h2: styled.h2`
-    margin-top: 42px;
-  `,
-  h3: styled.h3`
-    margin-top: 42px;
-  `,
-  h4: styled.h3`
-    margin-top: 42px;
-  `,
-  h5: styled.h3`
-    margin-top: 42px;
-  `,
-  h6: styled.h3`
-    margin-top: 42px;
-  `,
-  code: Code,
-  pre: (props: { children?: React.ReactNode }) => <div>{props.children}</div>,
-};
+export type BlogPageProps = PostDocument;
 
 const capitalize = (value: string) =>
   value.charAt(0).toUpperCase() + value.slice(1);
@@ -71,7 +32,7 @@ export const BlogPage: React.FC<BlogPageProps> = (props: BlogPageProps) => {
         </Breadcrumbs.Item>
       </Breadcrumbs>
       <Title h1>{props.meta.title}</Title>
-      <MDXRemote {...props} components={components} />
+      <MDXRenderer {...props} />
     </Layout>
   );
 };
