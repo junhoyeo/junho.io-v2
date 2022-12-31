@@ -2,6 +2,8 @@ import styled from '@emotion/styled';
 import { Phone, type PhoneProps } from '@junhoyeo/iphone';
 import { type DynamicIslandProps } from '@junhoyeo/iphone/dist/dynamic-island/src/DynamicIsland';
 
+import { Analytics } from '@/utils/analytics';
+
 import { BACKGROUND_IMAGE_URL, DOCK } from './constants';
 import { INSTALLED_APPS } from './constants/grid';
 
@@ -23,6 +25,7 @@ export const PhoneInstance: React.FC<PhoneInstanceProps> = ({ ...props }) => {
             if (!app.id) {
               return;
             }
+            Analytics.logEvent('click_icon', { name: app.name ?? 'Unknown' });
             document.querySelector(`#${app.id}`)?.scrollIntoView({
               behavior: 'smooth',
             });

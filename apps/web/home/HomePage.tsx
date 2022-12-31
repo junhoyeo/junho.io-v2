@@ -12,6 +12,7 @@ import { MDXRenderer } from '@/components/mdx-renderer';
 import { PhoneInstance } from '@/components/phone-instance';
 import { useWindowSize } from '@/hooks/use-window-size';
 import { type PostDocument } from '@/posts/lib/types';
+import { Analytics } from '@/utils/analytics';
 
 import { Head } from './components/head';
 
@@ -20,6 +21,10 @@ const HomePage: NextPage<PostDocument> = (props) => {
   const { screenWidth = 1980 } = useWindowSize();
 
   const [transformScale, setTransformScale] = useState<number>(1);
+
+  useEffect(() => {
+    Analytics.logEvent('view_landing', undefined);
+  }, []);
 
   useEffect(() => {
     if (screenWidth > 500) {

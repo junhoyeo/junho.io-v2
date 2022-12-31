@@ -18,6 +18,7 @@
     "@geist-ui/icons": "git+https://github.com/junhoyeo/icons.git#dist",
     "@junhoyeo/iphone": "^0.0.4",
     "@mdx-js/react": "^2.2.1",
+    "amplitude-js": "^8.21.3",
     "framer-motion": "^7.10.2",
     "get-xpath": "^3.0.1",
     "gray-matter": "^4.0.3",
@@ -38,6 +39,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.5",
+    "@types/amplitude-js": "^8.16.2",
     "@types/node": "^18.11.15",
     "@types/prettier": "^2.7.1",
     "@types/react": "^18.0.26",
