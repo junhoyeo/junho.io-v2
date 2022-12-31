@@ -110,7 +110,7 @@ const Wrapper = styled.div`
 const Container = styled.div`
   margin-right: 32px;
   padding-top: 120px;
-  width: 55%;
+  flex: 1;
 
   display: flex;
   flex-direction: column;

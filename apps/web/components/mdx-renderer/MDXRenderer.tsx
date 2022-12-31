@@ -37,7 +37,11 @@ export const HeadingTwo: React.FC<HeadingProps> = ({ id, style, ...props }) => {
 
   return (
     // eslint-disable-next-line jsx-a11y/heading-has-content
-    <h2 {...props} id={generatedId} style={{ ...style, marginTop: 42 }} />
+    <h2
+      {...props}
+      id={generatedId}
+      style={{ ...style, marginTop: 42, fontSize: 28 }}
+    />
   );
 };
 
@@ -57,7 +61,25 @@ const components: React.ComponentProps<typeof MDXProvider>['components'] = {
   `,
   code: Code,
   Link,
-  ImageList: styled.div``,
+  ImageList: styled.div`
+    width: 100%;
+    display: flex;
+    gap: 4px;
+
+    & > img {
+      width: 50%;
+      width: calc((100% - 4px) / 2);
+    }
+
+    @media screen and (max-width: 600px) {
+      flex-direction: column;
+      gap: 6px;
+
+      & > img {
+        width: 100%;
+      }
+    }
+  `,
   Image: styled(Image)`
     height: fit-content;
     border: 1px solid;
