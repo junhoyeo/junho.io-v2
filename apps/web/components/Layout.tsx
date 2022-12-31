@@ -31,9 +31,17 @@ export const Layout: React.FC<LayoutProps> = ({
     <>
       <NavigationBar />
       <Wrapper>
-        <LeftSidebar style={{ borderRight: `1px solid ${palette.accents_2}` }}>
-          {!leftContent && <PostList {...defaultPostListProps} />}
-        </LeftSidebar>
+        {leftContent === null ? null : (
+          <LeftSidebar
+            style={{ borderRight: `1px solid ${palette.accents_2}` }}
+          >
+            {typeof leftContent === 'undefined' ? (
+              <PostList {...defaultPostListProps} />
+            ) : (
+              leftContent
+            )}
+          </LeftSidebar>
+        )}
 
         <Page>
           <Page.Content style={{ paddingTop: !header ? 64 : 0 }}>
@@ -49,7 +57,9 @@ export const Layout: React.FC<LayoutProps> = ({
           </Page.Content>
         </Page>
 
-        <RightSidebar>{rightContent}</RightSidebar>
+        {typeof rightContent === 'undefined' && (
+          <RightSidebar>{rightContent}</RightSidebar>
+        )}
 
         <CommentDrawer />
         <PostMenuDrawer />

@@ -187,6 +187,8 @@ const HomePage: NextPage = () => {
           </Slate>
         </>
       }
+      leftContent={null}
+      rightContent={null}
     >
       <Text blockquote>
         <InfoIcon size={20} />
