@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { createEditor, type BaseEditor } from 'slate';
 import { ReactEditor, withReact } from 'slate-react';
 
-import { positionDraftAtom } from '../state/comments';
+import { positionDraftAtom } from '@/state/comments';
 
 export const useComments = (): {
   editor: BaseEditor & ReactEditor;

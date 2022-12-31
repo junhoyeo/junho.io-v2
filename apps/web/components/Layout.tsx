@@ -2,7 +2,8 @@ import styled from '@emotion/styled';
 import { Page, useTheme } from '@geist-ui/core';
 import React from 'react';
 
-import { fixedWidth } from '../utils/css';
+import { fixedWidth } from '@/utils/css';
+
 import { CommentDrawer } from './CommentDrawer';
 import { NavigationBar } from './NavigationBar';
 import { PostList, type PostListProps } from './PostList';

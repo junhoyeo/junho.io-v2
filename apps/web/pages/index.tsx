@@ -5,9 +5,9 @@ import { type NextPage } from 'next';
 
 import '@junhoyeo/iphone/dist/style.css';
 
-import { Layout } from '../components/Layout';
-import { PhoneInstance } from '../components/phone-instance';
-import { Header } from '../home/Header';
+import { Layout } from '@/components/Layout';
+import { PhoneInstance } from '@/components/phone-instance';
+import { Header } from '@/home/Header';
 
 const HomePage: NextPage = () => {
   const { palette } = useTheme();

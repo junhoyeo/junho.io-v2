@@ -7,8 +7,8 @@ import type { ReactEditor } from 'slate-react';
 import { Editable, Slate } from 'slate-react';
 import { v4 as uuidv4 } from 'uuid';
 
-import { commentsAtom, positionDraftAtom } from '../state/comments';
-import { fixedWidth } from '../utils/css';
+import { commentsAtom, positionDraftAtom } from '@/state/comments';
+import { fixedWidth } from '@/utils/css';
 
 const serializeDescendants = (descendants: Descendant[]): string =>
   descendants.map((n) => Node.string(n)).join('\n');

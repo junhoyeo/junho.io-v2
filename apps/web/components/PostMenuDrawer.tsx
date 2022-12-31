@@ -3,7 +3,8 @@ import { Drawer } from '@geist-ui/core';
 import { useAtom } from 'jotai';
 import React, { useEffect } from 'react';
 
-import { isPostDrawerOpenAtom } from '../state/posts';
+import { isPostDrawerOpenAtom } from '@/state/posts';
+
 import { PostList } from './PostList';
 
 export const PostMenuDrawer: React.FC = () => {

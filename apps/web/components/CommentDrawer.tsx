@@ -4,7 +4,8 @@ import { X as XIcon } from '@geist-ui/icons';
 import { useAtom, useAtomValue } from 'jotai';
 import React from 'react';
 
-import { commentsAtom, isCommentDrawerOpenAtom } from '../state/comments';
+import { commentsAtom, isCommentDrawerOpenAtom } from '@/state/comments';
+
 import { UserCommentCard } from './UserCommentCard';
 
 export const CommentDrawer: React.FC = () => {

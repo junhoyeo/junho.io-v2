@@ -5,8 +5,9 @@ import { type GetStaticPaths, type GetStaticProps } from 'next';
 import { type MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 
-import { Layout } from '../../components/Layout';
-import { MDXRemote } from '../../components/MDXRemote';
+import { Layout } from '@/components/Layout';
+import { MDXRemote } from '@/components/MDXRemote';
+
 import { Code } from './Code';
 
 export type PostCategoryType = 'blog';
@@ -109,7 +110,7 @@ export const withCache = <ReturnType extends any, Params extends any[]>(
 };
 const getPosts = withCache((type: PostCategoryType) => {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const md = require('../lib/get-posts') as {
+  const md = require('@/posts/lib/get-posts') as {
     getPosts: (type: PostCategoryType) => Post[];
   };
 

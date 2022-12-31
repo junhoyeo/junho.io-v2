@@ -5,8 +5,8 @@ import {
   buildGetStaticPaths,
   buildGetStaticProps,
   type BlogPageProps,
-} from '../../posts/components/BlogPage';
-import { type PostCategoryType } from '../../posts/lib/get-posts';
+} from '@/posts/components/BlogPage';
+import { type PostCategoryType } from '@/posts/lib/get-posts';
 
 const POST_CATEGORY_TYPE: PostCategoryType = 'blog';
 
