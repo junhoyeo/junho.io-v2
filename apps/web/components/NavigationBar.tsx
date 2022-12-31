@@ -70,7 +70,7 @@ const Container = styled.div`
   gap: 16px;
 
   border-radius: 8px;
-  background-color: rgba(0, 0, 0, 0.32);
+  background-color: rgba(0, 0, 0, 0.55);
   backdrop-filter: saturate(140%) blur(12px);
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
 `;
