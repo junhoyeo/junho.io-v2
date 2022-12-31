@@ -7,7 +7,7 @@
   </a>
 </p>
 
-> **Info**<br/>
+> **Note**<br/>
 > Built with 💜 and [junhoyeo/iphone](https://github.com/junhoyeo/iphone).
 
 [![](https://junho.io/assets/og-image.jpg)](https://junho.io)
