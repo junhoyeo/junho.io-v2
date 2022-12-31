@@ -9,8 +9,8 @@ export const INSTALLED_APPS: (GridItemProps & { id: string })[] = [
   },
   {
     name: 'Bento',
-    icon: '/assets/phone/icons/grid/bento.png',
-    color: '#18141c',
+    icon: '/assets/phone/icons/grid/bento.jpg',
+    color: '#ff79b4',
     id: 'bento',
   },
   {
@@ -25,12 +25,17 @@ export const INSTALLED_APPS: (GridItemProps & { id: string })[] = [
     color: '#FFFB00',
     id: 'alphaworks',
   },
-
   {
     name: 'Keplr',
     icon: '/assets/phone/icons/grid/keplr.png',
     color: '#00C3F8',
     id: 'keplr',
+  },
+  {
+    name: 'Pylon Protocol',
+    icon: '/assets/phone/icons/grid/pylon-protocol.png',
+    color: '#032845',
+    id: 'pylon-protocol',
   },
   {
     name: 'Toss',
