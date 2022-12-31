@@ -11,13 +11,13 @@ export const NavigationBar: React.FC = () => {
   const [isPostDrawerOpen, setPostDrawerOpen] = useAtom(isPostDrawerOpenAtom);
 
   return (
-    <Wrapper style={{ borderBottom: `1px solid ${palette.accents_1}` }}>
-      <Container>
+    <Wrapper>
+      <Container style={{ border: `1px solid ${palette.accents_2}` }}>
         <Link href="/">
           <Brand style={{ color: palette.accents_8 }}>
             <Anchor size={28} />
             <Text b span style={{ fontSize: 24 }}>
-              Paracøsm
+              junhø.io
             </Text>
           </Brand>
         </Link>
@@ -34,26 +34,31 @@ export const NavigationBar: React.FC = () => {
 };
 
 const Wrapper = styled.div`
-  position: fixed;
+  padding: 0 16px;
   width: 100%;
-  top: 0;
+
+  position: fixed;
+  top: 16px;
   left: 0;
   right: 0;
   z-index: 100;
-  background-color: rgba(0, 0, 0, 0.4);
-  backdrop-filter: saturate(140%) blur(16px);
+
   display: flex;
+  justify-content: center;
 `;
 const Container = styled.div`
+  padding: 12px 20px;
   width: 100%;
-  padding: 12px 32px;
+  max-width: 740px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  @media screen and (max-width: 576px) {
-    padding: 12px 20px;
-  }
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.32);
+  backdrop-filter: saturate(140%) blur(12px);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
 `;
 
 const Brand = styled.div`
