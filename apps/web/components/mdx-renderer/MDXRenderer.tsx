@@ -84,6 +84,7 @@ const components: React.ComponentProps<typeof MDXProvider>['components'] = {
     height: fit-content;
     border: 1px solid;
     border-radius: 4px;
+    filter: saturate(1.08);
   `,
   pre: (props: { children?: React.ReactNode }) => <div>{props.children}</div>,
 };
