@@ -4,7 +4,7 @@ import { Anchor, X as Cross, Menu } from '@geist-ui/icons';
 import { useAtom } from 'jotai';
 import Link from 'next/link';
 
-import { isPostDrawerOpenAtom } from '../state/posts';
+import { isPostDrawerOpenAtom } from '@/state/posts';
 
 export const NavigationBar: React.FC = () => {
   const { palette } = useTheme();

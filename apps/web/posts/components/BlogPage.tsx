@@ -5,8 +5,8 @@ import { type GetStaticPaths, type GetStaticProps } from 'next';
 import { type MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 
-import { Layout } from '../../components/Layout';
-import { MDXRemote } from '../../components/MDXRemote';
+import { Layout } from '@/components/Layout';
+import { MDXRemote } from '@/components/MDXRemote';
 import { Code } from './Code';
 
 export type PostCategoryType = 'blog';

@@ -17,10 +17,10 @@ import { Editor, Node, Transforms, createEditor, type Descendant } from 'slate';
 import { Editable, ReactEditor, Slate, withReact } from 'slate-react';
 import { v4 as uuidv4 } from 'uuid';
 
-import { Layout } from '../components/Layout';
-import { Header } from '../home/Header';
-import { commentsAtom } from '../state/comments';
-import { fixedWidth } from '../utils/css';
+import { Layout } from '@/components/Layout';
+import { Header } from '@/home/Header';
+import { commentsAtom } from '@/state/comments';
+import { fixedWidth } from '@/utils/css';
 
 const serializeDescendants = (descendants: Descendant[]): string =>
   descendants.map((n) => Node.string(n)).join('\n');

@@ -1,7 +1,7 @@
 import { Text } from '@geist-ui/core';
 import { type NextPage } from 'next';
 
-import { Layout } from '../components/Layout';
+import { Layout } from '@/components/Layout';
 
 type Props = {
   statusCode: number;

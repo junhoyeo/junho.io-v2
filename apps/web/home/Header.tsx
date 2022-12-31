@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { Text, useScale, useTheme } from '@geist-ui/core';
 import Image from 'next/image';
 
-import shipIllust from '../assets/ship.jpg';
+import shipIllust from '@/assets/ship.jpg';
 
 const negativeToCalc = (calcString: string): string =>
   calcString.replace('(', '(-');

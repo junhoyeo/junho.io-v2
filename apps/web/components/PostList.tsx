@@ -4,8 +4,8 @@ import { useSetAtom } from 'jotai';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-import blogPosts from '../posts/generated/blog';
-import { isPostDrawerOpenAtom } from '../state/posts';
+import blogPosts from '@/posts/generated/blog';
+import { isPostDrawerOpenAtom } from '@/state/posts';
 
 export type PostListProps = {
   // TODO: Support expanding only current folder
