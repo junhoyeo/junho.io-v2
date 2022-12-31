@@ -3,9 +3,10 @@ import { useTheme } from '@geist-ui/core';
 import { type MDXProvider } from '@mdx-js/react';
 import NextImage, { type ImageProps as NextImageProps } from 'next/image';
 import Link from 'next/link';
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 
 import { type PostDocument } from '@/posts/lib/types';
+import { Analytics } from '@/utils/analytics';
 
 import { Code } from './Code';
 import { MDXRemote } from './MDXRemote';
@@ -27,7 +28,7 @@ const Image: React.FC<NextImageProps> = ({ style, ...props }) => {
 };
 
 type HeadingProps = React.HTMLAttributes<HTMLHeadingElement>;
-export const HeadingTwo: React.FC<HeadingProps> = ({ id, style, ...props }) => {
+const HeadingTwo: React.FC<HeadingProps> = ({ id, style, ...props }) => {
   const generatedId = useMemo(() => {
     if (id) {
       return id;
@@ -42,6 +43,34 @@ export const HeadingTwo: React.FC<HeadingProps> = ({ id, style, ...props }) => {
       id={generatedId}
       style={{ ...style, marginTop: 42, fontSize: 28 }}
     />
+  );
+};
+
+const TrackedAnchor: React.FC<
+  React.AnchorHTMLAttributes<HTMLAnchorElement>
+> = ({ href, onClick, ...props }) => {
+  const onClickAnchor = useCallback(
+    (event: React.MouseEvent<HTMLAnchorElement>) => {
+      if (onClick) {
+        onClick(event);
+      }
+      Analytics.logEvent('click_inline_link', {
+        title: props.children?.toString() || 'unknown',
+      });
+    },
+    [onClick, props.children],
+  );
+
+  return (
+    <a
+      href={href}
+      onClick={onClickAnchor}
+      {...props}
+      target="_blank"
+      rel="noreferrer"
+    >
+      {props.children}
+    </a>
   );
 };
 
@@ -62,6 +91,7 @@ const components: React.ComponentProps<typeof MDXProvider>['components'] = {
   p: styled.p`
     color: rgba(255, 255, 255, 0.9);
   `,
+  a: TrackedAnchor,
   code: Code,
   Link,
   ImageList: styled.div`
