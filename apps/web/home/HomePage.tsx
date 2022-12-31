@@ -119,6 +119,10 @@ const Container = styled.div`
     margin-right: 0;
     width: 100%;
   }
+
+  main {
+    padding-bottom: 120px;
+  }
 `;
 
 const Title = styled.h1`
