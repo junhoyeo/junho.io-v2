@@ -1,10 +1,9 @@
 import styled from '@emotion/styled';
-// import { useTheme } from '@geist-ui/core';
-
 import { type NextPage } from 'next';
 
 import '@junhoyeo/iphone/dist/style.css';
 
+import { useTheme } from '@geist-ui/core';
 import { DEVICE_HEIGHT, DEVICE_WIDTH } from '@junhoyeo/iphone';
 import { useEffect, useRef, useState } from 'react';
 
@@ -13,7 +12,7 @@ import { PhoneInstance } from '@/components/phone-instance';
 import { useWindowSize } from '@/hooks/use-window-size';
 
 const HomePage: NextPage = () => {
-  // const { palette } = useTheme();
+  const { palette } = useTheme();
   const { screenWidth = 1980 } = useWindowSize();
 
   const [transformScale, setTransformScale] = useState<number>(1);
@@ -49,6 +48,16 @@ const HomePage: NextPage = () => {
       <NavigationBar />
 
       <Container>
+        <Title style={{ color: palette.accents_7 }}>
+          {`Hi, I'm `}
+          <span>@junhoyeo</span>
+        </Title>
+        <Description style={{ color: palette.accents_6 }}>
+          {`Welcome to my site. I'm a 19-yo generalist hacker, shaping the 2nd/3rd
+          web. Sometimes a designer and dreamer, I just like to build things.
+          Now I'm preparing the infrastructure—insight, followers, and
+          capital—for a bigger dream.`}
+        </Description>
         <main></main>
       </Container>
       <PhoneContainer ref={phoneContainerRef}>
@@ -96,7 +105,9 @@ const Wrapper = styled.div`
 `;
 const Container = styled.div`
   margin-right: 32px;
+  padding-top: 120px;
   width: 55%;
+
   display: flex;
   flex-direction: column;
 
@@ -104,6 +115,25 @@ const Container = styled.div`
     margin-right: 0;
     width: 100%;
   }
+`;
+
+const Title = styled.h1`
+  margin: 0;
+  margin-bottom: 28px;
+
+  font-weight: bold;
+  font-size: 2rem;
+  line-height: 1.25;
+  letter-spacing: -0.25px;
+`;
+const Description = styled.p`
+  margin: 0;
+  margin-bottom: 20px;
+
+  font-weight: 400;
+  font-size: 18px;
+  padding-bottom: 0.56rem;
+  line-height: 1.45;
 `;
 
 const PhoneContainer = styled.div`
