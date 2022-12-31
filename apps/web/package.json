@@ -30,6 +30,7 @@
     "prism-react-renderer": "^1.3.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-intersection-observer": "^9.4.1",
     "slate": "^0.87.0",
     "slate-react": "^0.87.0",
     "swr": "^2.0.0",

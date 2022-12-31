@@ -3,7 +3,8 @@ import { useTheme } from '@geist-ui/core';
 import { type MDXProvider } from '@mdx-js/react';
 import NextImage, { type ImageProps as NextImageProps } from 'next/image';
 import Link from 'next/link';
-import { useCallback, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
+import { useInView } from 'react-intersection-observer';
 
 import { type PostDocument } from '@/posts/lib/types';
 import { Analytics } from '@/utils/analytics';
@@ -29,6 +30,8 @@ const Image: React.FC<NextImageProps> = ({ style, ...props }) => {
 
 type HeadingProps = React.HTMLAttributes<HTMLHeadingElement>;
 const HeadingTwo: React.FC<HeadingProps> = ({ id, style, ...props }) => {
+  const [inViewRef, inView] = useInView({ threshold: 0.5 });
+
   const generatedId = useMemo(() => {
     if (id) {
       return id;
@@ -36,9 +39,18 @@ const HeadingTwo: React.FC<HeadingProps> = ({ id, style, ...props }) => {
     return props.children?.toString().toLowerCase().replace(/ /g, '-');
   }, [id, props.children]);
 
+  useEffect(() => {
+    if (inView && !!generatedId) {
+      Analytics.logEvent('view_landing_section', {
+        section: generatedId,
+      });
+    }
+  }, [inView, generatedId]);
+
   return (
     // eslint-disable-next-line jsx-a11y/heading-has-content
     <h2
+      ref={inViewRef}
       {...props}
       id={generatedId}
       style={{ ...style, marginTop: 42, fontSize: 28 }}
