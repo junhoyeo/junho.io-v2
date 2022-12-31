@@ -3,6 +3,7 @@ import { useTheme } from '@geist-ui/core';
 import { type MDXProvider } from '@mdx-js/react';
 import NextImage, { type ImageProps as NextImageProps } from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useCallback, useEffect, useMemo } from 'react';
 import { useInView } from 'react-intersection-observer';
 
@@ -28,6 +29,14 @@ const Image: React.FC<NextImageProps> = ({ style, ...props }) => {
   );
 };
 
+const useIsBlog = () => {
+  const router = useRouter();
+  const isBlog = useMemo(() => {
+    return ['/blog', '/w/'].some((r) => router.asPath.includes(r));
+  }, [router.asPath]);
+  return { isBlog };
+};
+
 type HeadingProps = React.HTMLAttributes<HTMLHeadingElement>;
 const HeadingTwo: React.FC<HeadingProps> = ({ id, style, ...props }) => {
   const [inViewRef, inView] = useInView({ threshold: 0.5 });
@@ -39,13 +48,18 @@ const HeadingTwo: React.FC<HeadingProps> = ({ id, style, ...props }) => {
     return props.children?.toString().toLowerCase().replace(/ /g, '-');
   }, [id, props.children]);
 
+  const { isBlog } = useIsBlog();
+
   useEffect(() => {
+    if (isBlog) {
+      return;
+    }
     if (inView && !!generatedId) {
       Analytics.logEvent('view_landing_section', {
         section: generatedId,
       });
     }
-  }, [inView, generatedId]);
+  }, [inView, generatedId, isBlog]);
 
   return (
     // eslint-disable-next-line jsx-a11y/heading-has-content
@@ -61,16 +75,21 @@ const HeadingTwo: React.FC<HeadingProps> = ({ id, style, ...props }) => {
 const TrackedAnchor: React.FC<
   React.AnchorHTMLAttributes<HTMLAnchorElement>
 > = ({ href, onClick, ...props }) => {
+  const { isBlog } = useIsBlog();
+
   const onClickAnchor = useCallback(
     (event: React.MouseEvent<HTMLAnchorElement>) => {
       if (onClick) {
         onClick(event);
       }
+      if (isBlog) {
+        return;
+      }
       Analytics.logEvent('click_inline_link', {
         title: props.children?.toString() || 'unknown',
       });
     },
-    [onClick, props.children],
+    [isBlog, onClick, props.children],
   );
 
   return (
