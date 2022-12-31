@@ -1,10 +1,16 @@
 import styled from '@emotion/styled';
 import { type MDXProvider } from '@mdx-js/react';
+import NextImage, { type ImageProps as NextImageProps } from 'next/image';
+import Link from 'next/link';
 
 import { type PostDocument } from '@/posts/lib/types';
 
 import { Code } from './Code';
 import { MDXRemote } from './MDXRemote';
+
+const Image: React.FC<NextImageProps> = (props) => (
+  <NextImage {...props} width={1080} height={1080} />
+);
 
 const components: React.ComponentProps<typeof MDXProvider>['components'] = {
   h2: styled.h2`
@@ -23,6 +29,9 @@ const components: React.ComponentProps<typeof MDXProvider>['components'] = {
     margin-top: 42px;
   `,
   code: Code,
+  Link,
+  ImageList: styled.div``,
+  Image: styled(Image)``,
   pre: (props: { children?: React.ReactNode }) => <div>{props.children}</div>,
 };
 

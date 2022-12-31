@@ -8,10 +8,12 @@ import { DEVICE_HEIGHT, DEVICE_WIDTH } from '@junhoyeo/iphone';
 import { useEffect, useRef, useState } from 'react';
 
 import { NavigationBar } from '@/components/NavigationBar';
+import { MDXRenderer } from '@/components/mdx-renderer';
 import { PhoneInstance } from '@/components/phone-instance';
 import { useWindowSize } from '@/hooks/use-window-size';
+import { type PostDocument } from '@/posts/lib/types';
 
-const HomePage: NextPage = () => {
+const HomePage: NextPage<PostDocument> = (props) => {
   const { palette } = useTheme();
   const { screenWidth = 1980 } = useWindowSize();
 
@@ -58,7 +60,9 @@ const HomePage: NextPage = () => {
           Now I'm preparing the infrastructure—insight, followers, and
           capital—for a bigger dream.`}
         </Description>
-        <main></main>
+        <main>
+          <MDXRenderer {...props} />
+        </main>
       </Container>
       <PhoneContainer ref={phoneContainerRef}>
         <PhoneInstance
