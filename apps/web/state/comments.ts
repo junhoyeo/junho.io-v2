@@ -1,6 +1,6 @@
 import { atom } from 'jotai';
 
-import { type UserComment } from '../components/UserCommentCard';
+import { type UserComment } from '@/components/UserCommentCard';
 
 export const isCommentDrawerOpenAtom = atom<boolean>(false);
 

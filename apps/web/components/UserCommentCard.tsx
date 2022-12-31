@@ -1,6 +1,6 @@
 import { Card, Text, User } from '@geist-ui/core';
 
-import { useTimeAgo } from '../hooks/use-time-ago';
+import { useTimeAgo } from '@/hooks/use-time-ago';
 
 export type UserComment = {
   uuid: string;
