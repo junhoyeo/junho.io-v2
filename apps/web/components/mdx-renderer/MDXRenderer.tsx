@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { useTheme } from '@geist-ui/core';
 import { type MDXProvider } from '@mdx-js/react';
 import NextImage, { type ImageProps as NextImageProps } from 'next/image';
 import Link from 'next/link';
@@ -9,9 +10,21 @@ import { type PostDocument } from '@/posts/lib/types';
 import { Code } from './Code';
 import { MDXRemote } from './MDXRemote';
 
-const Image: React.FC<NextImageProps> = (props) => (
-  <NextImage {...props} width={1080} height={1080} />
-);
+const Image: React.FC<NextImageProps> = ({ style, ...props }) => {
+  const { palette } = useTheme();
+  return (
+    <NextImage
+      {...props}
+      width={1080}
+      height={600}
+      style={{
+        ...style,
+        borderColor: palette.accents_1,
+        backgroundColor: palette.accents_2,
+      }}
+    />
+  );
+};
 
 type HeadingProps = React.HTMLAttributes<HTMLHeadingElement>;
 export const HeadingTwo: React.FC<HeadingProps> = ({ id, style, ...props }) => {
@@ -45,7 +58,11 @@ const components: React.ComponentProps<typeof MDXProvider>['components'] = {
   code: Code,
   Link,
   ImageList: styled.div``,
-  Image: styled(Image)``,
+  Image: styled(Image)`
+    height: fit-content;
+    border: 1px solid;
+    border-radius: 4px;
+  `,
   pre: (props: { children?: React.ReactNode }) => <div>{props.children}</div>,
 };
 
