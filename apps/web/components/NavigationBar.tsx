@@ -3,10 +3,12 @@ import { /* Button, */ Text, useTheme } from '@geist-ui/core';
 import { Anchor /* X as Cross, Menu */ } from '@geist-ui/icons';
 // import { useAtom } from 'jotai';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 // import { isPostDrawerOpenAtom } from '@/state/posts';
 
 export const NavigationBar: React.FC = () => {
+  const router = useRouter();
   const { palette } = useTheme();
   // const [isPostDrawerOpen, setPostDrawerOpen] = useAtom(isPostDrawerOpenAtom);
 
@@ -21,6 +23,17 @@ export const NavigationBar: React.FC = () => {
             </Text>
           </Brand>
         </Link>
+
+        <BlogLink
+          href="/blog"
+          style={{
+            color: ['/blog', '/w/'].some((r) => router.asPath.includes(r))
+              ? palette.accents_8
+              : palette.accents_4,
+          }}
+        >
+          Blog
+        </BlogLink>
 
         {/*
         <PostDrawerButton
@@ -54,7 +67,7 @@ const Container = styled.div`
 
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 16px;
 
   border-radius: 8px;
   background-color: rgba(0, 0, 0, 0.32);
@@ -67,6 +80,9 @@ const Brand = styled.div`
   align-items: center;
   gap: 8px;
   user-select: none;
+`;
+const BlogLink = styled(Link)`
+  font-weight: 500;
 `;
 
 // const PostDrawerButton = styled(Button)`

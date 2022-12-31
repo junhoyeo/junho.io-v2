@@ -45,7 +45,7 @@ export const Layout: React.FC<LayoutProps> = ({
         )}
 
         <Page>
-          <Page.Content style={{ paddingTop: !header ? 64 : 0 }}>
+          <Page.Content style={{ paddingTop: !header ? 96 : 0 }}>
             <Container className="page-container" ref={containerRef}>
               {header}
 
