@@ -59,6 +59,9 @@ const components: React.ComponentProps<typeof MDXProvider>['components'] = {
   h6: styled.h3`
     margin-top: 42px;
   `,
+  p: styled.p`
+    color: rgba(255, 255, 255, 0.9);
+  `,
   code: Code,
   Link,
   ImageList: styled.div`
