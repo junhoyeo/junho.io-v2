@@ -14,35 +14,46 @@ export const NavigationBar: React.FC = () => {
 
   return (
     <Wrapper>
-      <Container style={{ border: `1px solid ${palette.accents_2}` }}>
-        <Link href="/">
-          <Brand style={{ color: palette.accents_8 }}>
-            <Anchor size={28} />
-            <Text b span style={{ fontSize: 24 }}>
-              junhø.io
-            </Text>
-          </Brand>
-        </Link>
+      <WidthProvider>
+        <Container style={{ border: `1px solid ${palette.accents_2}` }}>
+          <Link href="/">
+            <Brand style={{ color: palette.accents_8 }}>
+              <Anchor size={28} />
+              <Text b span style={{ fontSize: 24 }}>
+                junhø.io
+              </Text>
+            </Brand>
+          </Link>
 
-        <BlogLink
-          href="/blog"
-          style={{
-            color: ['/blog', '/w/'].some((r) => router.asPath.includes(r))
-              ? palette.accents_8
-              : palette.accents_4,
-          }}
-        >
-          Blog
-        </BlogLink>
+          <NavigationLink
+            href="/"
+            style={{
+              color:
+                router.asPath === '/' ? palette.accents_8 : palette.accents_4,
+            }}
+          >
+            About
+          </NavigationLink>
+          <NavigationLink
+            href="/blog"
+            style={{
+              color: ['/blog', '/w/'].some((r) => router.asPath.includes(r))
+                ? palette.accents_8
+                : palette.accents_4,
+            }}
+          >
+            Blog
+          </NavigationLink>
 
-        {/*
+          {/*
         <PostDrawerButton
           auto
           iconRight={isPostDrawerOpen ? <Cross /> : <Menu />}
           onClick={() => setPostDrawerOpen((prev) => !prev)}
           px={0.6}
         /> */}
-      </Container>
+        </Container>
+      </WidthProvider>
     </Wrapper>
   );
 };
@@ -52,18 +63,29 @@ const Wrapper = styled.div`
   width: 100%;
 
   position: fixed;
-  top: 16px;
+  top: 0;
   left: 0;
   right: 0;
   z-index: 100;
 
   display: flex;
   justify-content: center;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 5%,
+    rgba(0, 0, 0, 0) 100%
+  );
+`;
+const WidthProvider = styled.div`
+  padding-top: 16px;
+  width: 100%;
+  max-width: 740px;
 `;
 const Container = styled.div`
   padding: 12px 20px;
-  width: 100%;
-  max-width: 740px;
+  width: fit-content;
+  margin-right: auto;
 
   display: flex;
   align-items: center;
@@ -81,8 +103,9 @@ const Brand = styled.div`
   gap: 8px;
   user-select: none;
 `;
-const BlogLink = styled(Link)`
+const NavigationLink = styled(Link)`
   font-weight: 500;
+  transition: all 0.2s ease-in-out;
 `;
 
 // const PostDrawerButton = styled(Button)`
