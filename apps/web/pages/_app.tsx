@@ -32,7 +32,7 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
             overflow-x: unset !important;
           }
 
-          * {
+          *:not(code, code *) {
             box-sizing: border-box !important;
             word-break: keep-all;
             font-family: var(--SystemFontStack) !important;

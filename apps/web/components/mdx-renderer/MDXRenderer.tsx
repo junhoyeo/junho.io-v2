@@ -38,8 +38,8 @@ const useIsBlog = () => {
   return { isBlog };
 };
 
-type HeadingProps = React.HTMLAttributes<HTMLHeadingElement>;
-const HeadingTwo: React.FC<HeadingProps> = ({ id, style, ...props }) => {
+type HomeHeadingProps = React.HTMLAttributes<HTMLHeadingElement>;
+const HomeHeading: React.FC<HomeHeadingProps> = ({ id, style, ...props }) => {
   const [inViewRef, inView] = useInView({ threshold: 0.5 });
 
   const generatedId = useMemo(() => {
@@ -111,7 +111,7 @@ const TrackedAnchor: React.FC<
 };
 
 const components: React.ComponentProps<typeof MDXProvider>['components'] = {
-  h2: HeadingTwo,
+  h2: HomeHeading,
   h3: styled.h3`
     margin-top: 42px;
   `,

@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
-import { Breadcrumbs, Text } from '@geist-ui/core';
+import { Breadcrumbs, Text, useTheme } from '@geist-ui/core';
 import { type GetStaticPaths, type GetStaticProps } from 'next';
 import { serialize } from 'next-mdx-remote/serialize';
+import Link from 'next/link';
 
 import { Layout } from '@/components/Layout';
 import { MDXRenderer } from '@/components/mdx-renderer';
@@ -14,11 +15,17 @@ const capitalize = (value: string) =>
   value.charAt(0).toUpperCase() + value.slice(1);
 
 export const BlogPage: React.FC<BlogPageProps> = (props: BlogPageProps) => {
+  const { palette } = useTheme();
+
   return (
-    <Layout defaultPostListProps={{ initialExpand: true }}>
+    <Layout>
       <Breadcrumbs>
-        <Breadcrumbs.Item>Paracøsm</Breadcrumbs.Item>
-        <Breadcrumbs.Item>{capitalize(props.type)}</Breadcrumbs.Item>
+        <Link href="/" style={{ color: palette.accents_5 }}>
+          <Breadcrumbs.Item>Paracøsm</Breadcrumbs.Item>
+        </Link>
+        <Link href={`/${props.type}`} style={{ color: palette.accents_5 }}>
+          <Breadcrumbs.Item>{capitalize(props.type)}</Breadcrumbs.Item>
+        </Link>
         <Breadcrumbs.Item
           href="#"
           style={{
@@ -32,7 +39,9 @@ export const BlogPage: React.FC<BlogPageProps> = (props: BlogPageProps) => {
         </Breadcrumbs.Item>
       </Breadcrumbs>
       <Title h1>{props.meta.title}</Title>
-      <MDXRenderer {...props} />
+      <Main>
+        <MDXRenderer {...props} />
+      </Main>
     </Layout>
   );
 };
@@ -43,6 +52,22 @@ const Title = styled(Text)`
   font-weight: 900;
   line-height: 1.25;
   margin-bottom: 1.5rem;
+
+  @media screen and (max-width: 600px) {
+    margin-top: 24px;
+    font-size: 36px;
+  }
+
+  @media screen and (max-width: 400px) {
+    font-size: 32px;
+  }
+`;
+
+const Main = styled.main`
+  img {
+    border-radius: 8px;
+    width: 100%;
+  }
 `;
 
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-constraint, @typescript-eslint/no-explicit-any
