@@ -84,12 +84,14 @@ const WidthProvider = styled.div`
 `;
 const Container = styled.div`
   padding: 12px 20px;
-  width: fit-content;
+  padding-right: 24px;
+
   margin-right: auto;
+  width: fit-content;
 
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 20px;
 
   border-radius: 8px;
   background-color: rgba(0, 0, 0, 0.55);
