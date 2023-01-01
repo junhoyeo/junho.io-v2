@@ -12,6 +12,7 @@ import { Analytics } from '@/utils/analytics';
 
 import { Code } from './Code';
 import { MDXRemote } from './MDXRemote';
+import { Trophy } from './Trophy';
 
 const Image: React.FC<NextImageProps> = ({ style, ...props }) => {
   const { palette } = useTheme();
@@ -125,6 +126,7 @@ const components: React.ComponentProps<typeof MDXProvider>['components'] = {
   a: TrackedAnchor,
   code: Code,
   Link,
+  Trophy,
   ImageList: styled.div`
     width: 100%;
     display: flex;
