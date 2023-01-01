@@ -5,7 +5,6 @@ import React from 'react';
 import { fixedWidth } from '@/utils/css';
 
 import { CommentDrawer } from './CommentDrawer';
-import { NavigationBar } from './NavigationBar';
 import { PostList, type PostListProps } from './PostList';
 import { PostMenuDrawer } from './PostMenuDrawer';
 
@@ -29,43 +28,38 @@ export const Layout: React.FC<LayoutProps> = ({
   const { palette } = useTheme();
 
   return (
-    <>
-      <NavigationBar />
-      <Wrapper>
-        {leftContent === null ? null : (
-          <LeftSidebar
-            style={{ borderRight: `1px solid ${palette.accents_2}` }}
-          >
-            {typeof leftContent === 'undefined' ? (
-              <PostList {...defaultPostListProps} />
-            ) : (
-              leftContent
-            )}
-          </LeftSidebar>
-        )}
+    <Wrapper>
+      {leftContent === null ? null : (
+        <LeftSidebar style={{ borderRight: `1px solid ${palette.accents_2}` }}>
+          {typeof leftContent === 'undefined' ? (
+            <PostList {...defaultPostListProps} />
+          ) : (
+            leftContent
+          )}
+        </LeftSidebar>
+      )}
 
-        <Page>
-          <Page.Content style={{ paddingTop: !header ? 96 : 0 }}>
-            <Container className="page-container" ref={containerRef}>
-              {header}
+      <Page>
+        <Page.Content style={{ paddingTop: !header ? 96 : 0 }}>
+          <Container className="page-container" ref={containerRef}>
+            {header}
 
-              <div
-                style={{ width: '100%', height: '100%', position: 'relative' }}
-              >
-                {children}
-              </div>
-            </Container>
-          </Page.Content>
-        </Page>
+            <div
+              style={{ width: '100%', height: '100%', position: 'relative' }}
+            >
+              {children}
+            </div>
+          </Container>
+        </Page.Content>
+      </Page>
 
-        {typeof rightContent === 'undefined' && (
-          <RightSidebar>{rightContent}</RightSidebar>
-        )}
+      {typeof rightContent === 'undefined' && (
+        <RightSidebar>{rightContent}</RightSidebar>
+      )}
 
-        <CommentDrawer />
-        <PostMenuDrawer />
-      </Wrapper>
-    </>
+      <CommentDrawer />
+      <PostMenuDrawer />
+    </Wrapper>
   );
 };
 

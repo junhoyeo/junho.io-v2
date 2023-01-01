@@ -7,7 +7,6 @@ import { useTheme } from '@geist-ui/core';
 import { DEVICE_HEIGHT, DEVICE_WIDTH } from '@junhoyeo/iphone';
 import { useEffect, useRef, useState } from 'react';
 
-import { NavigationBar } from '@/components/NavigationBar';
 import { MDXRenderer } from '@/components/mdx-renderer';
 import { PhoneInstance } from '@/components/phone-instance';
 import { useWindowSize } from '@/hooks/use-window-size';
@@ -55,7 +54,6 @@ const HomePage: NextPage<PostDocument> = (props) => {
   return (
     <Wrapper>
       <Head />
-      <NavigationBar />
 
       <Container>
         <Title style={{ color: palette.accents_7 }}>

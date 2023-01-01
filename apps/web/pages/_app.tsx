@@ -5,6 +5,8 @@ import { useEffect } from 'react';
 
 import '@/styles/fonts.css';
 
+import { NavigationBar } from '@/components/NavigationBar';
+
 const themeType = 'dark';
 const systemFontStack = `
   'Pretendard Variable', Inter, ui-sans-serif, system-ui, -apple-system,
@@ -37,6 +39,8 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
           }
         `}
       />
+      <NavigationBar />
+
       <Component {...pageProps} />
     </GeistProvider>
   );
