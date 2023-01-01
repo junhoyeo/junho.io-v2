@@ -9,7 +9,7 @@ type Props = {
 
 const ErrorPage: NextPage<Props> = ({ statusCode }) => {
   return (
-    <Layout defaultPostListProps={{ initialExpand: true }}>
+    <Layout>
       <Text h1>{statusCode}</Text>
     </Layout>
   );

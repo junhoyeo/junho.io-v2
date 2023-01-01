@@ -65,6 +65,8 @@ const Title = styled(Text)`
 
 const Main = styled.main`
   img {
+    margin: 0 auto;
+    display: flex;
     border-radius: 8px;
     width: 100%;
   }

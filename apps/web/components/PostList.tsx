@@ -20,72 +20,54 @@ export const PostList: React.FC<PostListProps> = ({
   const setPostDrawerOpen = useSetAtom(isPostDrawerOpenAtom);
 
   return (
-    <Wrapper>
-      <Container>
-        {blogPosts.map((post) => {
-          const active = router.asPath === `/w/${post.slug}`;
+    <Container>
+      {blogPosts.map((post) => {
+        const active = router.asPath === `/w/${post.slug}`;
 
-          return (
-            <Link
-              href={`/w/${post.slug}`}
-              key={`/w/${post.slug}`}
-              passHref
-              onClick={() => setPostDrawerOpen(false)}
-            >
-              <HStack>
-                {!!post.emoji && (
-                  <EmojiContainer
-                    style={{
-                      // backgroundColor: active
-                      //   ? palette.accents_1
-                      //   : palette.accents_1,
-                      backgroundColor: palette.accents_1,
-                      borderColor: active ? 'white' : palette.accents_2,
-                    }}
-                  >
-                    <span>{post.emoji}</span>
-                  </EmojiContainer>
-                )}
-                <span>
-                  <PostTitle
-                    style={{
-                      color: active ? palette.accents_7 : palette.accents_3,
-                    }}
-                  >
-                    {post.title}
-                  </PostTitle>
-                </span>
-              </HStack>
-            </Link>
-          );
-        })}
-      </Container>
-    </Wrapper>
+        return (
+          <Link
+            href={`/w/${post.slug}`}
+            key={`/w/${post.slug}`}
+            passHref
+            onClick={() => setPostDrawerOpen(false)}
+          >
+            <HStack>
+              {!!post.emoji && (
+                <EmojiContainer
+                  style={{
+                    // backgroundColor: active
+                    //   ? palette.accents_1
+                    //   : palette.accents_1,
+                    backgroundColor: palette.accents_1,
+                    borderColor: active ? 'white' : palette.accents_2,
+                  }}
+                >
+                  <span>{post.emoji}</span>
+                </EmojiContainer>
+              )}
+              <span>
+                <PostTitle
+                  style={{
+                    color: active ? palette.accents_7 : palette.accents_3,
+                  }}
+                >
+                  {post.title}
+                </PostTitle>
+              </span>
+            </HStack>
+          </Link>
+        );
+      })}
+    </Container>
   );
 };
 
-const Wrapper = styled.aside`
-  width: 100%;
-  /* height: calc(100vh - 64px); */
-  height: calc(100vh - 96px);
-
-  position: sticky;
-  top: 64px;
-`;
 const Container = styled.div`
-  padding: 24px 28px;
-
-  max-width: 100%;
-  overflow-x: hidden;
+  padding: 24px 0;
   width: 100%;
-  height: 100%;
 
   display: flex;
   flex-direction: column;
-
-  @media screen and (max-width: 982px) {
-    padding: 24px 12px;
-  }
 `;
 
 const HStack = styled.div`
