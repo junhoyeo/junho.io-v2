@@ -68,7 +68,11 @@ const HeadingTwo: React.FC<HeadingProps> = ({ id, style, ...props }) => {
       ref={inViewRef}
       {...props}
       id={generatedId}
-      style={{ ...style, marginTop: 42, fontSize: 28 }}
+      style={{
+        ...style,
+        ...(isBlog ? { marginTop: 42 } : { paddingTop: 100 }),
+        fontSize: 28,
+      }}
     />
   );
 };
