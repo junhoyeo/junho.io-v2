@@ -1985,6 +1985,11 @@ escalade@^3.1.1:
   resolved "https://registry.yarnpkg.com/escalade/-/escalade-3.1.1.tgz#d8cfdc7000965c5a0174b4a82eaa5c0552742e40"
   integrity sha512-k0er2gUkLf8O0zKJiAhmkTnJlTvINGv7ygDNPbeIsX/TJjGJZHuh9B2UxbsaEkmlEo9MfhrSzmhIlhRlI2GXnw==
 
+escape-html@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/escape-html/-/escape-html-1.0.3.tgz#0258eae4d3d0c0974de1c169188ef0051d1d1988"
+  integrity sha512-NiSupZ4OeuGwr68lGIeym/ksIZMJodUGOSCZ/FSnTxcrekbvqrgdUxlJOMpijaKZVjAJrWrGs/6Jy8OMuyj9ow==
+
 escape-string-regexp@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
@@ -2809,6 +2814,26 @@ internal-slot@^1.0.3:
     get-intrinsic "^1.1.0"
     has "^1.0.3"
     side-channel "^1.0.4"
+
+interweave-autolink@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/interweave-autolink/-/interweave-autolink-5.1.0.tgz#a5a5438c45c5e4d631838473845be1fdd38a664b"
+  integrity sha512-WOEakAdwqv/W2H85cLdigkpMM7o6qVg4CWM6iO5cHrFCywwUh+ILVmZgX1tHphEpa55sFdzpKNO2EHhAjbR4GA==
+
+interweave-ssr@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/interweave-ssr/-/interweave-ssr-2.0.0.tgz#dc19211db472ae20892ca87991a03c2286df0923"
+  integrity sha512-vxWOJzQsm4neGGOksKEOovOP3d6elGJ3bKnssreDIWK+luveNUvV69enU28UtX5KFx8ft1wXDa2Dk/G87DEf+A==
+  dependencies:
+    parse5 "^6.0.1"
+    style-parser "^1.1.1"
+
+interweave@^13.0.0:
+  version "13.0.0"
+  resolved "https://registry.yarnpkg.com/interweave/-/interweave-13.0.0.tgz#68fdaa6bde65cf296ba74829bb3746d2a5455a2b"
+  integrity sha512-Mckwj+ix/VtrZu1bRBIIohwrsXj12ZTvJCoYUMZlJmgtvIaQCj0i77eSZ63ckbA1TsPrz2VOvLW9/kTgm5d+mw==
+  dependencies:
+    escape-html "^1.0.3"
 
 is-alphabetical@^2.0.0:
   version "2.0.1"
@@ -3917,6 +3942,16 @@ parse-json@^5.0.0:
     json-parse-even-better-errors "^2.3.0"
     lines-and-columns "^1.1.6"
 
+parse5@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/parse5/-/parse5-6.0.1.tgz#e1a1c085c569b3dc08321184f19a39cc27f7c30b"
+  integrity sha512-Ofn/CTFzRGTTxwpNEs9PP93gXShHcTq255nzRYSKe8AkVpZY7e1fpmTfOyoIvjP5HG7Z2ZM7VS9PPhQGW2pOpw==
+
+parsimmon@^0.7.0:
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/parsimmon/-/parsimmon-0.7.2.tgz#805fc6d1ed52d0c9b65cbf6b4da58a161e68e7e1"
+  integrity sha512-vKcCxdVqkWH5vDUlPGKBhNJrsmP5EBXAFEDal4Qe1cNlBRPwOedAQ8Fj8BGyddHCGI+Zw58dztJc15VXHfwYRg==
+
 path-exists@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/path-exists/-/path-exists-4.0.0.tgz#513bdbe2d3b95d7762e8c1137efa195c6c61b5b3"
@@ -4503,6 +4538,13 @@ strip-json-comments@^3.1.0, strip-json-comments@^3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-3.1.1.tgz#31f1281b3832630434831c310c01cccda8cbe006"
   integrity sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==
+
+style-parser@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/style-parser/-/style-parser-1.1.1.tgz#9deb628d75462ff07b15662a72c0d5a8e4d5ffc5"
+  integrity sha512-a2B7DBdEe52VwmbIhPK2XoEqMo4MIpZON5tr5q/Ca8MZf/T+TczfQr5knhoYBPNmQpaocjKwtNyOiRWrxT+wxg==
+  dependencies:
+    parsimmon "^0.7.0"
 
 style-to-object@^0.3.0:
   version "0.3.0"

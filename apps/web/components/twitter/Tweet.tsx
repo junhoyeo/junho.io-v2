@@ -3,9 +3,15 @@
 import styled from '@emotion/styled';
 import { useTheme } from '@geist-ui/core';
 import { format } from 'date-fns';
+import { Interweave } from 'interweave';
+import { MentionMatcher, UrlMatcher } from 'interweave-autolink';
+import { polyfill } from 'interweave-ssr';
 import Image from 'next/image';
 
+import { HashtagMatcher } from './HashtagMatcher';
 import { type TweetData } from './types';
+
+polyfill();
 
 /**
  * Supports plain text, images, quote tweets.
@@ -98,7 +104,25 @@ export const Tweet: React.FC<TweetData & { mine?: boolean }> = ({
           </span>
         </Header>
       )}
-      <Text>{formattedText}</Text>
+      <article>
+        <Text>
+          <Interweave
+            content={formattedText}
+            matchers={[
+              new UrlMatcher('url'),
+              new HashtagMatcher('hashtag'),
+              new MentionMatcher('mention'),
+            ]}
+            mentionUrl="https://twitter.com/{{mention}}"
+            hashtagUrl={(hashtag: string) =>
+              hashtag.startsWith('$')
+                ? `https://twitter.com/search?q=${hashtag}&src=cashtag_click`
+                : `https://twitter.com/hashtag/${hashtag}`
+            }
+            newWindow
+          />
+        </Text>
+      </article>
       {media?.length ? (
         <div
           className={
@@ -222,6 +246,7 @@ const VerifiedBadge = styled.svg`
 
 const Text = styled.p`
   margin: 16px 0 12px;
+  word-break: keep-all;
 `;
 
 const TweetFooter = styled.div`
