@@ -28,6 +28,7 @@ export const Tweet: React.FC<TweetData & { mine?: boolean }> = ({
   created_at,
   public_metrics,
   referenced_tweets,
+  entities,
   mine = true,
 }) => {
   const { palette } = useTheme();
@@ -42,6 +43,11 @@ export const Tweet: React.FC<TweetData & { mine?: boolean }> = ({
     .replace(/https:\/\/[\n\S]+/g, '')
     .replace('&amp;', '&');
   const quoteTweet = referenced_tweets?.find((t) => t.type === 'quoted');
+
+  const entityURL = entities?.urls?.[0];
+  const entityURLImage = entityURL?.images?.[0];
+  const isEntityURLImageRectangular =
+    entityURLImage?.width === entityURLImage?.height;
 
   return (
     <Container
@@ -138,11 +144,73 @@ export const Tweet: React.FC<TweetData & { mine?: boolean }> = ({
               height={m.height}
               width={m.width}
               src={m.url}
-              style={{ objectFit: 'contain', height: 'auto' }}
+              style={{ objectFit: 'contain', height: 'auto', borderRadius: 8 }}
             />
           ))}
         </div>
       ) : null}
+      {!media?.length && !!entityURL && !!entityURLImage && (
+        <div>
+          <EntityURLContainer
+            href={entityURL.expanded_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              border: `1px solid rgba(51, 51, 51, 0.5)`,
+              ...(!isEntityURLImageRectangular
+                ? { flexDirection: 'column' }
+                : undefined),
+            }}
+          >
+            <Image
+              alt={entityURL.display_url}
+              src={entityURLImage.url}
+              height={entityURLImage.height}
+              width={entityURLImage.width}
+              style={
+                !isEntityURLImageRectangular
+                  ? { objectFit: 'contain', height: 'auto' }
+                  : { objectFit: 'cover', height: 100, width: 100 }
+              }
+            />
+            <EntityURLInformation
+              className="box"
+              style={
+                !isEntityURLImageRectangular
+                  ? {
+                      borderTop: `1px solid rgba(51, 51, 51, 0.5)`,
+                    }
+                  : {
+                      width: 'calc(100% - 100px)',
+                      borderLeft: `1px solid rgba(51, 51, 51, 0.5)`,
+                      minHeight: 100,
+                      maxHeight: 100,
+                    }
+              }
+            >
+              <span className="url" style={{ color: palette.accents_4 }}>
+                {entityURL.display_url}
+              </span>
+              <span className="title">{entityURL.title}</span>
+              <span
+                className="description"
+                style={{
+                  color: palette.accents_4,
+                  ...(isEntityURLImageRectangular
+                    ? {
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        whiteSpace: 'nowrap',
+                      }
+                    : undefined),
+                }}
+              >
+                {entityURL.description}
+              </span>
+            </EntityURLInformation>
+          </EntityURLContainer>
+        </div>
+      )}
       {quoteTweet ? (
         <Tweet {...quoteTweet} referenced_tweets={undefined} mine={false} />
       ) : null}
@@ -244,6 +312,43 @@ const VerifiedBadge = styled.svg`
   width: 16px;
 `;
 
+const EntityURLContainer = styled.a`
+  margin-bottom: 12px;
+  width: 100%;
+
+  display: flex;
+  color: inherit;
+  border-radius: 8px;
+  overflow: hidden;
+
+  &:hover {
+    .box {
+      background-color: rgba(51, 51, 51, 0.25);
+    }
+  }
+`;
+const EntityURLInformation = styled.div`
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  transition: background-color 0.15s ease;
+
+  span {
+    font-size: 15px;
+  }
+
+  .url {
+  }
+
+  .title {
+    font-size: 16px;
+  }
+
+  .description {
+  }
+`;
+
 const Text = styled.p`
   margin: 16px 0 12px;
   word-break: keep-all;
@@ -254,7 +359,6 @@ const TweetFooter = styled.div`
   display: flex;
   align-items: center;
 `;
-
 const FooterLink = styled.a`
   display: flex;
   align-items: center;
@@ -262,7 +366,6 @@ const FooterLink = styled.a`
   text-decoration: none;
   color: inherit;
 `;
-
 const FooterIcon = styled.svg`
   margin-right: 8px;
   height: 16px;

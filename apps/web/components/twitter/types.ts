@@ -15,6 +15,24 @@ export type TweetData = {
     height: number;
     width: number;
   }[];
+  entities?: {
+    urls?: {
+      description: string;
+      display_url: string;
+      end: number;
+      expanded_url: string;
+      images?: {
+        url: string;
+        width: number;
+        height: number;
+      }[];
+      start: number;
+      status: number;
+      title: string;
+      unwound_url: string;
+      url: string;
+    }[];
+  };
   created_at: string;
   public_metrics: {
     retweet_count: string;
