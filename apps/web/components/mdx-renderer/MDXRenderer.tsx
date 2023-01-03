@@ -10,6 +10,8 @@ import { useInView } from 'react-intersection-observer';
 import { type PostDocument } from '@/posts/lib/types';
 import { Analytics } from '@/utils/analytics';
 
+import { Tweet } from '../twitter';
+import { TweetsContext } from '../twitter/context';
 import { Code } from './Code';
 import { MDXRemote } from './MDXRemote';
 import { Trophy } from './Trophy';
@@ -157,12 +159,15 @@ const components: React.ComponentProps<typeof MDXProvider>['components'] = {
     filter: saturate(1.08);
   `,
   pre: (props: { children?: React.ReactNode }) => <div>{props.children}</div>,
+  Tweet,
 };
 
-export const MDXRenderer: React.FC<PostDocument> = (props) => {
+export const MDXRenderer: React.FC<PostDocument> = ({ tweets, ...props }) => {
   return (
     <article>
-      <MDXRemote {...props} components={components} />
+      <TweetsContext.Provider value={tweets}>
+        <MDXRemote {...props} components={components} />
+      </TweetsContext.Provider>
     </article>
   );
 };

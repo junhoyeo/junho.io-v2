@@ -15,7 +15,7 @@ const BlogListPage: NextPage = () => {
         <Link href="/" style={{ color: palette.accents_5 }}>
           <Breadcrumbs.Item>Paracøsm</Breadcrumbs.Item>
         </Link>
-        <Breadcrumbs.Item href="#">blog</Breadcrumbs.Item>
+        <Breadcrumbs.Item href="#">Blog</Breadcrumbs.Item>
       </Breadcrumbs>
       <Title h1>Blog</Title>
       <PostList />
