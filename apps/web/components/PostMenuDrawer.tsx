@@ -33,7 +33,7 @@ export const PostMenuDrawer: React.FC = () => {
     >
       <StyledDrawerContent>
         <PostListContainer>
-          <PostList initialExpand />
+          <PostList />
         </PostListContainer>
       </StyledDrawerContent>
     </StyledDrawer>

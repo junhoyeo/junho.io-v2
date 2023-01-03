@@ -7,14 +7,7 @@ import { useRouter } from 'next/router';
 import blogPosts from '@/posts/generated/blog';
 import { isPostDrawerOpenAtom } from '@/state/posts';
 
-export type PostListProps = {
-  // TODO: Support expanding only current folder
-  initialExpand?: boolean;
-};
-
-export const PostList: React.FC<PostListProps> = ({
-  initialExpand: _initialExpand,
-}) => {
+export const PostList: React.FC = () => {
   const { palette } = useTheme();
   const router = useRouter();
   const setPostDrawerOpen = useSetAtom(isPostDrawerOpenAtom);
