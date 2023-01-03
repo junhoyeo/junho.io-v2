@@ -2,19 +2,7 @@ import matter from 'gray-matter';
 import fs from 'node:fs';
 import path from 'node:path';
 
-export type PostCategoryType = 'blog';
-
-export type PostSummary = {
-  emoji?: string;
-  title: string;
-  slug: string;
-  description?: string;
-  date?: string;
-};
-
-export type Post = PostSummary & {
-  body: string;
-};
+import type { Post, PostCategoryType } from './types';
 
 export const getPosts = (type: PostCategoryType): Post[] => {
   const posts = fs

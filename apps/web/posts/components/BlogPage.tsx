@@ -6,6 +6,7 @@ import Link from 'next/link';
 
 import { Layout } from '@/components/Layout';
 import { MDXRenderer } from '@/components/mdx-renderer';
+import { getTweets, type TweetData } from '@/components/twitter';
 
 import type { Post, PostCategoryType, PostDocument } from '../lib/types';
 
@@ -120,13 +121,22 @@ export const buildGetStaticProps: (type: PostCategoryType) => GetStaticProps =
       };
     }
 
-    const { body, ...meta } = post;
-    const serializedResult = await serialize(body);
+    const { body, tweetIds = [], ...meta } = post;
+    const [serializedResult, tweets] = await Promise.all([
+      serialize(body),
+      tweetIds.length > 0 ? getTweets(tweetIds) : ([] as TweetData[]),
+    ]);
+
+    const tweetById = tweets.reduce<Record<string, TweetData>>((acc, tweet) => {
+      acc[tweet.id] = tweet;
+      return acc;
+    }, {});
 
     return {
       props: {
         meta,
         type,
+        tweets: tweetById,
         ...serializedResult,
       },
     };

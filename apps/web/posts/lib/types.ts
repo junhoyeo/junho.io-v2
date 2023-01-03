@@ -1,4 +1,6 @@
-import { MDXRemoteSerializeResult } from 'next-mdx-remote';
+import { type MDXRemoteSerializeResult } from 'next-mdx-remote';
+
+import type { TweetData } from '@/components/twitter';
 
 export type PostCategoryType = 'blog';
 
@@ -8,6 +10,7 @@ export type PostSummary = {
   slug: string;
   description?: string;
   date?: string;
+  tweetIds?: string[];
 };
 
 export type Post = PostSummary & {
@@ -17,4 +20,5 @@ export type Post = PostSummary & {
 export type PostDocument = MDXRemoteSerializeResult & {
   type: PostCategoryType;
   meta: Omit<Post, 'body'>;
+  tweets: Record<string, TweetData>;
 };

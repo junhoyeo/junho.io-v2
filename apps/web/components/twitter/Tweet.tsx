@@ -7,8 +7,10 @@ import { Interweave } from 'interweave';
 import { MentionMatcher, UrlMatcher } from 'interweave-autolink';
 import { polyfill } from 'interweave-ssr';
 import Image from 'next/image';
+import { useContext, useMemo } from 'react';
 
 import { HashtagMatcher } from './HashtagMatcher';
+import { TweetsContext } from './context';
 import { type TweetData } from './types';
 
 polyfill();
@@ -20,23 +22,37 @@ polyfill();
  * Styles use !important to override Tailwind .prose inside MDX.
  */
 
-export const Tweet: React.FC<TweetData & { mine?: boolean }> = ({
-  text,
-  id,
-  author,
-  media,
-  created_at,
-  public_metrics,
-  referenced_tweets,
-  entities,
+type TweetProps = {
+  tweetId: string;
+  tweet?: TweetData;
+  mine?: boolean;
+};
+export const Tweet: React.FC<TweetProps> = ({
+  tweetId,
   mine = true,
+  ...props
 }) => {
+  const tweetById = useContext(TweetsContext);
+  const currentTweet = useMemo(() => {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    return tweetById[tweetId] || props.tweet!;
+  }, [props.tweet, tweetById, tweetId]);
+  const {
+    text,
+    author,
+    media,
+    created_at,
+    public_metrics,
+    referenced_tweets,
+    entities,
+  } = currentTweet;
+
   const { palette } = useTheme();
   const authorUrl = `https://twitter.com/${author.username}`;
-  const likeUrl = `https://twitter.com/intent/like?tweet_id=${id}`;
-  const retweetUrl = `https://twitter.com/intent/retweet?tweet_id=${id}`;
-  const replyUrl = `https://twitter.com/intent/tweet?in_reply_to=${id}`;
-  const tweetUrl = `https://twitter.com/${author.username}/status/${id}`;
+  const likeUrl = `https://twitter.com/intent/like?tweet_id=${tweetId}`;
+  const retweetUrl = `https://twitter.com/intent/retweet?tweet_id=${tweetId}`;
+  const replyUrl = `https://twitter.com/intent/tweet?in_reply_to=${tweetId}`;
+  const tweetUrl = `https://twitter.com/${author.username}/status/${tweetId}`;
   const createdAt = new Date(created_at);
 
   const formattedText = text
@@ -170,7 +186,12 @@ export const Tweet: React.FC<TweetData & { mine?: boolean }> = ({
               style={
                 !isEntityURLImageRectangular
                   ? { objectFit: 'contain', height: 'auto' }
-                  : { objectFit: 'cover', height: 100, width: 100 }
+                  : {
+                      objectFit: 'cover',
+                      height: 100,
+                      width: 100,
+                      borderRadius: 0,
+                    }
               }
             />
             <EntityURLInformation
@@ -211,22 +232,30 @@ export const Tweet: React.FC<TweetData & { mine?: boolean }> = ({
           </EntityURLContainer>
         </div>
       )}
-      {quoteTweet ? (
-        <Tweet {...quoteTweet} referenced_tweets={undefined} mine={false} />
-      ) : null}
-      <a
-        href={tweetUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{ color: palette.accents_3 }}
-      >
-        <time
-          title={`Time Posted: ${createdAt.toUTCString()}`}
-          dateTime={createdAt.toISOString()}
+      <article>
+        {quoteTweet ? (
+          <Tweet
+            tweetId={quoteTweet.id}
+            tweet={{ ...quoteTweet, referenced_tweets: undefined }}
+            mine={false}
+          />
+        ) : null}
+      </article>
+      <div>
+        <a
+          href={tweetUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ color: palette.accents_3 }}
         >
-          {format(createdAt, 'h:mm a - MMM d, y')}
-        </time>
-      </a>
+          <time
+            title={`Time Posted: ${createdAt.toUTCString()}`}
+            dateTime={createdAt.toISOString()}
+          >
+            {format(createdAt, 'h:mm a - MMM d, y')}
+          </time>
+        </a>
+      </div>
       <TweetFooter style={{ color: palette.accents_3 }}>
         <FooterLink href={replyUrl} target="_blank" rel="noopener noreferrer">
           <FooterIcon width="18" height="18" viewBox="0 0 24 24">
@@ -268,6 +297,15 @@ const Container = styled.div`
   border-radius: 4px;
   padding: 16px;
   margin: 16px 0;
+
+  & > *:not(article) {
+    a {
+      &::before,
+      &::after {
+        content: none;
+      }
+    }
+  }
 `;
 const Header = styled.div`
   display: flex;
@@ -287,7 +325,7 @@ const AuthorImage = styled(Image)`
   height: 48px;
 
   object-fit: contain;
-  border-radius: 50%;
+  border-radius: 50% !important;
 `;
 
 const AuthorLink = styled.a`

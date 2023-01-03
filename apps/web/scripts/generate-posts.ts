@@ -1,7 +1,8 @@
 import { promises as fs } from 'node:fs';
 import { format } from 'prettier';
 
-import { getPosts, type PostCategoryType } from '@/posts/lib/get-posts';
+import { getPosts } from '@/posts/lib/get-posts';
+import { type PostCategoryType } from '@/posts/lib/types';
 
 const savePostsWithoutBody = async (type: PostCategoryType): Promise<void> => {
   const blogPosts = getPosts(type);
