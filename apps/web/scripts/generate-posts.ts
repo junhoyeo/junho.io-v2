@@ -14,7 +14,7 @@ const savePostsWithoutBody = async (type: PostCategoryType): Promise<void> => {
     `./posts/generated/${type}.ts`,
     format(
       `
-      import { type PostSummary } from '@/posts/lib/get-posts';
+      import type { PostSummary } from '@/posts/lib/types';
 
       const posts: PostSummary[] = ${JSON.stringify(blogPostsWithoutBody)};
 
