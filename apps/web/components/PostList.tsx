@@ -7,20 +7,13 @@ import { useRouter } from 'next/router';
 import blogPosts from '@/posts/generated/blog';
 import { isPostDrawerOpenAtom } from '@/state/posts';
 
-export type PostListProps = {
-  // TODO: Support expanding only current folder
-  initialExpand?: boolean;
-};
-
-export const PostList: React.FC<PostListProps> = ({
-  initialExpand: _initialExpand,
-}) => {
+export const PostList: React.FC = () => {
   const { palette } = useTheme();
   const router = useRouter();
   const setPostDrawerOpen = useSetAtom(isPostDrawerOpenAtom);
 
   return (
-    <Container>
+    <ListContainer>
       {blogPosts.map((post) => {
         const active = router.asPath === `/w/${post.slug}`;
 
@@ -31,48 +24,63 @@ export const PostList: React.FC<PostListProps> = ({
             passHref
             onClick={() => setPostDrawerOpen(false)}
           >
-            <HStack>
-              {!!post.emoji && (
-                <EmojiContainer
-                  style={{
-                    // backgroundColor: active
-                    //   ? palette.accents_1
-                    //   : palette.accents_1,
-                    backgroundColor: palette.accents_1,
-                    borderColor: active ? 'white' : palette.accents_2,
-                  }}
-                >
-                  <span>{post.emoji}</span>
-                </EmojiContainer>
-              )}
-              <span>
-                <PostTitle
-                  style={{
-                    color: active ? palette.accents_7 : palette.accents_3,
-                  }}
-                >
-                  {post.title}
-                </PostTitle>
-              </span>
-            </HStack>
+            <ItemContainer>
+              <HStack>
+                {!!post.emoji && (
+                  <EmojiContainer
+                    style={{
+                      // backgroundColor: active
+                      //   ? palette.accents_1
+                      //   : palette.accents_1,
+                      backgroundColor: palette.accents_1,
+                      borderColor: active ? 'white' : palette.accents_2,
+                    }}
+                  >
+                    <span>{post.emoji}</span>
+                  </EmojiContainer>
+                )}
+                <span>
+                  <PostTitle
+                    style={{
+                      // color: active ? palette.accents_7 : palette.accents_3,
+                      color: palette.accents_7,
+                    }}
+                  >
+                    {post.title}
+                  </PostTitle>
+                </span>
+              </HStack>
+              <span>{post.date}</span>
+            </ItemContainer>
           </Link>
         );
       })}
-    </Container>
+    </ListContainer>
   );
 };
 
-const Container = styled.div`
+const ListContainer = styled.div`
+  margin: 0;
   padding: 24px 0;
   width: 100%;
 
   display: flex;
   flex-direction: column;
+  gap: 12px;
 `;
 
-const HStack = styled.div`
+const ItemContainer = styled.div`
   padding: 8px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: opacity 0.16s ease;
 
+  &:hover {
+    opacity: 0.54;
+  }
+`;
+const HStack = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;
