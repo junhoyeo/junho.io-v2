@@ -121,7 +121,14 @@ export const buildGetStaticProps: (type: PostCategoryType) => GetStaticProps =
       };
     }
 
-    const { body, tweetIds = [], ...meta } = post;
+    const { body, ...meta } = post;
+
+    const tweetIds =
+      body
+        // eslint-disable-next-line prefer-named-capture-group
+        .match(/tweetId="(\d+)"/g)
+        ?.map((id) => id.slice(9, -1)) || [];
+
     const [serializedResult, tweets] = await Promise.all([
       serialize(body),
       tweetIds.length > 0 ? getTweets(tweetIds) : ([] as TweetData[]),
