@@ -160,5 +160,9 @@ const components: React.ComponentProps<typeof MDXProvider>['components'] = {
 };
 
 export const MDXRenderer: React.FC<PostDocument> = (props) => {
-  return <MDXRemote {...props} components={components} />;
+  return (
+    <article>
+      <MDXRemote {...props} components={components} />
+    </article>
+  );
 };
