@@ -77,7 +77,7 @@ export const Tweet: React.FC<TweetData & { mine?: boolean }> = ({
             rel="noopener noreferrer"
           >
             <AuthorName title={author.name}>
-              {author.name}
+              <span className="name">{author.name}</span>
               {author.verified ? (
                 <VerifiedBadge
                   aria-label="Verified Account"
@@ -89,6 +89,7 @@ export const Tweet: React.FC<TweetData & { mine?: boolean }> = ({
                 </VerifiedBadge>
               ) : null}
               <span
+                className="username"
                 style={{
                   marginLeft: 6,
                   color: palette.accents_4,
@@ -111,23 +112,22 @@ export const Tweet: React.FC<TweetData & { mine?: boolean }> = ({
         </Header>
       )}
       <article>
-        <Text>
-          <Interweave
-            content={formattedText}
-            matchers={[
-              new UrlMatcher('url'),
-              new HashtagMatcher('hashtag'),
-              new MentionMatcher('mention'),
-            ]}
-            mentionUrl="https://twitter.com/{{mention}}"
-            hashtagUrl={(hashtag: string) =>
-              hashtag.startsWith('$')
-                ? `https://twitter.com/search?q=${hashtag}&src=cashtag_click`
-                : `https://twitter.com/hashtag/${hashtag}`
-            }
-            newWindow
-          />
-        </Text>
+        <Text
+          content={formattedText}
+          matchers={[
+            new UrlMatcher('url'),
+            new HashtagMatcher('hashtag'),
+            new MentionMatcher('mention'),
+          ]}
+          mentionUrl="https://twitter.com/{{mention}}"
+          hashtagUrl={(hashtag: string) =>
+            hashtag.startsWith('$')
+              ? `https://twitter.com/search?q=${hashtag}&src=cashtag_click`
+              : `https://twitter.com/hashtag/${hashtag}`
+          }
+          newWindow
+          tagName="p"
+        />
       </article>
       {media?.length ? (
         <div
@@ -174,7 +174,7 @@ export const Tweet: React.FC<TweetData & { mine?: boolean }> = ({
               }
             />
             <EntityURLInformation
-              className="box"
+              className={`box ${isEntityURLImageRectangular ? 'rect' : ''}`}
               style={
                 !isEntityURLImageRectangular
                   ? {
@@ -283,13 +283,17 @@ const AuthorImageLink = styled.a`
 
 const AuthorImage = styled(Image)`
   width: 48px;
+  min-width: 48px;
   height: 48px;
+
   object-fit: contain;
   border-radius: 50%;
 `;
 
 const AuthorLink = styled.a`
   margin-left: 16px;
+  max-width: calc(100% - 48px - 16px);
+
   display: flex;
   flex-direction: column;
   text-decoration: none;
@@ -304,6 +308,13 @@ const AuthorName = styled.span`
   display: flex;
   align-items: center;
   font-weight: bold;
+
+  .name,
+  .username {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 `;
 
 const VerifiedBadge = styled.svg`
@@ -328,6 +339,7 @@ const EntityURLContainer = styled.a`
   }
 `;
 const EntityURLInformation = styled.div`
+  width: 100%;
   padding: 12px;
   display: flex;
   flex-direction: column;
@@ -335,23 +347,49 @@ const EntityURLInformation = styled.div`
   transition: background-color 0.15s ease;
 
   span {
+    width: 100%;
     font-size: 15px;
   }
 
   .url {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .title,
+  .description {
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
   }
 
   .title {
     font-size: 16px;
   }
 
-  .description {
+  &.rect {
+    .title,
+    .description {
+      white-space: nowrap;
+
+      display: unset;
+      -webkit-line-clamp: unset;
+      -webkit-box-orient: unset;
+    }
   }
 `;
 
-const Text = styled.p`
+const Text = styled(Interweave)`
   margin: 16px 0 12px;
-  word-break: keep-all;
+  word-break: normal !important;
+
+  a {
+    display: inline-block;
+  }
 `;
 
 const TweetFooter = styled.div`
