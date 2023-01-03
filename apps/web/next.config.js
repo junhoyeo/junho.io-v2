@@ -6,6 +6,9 @@ module.exports = withTM({
   compiler: {
     emotion: true,
   },
+  images: {
+    domains: ['pbs.twimg.com']
+  },
   webpack: (config) => {
     config.resolve.fallback = { fs: false };
     config.plugins.push(
