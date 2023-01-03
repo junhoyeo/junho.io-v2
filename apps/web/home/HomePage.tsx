@@ -7,6 +7,7 @@ import { useTheme } from '@geist-ui/core';
 import { DEVICE_HEIGHT, DEVICE_WIDTH } from '@junhoyeo/iphone';
 import { useEffect, useRef, useState } from 'react';
 
+import { Footer } from '@/components/Footer';
 import { MDXRenderer } from '@/components/mdx-renderer';
 import { PhoneInstance } from '@/components/phone-instance';
 import { useWindowSize } from '@/hooks/use-window-size';
@@ -69,6 +70,8 @@ const HomePage: NextPage<PostDocument> = (props) => {
         <main>
           <MDXRenderer {...props} />
         </main>
+
+        <Footer />
       </Container>
       <PhoneContainer ref={phoneContainerRef}>
         <PhoneInstance
@@ -127,7 +130,7 @@ const Container = styled.div`
   }
 
   main {
-    padding-bottom: 120px;
+    padding-bottom: 24px;
   }
 `;
 
