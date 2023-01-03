@@ -293,10 +293,14 @@ export const Tweet: React.FC<TweetProps> = ({
 };
 
 const Container = styled.div`
+  max-width: 620px;
+  width: 100%;
+
+  margin: 16px auto;
+  padding: 16px;
+
   border: 1px solid;
   border-radius: 4px;
-  padding: 16px;
-  margin: 16px 0;
 
   & > *:not(article) {
     a {
