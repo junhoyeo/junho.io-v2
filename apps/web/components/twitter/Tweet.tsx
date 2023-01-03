@@ -310,6 +310,11 @@ const Container = styled.div`
       }
     }
   }
+
+  img,
+  a {
+    -webkit-user-drag: none;
+  }
 `;
 const Header = styled.div`
   display: flex;
