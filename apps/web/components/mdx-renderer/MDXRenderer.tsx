@@ -32,6 +32,14 @@ const Image: React.FC<NextImageProps> = ({ style, ...props }) => {
   );
 };
 
+const Position: React.FC<
+  React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>
+> = ({ style, ...props }) => (
+  <p>
+    <strong style={{ ...style, color: '#595c7c' }} {...props} />
+  </p>
+);
+
 const useIsBlog = () => {
   const router = useRouter();
   const isBlog = useMemo(() => {
@@ -131,11 +139,13 @@ const components: React.ComponentProps<typeof MDXProvider>['components'] = {
   `,
   a: TrackedAnchor,
   code: Code,
+  ul: styled.ul`
+    display: flex;
+    flex-direction: column;
+  `,
   Link,
   Trophy,
-  Position: styled.strong`
-    color: #595c7c;
-  `,
+  Position,
   ImageList: styled.div`
     width: 100%;
     display: flex;
