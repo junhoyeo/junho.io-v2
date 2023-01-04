@@ -7,7 +7,7 @@ module.exports = withTM({
     emotion: true,
   },
   images: {
-    domains: ['pbs.twimg.com']
+    domains: ['pbs.twimg.com', 'www.bento.finance'],
   },
   webpack: (config) => {
     config.resolve.fallback = { fs: false };

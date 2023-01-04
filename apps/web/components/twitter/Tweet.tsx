@@ -223,7 +223,11 @@ export const Tweet: React.FC<TweetProps> = ({
           >
             <Image
               alt={entityURL.display_url}
-              src={entityURLImage.url}
+              src={
+                entityURLImage.url.includes('1592256103337062400')
+                  ? 'https://www.bento.finance/assets/og-image.jpg'
+                  : entityURLImage.url
+              }
               height={entityURLImage.height}
               width={entityURLImage.width}
               style={
