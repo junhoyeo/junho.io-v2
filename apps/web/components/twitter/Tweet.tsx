@@ -12,6 +12,7 @@ import { useContext, useMemo } from 'react';
 import { HashtagMatcher } from './HashtagMatcher';
 import { TweetsContext } from './context';
 import { type TweetData } from './types';
+import { cleanTwitterId } from './utils';
 
 polyfill();
 
@@ -28,10 +29,11 @@ type TweetProps = {
   hasProfile?: boolean;
 };
 export const Tweet: React.FC<TweetProps> = ({
-  tweetId,
+  tweetId: id,
   hasProfile = false,
   ...props
 }) => {
+  const tweetId = useMemo(() => cleanTwitterId(id) || '', [id]);
   const tweetById = useContext(TweetsContext);
   const currentTweet = useMemo(
     () => tweetById[tweetId] || props.tweet,
