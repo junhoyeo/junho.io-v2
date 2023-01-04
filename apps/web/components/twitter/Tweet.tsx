@@ -202,6 +202,7 @@ export const Tweet: React.FC<TweetProps> = ({
                 objectFit: 'contain',
                 height: 'auto',
                 borderRadius: 8,
+                border: `1px solid rgba(51, 51, 51, 0.5)`,
               }}
             />
           ))}
