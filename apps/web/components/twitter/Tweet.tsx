@@ -12,6 +12,7 @@ import { useContext, useMemo } from 'react';
 import { HashtagMatcher } from './HashtagMatcher';
 import { TweetsContext } from './context';
 import { type TweetData } from './types';
+import { cleanTwitterId } from './utils';
 
 polyfill();
 
@@ -25,18 +26,29 @@ polyfill();
 type TweetProps = {
   tweetId: string;
   tweet?: TweetData;
-  mine?: boolean;
+  hasProfile?: boolean;
 };
 export const Tweet: React.FC<TweetProps> = ({
-  tweetId,
-  mine = true,
+  tweetId: id,
+  hasProfile = false,
   ...props
 }) => {
+  const tweetId = useMemo(() => cleanTwitterId(id) || '', [id]);
   const tweetById = useContext(TweetsContext);
-  const currentTweet = useMemo(() => {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    return tweetById[tweetId] || props.tweet!;
-  }, [props.tweet, tweetById, tweetId]);
+  const currentTweet = useMemo(
+    () => tweetById[tweetId] || props.tweet,
+    [props.tweet, tweetById, tweetId],
+  );
+  const { palette } = useTheme();
+
+  if (!currentTweet) {
+    return (
+      <blockquote>
+        Tweet is not available. (ID: <code>{tweetId || 'Unknown'}</code>)
+      </blockquote>
+    );
+  }
+
   const {
     text,
     author,
@@ -47,7 +59,6 @@ export const Tweet: React.FC<TweetProps> = ({
     entities,
   } = currentTweet;
 
-  const { palette } = useTheme();
   const authorUrl = `https://twitter.com/${author.username}`;
   const likeUrl = `https://twitter.com/intent/like?tweet_id=${tweetId}`;
   const retweetUrl = `https://twitter.com/intent/retweet?tweet_id=${tweetId}`;
@@ -73,7 +84,7 @@ export const Tweet: React.FC<TweetProps> = ({
         color: palette.foreground,
       }}
     >
-      {!mine ? (
+      {hasProfile ? (
         <Header>
           <AuthorImageLink
             href={authorUrl}
@@ -237,7 +248,7 @@ export const Tweet: React.FC<TweetProps> = ({
           <Tweet
             tweetId={quoteTweet.id}
             tweet={{ ...quoteTweet, referenced_tweets: undefined }}
-            mine={false}
+            hasProfile
           />
         ) : null}
       </article>
@@ -309,6 +320,11 @@ const Container = styled.div`
         content: none;
       }
     }
+  }
+
+  img,
+  a {
+    -webkit-user-drag: none;
   }
 `;
 const Header = styled.div`

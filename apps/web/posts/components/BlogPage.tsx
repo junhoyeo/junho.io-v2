@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { Layout } from '@/components/Layout';
 import { MDXRenderer } from '@/components/mdx-renderer';
 import { getTweets, type TweetData } from '@/components/twitter';
+import { cleanTwitterId } from '@/components/twitter/utils';
 
 import type { Post, PostCategoryType, PostDocument } from '../lib/types';
 
@@ -121,7 +122,22 @@ export const buildGetStaticProps: (type: PostCategoryType) => GetStaticProps =
       };
     }
 
-    const { body, tweetIds = [], ...meta } = post;
+    const { body, ...meta } = post;
+
+    let tweetIds =
+      body
+        // eslint-disable-next-line prefer-named-capture-group
+        .match(/tweetId="(.*?)"/g)
+        ?.map((id) => id.slice(9, -1)) || [];
+
+    tweetIds = tweetIds.flatMap((tweetId) => {
+      const id = cleanTwitterId(tweetId);
+      if (!id) {
+        return [];
+      }
+      return id;
+    });
+
     const [serializedResult, tweets] = await Promise.all([
       serialize(body),
       tweetIds.length > 0 ? getTweets(tweetIds) : ([] as TweetData[]),

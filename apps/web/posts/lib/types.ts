@@ -10,7 +10,6 @@ export type PostSummary = {
   slug: string;
   description?: string;
   date?: string;
-  tweetIds?: string[];
 };
 
 export type Post = PostSummary & {
