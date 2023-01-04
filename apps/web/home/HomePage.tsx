@@ -164,6 +164,11 @@ const PhoneContainer = styled.div`
   justify-content: center;
   align-items: center;
 
+  .device {
+    transform-origin: center;
+    transition: transform 0.68s ease-in-out;
+  }
+
   @media screen and (max-height: 900px) {
     padding-top: 24px;
     align-items: flex-start;
