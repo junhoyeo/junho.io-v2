@@ -158,20 +158,51 @@ export const Tweet: React.FC<TweetProps> = ({
       </article>
       {media?.length ? (
         <div
-          className={
+          style={
             media.length === 1
-              ? 'inline-grid grid-cols-1 gap-x-2 gap-y-2 my-2'
-              : 'inline-grid grid-cols-2 gap-x-2 gap-y-2 my-2'
+              ? { display: 'inline-grid', gridTemplateColumns: '1fr' }
+              : { display: 'inline-grid', gridTemplateColumns: '1fr 1fr' }
           }
         >
           {media.map((m) => (
+            // m.type === 'photo' ? (
+            //   <Image
+            //     key={m.media_key}
+            //     alt={text}
+            //     height={m.height}
+            //     width={m.width}
+            //     src={m.url}
+            //     style={{
+            //       objectFit: 'contain',
+            //       height: 'auto',
+            //       borderRadius: 8,
+            //     }}
+            //   />
+            // ) : (
+            //   <video
+            //     key={m.media_key}
+            //     src={m.url}
+            //     style={{
+            //       objectFit: 'contain',
+            //       height: 'auto',
+            //       borderRadius: 8,
+            //     }}
+            //     autoPlay
+            //     muted
+            //     loop
+            //   />
+            // ),
             <Image
               key={m.media_key}
               alt={text}
               height={m.height}
               width={m.width}
-              src={m.url}
-              style={{ objectFit: 'contain', height: 'auto', borderRadius: 8 }}
+              src={m.url || m.preview_image_url || ''}
+              style={{
+                objectFit: 'contain',
+                height: 'auto',
+                borderRadius: 8,
+              }}
             />
           ))}
         </div>

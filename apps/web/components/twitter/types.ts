@@ -9,8 +9,9 @@ export type TweetData = {
     verified: boolean;
   };
   media?: {
-    url: string;
-    type: string;
+    type: 'photo' | 'video';
+    url?: string;
+    preview_image_url: string;
     media_key: string;
     height: number;
     width: number;
