@@ -20,7 +20,7 @@ const HomePage: NextPage<PostDocument> = (props) => {
   const { palette } = useTheme();
   const { screenWidth = 1980 } = useWindowSize();
 
-  const [transformScale, setTransformScale] = useState<number>(1);
+  const [transformScale, setTransformScale] = useState<number>(0);
 
   useEffect(() => {
     Analytics.logEvent('view_landing', undefined);
