@@ -25,11 +25,11 @@ polyfill();
 type TweetProps = {
   tweetId: string;
   tweet?: TweetData;
-  mine?: boolean;
+  hasProfile?: boolean;
 };
 export const Tweet: React.FC<TweetProps> = ({
   tweetId,
-  mine = true,
+  hasProfile = false,
   ...props
 }) => {
   const tweetById = useContext(TweetsContext);
@@ -73,7 +73,7 @@ export const Tweet: React.FC<TweetProps> = ({
         color: palette.foreground,
       }}
     >
-      {!mine ? (
+      {hasProfile ? (
         <Header>
           <AuthorImageLink
             href={authorUrl}
@@ -237,7 +237,7 @@ export const Tweet: React.FC<TweetProps> = ({
           <Tweet
             tweetId={quoteTweet.id}
             tweet={{ ...quoteTweet, referenced_tweets: undefined }}
-            mine={false}
+            hasProfile
           />
         ) : null}
       </article>
