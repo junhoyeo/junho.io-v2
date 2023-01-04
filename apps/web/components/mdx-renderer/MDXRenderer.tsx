@@ -133,6 +133,9 @@ const components: React.ComponentProps<typeof MDXProvider>['components'] = {
   code: Code,
   Link,
   Trophy,
+  Position: styled.strong`
+    color: #595c7c;
+  `,
   ImageList: styled.div`
     width: 100%;
     display: flex;

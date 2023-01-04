@@ -49,12 +49,12 @@ export const INSTALLED_APPS: (GridItemProps & { id: string })[] = [
     color: '#4b66f9',
     id: 'pocketlesson',
   },
-  {
-    name: 'Pointing',
-    icon: '/assets/phone/icons/grid/pointing.webp',
-    color: '#fff',
-    id: 'pointing',
-  },
+  // {
+  //   name: 'Pointing',
+  //   icon: '/assets/phone/icons/grid/pointing.webp',
+  //   color: '#fff',
+  //   id: 'pointing',
+  // },
   {
     name: 'GitHub',
     icon: '/assets/phone/icons/grid/github.webp',
