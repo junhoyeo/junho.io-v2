@@ -91,6 +91,7 @@ const HomePage: NextPage<PostDocument> = (props) => {
         <Footer />
       </Container>
       <PhoneContainer
+        style={{ width: screenWidth > 1000 ? DEVICE_WIDTH * 0.85 : undefined }}
         ref={phoneContainerRef}
         className={isCollapsed ? 'collapsed' : ''}
       >
