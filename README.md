@@ -10,4 +10,8 @@
 > **Note**<br/>
 > Built with 💜 and [junhoyeo/iphone](https://github.com/junhoyeo/iphone).
 
-[![](https://junho.io/assets/og-image.jpg)](https://junho.io)
+[![OG Image](https://junho.io/assets/og-image.jpg)](https://junho.io)
+
+[![Cover image 1](./.github/images/cover-1.jpg)](https://junho.io)
+
+[![Cover image 2](./.github/images/cover-2.jpg)](https://junho.io)
