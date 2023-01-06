@@ -13,6 +13,7 @@ type AnalyticsEvent = {
   };
   click_social_link: {
     name: string;
+    medium: 'home_header' | 'home_footer';
   };
   click_icon: {
     name: string;

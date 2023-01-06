@@ -25,7 +25,10 @@ export const Header: React.FC = () => {
           target="_blank"
           rel="noopener"
           onClick={() =>
-            Analytics.logEvent('click_social_link', { name: 'GitHub' })
+            Analytics.logEvent('click_social_link', {
+              name: 'GitHub',
+              medium: 'home_header',
+            })
           }
         >
           <Button>GITHUB</Button>
@@ -35,7 +38,10 @@ export const Header: React.FC = () => {
           target="_blank"
           rel="noopener"
           onClick={() =>
-            Analytics.logEvent('click_social_link', { name: 'Twitter' })
+            Analytics.logEvent('click_social_link', {
+              name: 'Twitter',
+              medium: 'home_header',
+            })
           }
         >
           <Button>TWITTER</Button>
