@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
 import { useTheme } from '@geist-ui/core';
 
+import { Analytics } from '@/utils/analytics';
+
 export const Header: React.FC = () => {
   const { palette } = useTheme();
 
@@ -16,6 +18,29 @@ export const Header: React.FC = () => {
           Now I'm preparing the infrastructure—insight, followers, and
           capital—for a bigger dream.`}
       </Description>
+
+      <ButtonList>
+        <a
+          href="https://github.com/junhoyeo"
+          target="_blank"
+          rel="noopener"
+          onClick={() =>
+            Analytics.logEvent('click_social_link', { name: 'GitHub' })
+          }
+        >
+          <Button>GITHUB</Button>
+        </a>
+        <a
+          href="https://twitter.com/_junhoyeo"
+          target="_blank"
+          rel="noopener"
+          onClick={() =>
+            Analytics.logEvent('click_social_link', { name: 'Twitter' })
+          }
+        >
+          <Button>TWITTER</Button>
+        </a>
+      </ButtonList>
     </Container>
   );
 };
@@ -42,4 +67,26 @@ const Description = styled.p`
   font-size: 18px;
   padding-bottom: 0.56rem;
   line-height: 1.45;
+`;
+
+const ButtonList = styled.div`
+  display: flex;
+  gap: 6px;
+`;
+const Button = styled.button`
+  padding: 2px 8px;
+
+  outline: 0;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+  background-color: #595c7c;
+
+  font-weight: 500;
+  font-size: 14px;
+  color: white;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.88;
+  }
 `;
