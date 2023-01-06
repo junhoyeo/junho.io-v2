@@ -16,7 +16,7 @@
     "@emotion/styled": "^11.10.5",
     "@geist-ui/core": "^2.3.8",
     "@geist-ui/icons": "git+https://github.com/junhoyeo/icons.git#dist",
-    "@junhoyeo/iphone": "^0.0.4",
+    "@junhoyeo/iphone": "^0.0.5-canary.1",
     "@mdx-js/react": "^2.2.1",
     "amplitude-js": "^8.21.3",
     "date-fns": "^2.29.3",

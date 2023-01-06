@@ -609,10 +609,10 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
-"@junhoyeo/iphone@^0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@junhoyeo/iphone/-/iphone-0.0.4.tgz#9761c7d6a49d22d6685403b465e35d2a79c396ad"
-  integrity sha512-V55Ec3ARklovCspelAqcVARWG64Q/mFjoB34Gdcjm4pqLMbPFFjwefJBqgX3YAQGxiV7T1c7fUFHpsnW4x22AA==
+"@junhoyeo/iphone@^0.0.5-canary.1":
+  version "0.0.5-canary.1"
+  resolved "https://registry.yarnpkg.com/@junhoyeo/iphone/-/iphone-0.0.5-canary.1.tgz#11a1aac1570461fff94f7bd4543bbfc4515f06ec"
+  integrity sha512-CXInr5o1edMbeZvvWOCgyufu3OXeeGM0MQOz0mFn5RlfEm74QgjfOE8wWGzK5RVJpi4e/SmTtPYy/Fw2V0s5ig==
   dependencies:
     dedent "^0.7.0"
     figma-squircle "^0.3.0"
