@@ -3,7 +3,6 @@ import { type NextPage } from 'next';
 
 import '@junhoyeo/iphone/dist/style.css';
 
-import { useTheme } from '@geist-ui/core';
 import { DEVICE_HEIGHT, DEVICE_WIDTH } from '@junhoyeo/iphone';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
@@ -14,10 +13,10 @@ import { useWindowSize } from '@/hooks/use-window-size';
 import { type PostDocument } from '@/posts/lib/types';
 import { Analytics } from '@/utils/analytics';
 
+import { Header } from './components/Header';
 import { Head } from './components/head';
 
 const HomePage: NextPage<PostDocument> = (props) => {
-  const { palette } = useTheme();
   const { screenWidth = 1980 } = useWindowSize();
 
   const [transformScale, setTransformScale] = useState<number>(0);
@@ -79,16 +78,8 @@ const HomePage: NextPage<PostDocument> = (props) => {
       <Head />
 
       <Container>
-        <Title style={{ color: palette.accents_7 }}>
-          {`Hi, I'm `}
-          <span>Junho Yeo</span>
-        </Title>
-        <Description style={{ color: palette.accents_6 }}>
-          {`Welcome to my site. I'm a 19-yo generalist hacker, shaping the 2nd/3rd
-          web. Sometimes a designer and dreamer, I just like to build things.
-          Now I'm preparing the infrastructure—insight, followers, and
-          capital—for a bigger dream.`}
-        </Description>
+        <Header />
+
         <main>
           <MDXRenderer {...props} />
         </main>
@@ -158,25 +149,6 @@ const Container = styled.div`
   main {
     padding-bottom: 24px;
   }
-`;
-
-const Title = styled.h1`
-  margin: 0;
-  margin-bottom: 28px;
-
-  font-weight: 800;
-  font-size: 2rem;
-  line-height: 1.25;
-  letter-spacing: -0.25px;
-`;
-const Description = styled.p`
-  margin: 0;
-  margin-bottom: 20px;
-
-  font-weight: 400;
-  font-size: 18px;
-  padding-bottom: 0.56rem;
-  line-height: 1.45;
 `;
 
 const PhoneContainer = styled.div`
