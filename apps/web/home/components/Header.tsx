@@ -85,11 +85,11 @@ const Button = styled.button`
   outline: 0;
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 2px;
-  background-color: #595c7c;
+  background-color: #e3e6ff;
 
   font-weight: 500;
   font-size: 14px;
-  color: white;
+  color: black;
   cursor: pointer;
 
   &:hover {
