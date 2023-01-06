@@ -52,6 +52,24 @@ const HomePage: NextPage<PostDocument> = (props) => {
     document.documentElement.style.setProperty('--bottom', `${bottom}px`);
   });
 
+  const [isCollapsed, setCollapsed] = useState<boolean>(false);
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      const element = e.target as HTMLElement;
+      console.log(element.className);
+
+      if (element.closest('.device')) {
+        setCollapsed((prev) => !prev);
+      }
+    };
+    window.addEventListener('click', onClick);
+    return () => {
+      window.removeEventListener('click', onClick);
+    };
+  }, []);
+
+  console.log({ isCollapsed });
+
   return (
     <Wrapper>
       <Head />
@@ -73,7 +91,10 @@ const HomePage: NextPage<PostDocument> = (props) => {
 
         <Footer />
       </Container>
-      <PhoneContainer ref={phoneContainerRef}>
+      <PhoneContainer
+        ref={phoneContainerRef}
+        className={isCollapsed ? 'collapsed' : ''}
+      >
         <PhoneInstance
           transformScale={transformScale}
           dynamicIslandProps={{
@@ -185,6 +206,8 @@ const PhoneContainer = styled.div`
     bottom: var(--bottom);
     pointer-events: none;
 
+    transition: bottom 0.12s ease;
+
     &,
     & > div {
       height: var(--device-height);
@@ -192,6 +215,25 @@ const PhoneContainer = styled.div`
 
     & > div {
       pointer-events: auto;
+    }
+
+    .device {
+      cursor: pointer;
+    }
+
+    &.collapsed {
+      bottom: calc(var(--bottom) * 2);
+    }
+
+    .device-frame {
+      transition: outline 0.12s ease;
+      outline: 0px solid rgba(255, 255, 255, 0.25);
+    }
+
+    &:hover {
+      .device-frame {
+        outline: 8px solid rgba(255, 255, 255, 0.25);
+      }
     }
   }
 
