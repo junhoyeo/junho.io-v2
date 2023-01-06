@@ -25,6 +25,7 @@ module.exports = {
     'react/jsx-key': 'off',
     'react/jsx-sort-props': 'off',
     'react/hook-state': 'off',
+    'react/hook-use-state': 'off',
     'unicorn/filename-case': 'off',
   },
 };

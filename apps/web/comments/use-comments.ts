@@ -10,7 +10,6 @@ export const useComments = (): {
   editor: BaseEditor & ReactEditor;
   onReset: () => void;
 } => {
-  // eslint-disable-next-line react/hook-use-state
   const [editor] = useState(() => withReact(createEditor()));
 
   const setPositionDraft = useSetAtom(positionDraftAtom);
