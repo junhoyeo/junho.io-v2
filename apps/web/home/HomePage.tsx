@@ -226,13 +226,25 @@ const PhoneContainer = styled.div`
     }
 
     .device-frame {
-      transition: outline 0.12s ease;
-      outline: 8px solid rgba(255, 255, 255, 0);
+      &::before {
+        content: '';
+        position: absolute;
+        top: -7px;
+        right: -7px;
+        bottom: -7px;
+        left: -7px;
+
+        transition: border 0.12s ease;
+        border: 8px solid rgba(255, 255, 255, 0);
+        border-radius: 74px;
+      }
     }
 
     &:hover {
       .device-frame {
-        outline: 8px solid rgba(255, 255, 255, 0.25);
+        &::before {
+          border: 8px solid rgba(255, 255, 255, 0.25);
+        }
       }
     }
   }
