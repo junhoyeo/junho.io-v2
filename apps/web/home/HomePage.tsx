@@ -60,6 +60,8 @@ const HomePage: NextPage<PostDocument> = (props) => {
 
       if (element.closest('.device')) {
         setCollapsed((prev) => !prev);
+      } else {
+        setCollapsed(true);
       }
     };
     window.addEventListener('click', onClick);
