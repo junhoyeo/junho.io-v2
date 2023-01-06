@@ -5,7 +5,7 @@ import '@junhoyeo/iphone/dist/style.css';
 
 import { useTheme } from '@geist-ui/core';
 import { DEVICE_HEIGHT, DEVICE_WIDTH } from '@junhoyeo/iphone';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import { Footer } from '@/components/Footer';
 import { MDXRenderer } from '@/components/mdx-renderer';
@@ -69,6 +69,11 @@ const HomePage: NextPage<PostDocument> = (props) => {
     };
   }, []);
 
+  const width = useMemo(
+    () => (screenWidth > 1000 ? DEVICE_WIDTH * 0.85 : undefined),
+    [screenWidth],
+  );
+
   return (
     <Wrapper>
       <Head />
@@ -91,7 +96,7 @@ const HomePage: NextPage<PostDocument> = (props) => {
         <Footer />
       </Container>
       <PhoneContainer
-        style={{ width: screenWidth > 1000 ? DEVICE_WIDTH * 0.85 : undefined }}
+        style={{ width }}
         ref={phoneContainerRef}
         className={isCollapsed ? 'collapsed' : ''}
       >
@@ -197,16 +202,19 @@ const PhoneContainer = styled.div`
 
   @media screen and (max-width: 1000px) {
     padding-top: unset;
+    width: 100%;
     height: fit-content;
 
     position: fixed;
     top: unset;
     left: 0;
     right: 0;
-    bottom: var(--bottom);
+    bottom: 0;
     pointer-events: none;
 
-    transition: bottom 0.12s ease;
+    will-change: transform;
+    transition: transform 0.12s ease;
+    transform: translate3d(0, calc(var(--bottom) * -1), 0);
 
     &,
     & > div {
@@ -222,7 +230,7 @@ const PhoneContainer = styled.div`
     }
 
     &.collapsed {
-      bottom: calc(var(--bottom) * 2);
+      transform: translate3d(0, calc(var(--bottom) * -2), 0);
     }
 
     .device-frame {
