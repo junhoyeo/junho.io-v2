@@ -4,8 +4,12 @@ import { type NextPage } from 'next';
 import '@junhoyeo/iphone/dist/style.css';
 
 import { useTheme } from '@geist-ui/core';
-import { DEVICE_HEIGHT, DEVICE_WIDTH } from '@junhoyeo/iphone';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import {
+  DEVICE_HEIGHT,
+  DEVICE_WIDTH,
+  type DynamicIslandSize,
+} from '@junhoyeo/iphone';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { Footer } from '@/components/Footer';
 import { MDXRenderer } from '@/components/mdx-renderer';
@@ -21,6 +25,8 @@ const HomePage: NextPage<PostDocument> = (props) => {
   const { screenWidth = 1980 } = useWindowSize();
 
   const [transformScale, setTransformScale] = useState<number>(0);
+  const [dynamicIslandSize, setDynamicIslandSize] =
+    useState<DynamicIslandSize>('default');
 
   useEffect(() => {
     Analytics.logEvent('view_landing', undefined);
@@ -57,7 +63,15 @@ const HomePage: NextPage<PostDocument> = (props) => {
     const onClick = (e: MouseEvent) => {
       const element = e.target as HTMLElement;
 
-      if (element.closest('.device')) {
+      const deviceClicked = element.closest('.device');
+      const dynamicIslandClicked =
+        element.closest('.dynamic-island-container') &&
+        element.closest('button');
+
+      if (!isCollapsed && dynamicIslandClicked) {
+        return;
+      }
+      if (deviceClicked) {
         setCollapsed((prev) => !prev);
       } else {
         setCollapsed(true);
@@ -67,11 +81,19 @@ const HomePage: NextPage<PostDocument> = (props) => {
     return () => {
       window.removeEventListener('click', onClick);
     };
-  }, []);
+  }, [isCollapsed]);
 
   const width = useMemo(
     () => (screenWidth > 1000 ? DEVICE_WIDTH * 0.85 : undefined),
     [screenWidth],
+  );
+
+  const toggleCall = useCallback(
+    () =>
+      setDynamicIslandSize((prev) =>
+        prev === 'default' ? 'large' : 'default',
+      ),
+    [],
   );
 
   return (
@@ -104,10 +126,11 @@ const HomePage: NextPage<PostDocument> = (props) => {
           transformScale={transformScale}
           dynamicIslandProps={{
             default: 'default',
-            state: 'default',
-            setState: () => {},
-            onClick: () => {},
+            state: dynamicIslandSize,
+            setState: setDynamicIslandSize,
+            onClick: toggleCall,
           }}
+          onClickDockedApp={toggleCall}
         />
       </PhoneContainer>
     </Wrapper>

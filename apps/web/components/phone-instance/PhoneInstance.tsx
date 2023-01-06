@@ -9,9 +9,13 @@ import { INSTALLED_APPS } from './constants/grid';
 
 export type PhoneInstanceProps = Partial<PhoneProps> & {
   dynamicIslandProps: Omit<DynamicIslandProps, 'children'>;
+  onClickDockedApp?: () => void;
 };
 
-export const PhoneInstance: React.FC<PhoneInstanceProps> = ({ ...props }) => {
+export const PhoneInstance: React.FC<PhoneInstanceProps> = ({
+  onClickDockedApp,
+  ...props
+}) => {
   return (
     <Container>
       <Phone
@@ -31,7 +35,7 @@ export const PhoneInstance: React.FC<PhoneInstanceProps> = ({ ...props }) => {
             });
           },
         }))}
-        dock={DOCK}
+        dock={DOCK.map((app) => ({ ...app, onClick: onClickDockedApp }))}
       />
     </Container>
   );
@@ -45,6 +49,9 @@ const Container = styled.div`
     cursor: pointer;
     border: 0;
     outline: 0;
-    background-color: transparent;
+  }
+
+  p {
+    margin: 0;
   }
 `;
