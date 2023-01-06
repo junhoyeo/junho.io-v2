@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 
+import { Analytics } from '@/utils/analytics';
+
 export const Footer: React.FC = () => {
   return (
     <Container>
@@ -8,6 +10,12 @@ export const Footer: React.FC = () => {
           href="https://github.com/junhoyeo/paracosm"
           target="_blank"
           rel="noopener"
+          onClick={() =>
+            Analytics.logEvent('click_social_link', {
+              name: 'GitHub',
+              medium: 'home_footer',
+            })
+          }
         >
           ©2023 @junhoyeo
         </a>
