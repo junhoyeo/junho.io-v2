@@ -229,7 +229,7 @@ const PhoneContainer = styled.div`
 
     .device-frame {
       transition: outline 0.12s ease;
-      outline: 0px solid rgba(255, 255, 255, 0.25);
+      outline: 8px solid rgba(255, 255, 255, 0);
     }
 
     &:hover {
