@@ -23,6 +23,7 @@ const Image: React.FC<NextImageProps> = ({ style, ...props }) => {
       {...props}
       width={1080}
       height={600}
+      quality={85}
       style={{
         ...style,
         borderColor: palette.accents_1,
