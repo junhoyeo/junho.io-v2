@@ -56,7 +56,6 @@ const HomePage: NextPage<PostDocument> = (props) => {
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
       const element = e.target as HTMLElement;
-      console.log(element.className);
 
       if (element.closest('.device')) {
         setCollapsed((prev) => !prev);
@@ -69,8 +68,6 @@ const HomePage: NextPage<PostDocument> = (props) => {
       window.removeEventListener('click', onClick);
     };
   }, []);
-
-  console.log({ isCollapsed });
 
   return (
     <Wrapper>
