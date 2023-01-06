@@ -2,12 +2,18 @@ import styled from '@emotion/styled';
 import { Breadcrumbs, Text, useTheme } from '@geist-ui/core';
 import { type NextPage } from 'next';
 import Link from 'next/link';
+import { useEffect } from 'react';
 
 import { Layout } from '@/components/Layout';
 import { PostList } from '@/components/PostList';
+import { Analytics } from '@/utils/analytics';
 
 const BlogListPage: NextPage = () => {
   const { palette } = useTheme();
+
+  useEffect(() => {
+    Analytics.logEvent('view_blog_list', undefined);
+  }, []);
 
   return (
     <Layout>

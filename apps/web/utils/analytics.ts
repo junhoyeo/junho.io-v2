@@ -18,6 +18,11 @@ type AnalyticsEvent = {
   click_icon: {
     name: string;
   };
+  view_blog_list: undefined;
+  view_blog_post: {
+    title: string;
+    slug: string;
+  };
 };
 
 const AMPLITUDE_API_KEY = 'bed3d63c77b5d219d3d9085336c4f698';

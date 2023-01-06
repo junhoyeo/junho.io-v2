@@ -3,11 +3,14 @@ import { Breadcrumbs, Text, useTheme } from '@geist-ui/core';
 import { type GetStaticPaths, type GetStaticProps } from 'next';
 import { serialize } from 'next-mdx-remote/serialize';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 import { Layout } from '@/components/Layout';
 import { MDXRenderer } from '@/components/mdx-renderer';
 import { getTweets, type TweetData } from '@/components/twitter';
 import { cleanTwitterId } from '@/components/twitter/utils';
+import { Analytics } from '@/utils/analytics';
 
 import type { Post, PostCategoryType, PostDocument } from '../lib/types';
 
@@ -18,6 +21,16 @@ const capitalize = (value: string) =>
 
 export const BlogPage: React.FC<BlogPageProps> = (props: BlogPageProps) => {
   const { palette } = useTheme();
+  const {
+    query: { slug },
+  } = useRouter();
+
+  useEffect(() => {
+    Analytics.logEvent('view_blog_post', {
+      slug: (slug as string[]).join('/'),
+      title: props.meta.title,
+    });
+  }, [props, slug]);
 
   return (
     <Layout>
