@@ -1,6 +1,6 @@
 {
   "name": "web",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "prebuild": "ts-node -r tsconfig-paths/register ./scripts/generate-posts.ts",
