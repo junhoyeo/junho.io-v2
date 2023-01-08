@@ -342,6 +342,7 @@ export const Tweet: React.FC<TweetProps> = ({
 const Container = styled.div`
   max-width: 620px;
   width: 100%;
+  height: fit-content;
 
   margin: 16px auto;
   padding: 16px;

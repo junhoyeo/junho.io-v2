@@ -2,6 +2,7 @@ import matter from 'gray-matter';
 import { serialize } from 'next-mdx-remote/serialize';
 import fs from 'node:fs';
 
+import { extractTweetsFromBody } from '@/components/twitter/utils';
 import type { Post } from '@/posts/lib/types';
 
 export { default } from '@/home/HomePage';
@@ -21,11 +22,16 @@ export const getStaticProps = async () => {
   } as Post;
 
   const { body, ...meta } = post;
-  const serializedResult = await serialize(body);
+
+  const [serializedResult, tweetById] = await Promise.all([
+    serialize(body),
+    extractTweetsFromBody(body),
+  ]);
 
   return {
     props: {
       meta,
+      tweets: tweetById,
       ...serializedResult,
     },
   };
