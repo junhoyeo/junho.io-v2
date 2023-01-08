@@ -1,13 +1,20 @@
 import NextHead from 'next/head';
 
-const meta = {
+export type Meta = {
+  title: string;
+  description: string;
+  image: string;
+  url: string;
+};
+export const defaultMeta: Meta = {
   title: "Hello, I'm Junho Yeo.",
   description: '19-yo Generalist Hacker, shaping the 2nd/3rd web.',
   image: 'https://junho.io/assets/og-image.jpg',
   url: 'https://junho.io',
 };
+type HeadProps = { meta?: Meta };
 
-export const Head: React.FC = () => {
+export const Head: React.FC<HeadProps> = ({ meta = defaultMeta }) => {
   return (
     <NextHead>
       <title>{meta.title}</title>

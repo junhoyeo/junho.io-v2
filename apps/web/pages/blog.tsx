@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 
 import { Layout } from '@/components/Layout';
 import { PostList } from '@/components/PostList';
+import { Head, defaultMeta } from '@/home/components/head';
 import { Analytics } from '@/utils/analytics';
 
 const BlogListPage: NextPage = () => {
@@ -17,6 +18,7 @@ const BlogListPage: NextPage = () => {
 
   return (
     <Layout>
+      <Head meta={{ ...defaultMeta, title: 'Blog' }} />
       <Breadcrumbs>
         <Link href="/" style={{ color: palette.accents_5 }}>
           <Breadcrumbs.Item>Paracøsm</Breadcrumbs.Item>

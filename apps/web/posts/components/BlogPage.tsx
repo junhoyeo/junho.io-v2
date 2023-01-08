@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import { Layout } from '@/components/Layout';
 import { MDXRenderer } from '@/components/mdx-renderer';
 import { extractTweetsFromBody } from '@/components/twitter/utils';
+import { Head, defaultMeta } from '@/home/components/head';
 import { Analytics } from '@/utils/analytics';
 
 import type { Post, PostCategoryType, PostDocument } from '../lib/types';
@@ -33,6 +34,15 @@ export const BlogPage: React.FC<BlogPageProps> = (props: BlogPageProps) => {
 
   return (
     <Layout>
+      <Head
+        meta={{
+          ...defaultMeta,
+          title: `${props.meta.emoji ? `${props.meta.emoji} ` : ''}${
+            props.meta.title
+          }`,
+          description: props.meta.slug,
+        }}
+      />
       <Breadcrumbs>
         <Link href="/" style={{ color: palette.accents_5 }}>
           <Breadcrumbs.Item>Paracøsm</Breadcrumbs.Item>
