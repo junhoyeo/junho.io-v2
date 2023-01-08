@@ -20,6 +20,7 @@ export const Footer: React.FC = () => {
           ©2023 @junhoyeo
         </a>
       </article>
+      <FixedGradient />
     </Container>
   );
 };
@@ -39,4 +40,21 @@ const Container = styled.footer`
     font-weight: 500;
     color: white;
   }
+`;
+
+const FixedGradient = styled.div`
+  width: 100%;
+  height: 78px;
+
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 5%,
+    rgba(0, 0, 0, 1) 100%
+  );
 `;
