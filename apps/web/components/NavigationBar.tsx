@@ -70,6 +70,7 @@ const Wrapper = styled.div`
 
   display: flex;
   justify-content: center;
+  pointer-events: none;
 
   background: linear-gradient(
     to bottom,
@@ -92,6 +93,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   gap: 20px;
+  pointer-events: auto;
 
   border-radius: 8px;
   background-color: rgba(0, 0, 0, 0.55);
