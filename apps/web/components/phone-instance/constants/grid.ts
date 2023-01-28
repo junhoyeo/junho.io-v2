@@ -31,12 +31,12 @@ export const INSTALLED_APPS: (GridItemProps & { id: string })[] = [
     color: '#00C3F8',
     id: 'keplr',
   },
-  {
-    name: 'Pylon Protocol',
-    icon: '/assets/phone/icons/grid/pylon-protocol.png',
-    color: '#032845',
-    id: 'pylon-protocol',
-  },
+  // {
+  //   name: 'Pylon Protocol',
+  //   icon: '/assets/phone/icons/grid/pylon-protocol.png',
+  //   color: '#032845',
+  //   id: 'pylon-protocol',
+  // },
   {
     name: 'Toss',
     icon: '/assets/phone/icons/grid/toss.webp',
