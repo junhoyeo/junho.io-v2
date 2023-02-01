@@ -26,10 +26,12 @@ export const NavigationBar: React.FC = () => {
           </Link>
 
           <NavigationLink
-            href="/"
+            href="/about"
             style={{
               color:
-                router.asPath === '/' ? palette.accents_8 : palette.accents_4,
+                router.asPath === '/about'
+                  ? palette.accents_8
+                  : palette.accents_4,
             }}
           >
             About

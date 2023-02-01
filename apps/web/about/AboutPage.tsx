@@ -20,7 +20,7 @@ import { Analytics } from '@/utils/analytics';
 import { Header } from './components/Header';
 import { Head } from './components/head';
 
-const HomePage: NextPage<PostDocument> = (props) => {
+const AboutPage: NextPage<PostDocument> = (props) => {
   const { screenWidth = 1980 } = useWindowSize();
 
   const [transformScale, setTransformScale] = useState<number>(0);
@@ -128,7 +128,7 @@ const HomePage: NextPage<PostDocument> = (props) => {
   );
 };
 
-export default HomePage;
+export default AboutPage;
 
 const Wrapper = styled.div`
   display: flex;

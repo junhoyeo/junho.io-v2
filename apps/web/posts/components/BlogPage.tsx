@@ -6,10 +6,10 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
+import { Head, defaultMeta } from '@/about/components/head';
 import { Layout } from '@/components/Layout';
 import { MDXRenderer } from '@/components/mdx-renderer';
 import { extractTweetsFromBody } from '@/components/twitter/utils';
-import { Head, defaultMeta } from '@/home/components/head';
 import { Analytics } from '@/utils/analytics';
 
 import type { Post, PostCategoryType, PostDocument } from '../lib/types';
