@@ -20,11 +20,13 @@ const HomePage: NextPage = () => {
       >
         JUNHO YEO <br />
         SAILING TOWARD <br />
-        THE <Image
+        THE{' '}
+        <Image
           alt="unicorn"
           src={unicornImage}
           width={192}
           height={192}
+          unoptimized
         />{' '}
         FUTURE
       </Title>
