@@ -1,13 +1,23 @@
 import styled from '@emotion/styled';
+import { Spacer } from '@geist-ui/core';
+import { motion } from 'framer-motion';
 import type { NextPage } from 'next';
 import Image from 'next/image';
+
+import { Footer } from '@/components/Footer';
+import { SocialButtonList } from '@/components/SocialButtonList';
 
 import unicornImage from './assets/unicorn.png';
 
 const HomePage: NextPage = () => {
   return (
     <Container>
-      <Title>
+      <Title
+        initial={{ transform: 'translate3d(0, 64px, 0)', opacity: 0 }}
+        animate={{ transform: 'translate3d(0, 0px, 0)', opacity: 1 }}
+        exit={{ transform: 'translate3d(0, 64px, 0)', opacity: 0 }}
+        transition={{ type: 'spring' }}
+      >
         JUNHO YEO <br />
         SAILING TOWARD <br />
         THE <Image
@@ -18,13 +28,30 @@ const HomePage: NextPage = () => {
         />{' '}
         FUTURE
       </Title>
-      <Description>
+      <Description
+        initial={{ transform: 'translate3d(0, 64px, 0)', opacity: 0 }}
+        animate={{ transform: 'translate3d(0, 0px, 0)', opacity: 1 }}
+        exit={{ transform: 'translate3d(0, 64px, 0)', opacity: 0 }}
+        transition={{ type: 'spring', delay: 0.2 }}
+      >
         <ol>
           <li>① POSITION IN THE BEST ENVIRONMENT</li>
           <li>② DEVELOP MY OWN THESIS</li>
           <li>③ PROTOTYPE AND BUILD PRODUCTS</li>
         </ol>
       </Description>
+      <motion.div
+        initial={{ transform: 'translate3d(0, 48px, 0)', opacity: 0 }}
+        animate={{ transform: 'translate3d(0, 0px, 0)', opacity: 1 }}
+        exit={{ transform: 'translate3d(0, 48px, 0)', opacity: 0 }}
+        transition={{ type: 'spring', delay: 0.4 }}
+      >
+        <SocialButtonList style={{ marginTop: 16 }} />
+      </motion.div>
+
+      <Spacer height={8} />
+
+      <Footer />
     </Container>
   );
 };
@@ -39,7 +66,8 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
 `;
-const Title = styled.h1`
+
+const Title = styled(motion.h1)`
   margin: 120px 0 12px;
   font-size: 3rem;
   text-align: center;
@@ -53,7 +81,7 @@ const Title = styled.h1`
     vertical-align: text-bottom;
   }
 `;
-const Description = styled.ol`
+const Description = styled(motion.ol)`
   margin: 0;
   font-size: 18px;
 
