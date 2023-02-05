@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import type { NextPage } from 'next';
 import Image from 'next/image';
 
+import { Head } from '@/about/components/head';
 import { Footer } from '@/components/Footer';
 import { SocialButtonList } from '@/components/SocialButtonList';
 
@@ -12,6 +13,7 @@ import unicornImage from './assets/unicorn.png';
 const HomePage: NextPage = () => {
   return (
     <Container>
+      <Head />
       <Title
         initial={{ transform: 'translate3d(0, 64px, 0)', opacity: 0 }}
         animate={{ transform: 'translate3d(0, 0px, 0)', opacity: 1 }}
