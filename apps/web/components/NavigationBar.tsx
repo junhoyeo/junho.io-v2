@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import { /* Button, */ Text, useTheme } from '@geist-ui/core';
-import { Anchor /* X as Cross, Menu */ } from '@geist-ui/icons';
 // import { useAtom } from 'jotai';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -16,9 +15,8 @@ export const NavigationBar: React.FC = () => {
     <Wrapper>
       <WidthProvider>
         <Container style={{ border: `1px solid ${palette.accents_2}` }}>
-          <Link href="/">
+          <Link href="/" style={{ marginRight: 'auto' }}>
             <Brand style={{ color: palette.accents_8 }}>
-              <Anchor size={28} />
               <Text b span style={{ fontSize: 24 }}>
                 junhø.io
               </Text>
@@ -26,10 +24,12 @@ export const NavigationBar: React.FC = () => {
           </Link>
 
           <NavigationLink
-            href="/"
+            href="/about"
             style={{
               color:
-                router.asPath === '/' ? palette.accents_8 : palette.accents_4,
+                router.asPath === '/about'
+                  ? palette.accents_8
+                  : palette.accents_4,
             }}
           >
             About
@@ -88,7 +88,7 @@ const Container = styled.div`
   padding-right: 24px;
 
   margin-right: auto;
-  width: fit-content;
+  width: 100%;
 
   display: flex;
   align-items: center;

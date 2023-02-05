@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 
 import { Layout } from '@/components/Layout';
 import { PostList } from '@/components/PostList';
-import { Head, defaultMeta } from '@/home/components/head';
+import { Head, defaultMeta } from '@/about/components/head';
 import { Analytics } from '@/utils/analytics';
 
 const BlogListPage: NextPage = () => {

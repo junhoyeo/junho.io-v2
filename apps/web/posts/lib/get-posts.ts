@@ -15,9 +15,9 @@ export const getPosts = (type: PostCategoryType): Post[] => {
       );
       const { data, content } = matter(postContent);
 
-      if (data.published === false) {
-        return [];
-      }
+      // if (data.published === false) {
+      //   return [];
+      // }
 
       return {
         ...data,

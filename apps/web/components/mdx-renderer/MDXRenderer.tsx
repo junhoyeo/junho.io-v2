@@ -136,6 +136,7 @@ const components: React.ComponentProps<typeof MDXProvider>['components'] = {
     margin-top: 42px;
   `,
   p: styled.p`
+    font-size: 1.1rem;
     color: rgba(255, 255, 255, 0.9);
   `,
   a: TrackedAnchor,

@@ -13,7 +13,8 @@ type AnalyticsEvent = {
   };
   click_social_link: {
     name: string;
-    medium: 'home_header' | 'home_footer';
+    // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
+    medium?: 'home_header' | 'home_footer' | string;
   };
   click_icon: {
     name: string;

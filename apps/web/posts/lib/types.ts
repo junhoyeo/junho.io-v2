@@ -10,6 +10,7 @@ export type PostSummary = {
   slug: string;
   description?: string;
   date?: string;
+  published?: boolean;
 };
 
 export type Post = PostSummary & {
