@@ -14,7 +14,10 @@ export const PostList: React.FC = () => {
 
   return (
     <ListContainer>
-      {blogPosts.map((post) => {
+      {blogPosts.flatMap((post) => {
+        if (post.published === false) {
+          return null;
+        }
         const active = router.asPath === `/w/${post.slug}`;
 
         return (
