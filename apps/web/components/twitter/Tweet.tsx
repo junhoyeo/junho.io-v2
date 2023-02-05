@@ -462,10 +462,6 @@ const EntityURLInformation = styled.div`
     -webkit-box-orient: vertical;
   }
 
-  .title {
-    font-size: 16px;
-  }
-
   &.rect {
     .title,
     .description {
