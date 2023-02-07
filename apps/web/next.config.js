@@ -1,21 +1,26 @@
 const webpack = require('webpack');
 const withTM = require('next-transpile-modules')(['ui']);
-
-module.exports = withTM({
-  reactStrictMode: true,
-  compiler: {
-    emotion: true,
-  },
-  images: {
-    domains: ['pbs.twimg.com', 'www.bento.finance'],
-  },
-  webpack: (config) => {
-    config.resolve.fallback = { fs: false };
-    config.plugins.push(
-      new webpack.NormalModuleReplacementPlugin(/^node:/, (resource) => {
-        resource.request = resource.request.replace(/^node:/, '');
-      }),
-    );
-    return config;
-  },
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
 });
+
+module.exports = withBundleAnalyzer(
+  withTM({
+    reactStrictMode: true,
+    compiler: {
+      emotion: true,
+    },
+    images: {
+      domains: ['pbs.twimg.com', 'www.bento.finance'],
+    },
+    webpack: (config) => {
+      config.resolve.fallback = { fs: false };
+      config.plugins.push(
+        new webpack.NormalModuleReplacementPlugin(/^node:/, (resource) => {
+          resource.request = resource.request.replace(/^node:/, '');
+        }),
+      );
+      return config;
+    },
+  }),
+);

@@ -12,5 +12,5 @@
       "cache": false
     }
   },
-  "globalEnv": ["TWITTER_API_KEY"]
+  "globalEnv": ["ANALYZE", "TWITTER_API_KEY"]
 }

@@ -5,6 +5,7 @@
   "scripts": {
     "prebuild": "ts-node -r tsconfig-paths/register ./scripts/generate-posts.ts",
     "build": "next build",
+    "build:analyze": "ANALYZE=true yarn build",
     "predev": "yarn prebuild",
     "dev": "next dev",
     "lint": "next lint",
@@ -44,6 +45,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
+    "@next/bundle-analyzer": "^13.1.6",
     "@types/amplitude-js": "^8.16.2",
     "@types/node": "^18.11.19",
     "@types/prettier": "^2.7.2",
