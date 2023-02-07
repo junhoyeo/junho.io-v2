@@ -15,6 +15,7 @@ module.exports = {
     '@typescript-eslint/no-empty-function': 'off',
     '@typescript-eslint/no-floating-promises': 'off',
     '@typescript-eslint/no-misused-promises': 'off',
+    '@typescript-eslint/no-unused-vars': 'off',
     'import/no-default-export': 'off',
     'import/order': 'off',
     'no-console': 'off',
