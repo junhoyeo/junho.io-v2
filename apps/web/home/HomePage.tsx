@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { Spacer } from '@geist-ui/core';
-import { motion } from 'framer-motion';
+import { LazyMotion, domAnimation, m } from 'framer-motion';
 import type { NextPage } from 'next';
 import Image from 'next/image';
 
@@ -14,44 +14,46 @@ const HomePage: NextPage = () => {
   return (
     <Container>
       <Head />
-      <Title
-        initial={{ transform: 'translate3d(0, 64px, 0)', opacity: 0 }}
-        animate={{ transform: 'translate3d(0, 0px, 0)', opacity: 1 }}
-        exit={{ transform: 'translate3d(0, 64px, 0)', opacity: 0 }}
-        transition={{ type: 'spring' }}
-      >
-        JUNHO YEO <br />
-        SAILING TOWARD <br />
-        THE{' '}
-        <Image
-          alt="unicorn"
-          src={unicornImage}
-          width={192}
-          height={192}
-          unoptimized
-        />{' '}
-        FUTURE
-      </Title>
-      <Description
-        initial={{ transform: 'translate3d(0, 64px, 0)', opacity: 0 }}
-        animate={{ transform: 'translate3d(0, 0px, 0)', opacity: 1 }}
-        exit={{ transform: 'translate3d(0, 64px, 0)', opacity: 0 }}
-        transition={{ type: 'spring', delay: 0.2 }}
-      >
-        <ol>
-          <li>① POSITION IN THE BEST ENVIRONMENT</li>
-          <li>② DEVELOP MY OWN THESIS</li>
-          <li>③ PROTOTYPE AND BUILD PRODUCTS</li>
-        </ol>
-      </Description>
-      <motion.div
-        initial={{ transform: 'translate3d(0, 48px, 0)', opacity: 0 }}
-        animate={{ transform: 'translate3d(0, 0px, 0)', opacity: 1 }}
-        exit={{ transform: 'translate3d(0, 48px, 0)', opacity: 0 }}
-        transition={{ type: 'spring', delay: 0.4 }}
-      >
-        <SocialButtonList style={{ marginTop: 16 }} />
-      </motion.div>
+      <LazyMotion features={domAnimation}>
+        <Title
+          initial={{ transform: 'translate3d(0, 64px, 0)', opacity: 0 }}
+          animate={{ transform: 'translate3d(0, 0px, 0)', opacity: 1 }}
+          exit={{ transform: 'translate3d(0, 64px, 0)', opacity: 0 }}
+          transition={{ type: 'spring' }}
+        >
+          JUNHO YEO <br />
+          SAILING TOWARD <br />
+          THE{' '}
+          <Image
+            alt="unicorn"
+            src={unicornImage}
+            width={192}
+            height={192}
+            unoptimized
+          />{' '}
+          FUTURE
+        </Title>
+        <Description
+          initial={{ transform: 'translate3d(0, 64px, 0)', opacity: 0 }}
+          animate={{ transform: 'translate3d(0, 0px, 0)', opacity: 1 }}
+          exit={{ transform: 'translate3d(0, 64px, 0)', opacity: 0 }}
+          transition={{ type: 'spring', delay: 0.2 }}
+        >
+          <ol>
+            <li>① POSITION IN THE BEST ENVIRONMENT</li>
+            <li>② DEVELOP MY OWN THESIS</li>
+            <li>③ PROTOTYPE AND BUILD PRODUCTS</li>
+          </ol>
+        </Description>
+        <m.div
+          initial={{ transform: 'translate3d(0, 48px, 0)', opacity: 0 }}
+          animate={{ transform: 'translate3d(0, 0px, 0)', opacity: 1 }}
+          exit={{ transform: 'translate3d(0, 48px, 0)', opacity: 0 }}
+          transition={{ type: 'spring', delay: 0.4 }}
+        >
+          <SocialButtonList style={{ marginTop: 16 }} />
+        </m.div>
+      </LazyMotion>
 
       <Spacer height={8} />
 
@@ -71,7 +73,7 @@ const Container = styled.div`
   justify-content: center;
 `;
 
-const Title = styled(motion.h1)`
+const Title = styled(m.h1)`
   margin: 120px 0 12px;
   font-size: 3rem;
   text-align: center;
@@ -85,7 +87,7 @@ const Title = styled(motion.h1)`
     vertical-align: text-bottom;
   }
 `;
-const Description = styled(motion.ol)`
+const Description = styled(m.ol)`
   margin: 0;
   font-size: 18px;
 
