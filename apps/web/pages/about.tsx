@@ -24,7 +24,7 @@ export const getStaticProps = async () => {
   const { body, ...meta } = post;
 
   const [serializedResult, tweetById] = await Promise.all([
-    serialize(body),
+    serialize(body, { mdxOptions: { development: false } }),
     extractTweetsFromBody(body),
   ]);
 

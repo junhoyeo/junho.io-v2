@@ -20,10 +20,10 @@ export const INSTALLED_APPS: (GridItemProps & { id: string })[] = [
     id: 'zep-studio',
   },
   {
-    name: 'Alphaworks',
-    icon: '/assets/phone/icons/grid/alphaworks.png',
-    color: '#FFFB00',
-    id: 'alphaworks',
+    name: 'Manythings',
+    icon: '/assets/phone/icons/grid/manythings.jpg',
+    color: '#000',
+    id: 'manythings',
   },
   {
     name: 'Keplr',
