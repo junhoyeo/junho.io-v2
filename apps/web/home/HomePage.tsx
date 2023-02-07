@@ -10,17 +10,19 @@ import { SocialButtonList } from '@/components/SocialButtonList';
 
 import unicornImage from './assets/unicorn.png';
 
+const animation = (y: 48 | 64, delay: number) => ({
+  initial: { transform: `translate3d(0, ${y}px, 0)`, opacity: 0 },
+  animate: { transform: 'translate3d(0, 0px, 0)', opacity: 1 },
+  exit: { transform: `translate3d(0, ${y}px, 0)`, opacity: 0 },
+  transition: { type: 'spring', delay },
+});
+
 const HomePage: NextPage = () => {
   return (
     <Container>
       <Head />
       <LazyMotion features={domAnimation}>
-        <Title
-          initial={{ transform: 'translate3d(0, 64px, 0)', opacity: 0 }}
-          animate={{ transform: 'translate3d(0, 0px, 0)', opacity: 1 }}
-          exit={{ transform: 'translate3d(0, 64px, 0)', opacity: 0 }}
-          transition={{ type: 'spring' }}
-        >
+        <Title {...animation(64, 0)}>
           JUNHO YEO <br />
           SAILING TOWARD <br />
           THE{' '}
@@ -33,24 +35,14 @@ const HomePage: NextPage = () => {
           />{' '}
           FUTURE
         </Title>
-        <Description
-          initial={{ transform: 'translate3d(0, 64px, 0)', opacity: 0 }}
-          animate={{ transform: 'translate3d(0, 0px, 0)', opacity: 1 }}
-          exit={{ transform: 'translate3d(0, 64px, 0)', opacity: 0 }}
-          transition={{ type: 'spring', delay: 0.2 }}
-        >
+        <Description {...animation(64, 0.2)}>
           <ol>
             <li>① POSITION IN THE BEST ENVIRONMENT</li>
             <li>② DEVELOP MY OWN THESIS</li>
             <li>③ PROTOTYPE AND BUILD PRODUCTS</li>
           </ol>
         </Description>
-        <m.div
-          initial={{ transform: 'translate3d(0, 48px, 0)', opacity: 0 }}
-          animate={{ transform: 'translate3d(0, 0px, 0)', opacity: 1 }}
-          exit={{ transform: 'translate3d(0, 48px, 0)', opacity: 0 }}
-          transition={{ type: 'spring', delay: 0.4 }}
-        >
+        <m.div {...animation(48, 0.4)}>
           <SocialButtonList style={{ marginTop: 16 }} />
         </m.div>
       </LazyMotion>
