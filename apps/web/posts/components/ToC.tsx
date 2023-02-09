@@ -1,5 +1,11 @@
 import styled from '@emotion/styled';
-import { useEffect, useState, type Dispatch, type SetStateAction } from 'react';
+import {
+  useEffect,
+  useRef,
+  useState,
+  type Dispatch,
+  type SetStateAction,
+} from 'react';
 
 import { type Heading } from '../lib/rehype-extract-headings';
 
@@ -29,6 +35,7 @@ export const getIntersectionObserver = (
         (direction === 'down' && !entry.isIntersecting) ||
         (direction === 'up' && entry.isIntersecting)
       ) {
+        console.log('set', entry.target.id);
         setState(entry.target.id);
       }
     });
@@ -42,6 +49,7 @@ type ToCProps = {
 };
 export const ToC: React.FC<ToCProps> = ({ headings }) => {
   const [currentId, setCurrentId] = useState<string>(headings[0]?.id || '');
+  const scrollToIdRef = useRef<string | null>(null);
   useEffect(() => {
     const observer = getIntersectionObserver(setCurrentId);
     const headingElements = Array.from(document.querySelectorAll('h2, h3'));
@@ -49,6 +57,27 @@ export const ToC: React.FC<ToCProps> = ({ headings }) => {
       observer.observe(header);
     });
   }, []);
+
+  useEffect(() => {
+    let timer: NodeJS.Timer;
+    window.addEventListener(
+      'scroll',
+      () => {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          setTimeout(() => {
+            if (
+              !!scrollToIdRef.current &&
+              currentId !== scrollToIdRef.current
+            ) {
+              setCurrentId(scrollToIdRef.current);
+            }
+          });
+        }, 200);
+      },
+      { passive: true },
+    );
+  }, [currentId]);
 
   return (
     <Container id="toc">
@@ -63,6 +92,7 @@ export const ToC: React.FC<ToCProps> = ({ headings }) => {
 
             const target = document.getElementById(heading.id);
             if (target) {
+              scrollToIdRef.current = heading.id;
               window.scrollTo({
                 top: target.offsetTop - 82,
                 behavior: 'smooth',
@@ -78,7 +108,7 @@ export const ToC: React.FC<ToCProps> = ({ headings }) => {
 };
 
 const Container = styled.div`
-  padding: 64px 0;
+  padding: 100px 0 64px;
   display: flex;
   flex-direction: column;
   gap: 4px;
