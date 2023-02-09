@@ -155,6 +155,14 @@ const Description = styled.p`
   font-weight: 600;
   letter-spacing: -0.65px;
   text-align: center;
+
+  width: fit-content;
+  max-width: 540px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 `;
 
 const AbsoluteEmoji = styled(Image)`

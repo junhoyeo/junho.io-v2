@@ -2,7 +2,7 @@
 emoji: 💫
 title: 앱체인 생애주기
 slug: the-life-cycle-of-appchains
-date: Feb 6, 2023
+date: '2023-02-09T07:29:15.913Z'
 ---
 
 ## 1

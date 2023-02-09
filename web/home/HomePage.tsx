@@ -54,14 +54,18 @@ const HomePage: NextPage = () => {
             <FeaturedCard
               badges={['Just Released']}
               title="앱체인 생애주기"
-              description="레이어 1 체인들이 어떻게 성장할지에 대한 가설"
+              description="레이어 1 블록체인들이 어떤 모습으로 성장해야 하는지에 대해서"
               image={unicornGradient}
               dark
               language="ko"
             />
           </Link>
           <Link href="/about" style={{ flex: 1 }}>
-            <FeaturedCard title="About" description="My Works" language="en" />
+            <FeaturedCard
+              title="About"
+              description="Welcome to my site. I'm a 19-yo generalist hacker, shaping the 2nd/3rd web. Sometimes a designer and dreamer, I just like to build things. Now I'm preparing the infrastructure—insight, followers, and capital—for a bigger dream."
+              language="en"
+            />
           </Link>
         </FeaturedList>
       </LazyMotion>
