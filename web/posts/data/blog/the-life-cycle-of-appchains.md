@@ -82,6 +82,7 @@ Cosmos 중심으로만 보면:
 - 개발 인프라> Cosmos SDK, Ignite, Terra Feather 등
 - Security Sharing Models> ICS(Interchain Security), Mesh Security,Terra Alliance
 - Interchain Tech> IBC + ICQ + ICA (feat. Neutron)
+- ㅇㅇㅇ
 
 - 아직까지의 L1들은 general purpose 한데 점차 이렇게 분리되어 나가면 이들끼린 분명한 강점을 제공해줘야 할 것
 - 결국 이들은, 각각의 L1의 핵심 차별점을 활용하는 Core App을 만들거나, 이미 생태계에 존재하는 dominant한 앱을 인수하는 등, 체인과 결합도를 높이는 방법으로 앱체인에 점차 가까워질 거다.
