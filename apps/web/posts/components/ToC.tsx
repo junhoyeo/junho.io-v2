@@ -7,7 +7,7 @@ type ToCProps = {
 };
 export const ToC: React.FC<ToCProps> = ({ headings }) => {
   return (
-    <Container>
+    <Container id="toc">
       {headings.map((heading) => (
         <a
           key={heading.id}

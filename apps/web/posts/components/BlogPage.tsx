@@ -83,7 +83,7 @@ export const BlogPage: React.FC<BlogPageProps> = (props: BlogPageProps) => {
 };
 
 const Wrapper = styled.div`
-  padding-top: 120px;
+  padding: 120px 20px 0;
   width: 100%;
 
   display: flex;
@@ -91,6 +91,12 @@ const Wrapper = styled.div`
   gap: 32px;
 
   position: relative;
+
+  @media (max-width: 960px) {
+    #toc {
+      display: none;
+    }
+  }
 `;
 const Container = styled.div`
   margin-left: 272px;
@@ -99,6 +105,18 @@ const Container = styled.div`
 
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 1400px) {
+    margin-left: 0;
+  }
+
+  @media (max-width: 1200px) {
+    max-width: 620px;
+  }
+
+  @media (max-width: 960px) {
+    max-width: 800px;
+  }
 `;
 
 const Title = styled(Text)`
