@@ -145,6 +145,9 @@ const components: React.ComponentProps<typeof MDXProvider>['components'] = {
     display: flex;
     flex-direction: column;
   `,
+  li: styled.li`
+    font-size: 1.1rem;
+  `,
   Link,
   Trophy,
   Position,
