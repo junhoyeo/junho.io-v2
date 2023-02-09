@@ -57,10 +57,11 @@ const HomePage: NextPage = () => {
               description="레이어 1 체인들이 어떻게 성장할지에 대한 가설"
               image={unicornGradient}
               dark
+              language="ko"
             />
           </Link>
           <Link href="/about" style={{ flex: 1 }}>
-            <FeaturedCard title="About" description="My Works" />
+            <FeaturedCard title="About" description="My Works" language="en" />
           </Link>
         </FeaturedList>
       </LazyMotion>

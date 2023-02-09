@@ -2,12 +2,16 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import Image, { type StaticImageData } from 'next/image';
 
+import flagKoEmoji from '../assets/flag-ko.png';
+import flagUsEmoji from '../assets/flag-us.png';
+
 export type FeaturedCardProps = {
   badges?: string[];
   title: string;
   description?: string;
   image?: StaticImageData;
   dark?: boolean;
+  language?: 'en' | 'ko';
 };
 export const FeaturedCard: React.FC<FeaturedCardProps> = ({
   badges,
@@ -15,6 +19,7 @@ export const FeaturedCard: React.FC<FeaturedCardProps> = ({
   description,
   image,
   dark = false,
+  language,
 }) => {
   return (
     <Container dark={dark}>
@@ -32,6 +37,13 @@ export const FeaturedCard: React.FC<FeaturedCardProps> = ({
             <Badge key={badge}>{badge}</Badge>
           ))}
         </BadgeList>
+      ) : null}
+
+      {language === 'ko' ? (
+        <AbsoluteEmoji alt="ko" src={flagKoEmoji} width={120} height={120} />
+      ) : null}
+      {language === 'en' ? (
+        <AbsoluteEmoji alt="en" src={flagUsEmoji} width={120} height={120} />
       ) : null}
     </Container>
   );
@@ -116,4 +128,24 @@ const Description = styled.p`
   font-weight: 600;
   letter-spacing: -0.65px;
   text-align: center;
+`;
+
+const AbsoluteEmoji = styled(Image)`
+  width: 32px;
+  height: 32px;
+
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.25));
+
+  user-select: none;
+  -webkit-user-drag: none;
 `;
