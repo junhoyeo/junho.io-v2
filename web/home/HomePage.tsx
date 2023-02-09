@@ -122,7 +122,7 @@ const Description = styled(m.ol)`
 `;
 
 const FeaturedList = styled(m.div)`
-  margin: 64px 0 0;
+  margin: 64px 0 32px;
   padding: 0;
 
   width: 100%;
@@ -134,5 +134,6 @@ const FeaturedList = styled(m.div)`
 
   @media (max-width: 1120px) {
     flex-direction: column;
+    gap: 24px;
   }
 `;
