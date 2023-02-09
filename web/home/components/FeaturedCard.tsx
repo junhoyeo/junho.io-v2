@@ -82,6 +82,9 @@ const BackgroundImage = styled(Image)`
   width: 100%;
   height: 100%;
   z-index: -1;
+
+  user-select: none;
+  -webkit-user-drag: none;
 `;
 const BadgeList = styled.div`
   width: 100%;

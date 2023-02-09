@@ -29,7 +29,7 @@ const HomePage: NextPage = () => {
           JUNHO YEO <br />
           SAILING TOWARD <br />
           THE{' '}
-          <Image
+          <UnicornEmoji
             alt="unicorn"
             src={unicornImage}
             width={192}
@@ -93,14 +93,16 @@ const Title = styled(m.h1)`
   font-size: 3rem;
   text-align: center;
   line-height: 120%;
+`;
+const UnicornEmoji = styled(Image)`
+  margin-bottom: 4px;
+  height: 3.2rem;
+  width: 3.2rem;
+  display: inline-block;
+  vertical-align: text-bottom;
 
-  img {
-    margin-bottom: 4px;
-    height: 3.2rem;
-    width: 3.2rem;
-    display: inline-block;
-    vertical-align: text-bottom;
-  }
+  user-select: none;
+  -webkit-user-drag: none;
 `;
 const Description = styled(m.ol)`
   margin: 0;
