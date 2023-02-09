@@ -1,11 +1,13 @@
 import styled from '@emotion/styled';
 import { useTheme } from '@geist-ui/core';
+import { formatDistance } from 'date-fns';
 import { useSetAtom } from 'jotai';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import blogPosts from '@/posts/generated/blog';
 import { isPostDrawerOpenAtom } from '@/state/posts';
+import { capitalize } from '@/utils/casing';
 
 export const PostList: React.FC = () => {
   const { palette } = useTheme();
@@ -19,6 +21,13 @@ export const PostList: React.FC = () => {
           return null;
         }
         const active = router.asPath === `/w/${post.slug}`;
+        const formattedRelativeTime = !post.date
+          ? null
+          : capitalize(
+              formatDistance(new Date(post.date), new Date(), {
+                addSuffix: true,
+              }),
+            );
 
         return (
           <Link
@@ -53,7 +62,14 @@ export const PostList: React.FC = () => {
                   </PostTitle>
                 </span>
               </HStack>
-              <span>{post.date}</span>
+              <span>
+                <span style={{ color: '#696970', fontWeight: 'bold' }}>
+                  {post.date}
+                </span>
+                <span style={{ marginLeft: 12, color: '#7a7a91' }}>
+                  {formattedRelativeTime}
+                </span>
+              </span>
             </ItemContainer>
           </Link>
         );

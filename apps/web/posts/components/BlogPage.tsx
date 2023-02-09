@@ -12,6 +12,7 @@ import { Footer } from '@/components/Footer';
 import { MDXRenderer } from '@/components/mdx-renderer';
 import { extractTweetsFromBody } from '@/components/twitter/utils';
 import { Analytics } from '@/utils/analytics';
+import { capitalize } from '@/utils/casing';
 
 import {
   rehypeExtractHeadings,
@@ -24,9 +25,6 @@ import { ToC } from './ToC';
 export type BlogPageProps = PostDocument & {
   headings: Heading[];
 };
-
-const capitalize = (value: string) =>
-  value.charAt(0).toUpperCase() + value.slice(1);
 
 export const BlogPage: React.FC<BlogPageProps> = (props: BlogPageProps) => {
   const { palette } = useTheme();
