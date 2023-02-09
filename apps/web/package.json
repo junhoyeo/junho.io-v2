@@ -24,6 +24,7 @@
     "framer-motion": "^9.0.1",
     "get-xpath": "^3.0.1",
     "gray-matter": "^4.0.3",
+    "hast-util-heading-rank": "^2.1.1",
     "interweave": "^13.0.0",
     "interweave-autolink": "^5.1.0",
     "interweave-ssr": "^2.0.0",
@@ -40,6 +41,7 @@
     "slate-react": "^0.90.0",
     "swr": "^2.0.3",
     "ui": "*",
+    "unist-util-visit": "^4.1.2",
     "uuid": "^9.0.0",
     "webpack": "^5.75.0"
   },

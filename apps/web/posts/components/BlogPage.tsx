@@ -4,7 +4,7 @@ import { type GetStaticPaths, type GetStaticProps } from 'next';
 import { serialize } from 'next-mdx-remote/serialize';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 
 import { Head, defaultMeta } from '@/about/components/head';
 import { Layout } from '@/components/Layout';
@@ -12,9 +12,16 @@ import { MDXRenderer } from '@/components/mdx-renderer';
 import { extractTweetsFromBody } from '@/components/twitter/utils';
 import { Analytics } from '@/utils/analytics';
 
+import {
+  rehypeExtractHeadings,
+  type Heading,
+} from '../lib/rehype-extract-headings';
 import type { Post, PostCategoryType, PostDocument } from '../lib/types';
+import { ToC } from './ToC';
 
-export type BlogPageProps = PostDocument;
+export type BlogPageProps = PostDocument & {
+  headings: Heading[];
+};
 
 const capitalize = (value: string) =>
   value.charAt(0).toUpperCase() + value.slice(1);
@@ -43,32 +50,46 @@ export const BlogPage: React.FC<BlogPageProps> = (props: BlogPageProps) => {
           description: props.meta.slug,
         }}
       />
-      <Breadcrumbs>
-        <Link href="/" style={{ color: palette.accents_5 }}>
-          <Breadcrumbs.Item>Paracøsm</Breadcrumbs.Item>
-        </Link>
-        <Link href={`/${props.type}`} style={{ color: palette.accents_5 }}>
-          <Breadcrumbs.Item>{capitalize(props.type)}</Breadcrumbs.Item>
-        </Link>
-        <Breadcrumbs.Item
-          href="#"
-          style={{
-            display: 'inline-block',
-            overflow: 'hidden',
-            whiteSpace: 'nowrap',
-            textOverflow: 'ellipsis',
-          }}
-        >
-          {props.meta.title}
-        </Breadcrumbs.Item>
-      </Breadcrumbs>
-      <Title h1>{props.meta.title}</Title>
-      <Main>
-        <MDXRenderer {...props} />
-      </Main>
+      <Wrapper>
+        <Container>
+          <Breadcrumbs>
+            <Link href="/" style={{ color: palette.accents_5 }}>
+              <Breadcrumbs.Item>Paracøsm</Breadcrumbs.Item>
+            </Link>
+            <Link href={`/${props.type}`} style={{ color: palette.accents_5 }}>
+              <Breadcrumbs.Item>{capitalize(props.type)}</Breadcrumbs.Item>
+            </Link>
+            <Breadcrumbs.Item
+              href="#"
+              style={{
+                display: 'inline-block',
+                overflow: 'hidden',
+                whiteSpace: 'nowrap',
+                textOverflow: 'ellipsis',
+              }}
+            >
+              {props.meta.title}
+            </Breadcrumbs.Item>
+          </Breadcrumbs>
+          <Title h1>{props.meta.title}</Title>
+          <Main>
+            <MDXRenderer {...props} />
+          </Main>
+        </Container>
+        <ToC headings={props.headings} />
+      </Wrapper>
     </Layout>
   );
 };
+
+const Wrapper = styled.div`
+  width: 100%;
+  display: flex;
+`;
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 const Title = styled(Text)`
   margin-top: 42px;
@@ -146,8 +167,14 @@ export const buildGetStaticProps: (type: PostCategoryType) => GetStaticProps =
 
     const { body, ...meta } = post;
 
+    const headings: Heading[] = [];
     const [serializedResult, tweetById] = await Promise.all([
-      serialize(body, { mdxOptions: { development: false } }),
+      serialize(body, {
+        mdxOptions: {
+          development: false,
+          rehypePlugins: [[rehypeExtractHeadings, { rank: 2, headings }]],
+        },
+      }),
       extractTweetsFromBody(body),
     ]);
 
@@ -155,6 +182,7 @@ export const buildGetStaticProps: (type: PostCategoryType) => GetStaticProps =
       props: {
         meta,
         type,
+        headings,
         tweets: tweetById,
         ...serializedResult,
       },
