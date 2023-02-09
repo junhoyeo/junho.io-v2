@@ -39,8 +39,7 @@ export const FeaturedCard: React.FC<FeaturedCardProps> = ({
 
 const Container = styled.div<{ dark: boolean }>`
   flex: 1;
-  height: 200px;
-  padding: 0 20px;
+  padding: 42px 32px 32px;
 
   border-radius: 16px;
   background: linear-gradient(to bottom, #33333a, #000);
@@ -110,7 +109,7 @@ const Title = styled.h2`
 `;
 const Description = styled.p`
   margin: 0;
-  line-height: 1;
+  line-height: 1.45;
   font-weight: 600;
   letter-spacing: -0.65px;
   text-align: center;
