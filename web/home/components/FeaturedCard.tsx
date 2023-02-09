@@ -24,7 +24,13 @@ export const FeaturedCard: React.FC<FeaturedCardProps> = ({
   return (
     <Container dark={dark}>
       {image ? (
-        <BackgroundImage alt="" src={image} width={500} height={300} />
+        <BackgroundImage
+          className="bg"
+          alt=""
+          src={image}
+          width={500}
+          height={300}
+        />
       ) : null}
       <Title className="title">{title}</Title>
       {description ? (
@@ -51,7 +57,7 @@ export const FeaturedCard: React.FC<FeaturedCardProps> = ({
 
 const Container = styled.div<{ dark: boolean }>`
   flex: 1;
-  padding: 42px 32px 32px;
+  padding: 52px 32px 42px;
 
   border-radius: 16px;
   background: linear-gradient(to bottom, #33333a, #000);
@@ -60,7 +66,7 @@ const Container = styled.div<{ dark: boolean }>`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: 12px;
 
   position: relative;
   z-index: 0;
@@ -86,6 +92,26 @@ const Container = styled.div<{ dark: boolean }>`
             color: rgba(0, 0, 0, 0.65);
           }
         `}
+
+  &, *:not(img), img.bg {
+    transition: all 0.2s ease-in-out;
+  }
+
+  &:hover {
+    transform: translate3d(0, -16px, 0);
+
+    *:not(img, span) {
+      transform: translate3d(0, -6px, 0) scale(1.05);
+    }
+
+    img.bg {
+      filter: saturate(120%);
+    }
+
+    span {
+      transform: scale(1.05);
+    }
+  }
 `;
 const BackgroundImage = styled(Image)`
   position: absolute;
@@ -99,6 +125,7 @@ const BackgroundImage = styled(Image)`
   -webkit-user-drag: none;
 `;
 const BadgeList = styled.div`
+  margin-top: 4px;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
