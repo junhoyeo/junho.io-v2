@@ -10,4 +10,4 @@
 > **Note**<br/>
 > Built with 💜 and [junhoyeo/iphone](https://github.com/junhoyeo/iphone).
 
-[![OG Image](https://junho.io/assets/og-image-v2.jpg)](https://junho.io)
+[![OG Image](https://raw.githubusercontent.com/junhoyeo/paracosm/main/web/public/assets/og-image.jpg)](https://junho.io)
