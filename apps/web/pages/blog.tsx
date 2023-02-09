@@ -4,9 +4,9 @@ import { type NextPage } from 'next';
 import Link from 'next/link';
 import { useEffect } from 'react';
 
+import { Head, defaultMeta } from '@/about/components/head';
 import { Layout } from '@/components/Layout';
 import { PostList } from '@/components/PostList';
-import { Head, defaultMeta } from '@/about/components/head';
 import { Analytics } from '@/utils/analytics';
 
 const BlogListPage: NextPage = () => {

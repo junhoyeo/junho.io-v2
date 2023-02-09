@@ -1,3 +1,4 @@
 .next
 .yarn
 .yarnrc.yml
+*.d.ts

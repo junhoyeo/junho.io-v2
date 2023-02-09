@@ -8,6 +8,7 @@ import Highlight, { defaultProps, type Language } from 'prism-react-renderer';
 import React, { useMemo } from 'react';
 
 import { copyToClipboard } from '@/utils/clipboard';
+
 import { theme } from './theme';
 import { useCodeWordWrap } from './useCodeWordWrap';
 

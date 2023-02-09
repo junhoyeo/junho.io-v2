@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { type NextPage } from 'next';
 
 import '@junhoyeo/iphone/dist/style.css';
 
@@ -8,6 +7,7 @@ import {
   DEVICE_WIDTH,
   type DynamicIslandSize,
 } from '@junhoyeo/iphone';
+import { type NextPage } from 'next';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { Footer } from '@/components/Footer';
