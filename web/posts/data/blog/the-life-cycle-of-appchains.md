@@ -3,7 +3,6 @@ emoji: 💫
 title: 앱체인 생애주기
 slug: the-life-cycle-of-appchains
 date: Feb 6, 2023
-published: true
 ---
 
 ## 나
