@@ -60,7 +60,7 @@ const HomePage: NextPage = () => {
             />
           </Link>
           <Link href="/about" style={{ flex: 1 }}>
-            <FeaturedCard title="About" description="Portfolio" />
+            <FeaturedCard title="About" description="My Works" />
           </Link>
         </FeaturedList>
       </LazyMotion>
