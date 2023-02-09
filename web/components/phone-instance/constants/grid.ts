@@ -31,6 +31,12 @@ export const INSTALLED_APPS: (GridItemProps & { id: string })[] = [
     color: '#00C3F8',
     id: 'keplr',
   },
+  {
+    name: 'DeFi',
+    icon: '/assets/phone/icons/grid/testflight.png',
+    color: '#32a4ed',
+    id: 'defi-protocols',
+  },
   // {
   //   name: 'Pylon Protocol',
   //   icon: '/assets/phone/icons/grid/pylon-protocol.png',
