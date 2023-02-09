@@ -7,7 +7,6 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
 import { Head, defaultMeta } from '@/about/components/head';
-import { Layout } from '@/components/Layout';
 import { MDXRenderer } from '@/components/mdx-renderer';
 import { extractTweetsFromBody } from '@/components/twitter/utils';
 import { Analytics } from '@/utils/analytics';
@@ -84,18 +83,22 @@ export const BlogPage: React.FC<BlogPageProps> = (props: BlogPageProps) => {
 };
 
 const Wrapper = styled.div`
+  padding-top: 120px;
   width: 100%;
+
   display: flex;
   justify-content: center;
-  position: relative;
   gap: 32px;
+
+  position: relative;
 `;
 const Container = styled.div`
-  display: flex;
-  flex-direction: column;
+  margin-left: 272px;
   max-width: 800px;
   width: 100%;
-  margin-left: 240px;
+
+  display: flex;
+  flex-direction: column;
 `;
 
 const Title = styled(Text)`

@@ -81,7 +81,7 @@ const HomeHeading: React.FC<HomeHeadingProps> = ({ id, style, ...props }) => {
       id={generatedId}
       style={{
         ...style,
-        ...(isBlog ? { marginTop: 42 } : { paddingTop: 100 }),
+        ...(isBlog ? { paddingTop: 48 } : { paddingTop: 100 }),
         fontSize: 28,
       }}
     />
@@ -124,16 +124,16 @@ const TrackedAnchor: React.FC<
 const components: React.ComponentProps<typeof MDXProvider>['components'] = {
   h2: HomeHeading,
   h3: styled.h3`
-    margin-top: 42px;
+    padding-top: 48px;
   `,
   h4: styled.h3`
-    margin-top: 42px;
+    padding-top: 48px;
   `,
   h5: styled.h3`
-    margin-top: 42px;
+    padding-top: 48px;
   `,
   h6: styled.h3`
-    margin-top: 42px;
+    padding-top: 48px;
   `,
   p: styled.p`
     font-size: 1.1rem;
