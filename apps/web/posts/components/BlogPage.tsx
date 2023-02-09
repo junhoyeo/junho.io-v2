@@ -1,10 +1,11 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Breadcrumbs, Text, useTheme } from '@geist-ui/core';
 import { type GetStaticPaths, type GetStaticProps } from 'next';
 import { serialize } from 'next-mdx-remote/serialize';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 
 import { Head, defaultMeta } from '@/about/components/head';
 import { MDXRenderer } from '@/components/mdx-renderer';
@@ -39,6 +40,11 @@ export const BlogPage: React.FC<BlogPageProps> = (props: BlogPageProps) => {
     });
   }, [props, slug]);
 
+  const hasToc = useMemo(
+    () => props.headings.length > 0,
+    [props.headings.length],
+  );
+
   return (
     <>
       <Head
@@ -51,7 +57,7 @@ export const BlogPage: React.FC<BlogPageProps> = (props: BlogPageProps) => {
         }}
       />
       <Wrapper>
-        <Container>
+        <Container hasToc={hasToc}>
           <Breadcrumbs>
             <Link href="/" style={{ color: palette.accents_5 }}>
               <Breadcrumbs.Item>Paracøsm</Breadcrumbs.Item>
@@ -76,7 +82,7 @@ export const BlogPage: React.FC<BlogPageProps> = (props: BlogPageProps) => {
             <MDXRenderer {...props} />
           </Main>
         </Container>
-        <ToC headings={props.headings} />
+        {hasToc ? <ToC headings={props.headings} /> : null}
       </Wrapper>
     </>
   );
@@ -98,25 +104,30 @@ const Wrapper = styled.div`
     }
   }
 `;
-const Container = styled.div`
-  margin-left: 272px;
+const Container = styled.div<{ hasToc: boolean }>`
   max-width: 800px;
   width: 100%;
 
   display: flex;
   flex-direction: column;
 
-  @media (max-width: 1400px) {
-    margin-left: 0;
-  }
+  ${({ hasToc }) =>
+    hasToc &&
+    css`
+      margin-left: 272px;
 
-  @media (max-width: 1200px) {
-    max-width: 620px;
-  }
+      @media (max-width: 1400px) {
+        margin-left: 0;
+      }
 
-  @media (max-width: 960px) {
-    max-width: 800px;
-  }
+      @media (max-width: 1200px) {
+        max-width: 620px;
+      }
+
+      @media (max-width: 960px) {
+        max-width: 800px;
+      }
+    `}
 `;
 
 const Title = styled(Text)`
