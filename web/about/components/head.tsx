@@ -9,7 +9,7 @@ export type Meta = {
 export const defaultMeta: Meta = {
   title: "Hello, I'm Junho Yeo.",
   description: '19-yo Generalist Hacker, shaping the 2nd/3rd web.',
-  image: 'https://junho.io/assets/og-image.jpg',
+  image: 'https://junho.io/assets/og-image-v2.jpg',
   url: 'https://junho.io',
 };
 type HeadProps = { meta?: Meta };
