@@ -1,6 +1,7 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Breadcrumbs, Text, useTheme } from '@geist-ui/core';
+import { formatDistance } from 'date-fns';
 import { type GetStaticPaths, type GetStaticProps } from 'next';
 import { serialize } from 'next-mdx-remote/serialize';
 import Link from 'next/link';
@@ -44,6 +45,18 @@ export const BlogPage: React.FC<BlogPageProps> = (props: BlogPageProps) => {
     [props.headings.length],
   );
 
+  const formattedRelativeTime = useMemo(
+    () =>
+      !props.meta.date
+        ? null
+        : capitalize(
+            formatDistance(new Date(props.meta.date), new Date(), {
+              addSuffix: true,
+            }),
+          ),
+    [props.meta.date],
+  );
+
   return (
     <>
       <Head
@@ -77,6 +90,15 @@ export const BlogPage: React.FC<BlogPageProps> = (props: BlogPageProps) => {
             </Breadcrumbs.Item>
           </Breadcrumbs>
           <Title h1>{props.meta.title}</Title>
+
+          <span>
+            <span style={{ color: '#696970', fontWeight: 'bold' }}>
+              {props.meta.date}
+            </span>
+            <span style={{ marginLeft: 12, color: '#7a7a91' }}>
+              {formattedRelativeTime}
+            </span>
+          </span>
           <Main>
             <MDXRenderer {...props} />
           </Main>
