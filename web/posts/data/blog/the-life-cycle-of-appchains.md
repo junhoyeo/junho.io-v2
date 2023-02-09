@@ -80,15 +80,16 @@ Cosmos 중심으로만 보면:
 - 개발 인프라> Cosmos SDK, Ignite, Terra Feather 등
 - Security Sharing Models> ICS(Interchain Security), Mesh Security,Terra Alliance
 - Interchain Tech> IBC + ICQ + ICA (feat. Neutron)
-- ㅇㅇㅇ
-
 - 아직까지의 L1들은 general purpose 한데 점차 이렇게 분리되어 나가면 이들끼린 분명한 강점을 제공해줘야 할 것
 - 결국 이들은, 각각의 L1의 핵심 차별점을 활용하는 Core App을 만들거나, 이미 생태계에 존재하는 dominant한 앱을 인수하는 등, 체인과 결합도를 높이는 방법으로 앱체인에 점차 가까워질 거다.
 
 ## 💡 기술의 발전에 따라 L1들의 성능은 비슷비슷해질 것이다.
 
 차별점이 줄어든다고 해야하나.
-메인넷의 성능으로 경쟁 - TPS, Finality로 승부할 수 있는- 시대는 금방 지나갈 것.
+
+- 메인넷의 성능으로 경쟁 - TPS, Finality로 승부할 수 있는- 시대는 금방 지나갈 것.
+- 오픈소스기 때문에 포크하면 되는거고, 이미 오픈소스는 모두 모듈화 되어있고 논문들도 나와있다. Instant finality를 원하거나, PoW를 원한다면 해당 컨센서스를 이식하면 되고~
+- 그리고 이제 다들 사용자 경험에 점점 신경쓰고 있고, 앞으로는 더더욱 그럴거니까, 인프라에서 보장해주는게 많을거다.
 
 이젠 진짜 명분이 있어야 한다.
 
