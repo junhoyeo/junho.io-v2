@@ -1,13 +1,54 @@
 import styled from '@emotion/styled';
-import { useTheme } from '@geist-ui/core';
+import { useEffect, useState, type Dispatch, type SetStateAction } from 'react';
 
 import { type Heading } from '../lib/rehype-extract-headings';
+
+const observerOption = {
+  threshold: 0.5,
+  rootMargin: '-80px 0px 0px 0px',
+};
+
+export const getIntersectionObserver = (
+  setState: Dispatch<SetStateAction<string>>,
+) => {
+  let direction = '';
+  let previousPositionY = 0;
+
+  const checkScrollDirection = (prevY: number) => {
+    if (window.scrollY === 0 && prevY === 0) return;
+    else if (window.scrollY > prevY) direction = 'down';
+    else direction = 'up';
+    previousPositionY = window.scrollY;
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      checkScrollDirection(previousPositionY);
+
+      if (
+        (direction === 'down' && !entry.isIntersecting) ||
+        (direction === 'up' && entry.isIntersecting)
+      ) {
+        setState(entry.target.id);
+      }
+    });
+  }, observerOption);
+
+  return observer;
+};
 
 type ToCProps = {
   headings: Heading[];
 };
 export const ToC: React.FC<ToCProps> = ({ headings }) => {
-  const { palette } = useTheme();
+  const [currentId, setCurrentId] = useState<string>(headings[0]?.id || '');
+  useEffect(() => {
+    const observer = getIntersectionObserver(setCurrentId);
+    const headingElements = Array.from(document.querySelectorAll('h2, h3'));
+    headingElements.forEach((header) => {
+      observer.observe(header);
+    });
+  }, []);
 
   return (
     <Container id="toc">
@@ -15,13 +56,11 @@ export const ToC: React.FC<ToCProps> = ({ headings }) => {
         <a
           key={heading.id}
           href={`#${heading.id}`}
-          style={{
-            marginLeft: 16 * (heading.rank - 2),
-            fontWeight: 500,
-          }}
+          className={currentId === heading.id ? 'current' : undefined}
+          style={{ marginLeft: 16 * (heading.rank - 2) }}
           onClick={(e) => {
             e.preventDefault();
-            // smoothly scroll into `#${heading.id}` but with top offset of 82px. do not use scrollIntoView.
+
             const target = document.getElementById(heading.id);
             if (target) {
               window.scrollTo({
@@ -56,10 +95,18 @@ const Container = styled.div`
 
   a {
     color: rgb(102, 102, 102);
-    transition: color 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+    transform-origin: center left;
+    font-weight: 500;
 
     &:hover {
       color: rgb(187, 187, 187);
+    }
+
+    &.current {
+      color: white;
+      font-weight: bold;
+      transform: scale(105%);
     }
   }
 `;

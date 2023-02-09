@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useMemo } from 'react';
 
 import { Head, defaultMeta } from '@/about/components/head';
+import { Footer } from '@/components/Footer';
 import { MDXRenderer } from '@/components/mdx-renderer';
 import { extractTweetsFromBody } from '@/components/twitter/utils';
 import { Analytics } from '@/utils/analytics';
@@ -84,12 +85,13 @@ export const BlogPage: React.FC<BlogPageProps> = (props: BlogPageProps) => {
         </Container>
         {hasToc ? <ToC headings={props.headings} /> : null}
       </Wrapper>
+      <Footer />
     </>
   );
 };
 
 const Wrapper = styled.div`
-  padding: 120px 20px 0;
+  padding: 120px 20px 96px;
   width: 100%;
 
   display: flex;
