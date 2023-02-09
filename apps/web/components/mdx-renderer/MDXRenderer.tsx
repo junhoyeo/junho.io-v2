@@ -147,6 +147,10 @@ const components: React.ComponentProps<typeof MDXProvider>['components'] = {
   `,
   li: styled.li`
     font-size: 1.1rem;
+
+    p {
+      margin: 0;
+    }
   `,
   Link,
   Trophy,
