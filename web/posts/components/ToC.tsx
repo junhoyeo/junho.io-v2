@@ -35,7 +35,6 @@ export const getIntersectionObserver = (
         (direction === 'down' && !entry.isIntersecting) ||
         (direction === 'up' && entry.isIntersecting)
       ) {
-        console.log('set', entry.target.id);
         setState(entry.target.id);
       }
     });
