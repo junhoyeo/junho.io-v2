@@ -5,10 +5,9 @@ slug: the-life-cycle-of-appchains
 date: Feb 6, 2023
 ---
 
-## 나
+## 1
 
-작년 말부터 쓰려고 했던 글인데, 이것저것 정리할 일도 생기고 새로운 프로젝트도 시작하고 하다 보니 계속 미뤄진 모양이다.
-누가 2023년 목표를 물어보기에 정의했던 게 몇 가지 있다.
+이번 주제는 사실 작년부터 준비하고 있던 글감이다. 공책에 같은 내용을 적고 또 적으면서 구체화해 나갔건만, 몰입할 시간이 없어서 글로 정돈하지는 못하고 있었다. 이것저것 집중하고 싶은 프로젝트와 사람도 생기고, 그만큼 정리할 일들도 많아지다 보니 계속 미뤄졌던 것 같다.
 
 1. 세상의 필연적인(Inevitable) 변화들을 파악하고 재빨리 따라갈 것.
 2. 이를 위해서 기회가 많이 보이는 곳, 가장 빨리 움직이는 곳에 나 스스로가 있고, 더욱 중심으로 가기 위해 항상 노력할 것.
@@ -72,7 +71,7 @@ but Recreation of Centralized system
 
 - AppChain Thesis: rather scaling existing L1s to support multiple protocols/economic activity, launch multiple L1s customized for each protocols and connect them. - ex> payment subscriptions, 컨센서스(블럭 finality, …) - usage> dYdX, Circle, Mars - 조사 필요: Saga, Sei
 
-## 새로운 체인을 만들기는 점차 쉬워질 것이다.
+## 💡 새로운 체인을 만들기는 점차 쉬워질 것이다.
 
 - 새로운 체인을 만드는 것은 점점 쉬워지고 있음.
 
@@ -86,53 +85,61 @@ Cosmos 중심으로만 보면:
 - 아직까지의 L1들은 general purpose 한데 점차 이렇게 분리되어 나가면 이들끼린 분명한 강점을 제공해줘야 할 것
 - 결국 이들은, 각각의 L1의 핵심 차별점을 활용하는 Core App을 만들거나, 이미 생태계에 존재하는 dominant한 앱을 인수하는 등, 체인과 결합도를 높이는 방법으로 앱체인에 점차 가까워질 거다.
 
-## 기술의 발전에 따라 L1들의 성능은 비슷비슷해질 것이다.
+## 💡 기술의 발전에 따라 L1들의 성능은 비슷비슷해질 것이다.
 
 차별점이 줄어든다고 해야하나.
 메인넷의 성능으로 경쟁 - TPS, Finality로 승부할 수 있는- 시대는 금방 지나갈 것.
 
 이젠 진짜 명분이 있어야 한다.
 
-## 체인 간 경계는 허물어지고 있다. 곧 사용자들은 느끼지도 못할 것이다.
+## 💡 체인 간 경계는 허물어지고 있다. 곧 사용자들은 느끼지도 못할 것이다.
 
-이것 역시 마찬가지다.
+그리고, 블록체인 간 경계는 점점 허물어지고 있다.
 
-뇌피셜이 좀 섞여있다.
+지금이야 사람들은 서로 다른 네트워크의 디앱을 사용하기 위해, MetaMask에서 네트워크 변경 버튼을 누르고, 자산을 옮기기 위해 CEX를 경유하거나, 브릿지를 사용하지만, 머지않아 새로 온보딩되는 유저들은 그럴 필요를 느끼지도 못할 것이다. 인프라가 계속 발전하고 있기 때문이다.
 
-모아야 하는 것은 네 가지인데
+블록체인 사이에서 이동되는 정보를 자산과 메세지로 나눌 수 있는 것 같다.
 
-1. 자산(asset)
-   1. fungibility
-   2. 유동성(liquidity)
-2. 메세지(action)
-   1. Intent
-   2. 정보(information)
+### 자산(asset)
 
-덱스 어그리게이터들은 유동성을 모으고 있다.
-원인치, 스왑스캐너 등등
+- 대체가능성(Fungibility)
+- 유동성(Liquidity)
 
+### 메세지(action)
+
+- 사용자의 의도(Intent)
+- 정보(information)
+
+덱스 어그리게이터들은 유동성을 모으고 있다. 원인치, 스왑스캐너 등등
 디파이라마처럼 meta dex aggregator 들도 있다.
-CEX도 모으는 표철민 대표의 체인저라던가 등등.
-
 유동성은 이렇게 모이고, 자산과 메시지 이동도 모인다.
-
 Cross Chain 에서 브릿지들도 많고 General Message Passing 프로토콜들 많다.
-
-정보는 걍 내가 넣었는데 인터체인 쿼리나 oracle 등등
+정보는 인터체인 쿼리나 oracle 등등.
 
 ## Terra는 앱체인이였다.
 
-방금 이야기한 것의 예시는 Terra Anchor를 보면 알 수 있다.
+방금 이야기한 것의 예시는 테라(Terra) 블록체인의 앵커 프로토콜(Anchor Protocol)을 보면 알 수 있다.
 
-1. Terra에서 Anchor를 만들고 크립토 뉴비들은 많이 유입되었다.
-   1. 코어앱이 직관적이였기 때문 ⇒ USD(stablecoins)를 맡기면 약 19% 복리 이자가 나옴.
-   2. 이들은 그저 돈을 deposit 했다가 원할 때 바로 withdraw 하면 되었다.
-2. 이때 대부분의 유저들은 처음에 Terra의 다른 디앱들을 사용할 일이 없었다.
-   1. Reasons
-      1. Because UST was listed in major exchanges
-      2. And UST\{가 Native Token인 덕에, Fee를 내기 위해 LUNA를 추가로 매수하는 과정을 겪지 않아도 되어서\}
-   2. \{Binance에서 UST를 매수하고 Terra로 가져온 다음(또는 Osmosis에서 swap 후에 IBC로 자산을 이동시키거나), Anchor에 넣었다. 이후 exit할 때, 다른 체인이나 CEX로 다시 보냈다.\}
-3. 즉 이들에게 Terra와 Anchor는 한 덩어리, 같은 것이였다. 즉 Terra는 Anchor의 AppChain이였다. 즉 이제 중요한 건 Core App이지 Mainnet이 아니다.
+앵커는 테라에서, 아니 web3 전체에서 가장 핫햇던 DApp들 중 하나였을 것이다.
+테라의 UST가 메이커다오(MakerDAO)의 다이(DAI)를 넘볼 수 있을 정도로 성장할 수 있었던 것도 앵커 덕분이다.
+
+> [킬러 애플리케이션](https://ko.wikipedia.org/wiki/%ED%82%AC%EB%9F%AC_%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98)이란 주로 컴퓨터 프로그래밍 소프트웨어 제품 중에 그 인기나 유용성이 아주 높아서 **그 제품을 사용하기 위해서 필요한 하드웨어나 운영체제 등의 플랫폼까지도 구매하게 만들 정도로** 인기와 수요가 높은 응용 프로그램 제품을 말한다. 줄여서 킬러앱으로 부르기도 한다. (위키백과)
+
+디젠들은 앵커를 **킬러앱**으로 회자한다. 그 이유는 무엇일까?
+
+- 앵커는 **달러(UST 스테이블코인)을 맡기면 약 19.5%의 복리 이자를 주는**, 직관적인 서비스를 제공했다(물론 이들이 내건 고정 이자는 지속가능하지 않았고, 이것은 곧 테라 디페깅 사태로 이어졌지만, 이번 글에서는 다루지 않겠다).
+- 여기에는 어떠한 락업도 없었다. 사람들은 원할 때 돈을 넣고, 돈이 다시 필요할 때 불어나 있는 돈을 빼면 되었다.
+- **그 결과 수많은 사람들이 테라 블록체인으로 유입되었다.** 크립토 세상에 앵커로 처음 발을 들인 사람들도 많았다. 사람들은 테라 블록체인 전용 지갑(Terra Station)을 설치했고, 지갑을 생성한 뒤, UST를 구매(한 뒤 입금)했고, UST(또는 LUNA)로 수수료를 지급했다.
+- [xAnchor](https://docs.anchorprotocol.com/anchor-2/xanchor/xanchor)와 [EthAnchor](https://docs.anchorprotocol.com/anchor-2/developers-ethereum/ethanchor)를 통해서 이더리움, 아발란체 등의 다른 블록체인들에서도 (다른 지갑 앱을 설치하거나 네트워크를 변경한 뒤, 테라 블록체인 위로 자산을 옮기지 않아도) 바로 앵커를 사용할 수 있었다. 타 블록체인에 존재하는 가치를 테라로 옮겨올 수 있던 것이다.
+
+이렇게 앵커를 통해 많은 유저들이 유입되었음에도 불구하고, 이들은 처음에 Terra의 다른 디앱들을 사용할 일이 없었다.
+
+- 왜냐하면 UST는 메이저 거래소들에 상장되어있었기 때문. 테라정도?
+- 그리고 UST는 네이티브 토큰이기 때문에, 그냥 이걸 사면됨 Fee를 내기 위해 LUNA를 추가로 매수하는 과정을 겪지 않아도 되어서\}
+
+이들이 테라와 상호작용하는 플로우는 다음고 ㅏ같았다: {Binance에서 UST를 매수하고 Terra로 가져온 다음(또는 Osmosis에서 swap 후에 IBC로 자산을 이동시키거나), Anchor에 넣었다. 이후 exit할 때, 다른 체인이나 CEX로 다시 보냈다.
+
+1. 즉 이들에게 Terra와 Anchor는 한 덩어리, 같은 것이였다. 즉 Terra는 Anchor의 AppChain이였다. 즉 이제 중요한 건 Core App이지 Mainnet이 아니다.
 
 - L1들의 목표는 수수료(protocol로 인해 발생하는 fee 기회 온전히 흡수. 이걸 탐하면서 자체 앱체인), 그들만의 체인 네이티브한 주권.
 - Anchor 중심의 생태계가 생성됨. Pylon, Glow, Suberra 등의 프로토콜들은 Terra에서 빌딩되며 Anchor의 머니레고를 consume함.
@@ -141,7 +148,7 @@ Cross Chain 에서 브릿지들도 많고 General Message Passing 프로토콜�
   - 그러면 굳이 다른 Hub를 경유하지 않고, 바로 Anchor와 연결될 것.
   - 즉 Anchor AppChain은 자연스럽게 Hub가 된다.
 
-## 앱체인들은 실험장이 되어야 한다.
+## 💡 앱체인이라면, 실험장이 되어야 한다.
 
 즉 AppChain을 Hub로 만드는 것은 프로토콜을 얼마나 잘 키우느냐다.
 
