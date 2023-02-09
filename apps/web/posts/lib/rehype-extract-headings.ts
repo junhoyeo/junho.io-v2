@@ -1,7 +1,11 @@
 /* eslint-disable eslint-comments/disable-enable-pair */
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
+import Slugger from 'github-slugger';
 import { headingRank } from 'hast-util-heading-rank';
 import { visit } from 'unist-util-visit';
+
+import { transformSlug } from './rehype-transform-slug';
 
 type Node =
   | {
@@ -29,6 +33,8 @@ export type Heading = {
   rank: number;
 };
 
+const slugger = new Slugger();
+
 export const rehypeExtractHeadings = ({
   headings,
 }: {
@@ -36,13 +42,15 @@ export const rehypeExtractHeadings = ({
   headings: Heading[];
 }) => {
   return (tree: any) => {
+    slugger.reset();
+
     visit(tree, 'element', (node: Node) => {
       const rank = headingRank(node);
       if (node.type === 'element' && !!rank) {
         const title =
           node.children[0]?.type === 'text' ? node.children[0].value : '';
         headings.push({
-          id: title.replaceAll(' ', '-').toLowerCase(),
+          id: transformSlug(slugger, node),
           title,
           rank,
         });

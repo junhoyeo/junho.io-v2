@@ -4,7 +4,7 @@ import { type GetStaticPaths, type GetStaticProps } from 'next';
 import { serialize } from 'next-mdx-remote/serialize';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 
 import { Head, defaultMeta } from '@/about/components/head';
 import { Layout } from '@/components/Layout';
@@ -16,6 +16,7 @@ import {
   rehypeExtractHeadings,
   type Heading,
 } from '../lib/rehype-extract-headings';
+import { rehypeTransformSlug } from '../lib/rehype-transform-slug';
 import type { Post, PostCategoryType, PostDocument } from '../lib/types';
 import { ToC } from './ToC';
 
@@ -40,7 +41,7 @@ export const BlogPage: React.FC<BlogPageProps> = (props: BlogPageProps) => {
   }, [props, slug]);
 
   return (
-    <Layout>
+    <>
       <Head
         meta={{
           ...defaultMeta,
@@ -78,17 +79,23 @@ export const BlogPage: React.FC<BlogPageProps> = (props: BlogPageProps) => {
         </Container>
         <ToC headings={props.headings} />
       </Wrapper>
-    </Layout>
+    </>
   );
 };
 
 const Wrapper = styled.div`
   width: 100%;
   display: flex;
+  justify-content: center;
+  position: relative;
+  gap: 32px;
 `;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  max-width: 800px;
+  width: 100%;
+  margin-left: 240px;
 `;
 
 const Title = styled(Text)`
@@ -172,7 +179,10 @@ export const buildGetStaticProps: (type: PostCategoryType) => GetStaticProps =
       serialize(body, {
         mdxOptions: {
           development: false,
-          rehypePlugins: [[rehypeExtractHeadings, { rank: 2, headings }]],
+          rehypePlugins: [
+            rehypeTransformSlug,
+            [rehypeExtractHeadings, { rank: 2, headings }],
+          ],
         },
       }),
       extractTweetsFromBody(body),
