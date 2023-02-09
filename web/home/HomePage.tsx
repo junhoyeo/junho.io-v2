@@ -1,14 +1,16 @@
 import styled from '@emotion/styled';
-import { Spacer } from '@geist-ui/core';
 import { LazyMotion, domAnimation, m } from 'framer-motion';
 import type { NextPage } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { Head } from '@/about/components/head';
 import { Footer } from '@/components/Footer';
 import { SocialButtonList } from '@/components/SocialButtonList';
 
+import unicornGradient from './assets/unicorn-gradient.jpg';
 import unicornImage from './assets/unicorn.png';
+import { FeaturedCard } from './components/FeaturedCard';
 
 const animation = (y: 48 | 64, delay: number) => ({
   initial: { transform: `translate3d(0, ${y}px, 0)`, opacity: 0 },
@@ -21,6 +23,7 @@ const HomePage: NextPage = () => {
   return (
     <Container>
       <Head />
+      <Spacer />
       <LazyMotion features={domAnimation}>
         <Title {...animation(64, 0)}>
           JUNHO YEO <br />
@@ -45,9 +48,22 @@ const HomePage: NextPage = () => {
         <m.div {...animation(48, 0.4)}>
           <SocialButtonList style={{ marginTop: 16 }} />
         </m.div>
-      </LazyMotion>
 
-      <Spacer height={8} />
+        <FeaturedList {...animation(48, 0.6)}>
+          <Link href="/w/the-life-cycle-of-appchains" style={{ flex: 1 }}>
+            <FeaturedCard
+              badges={['Just Released']}
+              title="앱체인 생애주기"
+              description="레이어 1 체인들이 어떻게 성장할지에 대한 가설"
+              image={unicornGradient}
+              dark
+            />
+          </Link>
+          <Link href="/about" style={{ flex: 1 }}>
+            <FeaturedCard title="About" description="Portfolio" />
+          </Link>
+        </FeaturedList>
+      </LazyMotion>
 
       <Footer />
     </Container>
@@ -57,16 +73,23 @@ const HomePage: NextPage = () => {
 export default HomePage;
 
 const Container = styled.div`
+  padding: 0 20px;
   width: 100%;
   height: 100%;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 `;
 
+const Spacer = styled.div`
+  width: 100%;
+  height: 120px;
+`;
+
 const Title = styled(m.h1)`
-  margin: 120px 0 12px;
+  margin: 0 0 12px;
   font-size: 3rem;
   text-align: center;
   line-height: 120%;
@@ -88,5 +111,21 @@ const Description = styled(m.ol)`
     margin: 0;
     padding: 0;
     list-style-type: none;
+  }
+`;
+
+const FeaturedList = styled(m.div)`
+  margin: 64px 0 0;
+  padding: 0;
+
+  width: 100%;
+  max-width: 1080px;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+
+  @media (max-width: 1120px) {
+    flex-direction: column;
   }
 `;
