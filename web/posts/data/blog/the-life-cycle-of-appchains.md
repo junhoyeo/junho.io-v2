@@ -152,8 +152,10 @@ Cosmos 중심으로만 보면:
 - 정보(information)
 
 덱스 어그리게이터들은 유동성을 모으고 있다. 원인치, 스왑스캐너 등등
-디파이라마처럼 meta dex aggregator 들도 있다.
+
+디파이라마처럼 meta dex aggregator 들도 있다. 또 체인파트너스의 체인저는 CEX 유동성까지 같이 모음.
 유동성은 이렇게 모이고, 자산과 메시지 이동도 모인다.
+
 Cross Chain 에서 브릿지들도 많고 General Message Passing 프로토콜들 많다.
 정보는 인터체인 쿼리나 oracle 등등.
 
