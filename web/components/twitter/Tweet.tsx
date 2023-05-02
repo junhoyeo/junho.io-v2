@@ -59,6 +59,8 @@ export const Tweet: React.FC<TweetProps> = ({
     entities,
   } = currentTweet;
 
+  console.log(JSON.stringify(currentTweet));
+
   const authorUrl = `https://twitter.com/${author.username}`;
   const likeUrl = `https://twitter.com/intent/like?tweet_id=${tweetId}`;
   const retweetUrl = `https://twitter.com/intent/retweet?tweet_id=${tweetId}`;
