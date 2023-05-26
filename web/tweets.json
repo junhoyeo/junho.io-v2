@@ -1,0 +1,323 @@
+{
+  "1595270867402956801": {
+    "text": "This is my favorite one, usable. Uses code from @512x512, power of open source!\n\nNice submissions by @gd3kr @_junhoyeo @badphilosopher @danielkwok21 and many who I missed cause search is hard!\n\nThread is gold mine for hiring @elonmusk or anyone else. https://twitter.com/realGeorgeHotz/status/1595270867402956801",
+    "public_metrics": {
+      "retweet_count": 190,
+      "reply_count": 90,
+      "like_count": 2444,
+      "quote_count": 48
+    },
+    "created_at": "2022-11-25T04:51:00.000Z",
+    "author": {
+      "name": "George Hotz 🐀",
+      "username": "realGeorgeHotz",
+      "verified": true,
+      "id": "NOT_PROVIDED",
+      "url": "NOT_PROVIDED",
+      "profile_image_url": "https://pbs.twimg.com/profile_images/772342671721455616/FE79-7Ev_400x400.jpg",
+      "protected": false
+    },
+    "id": "1595270867402956801",
+    "referenced_tweets": [
+      {
+        "type": "quoted",
+        "author": {
+          "name": "TJ Evarts",
+          "username": "TJEvarts",
+          "verified": false,
+          "id": "NOT_PROVIDED",
+          "url": "NOT_PROVIDED",
+          "profile_image_url": "https://pbs.twimg.com/profile_images/1230340596067422210/NA_nj7d8_400x400.jpg",
+          "protected": false
+        },
+        "text": "There! I'm Finished! I am happy with how this came out.\n\nSupports arbitrary tokens (from: , to: , etc.), easy keyboard interface, and client side sorting for custom tokens 👀\n\nHope you enjoy @realGeorgeHotz 💪\n\nMy take on the future of Twitter Search: https://github.com/T-Ev/TwitterSearchTokenTest",
+        "id": "NOT_PROVIDED",
+        "public_metrics": {
+          "retweet_count": 0,
+          "reply_count": 0,
+          "like_count": 0,
+          "quote_count": 0
+        },
+        "created_at": "2022-11-24T00:00:00.000Z"
+      }
+    ],
+    "entities": {
+      "mentions": [
+        { "start": 53, "end": 61, "username": "512x512" },
+        { "start": 105, "end": 111, "username": "gd3kr" },
+        { "start": 113, "end": 123, "username": "_junhoyeo" },
+        { "start": 125, "end": 140, "username": "badphilosopher" },
+        { "start": 143, "end": 155, "username": "danielkwok21" },
+        { "start": 224, "end": 234, "username": "elonmusk" }
+      ],
+      "urls": [
+        {
+          "start": 312,
+          "end": 336,
+          "url": "https://twitter.com/realGeorgeHotz/status/1595270867402956801",
+          "expanded_url": "https://twitter.com/realGeorgeHotz/status/1595270867402956801",
+          "display_url": "twitter.com/realGeorgeHotz…"
+        }
+      ]
+    }
+  },
+  "1505761392032632840": {
+    "entities": {
+      "hashtags": [
+        { "start": 19, "end": 25, "tag": "Keplr" },
+        { "start": 50, "end": 57, "tag": "cosmos" }
+      ],
+      "urls": [
+        {
+          "start": 58,
+          "end": 81,
+          "url": "https://t.co/eypTG54FL2",
+          "expanded_url": "https://twitter.com/scryptoguy/status/1505761392032632840/photo/1",
+          "display_url": "pic.twitter.com/eypTG54FL2",
+          "media_key": "3_1505761177942781952"
+        }
+      ],
+      "annotations": [
+        {
+          "start": 20,
+          "end": 24,
+          "probability": 0.7199,
+          "type": "Other",
+          "normalized_text": "Keplr"
+        }
+      ]
+    },
+    "public_metrics": {
+      "retweet_count": 0,
+      "reply_count": 0,
+      "like_count": 0,
+      "quote_count": 0,
+      "impression_count": 0
+    },
+    "attachments": { "media_keys": ["3_1505761177942781952"] },
+    "text": "Just realized, new #Keplr dashboard is so useful! #cosmos https://t.co/eypTG54FL2",
+    "created_at": "2022-03-21T04:21:06.000Z",
+    "author_id": "1472295228254023681",
+    "edit_history_tweet_ids": ["1505761392032632840"],
+    "id": "1505761392032632840",
+    "media": [
+      {
+        "media_key": "3_1505761177942781952",
+        "height": 1917,
+        "width": 3563,
+        "type": "photo",
+        "url": "https://pbs.twimg.com/media/FOWJ0D_acAAtcv9.jpg"
+      }
+    ],
+    "referenced_tweets": [],
+    "author": {
+      "name": "scryptoguy",
+      "username": "scryptoguy",
+      "profile_image_url": "https://pbs.twimg.com/profile_images/1497090133656768512/aFX-6S4P_normal.jpg",
+      "id": "1472295228254023681",
+      "protected": false,
+      "verified": false
+    }
+  },
+  "1504210985879764994": {
+    "entities": {
+      "hashtags": [{ "start": 4, "end": 10, "tag": "keplr" }],
+      "mentions": [
+        {
+          "start": 55,
+          "end": 67,
+          "username": "keplrwallet",
+          "id": "1168634833859276800"
+        },
+        {
+          "start": 68,
+          "end": 78,
+          "username": "cosmoshub",
+          "id": "1019126440233615361"
+        }
+      ],
+      "annotations": [
+        {
+          "start": 5,
+          "end": 9,
+          "probability": 0.727,
+          "type": "Other",
+          "normalized_text": "keplr"
+        }
+      ]
+    },
+    "public_metrics": {
+      "retweet_count": 0,
+      "reply_count": 0,
+      "like_count": 0,
+      "quote_count": 0,
+      "impression_count": 0
+    },
+    "text": "New #keplr web dashboard is great! Excellent work guys @keplrwallet @cosmoshub",
+    "created_at": "2022-03-16T21:40:20.000Z",
+    "author_id": "1471421359263666182",
+    "edit_history_tweet_ids": ["1504210985879764994"],
+    "id": "1504210985879764994",
+    "media": [],
+    "referenced_tweets": [],
+    "author": {
+      "name": "⭐Benjamin.Stars⭐",
+      "username": "_BenjaminStars_",
+      "profile_image_url": "https://pbs.twimg.com/profile_images/1639240306762878978/dyXVuqvf_normal.jpg",
+      "id": "1471421359263666182",
+      "protected": false,
+      "verified": false
+    }
+  },
+  "1504130887075651585": {
+    "entities": {
+      "hashtags": [{ "start": 132, "end": 139, "tag": "Cosmos" }],
+      "mentions": [
+        {
+          "start": 119,
+          "end": 131,
+          "username": "keplrwallet",
+          "id": "1168634833859276800"
+        }
+      ],
+      "annotations": [
+        {
+          "start": 22,
+          "end": 26,
+          "probability": 0.7735,
+          "type": "Other",
+          "normalized_text": "Keplr"
+        },
+        {
+          "start": 133,
+          "end": 138,
+          "probability": 0.6624,
+          "type": "Other",
+          "normalized_text": "Cosmos"
+        }
+      ]
+    },
+    "public_metrics": {
+      "retweet_count": 0,
+      "reply_count": 0,
+      "like_count": 0,
+      "quote_count": 0,
+      "impression_count": 0
+    },
+    "text": "The new update to the Keplr dashboard is looking sweet 👌 - also a lot easier to navigate and see things from a glance. @keplrwallet #Cosmos",
+    "created_at": "2022-03-16T16:22:03.000Z",
+    "author_id": "1363784959698350080",
+    "edit_history_tweet_ids": ["1504130887075651585"],
+    "id": "1504130887075651585",
+    "media": [],
+    "referenced_tweets": [],
+    "author": {
+      "name": "David Crumpton",
+      "username": "DavidCrumpton",
+      "profile_image_url": "https://pbs.twimg.com/profile_images/1529340512133599232/11-BZm9L_normal.jpg",
+      "id": "1363784959698350080",
+      "protected": false,
+      "verified": false
+    }
+  },
+  "1422116268694331392": {
+    "entities": {
+      "hashtags": [
+        { "start": 6, "end": 13, "tag": "토스NEXT" },
+        { "start": 50, "end": 53, "tag": "토스" }
+      ],
+      "urls": [
+        {
+          "start": 107,
+          "end": 130,
+          "url": "https://t.co/0Q7phV5JCG",
+          "expanded_url": "https://bit.ly/3xb9UT4",
+          "display_url": "bit.ly/3xb9UT4"
+        },
+        {
+          "start": 131,
+          "end": 154,
+          "url": "https://t.co/5bnMo9mvDD",
+          "expanded_url": "https://twitter.com/toss__official/status/1422116268694331392/photo/1",
+          "display_url": "pic.twitter.com/5bnMo9mvDD",
+          "media_key": "3_1422116185689133057"
+        }
+      ]
+    },
+    "public_metrics": {
+      "retweet_count": 2,
+      "reply_count": 0,
+      "like_count": 2,
+      "quote_count": 0,
+      "impression_count": 0
+    },
+    "attachments": { "media_keys": ["3_1422116185689133057"] },
+    "text": "[2021 #토스NEXT 개발자 챌린지]\n3년 차 이하 개발자라면 지금 바로 도전하세요!\n#토스 개발 문화를 가장 가까이서 경험해볼 기회\n▶️ 참가 신청\n8월 2일(월) - 8월 11일(수)\nhttps://t.co/0Q7phV5JCG https://t.co/5bnMo9mvDD",
+    "created_at": "2021-08-02T08:45:14.000Z",
+    "author_id": "2232681415",
+    "edit_history_tweet_ids": ["1422116268694331392"],
+    "id": "1422116268694331392",
+    "media": [
+      {
+        "media_key": "3_1422116185689133057",
+        "height": 1080,
+        "width": 1080,
+        "type": "photo",
+        "url": "https://pbs.twimg.com/media/E7xfIt1VkAEBZ0I.jpg"
+      }
+    ],
+    "referenced_tweets": [],
+    "author": {
+      "name": "토스",
+      "url": "https://t.co/JxtcbTaihj",
+      "username": "toss__official",
+      "profile_image_url": "https://pbs.twimg.com/profile_images/1566569005619355649/VzgTcumJ_normal.png",
+      "id": "2232681415",
+      "protected": false,
+      "verified": false
+    }
+  },
+  "1428232294385405957": {
+    "entities": {
+      "hashtags": [
+        { "start": 136, "end": 139, "tag": "토스" },
+        { "start": 140, "end": 148, "tag": "디자인컨퍼런스" },
+        { "start": 149, "end": 160, "tag": "simplicity" }
+      ],
+      "urls": [
+        {
+          "start": 161,
+          "end": 184,
+          "url": "https://t.co/A33pgjRLoe",
+          "expanded_url": "https://blog.toss.im/article/toss-design-conference-simplicity21",
+          "display_url": "blog.toss.im/article/toss-d…",
+          "status": 200,
+          "unwound_url": "https://blog.toss.im/article/toss-design-conference-simplicity21"
+        }
+      ]
+    },
+    "public_metrics": {
+      "retweet_count": 48,
+      "reply_count": 0,
+      "like_count": 61,
+      "quote_count": 7,
+      "impression_count": 0
+    },
+    "text": "오는 8월 말, 토스 디자인 컨퍼런스 &lt;Simplicity 21&gt;이 온라인으로 진행됩니다. 토스가 디자인에서 가장 중요시하는 가치를 컨퍼런스명에 담아, 총 19개의 세션을 준비했어요. 그런데 왜 토스는 디자인 컨퍼런스를 여는걸까요?\n#토스 #디자인컨퍼런스 #simplicity\nhttps://t.co/A33pgjRLoe",
+    "created_at": "2021-08-19T05:48:08.000Z",
+    "author_id": "2232681415",
+    "edit_history_tweet_ids": ["1428232294385405957"],
+    "id": "1428232294385405957",
+    "media": [],
+    "referenced_tweets": [],
+    "author": {
+      "name": "토스",
+      "url": "https://t.co/JxtcbTaihj",
+      "username": "toss__official",
+      "profile_image_url": "https://pbs.twimg.com/profile_images/1566569005619355649/VzgTcumJ_normal.png",
+      "id": "2232681415",
+      "protected": false,
+      "verified": false
+    }
+  }
+}

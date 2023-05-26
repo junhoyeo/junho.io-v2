@@ -1,5 +1,10 @@
+import knownTweets from '@/tweets.json';
+
 import { getTweets } from './twitter';
 import type { TweetData } from './types';
+
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any
+const KNOWN_TWEETS: Record<string, TweetData> = knownTweets as any;
 
 export const cleanTwitterId = (tweetId: string) => {
   // eslint-disable-next-line prefer-named-capture-group
@@ -22,8 +27,13 @@ export const extractTweetsFromBody = async (body: string) => {
     return id;
   });
 
-  const tweets =
-    tweetIds.length > 0 ? await getTweets(tweetIds) : ([] as TweetData[]);
+  const unknownTweets = tweetIds.filter((id) => !KNOWN_TWEETS[id]);
+  const tweets = [
+    ...Object.values(KNOWN_TWEETS),
+    ...(unknownTweets.length > 0
+      ? await getTweets(unknownTweets)
+      : ([] as TweetData[])),
+  ];
 
   const tweetById = tweets.reduce<Record<string, TweetData>>((acc, tweet) => {
     acc[tweet.id] = tweet;

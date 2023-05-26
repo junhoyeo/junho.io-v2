@@ -8,6 +8,12 @@ export const INSTALLED_APPS: (GridItemProps & { id: string })[] = [
     id: 'ibcx',
   },
   {
+    name: 'Twitter',
+    icon: '/assets/phone/icons/grid/twitter.webp',
+    color: '#1c9bef',
+    id: 'twitter',
+  },
+  {
     name: 'Bento',
     icon: '/assets/phone/icons/grid/bento.jpg',
     color: '#ff79b4',
