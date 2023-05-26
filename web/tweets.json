@@ -1,9 +1,9 @@
 {
   "1595270867402956801": {
-    "text": "This is my favorite one, usable. Uses code from @512x512, power of open source! Nice submissions by @gd3kr @_junhoyeo @badphilosopher @danielkwok21 and many who I missed cause search is hard! Thread is gold mine for hiring @elonmusk or anyone else. https://twitter.com/realGeorgeHotz/status/1595270867402956801",
+    "text": "This is my favorite one, usable. Uses code from @512x512, power of open source!\n\nNice submissions by @gd3kr @_junhoyeo @badphilosopher @danielkwok21 and many who I missed cause search is hard!\n\nThread is gold mine for hiring @elonmusk or anyone else. https://twitter.com/realGeorgeHotz/status/1595270867402956801",
     "public_metrics": {
       "retweet_count": 190,
-      "reply_count": 0,
+      "reply_count": 90,
       "like_count": 2444,
       "quote_count": 48
     },
@@ -30,7 +30,7 @@
           "profile_image_url": "https://pbs.twimg.com/profile_images/1230340596067422210/NA_nj7d8_400x400.jpg",
           "protected": false
         },
-        "text": "There! I'm Finished! I am happy with how this came out. Supports arbitrary tokens (from: , to: , etc.), easy keyboard interface, and client side sorting for custom tokens 👀 Hope you enjoy @realGeorgeHotz 💪 My take on the future of Twitter Search: https://github.com/T-Ev/TwitterSearchTokenTest",
+        "text": "There! I'm Finished! I am happy with how this came out.\n\nSupports arbitrary tokens (from: , to: , etc.), easy keyboard interface, and client side sorting for custom tokens 👀\n\nHope you enjoy @realGeorgeHotz 💪\n\nMy take on the future of Twitter Search: https://github.com/T-Ev/TwitterSearchTokenTest",
         "id": "NOT_PROVIDED",
         "public_metrics": {
           "retweet_count": 0,
