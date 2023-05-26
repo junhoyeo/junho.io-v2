@@ -40,7 +40,5 @@ export const extractTweetsFromBody = async (body: string) => {
     return acc;
   }, {});
 
-  console.log(JSON.stringify(tweetById));
-
   return tweetById;
 };
