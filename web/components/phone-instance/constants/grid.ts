@@ -14,6 +14,12 @@ export const INSTALLED_APPS: (GridItemProps & { id: string })[] = [
     id: 'bento',
   },
   {
+    name: 'Twitter',
+    icon: '/assets/phone/icons/grid/twitter.webp',
+    color: '#1c9bef',
+    id: 'twitter',
+  },
+  {
     name: 'ZEP Studio',
     icon: '/assets/phone/icons/grid/zep-studio.png',
     color: '#4d3ee9',
