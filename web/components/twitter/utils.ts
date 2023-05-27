@@ -1,5 +1,4 @@
 import knownTweets from '@/tweets.json';
-
 import { getTweets } from './twitter';
 import type { TweetData } from './types';
 
@@ -27,11 +26,25 @@ export const extractTweetsFromBody = async (body: string) => {
     return id;
   });
 
-  const unknownTweets = tweetIds.filter((id) => !KNOWN_TWEETS[id]);
+  const [unknownTweetIds, neededKnownTweets] = tweetIds.reduce<
+    [string[], TweetData[]]
+  >(
+    (acc, id) => {
+      const data = KNOWN_TWEETS[id];
+      if (!data) {
+        acc[0].push(id);
+      } else {
+        acc[1].push(data);
+      }
+      return acc;
+    },
+    [[], []],
+  );
+
   const tweets = [
-    ...Object.values(KNOWN_TWEETS),
-    ...(unknownTweets.length > 0
-      ? await getTweets(unknownTweets)
+    ...Object.values(neededKnownTweets),
+    ...(unknownTweetIds.length > 0
+      ? await getTweets(unknownTweetIds)
       : ([] as TweetData[])),
   ];
 
