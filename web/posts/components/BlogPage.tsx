@@ -249,8 +249,6 @@ export const buildGetStaticProps: (type: PostCategoryType) => GetStaticProps =
       meta.description ? `${meta.description} | ` : ''
     }${descriptionFromBody}`;
 
-    console.log({ description });
-
     const headings: Heading[] = [];
     const [serializedResult, tweetById] = await Promise.all([
       serialize(body, {

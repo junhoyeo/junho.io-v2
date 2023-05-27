@@ -8,9 +8,8 @@ import { MentionMatcher, UrlMatcher } from 'interweave-autolink';
 import { polyfill } from 'interweave-ssr';
 import Image from 'next/image';
 import { useContext, useMemo } from 'react';
-
-import { HashtagMatcher } from './HashtagMatcher';
 import { TweetsContext } from './context';
+import { HashtagMatcher } from './HashtagMatcher';
 import { type TweetData } from './types';
 import { cleanTwitterId } from './utils';
 

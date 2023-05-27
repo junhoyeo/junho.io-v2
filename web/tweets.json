@@ -1,4 +1,41 @@
 {
+  "1506494471873081352": {
+    "public_metrics": {
+      "retweet_count": 632,
+      "reply_count": 808,
+      "like_count": 5420,
+      "quote_count": 954,
+      "impression_count": 0
+    },
+    "author_id": "357317524",
+    "created_at": "2022-03-23T04:54:06.000Z",
+    "id": "1506494471873081352",
+    "entities": {
+      "annotations": [
+        {
+          "start": 12,
+          "end": 14,
+          "probability": 0.5126,
+          "type": "Organization",
+          "normalized_text": "DAI"
+        }
+      ],
+      "cashtags": [{ "start": 11, "end": 15, "tag": "DAI" }]
+    },
+    "text": "By my hand $DAI will die.",
+    "edit_history_tweet_ids": ["1506494471873081352"],
+    "media": [],
+    "referenced_tweets": [],
+    "author": {
+      "protected": false,
+      "profile_image_url": "https://pbs.twimg.com/profile_images/1601204775957118976/rx_aJtAo_normal.jpg",
+      "id": "357317524",
+      "verified": true,
+      "name": "Do Kwon 🌕",
+      "username": "stablekwon",
+      "url": "https://t.co/bUCIsgjg9G"
+    }
+  },
   "1595270867402956801": {
     "text": "This is my favorite one, usable. Uses code from @512x512, power of open source!\n\nNice submissions by @gd3kr @_junhoyeo @badphilosopher @danielkwok21 and many who I missed cause search is hard!\n\nThread is gold mine for hiring @elonmusk or anyone else. https://twitter.com/realGeorgeHotz/status/1595270867402956801",
     "public_metrics": {

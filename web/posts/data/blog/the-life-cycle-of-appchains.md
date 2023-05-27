@@ -84,10 +84,12 @@ Cosmos 중심으로만 보면:
 
 ## 🌖 테라(Terra)는 앱체인이였다.
 
-방금 이야기한 것의 예시는 테라(Terra) 블록체인의 앵커 프로토콜(Anchor Protocol)을 보면 알 수 있다.
+방금 이야기한 것의 예시는 테라(Terra) 블록체인의 **앵커 프로토콜(Anchor Protocol)** 을 보면 알 수 있다.
 
 앵커는 테라에서, 아니 web3 전체에서 가장 핫햇던 DApp들 중 하나였을 것이다.
 테라의 UST가 메이커다오(MakerDAO)의 다이(DAI)를 넘볼 수 있을 정도로 성장할 수 있었던 것도 앵커 덕분이다.
+
+<Tweet tweetId="1506494471873081352" hasProfile />
 
 ### 킬러앱 앵커(Anchor)
 
@@ -170,4 +172,4 @@ IBC 커넥션의 중심: 허브는 Inter-Blockchain Communication (IBC) 연결�
 6. 이때 “부모” L1의 코어앱이 충분히 강력하다면, “자식” 앱체인은 생태계의 기존 Hub나 인프라를 경유하는 대신 부모앱에 바로 연결되는 것도 고려할 것이다.
 7. 이렇게 “부모” 앱체인은 “자식” 앱체인들로 인해 Hub가 되어간다.
 
-이걸 AppChain 생애주기 가설 (**Thesis: The Life Cycle of AppChains)**이라고 부르겠다.
+이걸 AppChain 생애주기 가설 (**Thesis: The Life Cycle of AppChains**) 이라고 부르겠다.
