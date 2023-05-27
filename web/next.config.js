@@ -22,5 +22,15 @@ module.exports = withBundleAnalyzer(
       );
       return config;
     },
+    // redirect /qr to https://www.youtube.com/watch?v=dQw4w9WgXcQ
+    async redirects() {
+      return [
+        {
+          source: '/qr',
+          destination: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+          permanent: false,
+        },
+      ];
+    },
   }),
 );
