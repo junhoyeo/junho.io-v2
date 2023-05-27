@@ -69,7 +69,9 @@ export const BlogPage: React.FC<BlogPageProps> = (props: BlogPageProps) => {
           title: `${props.meta.emoji ? `${props.meta.emoji} ` : ''}${
             props.meta.title
           }`,
-          description: props.meta.slug,
+          description: `${
+            props.meta.description ? `${props.meta.description} | ` : ''
+          }${''}`, // TODO: add matter here.
         }}
       />
       <Wrapper>
