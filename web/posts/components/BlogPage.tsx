@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { Breadcrumbs, Text, useTheme } from '@geist-ui/core';
+import { Breadcrumbs, Divider, Text, useTheme } from '@geist-ui/core';
 import { format, formatDistance } from 'date-fns';
 import { type GetStaticPaths, type GetStaticProps } from 'next';
 import { serialize } from 'next-mdx-remote/serialize';
@@ -12,6 +12,7 @@ import rehypeMeta from 'rehype-meta';
 // @ts-ignore
 import removeMarkdown from 'remove-markdown';
 import { defaultMeta } from '@/about/components/head';
+import { Comments } from '@/components/Comments';
 import { Footer } from '@/components/Footer';
 import { MDXRenderer } from '@/components/mdx-renderer';
 import { extractTweetsFromBody } from '@/components/twitter/utils';
@@ -101,10 +102,13 @@ export const BlogPage: React.FC<BlogPageProps> = (props: BlogPageProps) => {
           </Timestamp>
           <Main>
             <MDXRenderer {...props} />
+            <Divider style={{ marginTop: 32, marginBottom: 32 }} />
+            <Comments />
           </Main>
         </Container>
         {hasToc ? <ToC headings={props.headings} /> : null}
       </Wrapper>
+
       <Footer />
     </>
   );
