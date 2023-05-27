@@ -1,15 +1,14 @@
 import styled from '@emotion/styled';
 import { useTheme } from '@geist-ui/core';
 import { type MDXProvider } from '@mdx-js/react';
+import Head from 'next/head';
 import NextImage, { type ImageProps as NextImageProps } from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useCallback, useEffect, useMemo } from 'react';
 import { useInView } from 'react-intersection-observer';
-
 import { type PostDocument } from '@/posts/lib/types';
 import { Analytics } from '@/utils/analytics';
-
 import { Tweet } from '../twitter';
 import { TweetsContext } from '../twitter/context';
 import { Code } from './Code';
@@ -182,6 +181,7 @@ const components: React.ComponentProps<typeof MDXProvider>['components'] = {
   `,
   pre: (props: { children?: React.ReactNode }) => <div>{props.children}</div>,
   Tweet,
+  head: ({ children }) => <Head>{children}</Head>,
 };
 
 export const MDXRenderer: React.FC<PostDocument> = ({ tweets, ...props }) => {

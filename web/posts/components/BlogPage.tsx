@@ -7,14 +7,16 @@ import { serialize } from 'next-mdx-remote/serialize';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useMemo } from 'react';
-
-import { Head, defaultMeta } from '@/about/components/head';
+import rehypeMeta from 'rehype-meta';
+// eslint-disable-next-line @typescript-eslint/prefer-ts-expect-error, @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import removeMarkdown from 'remove-markdown';
+import { defaultMeta } from '@/about/components/head';
 import { Footer } from '@/components/Footer';
 import { MDXRenderer } from '@/components/mdx-renderer';
 import { extractTweetsFromBody } from '@/components/twitter/utils';
 import { Analytics } from '@/utils/analytics';
 import { capitalize } from '@/utils/casing';
-
 import {
   rehypeExtractHeadings,
   type Heading,
@@ -63,17 +65,6 @@ export const BlogPage: React.FC<BlogPageProps> = (props: BlogPageProps) => {
 
   return (
     <>
-      <Head
-        meta={{
-          ...defaultMeta,
-          title: `${props.meta.emoji ? `${props.meta.emoji} ` : ''}${
-            props.meta.title
-          }`,
-          description: `${
-            props.meta.description ? `${props.meta.description} | ` : ''
-          }${''}`, // TODO: add matter here.
-        }}
-      />
       <Wrapper>
         <Container hasToc={hasToc}>
           <Breadcrumbs>
@@ -245,14 +236,44 @@ export const buildGetStaticProps: (type: PostCategoryType) => GetStaticProps =
 
     const { body, ...meta } = post;
 
+    const descriptionFromBodySize = 210 - (meta.description?.length || 0);
+    const descriptionFromBody =
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+      `${(removeMarkdown(body) as string)
+        .trim()
+        .replaceAll('\n', ' ')
+        .replaceAll('  ', ' ')
+        .slice(0, descriptionFromBodySize)}…`;
+
+    const description = `${
+      meta.description ? `${meta.description} | ` : ''
+    }${descriptionFromBody}`;
+
+    console.log({ description });
+
     const headings: Heading[] = [];
     const [serializedResult, tweetById] = await Promise.all([
       serialize(body, {
+        parseFrontmatter: true,
         mdxOptions: {
           development: false,
           rehypePlugins: [
             rehypeTransformSlug,
             [rehypeExtractHeadings, { rank: 2, headings }],
+            [
+              rehypeMeta,
+              {
+                ...defaultMeta,
+                og: true,
+                twitter: true,
+                copyright: true,
+                type: 'article',
+                title: `${meta.emoji ? `${meta.emoji} ` : ''}${meta.title}`,
+                description,
+                siteAuthor: 'Junho Yeo',
+                siteTwitter: '@_junhoyeo',
+              },
+            ],
           ],
         },
       }),
@@ -261,7 +282,7 @@ export const buildGetStaticProps: (type: PostCategoryType) => GetStaticProps =
 
     return {
       props: {
-        meta,
+        meta: { ...meta, description },
         type,
         headings,
         tweets: tweetById,
