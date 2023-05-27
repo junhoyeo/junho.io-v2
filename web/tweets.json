@@ -7,7 +7,7 @@
       "like_count": 2444,
       "quote_count": 48
     },
-    "created_at": "2022-11-25T04:51:00.000Z",
+    "created_at": "2022-11-25T04:51:41.000Z",
     "author": {
       "name": "George Hotz 🐀",
       "username": "realGeorgeHotz",
@@ -38,7 +38,7 @@
           "like_count": 0,
           "quote_count": 0
         },
-        "created_at": "2022-11-24T00:00:00.000Z"
+        "created_at": "2022-11-24T02:10:34.000Z"
       }
     ],
     "entities": {
@@ -60,6 +60,72 @@
         }
       ]
     }
+  },
+  "1595290710768439297": {
+    "text": "Looking for more than just tokenization of the word \"from\", that's just a part of it. It should fix the suggestions to be your followers, etc...things you might actually type.\n\nBuild a script people will want to inject into their Twitter page because it's useful, not a demo.",
+    "public_metrics": {
+      "retweet_count": 0,
+      "reply_count": 0,
+      "like_count": 0,
+      "quote_count": 0
+    },
+    "created_at": "2022-11-23T05:38:39.000Z",
+    "author": {
+      "name": "George Hotz 🐀",
+      "username": "realGeorgeHotz",
+      "verified": true,
+      "id": "NOT_PROVIDED",
+      "url": "NOT_PROVIDED",
+      "profile_image_url": "https://pbs.twimg.com/profile_images/772342671721455616/FE79-7Ev_400x400.jpg",
+      "protected": false
+    },
+    "id": "1595290710768439297",
+    "referenced_tweets": [],
+    "entities": {}
+  },
+  "1595279410977906688": {
+    "text": "Should hot modify existing Twitter search box, not looking for a demo on a different page.",
+    "public_metrics": {
+      "retweet_count": 0,
+      "reply_count": 0,
+      "like_count": 0,
+      "quote_count": 0
+    },
+    "created_at": "2022-11-23T04:53:45.000Z",
+    "author": {
+      "name": "George Hotz 🐀",
+      "username": "realGeorgeHotz",
+      "verified": true,
+      "id": "NOT_PROVIDED",
+      "url": "NOT_PROVIDED",
+      "profile_image_url": "https://pbs.twimg.com/profile_images/772342671721455616/FE79-7Ev_400x400.jpg",
+      "protected": false
+    },
+    "id": "1595279410977906688",
+    "referenced_tweets": [],
+    "entities": {}
+  },
+  "1595278856482852864": {
+    "text": "This is the interview.\n\nBuild this feature. You don't get source access. Link the GitHub and license it MIT.\n\nLooking for a one liner I paste in my JavaScript console to enable good \"from:\"",
+    "public_metrics": {
+      "retweet_count": 0,
+      "reply_count": 0,
+      "like_count": 0,
+      "quote_count": 0
+    },
+    "created_at": "2022-11-23T04:51:32.000Z",
+    "author": {
+      "name": "George Hotz 🐀",
+      "username": "realGeorgeHotz",
+      "verified": true,
+      "id": "NOT_PROVIDED",
+      "url": "NOT_PROVIDED",
+      "profile_image_url": "https://pbs.twimg.com/profile_images/772342671721455616/FE79-7Ev_400x400.jpg",
+      "protected": false
+    },
+    "id": "1595278856482852864",
+    "referenced_tweets": [],
+    "entities": {}
   },
   "1505761392032632840": {
     "entities": {
