@@ -1,5 +1,4 @@
 import { type MDXRemoteSerializeResult } from 'next-mdx-remote';
-
 import type { TweetData } from '@/components/twitter';
 
 export type PostCategoryType = 'blog';

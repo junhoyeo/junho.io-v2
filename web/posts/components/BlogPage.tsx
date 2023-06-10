@@ -1,13 +1,17 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Breadcrumbs, Divider, Text, useTheme } from '@geist-ui/core';
-import { formatDistance } from 'date-fns';
+import { format, formatDistance } from 'date-fns';
 import { type GetStaticPaths, type GetStaticProps } from 'next';
 import { serialize } from 'next-mdx-remote/serialize';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useMemo } from 'react';
-import { defaultMeta, Head } from '@/about/components/head';
+import rehypeMeta from 'rehype-meta';
+// eslint-disable-next-line @typescript-eslint/prefer-ts-expect-error, @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import removeMarkdown from 'remove-markdown';
+import { defaultMeta } from '@/about/components/head';
 import { Comments } from '@/components/Comments';
 import { Footer } from '@/components/Footer';
 import { MDXRenderer } from '@/components/mdx-renderer';
@@ -44,29 +48,24 @@ export const BlogPage: React.FC<BlogPageProps> = (props: BlogPageProps) => {
     [props.headings.length],
   );
 
-  const formattedRelativeTime = useMemo(
-    () =>
-      !props.meta.date
+  const timestamp = useMemo(
+    () => ({
+      date: !props.meta.date
+        ? null
+        : format(new Date(props.meta.date), 'MMM d, yyyy'),
+      relative: !props.meta.date
         ? null
         : capitalize(
             formatDistance(new Date(props.meta.date), new Date(), {
               addSuffix: true,
             }),
           ),
+    }),
     [props.meta.date],
   );
 
   return (
     <>
-      <Head
-        meta={{
-          ...defaultMeta,
-          title: `${props.meta.emoji ? `${props.meta.emoji} ` : ''}${
-            props.meta.title
-          }`,
-          description: props.meta.slug,
-        }}
-      />
       <Wrapper>
         <Container hasToc={hasToc}>
           <Breadcrumbs>
@@ -85,19 +84,22 @@ export const BlogPage: React.FC<BlogPageProps> = (props: BlogPageProps) => {
                 textOverflow: 'ellipsis',
               }}
             >
-              {props.meta.title}
+              {props.meta.emoji} {props.meta.title}
             </Breadcrumbs.Item>
           </Breadcrumbs>
-          <Title h1>{props.meta.title}</Title>
-
-          <span>
-            <span style={{ color: '#696970', fontWeight: 'bold' }}>
-              {props.meta.date}
-            </span>
-            <span style={{ marginLeft: 12, color: '#7a7a91' }}>
-              {formattedRelativeTime}
-            </span>
-          </span>
+          <Title h1>
+            {props.meta.emoji} {props.meta.title}
+          </Title>
+          <Timestamp>
+            {timestamp.date ? (
+              <span style={{ color: '#696970', fontWeight: 'bold' }}>
+                {timestamp.date}
+              </span>
+            ) : null}
+            {timestamp.relative ? (
+              <span style={{ color: '#7a7a91' }}>{timestamp.relative}</span>
+            ) : null}
+          </Timestamp>
           <Main>
             <MDXRenderer {...props} />
             <Divider style={{ marginTop: 32, marginBottom: 32 }} />
@@ -156,6 +158,7 @@ const Container = styled.div<{ hasToc: boolean }>`
 
 const Title = styled(Text)`
   margin-top: 42px;
+  text-align: center;
 
   font-weight: 900;
   line-height: 1.25;
@@ -169,6 +172,13 @@ const Title = styled(Text)`
   @media screen and (max-width: 400px) {
     font-size: 32px;
   }
+`;
+const Timestamp = styled.span`
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
 `;
 
 const Main = styled.main`
@@ -230,14 +240,42 @@ export const buildGetStaticProps: (type: PostCategoryType) => GetStaticProps =
 
     const { body, ...meta } = post;
 
+    const descriptionFromBodySize = 210 - (meta.description?.length || 0);
+    const descriptionFromBody =
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+      `${(removeMarkdown(body) as string)
+        .trim()
+        .replaceAll('\n', ' ')
+        .replaceAll('  ', ' ')
+        .slice(0, descriptionFromBodySize)}…`;
+
+    const description = `${
+      meta.description ? `${meta.description} | ` : ''
+    }${descriptionFromBody}`;
+
     const headings: Heading[] = [];
     const [serializedResult, tweetById] = await Promise.all([
       serialize(body, {
+        parseFrontmatter: true,
         mdxOptions: {
           development: false,
           rehypePlugins: [
             rehypeTransformSlug,
             [rehypeExtractHeadings, { rank: 2, headings }],
+            [
+              rehypeMeta,
+              {
+                ...defaultMeta,
+                og: true,
+                twitter: true,
+                copyright: true,
+                type: 'article',
+                title: `${meta.emoji ? `${meta.emoji} ` : ''}${meta.title}`,
+                description,
+                siteAuthor: 'Junho Yeo',
+                siteTwitter: '@_junhoyeo',
+              },
+            ],
           ],
         },
       }),
@@ -246,7 +284,7 @@ export const buildGetStaticProps: (type: PostCategoryType) => GetStaticProps =
 
     return {
       props: {
-        meta,
+        meta: { ...meta, description },
         type,
         headings,
         tweets: tweetById,

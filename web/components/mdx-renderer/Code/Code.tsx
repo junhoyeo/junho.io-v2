@@ -6,9 +6,7 @@ import {
 } from '@geist-ui/icons';
 import Highlight, { defaultProps, type Language } from 'prism-react-renderer';
 import React, { useMemo } from 'react';
-
 import { copyToClipboard } from '@/utils/clipboard';
-
 import { theme } from './theme';
 import { useCodeWordWrap } from './useCodeWordWrap';
 
@@ -49,6 +47,8 @@ export const Code: React.FC<CodeProps> = ({ children, ...props }) => {
     [highlight],
   );
 
+  // eslint-disable-next-line @typescript-eslint/prefer-ts-expect-error, @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   if (!language) return <code {...props}>{code}</code>;
 
   return (
