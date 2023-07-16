@@ -1,6 +1,5 @@
 import { promises as fs } from 'node:fs';
 import { format } from 'prettier';
-
 import { getPosts } from '@/posts/lib/get-posts';
 import { type PostCategoryType } from '@/posts/lib/types';
 
@@ -12,7 +11,8 @@ const savePostsWithoutBody = async (type: PostCategoryType): Promise<void> => {
 
   await fs.writeFile(
     `./posts/generated/${type}.ts`,
-    format(
+    // eslint-disable-next-line @typescript-eslint/await-thenable
+    await format(
       `
       import type { PostSummary } from '@/posts/lib/types';
 
