@@ -11,8 +11,7 @@ const savePostsWithoutBody = async (type: PostCategoryType): Promise<void> => {
 
   await fs.writeFile(
     `./posts/generated/${type}.ts`,
-    // eslint-disable-next-line @typescript-eslint/await-thenable
-    await format(
+    format(
       `
       import type { PostSummary } from '@/posts/lib/types';
 
