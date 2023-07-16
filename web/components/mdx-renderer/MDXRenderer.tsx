@@ -139,6 +139,7 @@ const components: React.ComponentProps<typeof MDXProvider>['components'] = {
     color: rgba(255, 255, 255, 0.9);
   `,
   a: TrackedAnchor,
+  // @ts-ignore
   code: Code,
   ul: styled.ul`
     display: flex;
@@ -188,6 +189,7 @@ export const MDXRenderer: React.FC<PostDocument> = ({ tweets, ...props }) => {
   return (
     <article>
       <TweetsContext.Provider value={tweets}>
+        {/* @ts-ignore */}
         <MDXRemote {...props} components={components} />
       </TweetsContext.Provider>
     </article>

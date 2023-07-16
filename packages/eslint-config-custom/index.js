@@ -28,5 +28,8 @@ module.exports = {
     'react/hook-state': 'off',
     'react/hook-use-state': 'off',
     'unicorn/filename-case': 'off',
+
+    '@typescript-eslint/prefer-ts-expect-error': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
   },
 };

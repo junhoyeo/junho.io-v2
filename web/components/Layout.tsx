@@ -12,6 +12,7 @@ export const Layout: React.FC<LayoutProps> = ({ containerRef, children }) => {
   return (
     <Wrapper>
       <Container className="page-container" ref={containerRef}>
+        {/* @ts-ignore */}
         {children}
       </Container>
 

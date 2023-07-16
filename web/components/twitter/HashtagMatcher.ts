@@ -43,6 +43,7 @@ const HASHTAG_PATTERN = combinePatterns(
 
 export class HashtagMatcher extends Matcher<HashtagProps> {
   replaceWith(children: ChildrenNode, props: HashtagProps): Node {
+    // @ts-ignore
     return createElement(Hashtag, props, children);
   }
 
