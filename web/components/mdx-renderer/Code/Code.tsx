@@ -4,11 +4,19 @@ import {
   Copy as CopyIcon,
   CornerDownLeft as CornerDownLeftIcon,
 } from '@geist-ui/icons';
-import Highlight, { defaultProps, type Language } from 'prism-react-renderer';
+import Highlight, { type Language } from 'prism-react-renderer';
+// @ts-ignore
+import prism from 'prism-react-renderer/prism';
 import React, { useMemo } from 'react';
 import { copyToClipboard } from '@/utils/clipboard';
 import { theme } from './theme';
 import { useCodeWordWrap } from './useCodeWordWrap';
+
+const defaultProps = {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  Prism: prism,
+  theme,
+};
 
 type CodeProps = React.DetailedHTMLProps<
   React.HTMLAttributes<HTMLElement>,
