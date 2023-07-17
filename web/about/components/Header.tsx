@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import { useTheme } from '@geist-ui/core';
-
 import { SocialButtonList } from '@/components/SocialButtonList';
 
 export const Header: React.FC = () => {
@@ -13,7 +12,7 @@ export const Header: React.FC = () => {
         <span>Junho Yeo</span>
       </Title>
       <Description style={{ color: palette.accents_6 }}>
-        {`Welcome to my site. I'm a 19-yo generalist hacker, shaping the 2nd/3rd
+        {`Welcome to my site. I'm a 20-yo generalist hacker, shaping the 2nd/3rd
           web. Sometimes a designer and dreamer, I just like to build things.
           Now I'm preparing the infrastructure—insight, followers, and
           capital—for a bigger dream.`}
