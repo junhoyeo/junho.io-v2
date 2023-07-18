@@ -1,7 +1,9 @@
 import styled from '@emotion/styled';
+import { Button } from '@geist-ui/core';
 import { domAnimation, LazyMotion, m } from 'framer-motion';
 import type { NextPage } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Head } from '@/about/components/head';
 import { Footer } from '@/components/Footer';
 import { SocialButtonList } from '@/components/SocialButtonList';
@@ -50,7 +52,30 @@ const HomePage: NextPage = () => {
           </a>
         </Description>
         <m.div {...animation(48, 0.4)}>
-          <SocialButtonList style={{ marginTop: 16 }} />
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              placeItems: 'center',
+              marginTop: 32,
+            }}
+          >
+            <Link href="/about">
+              <Button
+                type="success"
+                style={{
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  height: 56,
+                  paddingLeft: 42,
+                  paddingRight: 42,
+                }}
+              >
+                Learn More
+              </Button>
+            </Link>
+            <SocialButtonList style={{ marginTop: 16 }} />
+          </div>
         </m.div>
       </LazyMotion>
       <Footer />
