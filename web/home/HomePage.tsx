@@ -41,15 +41,7 @@ const HomePage: NextPage = () => {
         </Title>
         <Description {...animation(64, 0.2)}>
           I mostly code 24/7 and just like to hack, build, and ship
-          mind-breaking things,{'\n'}like the first{' '}
-          <a
-            target="_blank"
-            href="https://github.com/junhoyeo/threads-api"
-            rel="noreferrer"
-          >
-            unofficial, reverse-engineered client for Meta(Instagram)&apos;s
-            Threads App.
-          </a>
+          mind-breaking things.
         </Description>
         <m.div {...animation(48, 0.4)}>
           <div
