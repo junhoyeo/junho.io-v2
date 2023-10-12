@@ -42,6 +42,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   res.status(200).json({
     token_id: id,
     name: `JUNO #${id}`,
-    image: `https://raw.githubusercontent.com/junhoyeo/paracosm/main/.github/images/juno-${id}.png`,
+    // image: `https://raw.githubusercontent.com/junhoyeo/paracosm/main/.github/images/juno-${id}.png`,
+    image: `https://avatars.githubusercontent.com/u/32605822`,
   });
 }
