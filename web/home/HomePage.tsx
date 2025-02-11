@@ -21,6 +21,55 @@ const HomePage: NextPage = () => {
     <Container>
       <Head />
       <Spacer />
+      <LazyMotion features={domAnimation}>
+        <Title {...animation(64, 0)}>
+          @junhoyeo <br />
+          Sailing Toward <br />
+          The{' '}
+          <span style={{ marginTop: -16, marginBottom: -16 }}>
+            <UnicornBadge>
+              <UnicornEmoji
+                alt=""
+                src={unicornImage}
+                width={256}
+                height={256}
+                unoptimized
+              />
+              Future
+            </UnicornBadge>
+          </span>
+        </Title>
+        <Description {...animation(64, 0.2)}>
+          I mostly code 24/7 and just like to hack, build, and ship
+          mind-breaking things.
+        </Description>
+        <m.div {...animation(48, 0.4)}>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              placeItems: 'center',
+              marginTop: 32,
+            }}
+          >
+            <Link href="/about">
+              <Button
+                style={{
+                  borderRadius: 64,
+                  fontWeight: 'bold',
+                  fontSize: 20,
+                  height: 56,
+                  paddingLeft: 42,
+                  paddingRight: 42,
+                }}
+              >
+                Learn More
+              </Button>
+            </Link>
+            <SocialButtonList style={{ marginTop: 16 }} />
+          </div>
+        </m.div>
+      </LazyMotion>
       <Footer />
     </Container>
   );
