@@ -6,7 +6,6 @@ import {
   type Dispatch,
   type SetStateAction,
 } from 'react';
-
 import { type Heading } from '../lib/rehype-extract-headings';
 
 const observerOption = {
@@ -62,7 +61,7 @@ export const ToC: React.FC<ToCProps> = ({ headings }) => {
     window.addEventListener(
       'scroll',
       () => {
-        clearTimeout(timer);
+        clearTimeout(timer as unknown as number);
         timer = setTimeout(() => {
           setTimeout(() => {
             if (
