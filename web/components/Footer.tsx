@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-
 import { Analytics } from '@/utils/analytics';
 
 export const Footer: React.FC = () => {
@@ -7,7 +6,7 @@ export const Footer: React.FC = () => {
     <Container>
       <article>
         <a
-          href="https://github.com/junhoyeo/paracosm"
+          href="https://github.com/junhoyeo"
           target="_blank"
           rel="noopener"
           onClick={() =>
@@ -17,7 +16,7 @@ export const Footer: React.FC = () => {
             })
           }
         >
-          ©2023 @junhoyeo
+          ©2025 @junhoyeo
         </a>
       </article>
       <FixedGradient />
