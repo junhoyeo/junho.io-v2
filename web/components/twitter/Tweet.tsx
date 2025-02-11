@@ -60,11 +60,11 @@ export const Tweet: React.FC<TweetProps> = ({
     entities,
   } = currentTweet;
 
-  const authorUrl = `https://twitter.com/${author.username}`;
-  const likeUrl = `https://twitter.com/intent/like?tweet_id=${tweetId}`;
-  const retweetUrl = `https://twitter.com/intent/retweet?tweet_id=${tweetId}`;
-  const replyUrl = `https://twitter.com/intent/tweet?in_reply_to=${tweetId}`;
-  const tweetUrl = `https://twitter.com/${author.username}/status/${tweetId}`;
+  const authorUrl = `https://x.com/${author.username}`;
+  const likeUrl = `https://x.com/intent/like?tweet_id=${tweetId}`;
+  const retweetUrl = `https://x.com/intent/retweet?tweet_id=${tweetId}`;
+  const replyUrl = `https://x.com/intent/tweet?in_reply_to=${tweetId}`;
+  const tweetUrl = `https://x.com/${author.username}/status/${tweetId}`;
   const createdAt = new Date(created_at);
 
   const formattedText = text
@@ -147,11 +147,11 @@ export const Tweet: React.FC<TweetProps> = ({
             new HashtagMatcher('hashtag'),
             new MentionMatcher('mention'),
           ]}
-          mentionUrl="https://twitter.com/{{mention}}"
+          mentionUrl="https://x.com/{{mention}}"
           hashtagUrl={(hashtag: string) =>
             hashtag.startsWith('$')
-              ? `https://twitter.com/search?q=${hashtag}&src=cashtag_click`
-              : `https://twitter.com/hashtag/${hashtag}`
+              ? `https://x.com/search?q=${hashtag}&src=cashtag_click`
+              : `https://x.com/hashtag/${hashtag}`
           }
           newWindow
           tagName="p"

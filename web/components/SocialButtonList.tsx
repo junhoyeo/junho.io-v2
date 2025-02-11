@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-
 import { Analytics } from '@/utils/analytics';
 
 type SocialButtonListProps = React.HTMLAttributes<HTMLDivElement> & {
@@ -24,7 +23,7 @@ export const SocialButtonList: React.FC<SocialButtonListProps> = ({
       <Button>GITHUB</Button>
     </a>
     <a
-      href="https://twitter.com/_junhoyeo"
+      href="https://x.com/_junhoyeo"
       target="_blank"
       rel="noopener"
       onClick={() =>

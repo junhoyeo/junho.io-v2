@@ -12,7 +12,6 @@
     "format": "prettier --write .",
     "lint": "turbo run lint"
   },
-  "dependencies": {},
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.0.0",
     "@vercel/style-guide": "^4.0.2",

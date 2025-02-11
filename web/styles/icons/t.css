@@ -847,9 +847,9 @@ article a[href*='https://www.twitch.tv']::before
   -webkit-mask-image: url('https://simpleicons.org/icons/twitch.svg');
   mask-image: url('https://simpleicons.org/icons/twitch.svg');
 }
-article a[href*='https://twitter.com']::before,
-article a[href*='https://www.twitter.com']::before,
-article a[href*='https://blog.twitter.com']::before
+article a[href*='https://x.com']::before,
+article a[href*='https://www.x.com']::before,
+article a[href*='https://blog.x.com']::before
 {
   content: '\00a0';
   -webkit-mask-image: url('https://simpleicons.org/icons/twitter.svg');
