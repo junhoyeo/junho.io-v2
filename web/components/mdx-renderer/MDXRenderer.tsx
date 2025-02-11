@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import { useTheme } from '@geist-ui/core';
-import { type MDXProvider } from '@mdx-js/react';
 import Head from 'next/head';
 import NextImage, { type ImageProps as NextImageProps } from 'next/image';
 import Link from 'next/link';
@@ -120,7 +119,7 @@ const TrackedAnchor: React.FC<
   );
 };
 
-const components: React.ComponentProps<typeof MDXProvider>['components'] = {
+const components = {
   h2: HomeHeading,
   h3: styled.h3`
     padding-top: 48px;
@@ -180,9 +179,9 @@ const components: React.ComponentProps<typeof MDXProvider>['components'] = {
     border-radius: 4px;
     filter: saturate(1.08);
   `,
-  pre: (props: { children?: React.ReactNode }) => <div>{props.children}</div>,
+  pre: (props: React.PropsWithChildren) => <div>{props.children}</div>,
   Tweet,
-  head: ({ children }) => <Head>{children}</Head>,
+  head: (props: React.PropsWithChildren) => <Head>{props.children}</Head>,
 };
 
 export const MDXRenderer: React.FC<PostDocument> = ({ tweets, ...props }) => {
