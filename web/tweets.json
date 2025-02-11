@@ -61,10 +61,10 @@
         "author": {
           "name": "TJ Evarts",
           "username": "TJEvarts",
-          "verified": false,
+          "verified": true,
           "id": "NOT_PROVIDED",
           "url": "NOT_PROVIDED",
-          "profile_image_url": "https://pbs.twimg.com/profile_images/1230340596067422210/NA_nj7d8_400x400.jpg",
+          "profile_image_url": "https://pbs.twimg.com/profile_images/1803352182881689601/zh8Ijr54_400x400.jpg",
           "protected": false
         },
         "text": "There! I'm Finished! I am happy with how this came out.\n\nSupports arbitrary tokens (from: , to: , etc.), easy keyboard interface, and client side sorting for custom tokens 👀\n\nHope you enjoy @realGeorgeHotz 💪\n\nMy take on the future of Twitter Search: https://github.com/T-Ev/TwitterSearchTokenTest",
@@ -216,7 +216,7 @@
     "author": {
       "name": "scryptoguy",
       "username": "scryptoguy",
-      "profile_image_url": "https://pbs.twimg.com/profile_images/1497090133656768512/aFX-6S4P_normal.jpg",
+      "profile_image_url": "https://pbs.twimg.com/profile_images/1761811062352138240/DR3hyHoX_400x400.jpg",
       "id": "1472295228254023681",
       "protected": false,
       "verified": false
@@ -265,8 +265,8 @@
     "referenced_tweets": [],
     "author": {
       "name": "⭐Benjamin.Stars⭐",
-      "username": "_BenjaminStars_",
-      "profile_image_url": "https://pbs.twimg.com/profile_images/1639240306762878978/dyXVuqvf_normal.jpg",
+      "username": "benjamin_stars_",
+      "profile_image_url": "https://pbs.twimg.com/profile_images/1854285456449708032/APhO9Ta1_400x400.jpg",
       "id": "1471421359263666182",
       "protected": false,
       "verified": false
