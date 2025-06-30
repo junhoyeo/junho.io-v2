@@ -35,6 +35,7 @@ export const SocialButtonList: React.FC<SocialButtonListProps> = ({
     >
       <Button>TWITTER</Button>
     </a>
+    {props.children}
   </ButtonList>
 );
 
