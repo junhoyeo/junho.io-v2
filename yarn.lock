@@ -3167,7 +3167,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-prettier@npm:^8.5.0, eslint-config-prettier@npm:^8.8.0":
+"eslint-config-prettier@npm:^8.5.0":
   version: 8.10.0
   resolution: "eslint-config-prettier@npm:8.10.0"
   peerDependencies:
@@ -6281,9 +6281,6 @@ __metadata:
   dependencies:
     "@ianvs/prettier-plugin-sort-imports": ^4.0.0
     "@vercel/style-guide": ^4.0.2
-    eslint: latest
-    eslint-config-custom: "*"
-    eslint-config-prettier: ^8.8.0
     prettier: latest
     turbo: latest
   languageName: unknown
