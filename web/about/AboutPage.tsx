@@ -257,6 +257,11 @@ const Main = styled.main`
 
   li {
     margin-bottom: 0.625em;
+
+    & > ul,
+    & > ol {
+      margin-bottom: 0;
+    }
   }
 
   img {
