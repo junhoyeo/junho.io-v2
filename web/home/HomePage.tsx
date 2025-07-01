@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-// import { Button } from '@geist-ui/core';
 import { domAnimation, LazyMotion, m } from 'framer-motion';
 import type { NextPage } from 'next';
 import Image from 'next/image';
@@ -10,10 +9,10 @@ import { SocialButtonList } from '@/components/SocialButtonList';
 import unicornImage from './assets/unicorn.png';
 
 const animation = (y: 48 | 64, delay: number) => ({
-  initial: { transform: `translate3d(0, ${y}px, 0)`, opacity: 0 },
-  animate: { transform: 'translate3d(0, 0px, 0)', opacity: 1 },
-  exit: { transform: `translate3d(0, ${y}px, 0)`, opacity: 0 },
-  transition: { type: 'spring', delay },
+  initial: { y, opacity: 0 },
+  animate: { y: 0, opacity: 1 },
+  exit: { y, opacity: 0 },
+  transition: { delay, type: 'spring' as const },
 });
 
 const HomePage: NextPage = () => {
@@ -70,7 +69,7 @@ const Spacer = styled.div`
 `;
 
 const Title = styled(m.h1)`
-  margin: 0 0 12px;
+  margin: 32px 0 12px;
   font-size: 2.8rem;
   text-align: center;
   line-height: 110%;

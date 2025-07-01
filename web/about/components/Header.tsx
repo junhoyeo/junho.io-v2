@@ -1,17 +1,15 @@
 import styled from '@emotion/styled';
-import { useTheme } from '@geist-ui/core';
 import { SocialButtonList } from '@/components/SocialButtonList';
+import { colors } from '@/styles/colors';
 
 export const Header: React.FC = () => {
-  const { palette } = useTheme();
-
   return (
     <Container>
-      <Title style={{ color: palette.accents_7 }}>
+      <Title>
         {`Hi, I'm `}
         <span>Junho Yeo</span>
       </Title>
-      <Description style={{ color: palette.accents_6 }}>
+      <Description>
         {`Welcome to my site. I'm a 20-yo generalist hacker, shaping the 2nd/3rd
           web. Sometimes a designer and dreamer, I just like to build things.
           Now I'm preparing the infrastructure—insight, followers, and
@@ -36,6 +34,7 @@ const Title = styled.h1`
   font-size: 2rem;
   line-height: 1.25;
   letter-spacing: -0.25px;
+  color: ${colors.accents_7};
 `;
 const Description = styled.p`
   margin: 0;
@@ -45,4 +44,5 @@ const Description = styled.p`
   font-size: 18px;
   padding-bottom: 0.56rem;
   line-height: 1.45;
+  color: ${colors.accents_6};
 `;

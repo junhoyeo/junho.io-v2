@@ -109,7 +109,7 @@ const Container = styled.div`
   padding: 100px 0 64px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 12px;
 
   position: sticky;
   top: 0;

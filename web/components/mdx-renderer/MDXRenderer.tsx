@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { useTheme } from '@geist-ui/core';
 import Head from 'next/head';
 import NextImage, { type ImageProps as NextImageProps } from 'next/image';
 import Link from 'next/link';
@@ -8,14 +7,14 @@ import { useCallback, useEffect, useMemo } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { type PostDocument } from '@/posts/lib/types';
 import { Analytics } from '@/utils/analytics';
+import { colors } from '@/styles/colors';
 import { Tweet } from '../twitter';
 import { TweetsContext } from '../twitter/context';
 import { Code } from './Code';
-import { MDXRemote } from './MDXRemote';
+import { MDXRemote } from 'next-mdx-remote';
 import { Trophy } from './Trophy';
 
 const Image: React.FC<NextImageProps> = ({ style, ...props }) => {
-  const { palette } = useTheme();
   return (
     <NextImage
       {...props}
@@ -24,8 +23,8 @@ const Image: React.FC<NextImageProps> = ({ style, ...props }) => {
       quality={85}
       style={{
         ...style,
-        borderColor: palette.accents_1,
-        backgroundColor: palette.accents_2,
+        borderColor: colors.accents_1,
+        backgroundColor: colors.accents_2,
       }}
     />
   );

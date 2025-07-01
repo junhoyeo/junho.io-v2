@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 
 const UtterancesConfig = {
   src: 'https://utteranc.es/client.js',
-  repo: 'junhoyeo/paracosm',
+  repo: 'junhoyeo/junho.io-v2',
   'issue-term': 'title',
   label: '✨💬✨ comments',
   theme: 'dark-blue',

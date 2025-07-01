@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { Breadcrumbs, Text, useTheme } from '@geist-ui/core';
 import { type NextPage } from 'next';
 import Link from 'next/link';
 import { useEffect } from 'react';
@@ -8,10 +7,9 @@ import { Head, defaultMeta } from '@/about/components/head';
 import { Layout } from '@/components/Layout';
 import { PostList } from '@/components/PostList';
 import { Analytics } from '@/utils/analytics';
+import { colors } from '@/styles/colors';
 
 const BlogListPage: NextPage = () => {
-  const { palette } = useTheme();
-
   useEffect(() => {
     Analytics.logEvent('view_blog_list', undefined);
   }, []);
@@ -19,13 +17,14 @@ const BlogListPage: NextPage = () => {
   return (
     <Layout>
       <Head meta={{ ...defaultMeta, title: 'Blog' }} />
-      <Breadcrumbs>
-        <Link href="/" style={{ color: palette.accents_5 }}>
-          <Breadcrumbs.Item>Paracøsm</Breadcrumbs.Item>
+      <BreadcrumbsContainer>
+        <Link href="/">
+          <BreadcrumbItem>Paracøsm</BreadcrumbItem>
         </Link>
-        <Breadcrumbs.Item href="#">Blog</Breadcrumbs.Item>
-      </Breadcrumbs>
-      <Title h1>Blog</Title>
+        <BreadcrumbSeparator>/</BreadcrumbSeparator>
+        <BreadcrumbItem $active>Blog</BreadcrumbItem>
+      </BreadcrumbsContainer>
+      <Title>Blog</Title>
       <PostList />
     </Layout>
   );
@@ -33,9 +32,26 @@ const BlogListPage: NextPage = () => {
 
 export default BlogListPage;
 
-const Title = styled(Text)`
-  margin-top: 42px;
+const BreadcrumbsContainer = styled.nav`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+`;
 
+const BreadcrumbItem = styled.span<{ $active?: boolean }>`
+  color: ${props => props.$active ? colors.foreground : colors.accents_5};
+  font-size: 14px;
+`;
+
+const BreadcrumbSeparator = styled.span`
+  color: ${colors.accents_4};
+  font-size: 14px;
+`;
+
+const Title = styled.h1`
+  margin-top: 42px;
+  font-size: 48px;
   font-weight: 900;
   line-height: 1.25;
   margin-bottom: 1.5rem;

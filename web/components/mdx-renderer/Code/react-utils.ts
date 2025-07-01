@@ -55,7 +55,7 @@ export function useDynamicCallback<T extends (...args: never[]) => unknown>(
  * Gets `value` from the last render.
  */
 export function usePrevious<T>(value: T): T | undefined {
-  const ref = useRef<T>();
+  const ref = useRef<T | undefined>(undefined);
 
   useIsomorphicLayoutEffect(() => {
     ref.current = value;

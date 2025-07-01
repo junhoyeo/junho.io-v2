@@ -1,16 +1,14 @@
 import styled from '@emotion/styled';
-import { useTheme } from '@geist-ui/core';
-import { formatDistance } from 'date-fns';
+import { format, formatDistance } from 'date-fns';
 import { useSetAtom } from 'jotai';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-
 import blogPosts from '@/posts/generated/blog';
 import { isPostDrawerOpenAtom } from '@/state/posts';
+import { colors } from '@/styles/colors';
 import { capitalize } from '@/utils/casing';
 
 export const PostList: React.FC = () => {
-  const { palette } = useTheme();
   const router = useRouter();
   const setPostDrawerOpen = useSetAtom(isPostDrawerOpenAtom);
 
@@ -29,6 +27,10 @@ export const PostList: React.FC = () => {
               }),
             );
 
+        const postDate = !post.date
+          ? null
+          : format(new Date(post.date), 'MMM d, yyyy');
+
         return (
           <Link
             href={`/w/${post.slug}`}
@@ -39,32 +41,17 @@ export const PostList: React.FC = () => {
             <ItemContainer>
               <HStack>
                 {!!post.emoji && (
-                  <EmojiContainer
-                    style={{
-                      // backgroundColor: active
-                      //   ? palette.accents_1
-                      //   : palette.accents_1,
-                      backgroundColor: palette.accents_1,
-                      borderColor: active ? 'white' : palette.accents_2,
-                    }}
-                  >
+                  <EmojiContainer $active={active}>
                     <span>{post.emoji}</span>
                   </EmojiContainer>
                 )}
                 <span>
-                  <PostTitle
-                    style={{
-                      // color: active ? palette.accents_7 : palette.accents_3,
-                      color: palette.accents_7,
-                    }}
-                  >
-                    {post.title}
-                  </PostTitle>
+                  <PostTitle>{post.title}</PostTitle>
                 </span>
               </HStack>
               <span>
                 <span style={{ color: '#696970', fontWeight: 'bold' }}>
-                  {post.date}
+                  {postDate}
                 </span>
                 <span style={{ marginLeft: 12, color: '#7a7a91' }}>
                   {formattedRelativeTime}
@@ -111,7 +98,7 @@ const HStack = styled.div`
     line-height: 160%;
   }
 `;
-const EmojiContainer = styled.div`
+const EmojiContainer = styled.div<{ $active: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -121,6 +108,8 @@ const EmojiContainer = styled.div`
   height: 32px;
   border-radius: 4px;
   border: 2px solid;
+  background-color: ${colors.accents_1};
+  border-color: ${(props) => (props.$active ? 'white' : colors.accents_2)};
 
   span {
     font-size: 20px;
@@ -128,6 +117,10 @@ const EmojiContainer = styled.div`
 `;
 const PostTitle = styled.h4`
   margin: 0;
+  color: ${colors.accents_7};
+
+  font-size: 20px;
+  font-weight: 600;
 
   overflow: hidden;
   text-overflow: ellipsis;

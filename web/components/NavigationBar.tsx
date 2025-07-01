@@ -1,25 +1,22 @@
 import styled from '@emotion/styled';
-import { /* Button, */ Text, useTheme } from '@geist-ui/core';
 // import { useAtom } from 'jotai';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { colors } from '@/styles/colors';
 
 // import { isPostDrawerOpenAtom } from '@/state/posts';
 
 export const NavigationBar: React.FC = () => {
   const router = useRouter();
-  const { palette } = useTheme();
   // const [isPostDrawerOpen, setPostDrawerOpen] = useAtom(isPostDrawerOpenAtom);
 
   return (
     <Wrapper>
       <WidthProvider>
-        <Container style={{ border: `1px solid ${palette.accents_2}` }}>
+        <Container>
           <Link href="/" style={{ marginRight: 'auto' }}>
-            <Brand style={{ color: palette.accents_8 }}>
-              <Text b span style={{ fontSize: 24 }}>
-                junhø.io
-              </Text>
+            <Brand>
+              <BrandText>junhø.io</BrandText>
             </Brand>
           </Link>
 
@@ -28,8 +25,8 @@ export const NavigationBar: React.FC = () => {
             style={{
               color:
                 router.asPath === '/about'
-                  ? palette.accents_8
-                  : palette.accents_4,
+                  ? colors.accents_8
+                  : colors.accents_4,
             }}
           >
             About
@@ -38,8 +35,8 @@ export const NavigationBar: React.FC = () => {
             href="/blog"
             style={{
               color: ['/blog', '/w/'].some((r) => router.asPath.includes(r))
-                ? palette.accents_8
-                : palette.accents_4,
+                ? colors.accents_8
+                : colors.accents_4,
             }}
           >
             Blog
@@ -96,6 +93,7 @@ const Container = styled.div`
   pointer-events: auto;
 
   border-radius: 8px;
+  border: 1px solid ${colors.accents_2};
   background-color: rgba(0, 0, 0, 0.55);
   backdrop-filter: saturate(140%) blur(12px);
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
@@ -106,7 +104,14 @@ const Brand = styled.div`
   align-items: center;
   gap: 8px;
   user-select: none;
+  color: ${colors.accents_8};
 `;
+
+const BrandText = styled.span`
+  font-size: 24px;
+  font-weight: bold;
+`;
+
 const NavigationLink = styled(Link)`
   font-weight: 500;
   transition: all 0.2s ease-in-out;

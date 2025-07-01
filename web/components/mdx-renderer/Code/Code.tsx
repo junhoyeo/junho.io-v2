@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { Button, Text, useTheme } from '@geist-ui/core';
 import {
   Copy as CopyIcon,
   CornerDownLeft as CornerDownLeftIcon,
@@ -7,6 +6,7 @@ import {
 import Highlight, { defaultProps, type Language } from 'prism-react-renderer';
 import React, { useMemo } from 'react';
 import { copyToClipboard } from '@/utils/clipboard';
+import { colors } from '@/styles/colors';
 import { theme } from './theme';
 import { useCodeWordWrap } from './useCodeWordWrap';
 
@@ -16,8 +16,6 @@ type CodeProps = React.DetailedHTMLProps<
 >;
 
 export const Code: React.FC<CodeProps> = ({ children, ...props }) => {
-  const { palette } = useTheme();
-
   const language = /language-(?<lang>\w+)/.exec(props.className || '')?.[1] as
     | Language
     | undefined;
@@ -93,21 +91,17 @@ export const Code: React.FC<CodeProps> = ({ children, ...props }) => {
         )}
       </Highlight>
       <TopRow>
-        <Text span>
-          <code style={{ color: palette.accents_5 }}>{language}</code>
-        </Text>
+        <LanguageLabel>{language}</LanguageLabel>
 
         <ButtonGroup>
           {wordWrap.isEnabled || wordWrap.isCodeScrollable ? (
-            <Button
-              iconRight={<CornerDownLeftIcon />}
-              onClick={() => wordWrap.toggle()}
-            />
+            <IconButton onClick={() => wordWrap.toggle()}>
+              <CornerDownLeftIcon size={16} />
+            </IconButton>
           ) : null}
-          <Button
-            iconRight={<CopyIcon />}
-            onClick={() => copyToClipboard(code)}
-          />
+          <IconButton onClick={() => copyToClipboard(code)}>
+            <CopyIcon size={16} />
+          </IconButton>
         </ButtonGroup>
       </TopRow>
     </Container>
@@ -144,18 +138,28 @@ const TopRow = styled.div`
 const ButtonGroup = styled.div`
   display: flex;
   gap: 4px;
+`;
 
-  && button {
-    padding: 6px;
-    width: unset;
-    min-width: unset;
-    height: unset;
+const LanguageLabel = styled.code`
+  color: ${colors.accents_5};
+  font-size: 12px;
+`;
 
-    background-color: rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(8px);
+const IconButton = styled.button`
+  padding: 6px;
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(8px);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: ${colors.accents_6};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
 
-    &:hover {
-      background-color: ${theme.plain.backgroundColor};
-    }
+  &:hover {
+    background-color: ${theme.plain.backgroundColor};
+    color: ${colors.accents_8};
   }
 `;

@@ -1,6 +1,5 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { Breadcrumbs, Divider, Text, useTheme } from '@geist-ui/core';
 import { format, formatDistance } from 'date-fns';
 import { type GetStaticPaths, type GetStaticProps } from 'next';
 import { serialize } from 'next-mdx-remote/serialize';
@@ -8,14 +7,13 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useMemo } from 'react';
 import rehypeMeta from 'rehype-meta';
-// eslint-disable-next-line @typescript-eslint/prefer-ts-expect-error, @typescript-eslint/ban-ts-comment
-// @ts-ignore
 import removeMarkdown from 'remove-markdown';
 import { defaultMeta } from '@/about/components/head';
 import { Comments } from '@/components/Comments';
 import { Footer } from '@/components/Footer';
 import { MDXRenderer } from '@/components/mdx-renderer';
 import { extractTweetsFromBody } from '@/components/twitter/utils';
+import { colors } from '@/styles/colors';
 import { Analytics } from '@/utils/analytics';
 import { capitalize } from '@/utils/casing';
 import {
@@ -31,7 +29,6 @@ export type BlogPageProps = PostDocument & {
 };
 
 export const BlogPage: React.FC<BlogPageProps> = (props: BlogPageProps) => {
-  const { palette } = useTheme();
   const {
     query: { slug },
   } = useRouter();
@@ -68,26 +65,20 @@ export const BlogPage: React.FC<BlogPageProps> = (props: BlogPageProps) => {
     <>
       <Wrapper>
         <Container hasToc={hasToc}>
-          <Breadcrumbs>
-            <Link href="/" style={{ color: palette.accents_5 }}>
-              <Breadcrumbs.Item>Paracøsm</Breadcrumbs.Item>
+          <BreadcrumbsContainer>
+            <Link href="/">
+              <BreadcrumbItem>Paracøsm</BreadcrumbItem>
             </Link>
-            <Link href={`/${props.type}`} style={{ color: palette.accents_5 }}>
-              <Breadcrumbs.Item>{capitalize(props.type)}</Breadcrumbs.Item>
+            <BreadcrumbSeparator>/</BreadcrumbSeparator>
+            <Link href={`/${props.type}`}>
+              <BreadcrumbItem>{capitalize(props.type)}</BreadcrumbItem>
             </Link>
-            <Breadcrumbs.Item
-              href="#"
-              style={{
-                display: 'inline-block',
-                overflow: 'hidden',
-                whiteSpace: 'nowrap',
-                textOverflow: 'ellipsis',
-              }}
-            >
+            <BreadcrumbSeparator>/</BreadcrumbSeparator>
+            <BreadcrumbItem $active>
               {props.meta.emoji} {props.meta.title}
-            </Breadcrumbs.Item>
-          </Breadcrumbs>
-          <Title h1>
+            </BreadcrumbItem>
+          </BreadcrumbsContainer>
+          <Title>
             {props.meta.emoji} {props.meta.title}
           </Title>
           <Timestamp>
@@ -102,7 +93,7 @@ export const BlogPage: React.FC<BlogPageProps> = (props: BlogPageProps) => {
           </Timestamp>
           <Main>
             <MDXRenderer {...props} />
-            <Divider style={{ marginTop: 32, marginBottom: 32 }} />
+            <Divider />
             <Comments />
           </Main>
         </Container>
@@ -156,13 +147,41 @@ const Container = styled.div<{ hasToc: boolean }>`
     `}
 `;
 
-const Title = styled(Text)`
+const BreadcrumbsContainer = styled.nav`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+`;
+
+const BreadcrumbItem = styled.span<{ $active?: boolean }>`
+  color: ${(props) => (props.$active ? colors.foreground : colors.accents_5)};
+  font-size: 14px;
+
+  ${(props) =>
+    props.$active &&
+    css`
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      max-width: 300px;
+    `}
+`;
+
+const BreadcrumbSeparator = styled.span`
+  color: ${colors.accents_4};
+  font-size: 14px;
+`;
+
+const Title = styled.h1`
   margin-top: 42px;
+  margin-bottom: 24px;
   text-align: center;
 
   font-weight: 900;
   line-height: 1.25;
   margin-bottom: 1.5rem;
+  font-size: 48px;
 
   @media screen and (max-width: 600px) {
     margin-top: 24px;
@@ -173,6 +192,7 @@ const Title = styled(Text)`
     font-size: 32px;
   }
 `;
+
 const Timestamp = styled.span`
   text-align: center;
   display: flex;
@@ -182,12 +202,109 @@ const Timestamp = styled.span`
 `;
 
 const Main = styled.main`
+  margin-top: 16px;
+
+  font-size: 17.6px;
+  font-weight: 300;
+  line-height: 1.65;
+
+  a {
+    cursor: pointer;
+    font-size: inherit;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    color: #3291ff;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+  }
+
+  code {
+    color: #79ffe1;
+    font-family:
+      Menlo,
+      Monaco,
+      Lucida Console,
+      Liberation Mono,
+      DejaVu Sans Mono,
+      Bitstream Vera Sans Mono,
+      Courier New,
+      monospace;
+    font-size: 0.9em;
+    white-space: pre-wrap;
+  }
+
+  code:before,
+  code:after {
+    content: '\`';
+  }
+
+  blockquote {
+    border-left: 4px solid ${colors.accents_2};
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    background: ${colors.accents_1};
+    padding: 4px;
+    padding-left: 32px;
+    color: ${colors.accents_8};
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    -webkit-letter-spacing: -0.02em;
+    -moz-letter-spacing: -0.02em;
+    -ms-letter-spacing: -0.02em;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    -webkit-letter-spacing: -0.02em;
+    -moz-letter-spacing: -0.02em;
+    -ms-letter-spacing: -0.02em;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+  }
+
+  p {
+    margin: 1em 0;
+  }
+
+  ul {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    list-style: disc;
+    padding-left: 32px;
+  }
+
+  ol {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    list-style: decimal;
+    padding-left: 32px;
+  }
+
+  li {
+    margin-bottom: 0.625em;
+  }
+
   img {
     margin: 0 auto;
     display: flex;
     border-radius: 8px;
     width: 100%;
   }
+`;
+
+const Divider = styled.hr`
+  border: none;
+  border-top: 1px solid ${colors.accents_2};
+  margin: 32px 0;
 `;
 
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-constraint, @typescript-eslint/no-explicit-any
@@ -262,6 +379,7 @@ export const buildGetStaticProps: (type: PostCategoryType) => GetStaticProps =
           rehypePlugins: [
             rehypeTransformSlug,
             [rehypeExtractHeadings, { rank: 2, headings }],
+            // Temporarily disabled due to type incompatibility
             [
               rehypeMeta,
               {
