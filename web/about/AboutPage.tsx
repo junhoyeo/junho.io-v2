@@ -1,7 +1,5 @@
 import styled from '@emotion/styled';
-
 import '@junhoyeo/iphone/dist/style.css';
-
 import {
   DEVICE_HEIGHT,
   DEVICE_WIDTH,
@@ -9,16 +7,15 @@ import {
 } from '@junhoyeo/iphone';
 import { type NextPage } from 'next';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-
 import { Footer } from '@/components/Footer';
 import { MDXRenderer } from '@/components/mdx-renderer';
 import { PhoneInstance } from '@/components/phone-instance';
 import { useWindowSize } from '@/hooks/use-window-size';
 import { type PostDocument } from '@/posts/lib/types';
+import { colors } from '@/styles/colors';
 import { Analytics } from '@/utils/analytics';
-
-import { Header } from './components/Header';
 import { Head } from './components/head';
+import { Header } from './components/Header';
 
 const AboutPage: NextPage<PostDocument> = (props) => {
   const { screenWidth = 1980 } = useWindowSize();
@@ -102,9 +99,9 @@ const AboutPage: NextPage<PostDocument> = (props) => {
       <Container>
         <Header />
 
-        <main>
+        <Main>
           <MDXRenderer {...props} />
-        </main>
+        </Main>
 
         <Footer />
       </Container>
@@ -159,7 +156,7 @@ const Wrapper = styled.div`
 const Container = styled.div`
   margin-right: 32px;
   padding-top: 120px;
-  flex: 1;
+  flex: 1 1 0%;
 
   display: flex;
   flex-direction: column;
@@ -168,9 +165,104 @@ const Container = styled.div`
     margin-right: 0;
     width: 100%;
   }
+`;
+const Main = styled.main`
+  padding-bottom: 24px;
 
-  main {
-    padding-bottom: 24px;
+  font-size: 17.6px;
+  font-weight: 300;
+  line-height: 1.65;
+
+  a {
+    cursor: pointer;
+    font-size: inherit;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    color: #3291ff;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+  }
+
+  code {
+    color: #79ffe1;
+    font-family:
+      Menlo,
+      Monaco,
+      Lucida Console,
+      Liberation Mono,
+      DejaVu Sans Mono,
+      Bitstream Vera Sans Mono,
+      Courier New,
+      monospace;
+    font-size: 0.9em;
+    white-space: pre-wrap;
+  }
+
+  code:before,
+  code:after {
+    content: '\`';
+  }
+
+  blockquote {
+    border-left: 4px solid ${colors.accents_2};
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    background: ${colors.accents_1};
+    padding: 4px;
+    padding-left: 32px;
+    color: ${colors.accents_8};
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    -webkit-letter-spacing: -0.02em;
+    -moz-letter-spacing: -0.02em;
+    -ms-letter-spacing: -0.02em;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    -webkit-letter-spacing: -0.02em;
+    -moz-letter-spacing: -0.02em;
+    -ms-letter-spacing: -0.02em;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+  }
+
+  p {
+    margin: 1em 0;
+  }
+
+  ul {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    list-style: disc;
+    padding-left: 32px;
+  }
+
+  ol {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    list-style: decimal;
+    padding-left: 32px;
+  }
+
+  li {
+    margin-bottom: 0.625em;
+  }
+
+  img {
+    margin: 0 auto;
+    display: flex;
+    border-radius: 8px;
+    width: 100%;
   }
 `;
 
