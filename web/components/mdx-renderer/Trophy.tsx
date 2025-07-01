@@ -39,8 +39,11 @@ const Container = styled.div`
   }
 `;
 const TrophyImage = styled(Image)`
-  width: 32px;
-  height: 32px;
+  && {
+    margin: 0;
+    width: 32px;
+    height: 32px;
+  }
 `;
 const Content = styled.div`
   display: flex;

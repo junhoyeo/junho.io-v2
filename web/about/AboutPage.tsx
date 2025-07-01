@@ -174,6 +174,7 @@ const Main = styled.main`
   line-height: 1.65;
 
   a {
+    display: inline-block;
     cursor: pointer;
     font-size: inherit;
     -webkit-touch-callout: none;

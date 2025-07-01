@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { MDXRemote } from 'next-mdx-remote';
 import Head from 'next/head';
 import NextImage, { type ImageProps as NextImageProps } from 'next/image';
 import Link from 'next/link';
@@ -6,12 +7,11 @@ import { useRouter } from 'next/router';
 import { useCallback, useEffect, useMemo } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { type PostDocument } from '@/posts/lib/types';
-import { Analytics } from '@/utils/analytics';
 import { colors } from '@/styles/colors';
+import { Analytics } from '@/utils/analytics';
 import { Tweet } from '../twitter';
 import { TweetsContext } from '../twitter/context';
 import { Code } from './Code';
-import { MDXRemote } from 'next-mdx-remote';
 import { Trophy } from './Trophy';
 
 const Image: React.FC<NextImageProps> = ({ style, ...props }) => {
@@ -158,7 +158,7 @@ const components = {
     display: flex;
     gap: 4px;
 
-    & > img {
+    && > img {
       width: 50%;
       width: calc((100% - 4px) / 2);
     }
