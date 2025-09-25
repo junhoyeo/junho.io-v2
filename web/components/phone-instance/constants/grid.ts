@@ -2,6 +2,30 @@ import { type GridItemProps } from '@junhoyeo/iphone';
 
 export const INSTALLED_APPS: (GridItemProps & { id: string })[] = [
   {
+    name: 'Inevitable',
+    icon: '/assets/phone/icons/grid/inevitable.png',
+    color: '#071417',
+    id: 'inevitable',
+  },
+  {
+    name: 'Pagemate',
+    icon: '/assets/phone/icons/grid/pagemate.png',
+    color: '#E7F8FF',
+    id: 'pagemate',
+  },
+  {
+    name: 'Threads API',
+    icon: '/assets/phone/icons/grid/threads.png',
+    color: '#000',
+    id: 'threads-api',
+  },
+  {
+    name: 'UL/Aleph',
+    icon: '/assets/phone/icons/grid/testflight.png',
+    color: '#071417',
+    id: 'aleph',
+  },
+  {
     name: '$IBCX',
     icon: '/assets/phone/icons/grid/ibcx.jpeg',
     color: '#080e2a',

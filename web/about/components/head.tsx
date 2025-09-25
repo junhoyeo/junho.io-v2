@@ -8,7 +8,7 @@ export type Meta = {
 };
 export const defaultMeta: Meta = {
   title: "Hello, I'm Junho Yeo.",
-  description: '20-yo Generalist Hacker, shaping the 2nd/3rd web.',
+  description: '22-yo Generalist Hacker, shaping the 2nd/3rd web.',
   image: 'https://junho.io/assets/og-image-v2.jpg',
   url: 'https://junho.io',
 };
