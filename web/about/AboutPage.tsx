@@ -288,10 +288,10 @@ const PhoneContainer = styled.div`
     transition: transform 0.68s ease-in-out;
   }
 
-  @media screen and (max-height: 900px) {
+  /* @media screen and (max-height: 900px) {
     padding-top: 24px;
     align-items: flex-start;
-  }
+  } */
 
   @media screen and (max-width: 1000px) {
     padding-top: unset;
