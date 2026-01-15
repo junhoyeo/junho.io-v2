@@ -269,9 +269,11 @@ export const CurrentStatus: React.FC = () => {
                 <WindowImage
                   src={item.src}
                   alt={item.alt}
-                  width={600}
-                  height={400}
-                  quality={90}
+                  width={840}
+                  height={560}
+                  quality={100}
+                  priority={index < 2}
+                  sizes="(max-width: 600px) 85vw, 420px"
                 />
               </WindowContent>
             </WindowCard>
