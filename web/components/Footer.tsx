@@ -16,7 +16,7 @@ export const Footer: React.FC = () => {
             })
           }
         >
-          ©2025 @junhoyeo
+          ©{new Date().getFullYear()} @junhoyeo
         </a>
       </article>
       <FixedGradient />
