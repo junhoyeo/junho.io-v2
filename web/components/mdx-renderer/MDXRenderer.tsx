@@ -125,8 +125,12 @@ const HeadingWrapper = styled.div`
 `;
 
 const HeadingIcon = styled(NextImage)`
-  width: 32px;
-  height: 32px;
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px;
+  min-height: 32px;
+  max-width: 32px;
+  max-height: 32px;
   border-radius: 8px;
   object-fit: cover;
   flex-shrink: 0;
