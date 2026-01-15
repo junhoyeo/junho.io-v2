@@ -12,6 +12,7 @@ import { Analytics } from '@/utils/analytics';
 import { Tweet } from '../twitter';
 import { TweetsContext } from '../twitter/context';
 import { Code } from './Code';
+import { CurrentStatus } from './CurrentStatus';
 import { Trophy } from './Trophy';
 
 const Image: React.FC<NextImageProps> = ({ style, ...props }) => {
@@ -153,6 +154,7 @@ const components = {
   Link,
   Trophy,
   Position,
+  CurrentStatus,
   ImageList: styled.div`
     width: 100%;
     display: flex;

@@ -21,17 +21,6 @@ export const NavigationBar: React.FC = () => {
           </Link>
 
           <NavigationLink
-            href="/about"
-            style={{
-              color:
-                router.asPath === '/about'
-                  ? colors.accents_8
-                  : colors.accents_4,
-            }}
-          >
-            About
-          </NavigationLink>
-          <NavigationLink
             href="/blog"
             style={{
               color: ['/blog', '/w/'].some((r) => router.asPath.includes(r))

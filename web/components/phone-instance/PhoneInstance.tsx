@@ -1,9 +1,7 @@
 import styled from '@emotion/styled';
 import { Phone, type PhoneProps } from '@junhoyeo/iphone';
 import { type DynamicIslandProps } from '@junhoyeo/iphone/dist/dynamic-island/src/DynamicIsland';
-
 import { Analytics } from '@/utils/analytics';
-
 import { BACKGROUND_IMAGE_URL, DOCK } from './constants';
 import { INSTALLED_APPS } from './constants/grid';
 
@@ -30,9 +28,15 @@ export const PhoneInstance: React.FC<PhoneInstanceProps> = ({
               return;
             }
             Analytics.logEvent('click_icon', { name: app.name ?? 'Unknown' });
-            document.querySelector(`#${app.id}`)?.scrollIntoView({
-              behavior: 'smooth',
-            });
+            const element = document.querySelector(`#${app.id}`);
+            if (element) {
+              const rect = element.getBoundingClientRect();
+              const scrollTop = window.scrollY + rect.top - 64;
+              window.scrollTo({
+                top: scrollTop,
+                behavior: 'smooth',
+              });
+            }
           },
         }))}
         dock={DOCK.map((app) => ({ ...app, onClick: onClickDockedApp }))}

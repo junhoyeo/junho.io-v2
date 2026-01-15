@@ -9,6 +9,7 @@ import { type NextPage } from 'next';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Footer } from '@/components/Footer';
 import { MDXRenderer } from '@/components/mdx-renderer';
+import { CurrentStatus } from '@/components/mdx-renderer/CurrentStatus';
 import { PhoneInstance } from '@/components/phone-instance';
 import { useWindowSize } from '@/hooks/use-window-size';
 import { type PostDocument } from '@/posts/lib/types';
@@ -100,6 +101,7 @@ const AboutPage: NextPage<PostDocument> = (props) => {
         <Header />
 
         <Main>
+          <CurrentStatus />
           <MDXRenderer {...props} />
         </Main>
 
