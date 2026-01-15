@@ -131,6 +131,7 @@ const HeadingIcon = styled(NextImage)`
   min-height: 32px;
   max-width: 32px;
   max-height: 32px;
+  margin: 0;
   border-radius: 8px;
   object-fit: cover;
   flex-shrink: 0;
