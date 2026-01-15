@@ -15,6 +15,23 @@ import { Code } from './Code';
 import { CurrentStatus } from './CurrentStatus';
 import { Trophy } from './Trophy';
 
+const HEADING_ICONS: Record<string, string> = {
+  Pagemate: '/assets/phone/icons/grid/pagemate.png',
+  'Threads API': '/assets/phone/icons/grid/threads.png',
+  Aleph: '/assets/phone/icons/grid/testflight.png',
+  IBCX: '/assets/phone/icons/grid/ibcx.jpeg',
+  Twitter: '/assets/phone/icons/grid/twitter.webp',
+  Bento: '/assets/phone/icons/grid/bento.jpg',
+  'ZEP Studio': '/assets/phone/icons/grid/zep-studio.png',
+  Manythings: '/assets/phone/icons/grid/manythings.jpg',
+  Keplr: '/assets/phone/icons/grid/keplr.png',
+  'Pylon Protocol': '/assets/phone/icons/grid/pylon-protocol.png',
+  Toss: '/assets/phone/icons/grid/toss.webp',
+  PocketLesson: '/assets/phone/icons/grid/pocketlesson.png',
+  Pointing: '/assets/phone/icons/grid/pointing.webp',
+  GitHub: '/assets/phone/icons/grid/github.webp',
+};
+
 const Image: React.FC<NextImageProps> = ({ style, ...props }) => {
   return (
     <NextImage
@@ -48,15 +65,23 @@ const useIsBlog = () => {
 };
 
 type HomeHeadingProps = React.HTMLAttributes<HTMLHeadingElement>;
-const HomeHeading: React.FC<HomeHeadingProps> = ({ id, style, ...props }) => {
+const HomeHeading: React.FC<HomeHeadingProps> = ({
+  id,
+  style,
+  children,
+  ...props
+}) => {
   const [inViewRef, inView] = useInView({ threshold: 0.5 });
+
+  const headingText = children?.toString() || '';
+  const iconSrc = HEADING_ICONS[headingText];
 
   const generatedId = useMemo(() => {
     if (id) {
       return id;
     }
-    return props.children?.toString().toLowerCase().replace(/ /g, '-');
-  }, [id, props.children]);
+    return headingText.toLowerCase().replace(/ /g, '-');
+  }, [id, headingText]);
 
   const { isBlog } = useIsBlog();
 
@@ -72,19 +97,40 @@ const HomeHeading: React.FC<HomeHeadingProps> = ({ id, style, ...props }) => {
   }, [inView, generatedId, isBlog]);
 
   return (
-    // eslint-disable-next-line jsx-a11y/heading-has-content
-    <h2
+    <HeadingWrapper
       ref={inViewRef}
-      {...props}
       id={generatedId}
       style={{
         ...style,
         ...(isBlog ? { paddingTop: 48 } : { paddingTop: 100 }),
-        fontSize: 28,
       }}
-    />
+    >
+      {iconSrc && (
+        <HeadingIcon src={iconSrc} alt="" width={32} height={32} quality={90} />
+      )}
+      <h2 {...props}>{children}</h2>
+    </HeadingWrapper>
   );
 };
+
+const HeadingWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  h2 {
+    font-size: 28px;
+    margin: 0;
+  }
+`;
+
+const HeadingIcon = styled(NextImage)`
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+`;
 
 const TrackedAnchor: React.FC<
   React.AnchorHTMLAttributes<HTMLAnchorElement>
