@@ -10,24 +10,28 @@ const CURRENT_ITEMS = [
     src: '/assets/about/strokecompany.jpg',
     alt: 'Stroke Company',
     title: 'Stroke',
+    href: 'https://strokecompany.io',
   },
   {
     id: 'sisyphus-labs',
     src: '/assets/about/sisyphus-labs.png',
     alt: 'Sisyphus Labs',
     title: 'Sisyphus Labs',
+    href: 'https://sisyphuslabs.ai/',
   },
   {
     id: 'inevitable',
     src: '/assets/about/inevitable-1.jpg',
     alt: 'Inevitable',
     title: 'Inevitable',
+    href: 'https://inevitable.team/',
   },
   {
     id: 'mitosis',
     src: '/assets/about/inevitable-2.png',
     alt: 'Mitosis',
     title: 'Mitosis',
+    href: 'https://mitosis.org',
   },
 ];
 
@@ -52,6 +56,9 @@ export const CurrentStatus: React.FC = () => {
             <WindowCard
               key={item.id}
               id={item.id}
+              href={item.href}
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, y: -80, scale: 0.85, rotate: -3 }}
               animate={{
                 opacity: 1,
@@ -114,7 +121,10 @@ const Container = styled.div`
   padding: 20px 0;
 `;
 
-const WindowCard = styled(m.div)`
+const WindowCard = styled(m.a)`
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
   width: 75%;
   max-width: 420px;
   border-radius: 12px;
