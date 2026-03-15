@@ -2,6 +2,12 @@ import { type GridItemProps } from '@junhoyeo/iphone';
 
 export const INSTALLED_APPS: (GridItemProps & { id: string })[] = [
   {
+    name: 'Tokscale',
+    icon: '/assets/phone/icons/grid/tokscale.png',
+    color: '#00A3FF',
+    id: 'tokscale',
+  },
+  {
     name: 'Inevitable',
     icon: '/assets/phone/icons/grid/inevitable.png',
     color: '#071417',
