@@ -175,7 +175,7 @@ const CURRENT_ITEMS = [
   {
     id: 'stroke',
     src: '/assets/about/strokecompany.jpg',
-    alt: 'Stroke Company',
+    alt: 'Strokecompany',
     title: 'Stroke',
     href: 'https://strokecompany.io',
   },
@@ -185,20 +185,6 @@ const CURRENT_ITEMS = [
     alt: 'Sisyphus Labs',
     title: 'Sisyphus Labs',
     href: 'https://sisyphuslabs.ai/',
-  },
-  {
-    id: 'inevitable',
-    src: '/assets/about/inevitable-1.jpg',
-    alt: 'Inevitable',
-    title: 'Inevitable',
-    href: 'https://inevitable.team/',
-  },
-  {
-    id: 'mitosis',
-    src: '/assets/about/inevitable-2.png',
-    alt: 'Mitosis',
-    title: 'Mitosis',
-    href: 'https://mitosis.org',
   },
 ];
 
