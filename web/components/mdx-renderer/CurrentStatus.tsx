@@ -171,23 +171,6 @@ const LiquidGlassContainer = styled.div`
     0 2px 8px rgba(0, 0, 0, 0.15);
 `;
 
-const CURRENT_ITEMS = [
-  {
-    id: 'stroke',
-    src: '/assets/about/strokecompany.jpg',
-    alt: 'Strokecompany',
-    title: 'Stroke',
-    href: 'https://strokecompany.io',
-  },
-  {
-    id: 'sisyphus-labs',
-    src: '/assets/about/sisyphus-labs.png',
-    alt: 'Sisyphus Labs',
-    title: 'Sisyphus Labs',
-    href: 'https://sisyphuslabs.ai/',
-  },
-];
-
 export const CurrentStatus: React.FC = () => {
   const [offset, setOffset] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -199,7 +182,7 @@ export const CurrentStatus: React.FC = () => {
   return (
     <LazyMotion features={domAnimation}>
       <Container ref={containerRef}>
-        {CURRENT_ITEMS.map((item, index) => {
+        {/* {CURRENT_ITEMS.map((item, index) => {
           const isEven = index % 2 === 0;
           const floatY = Math.sin((offset + index * 100) * 0.018) * 20;
           const floatX = Math.cos((offset + index * 70) * 0.015) * 12;
@@ -264,7 +247,7 @@ export const CurrentStatus: React.FC = () => {
               </WindowContent>
             </WindowCard>
           );
-        })}
+        })} */}
       </Container>
     </LazyMotion>
   );
