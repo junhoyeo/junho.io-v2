@@ -32,6 +32,7 @@
     "is-plain-obj": "^4.1.0",
     "javascript-time-ago": "^2.5.9",
     "jotai": "^2.2.2",
+    "motion-plus": "https://api.motion.dev/registry.tgz?package=motion-plus&version=2.0.2&token=22e5114e3d79c9c0029e65d39835a9cd236c98f3308cac3ec7bb91968ab55ac2",
     "next": "^15.3.4",
     "next-mdx-remote": "^5.0.0",
     "prettier": "^3.0.0",
