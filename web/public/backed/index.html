@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Backed · Junho Yeo</title>
+  <meta name="description" content="A small, personal portfolio of private investments: LP positions in project funds and early angel checks.">
+  <link rel="canonical" href="https://junho.io/backed">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..600&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet" referrerpolicy="no-referrer">
+  <link href="https://vercel.com/geist/vercel-brand.css" rel="stylesheet">
+
+  <style>
+    /* Page-owned layout only. Uses published tokens; never restyles vbg-* primitives. */
+    .vbg-custom-name {
+      font-size: var(--vbg-type-label);
+      font-weight: var(--vbg-weight-medium);
+      color: var(--vbg-text-primary);
+    }
+
+    .vbg-custom-portfolio {
+      display: grid;
+      gap: var(--vbg-space-8);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .vbg-custom-portfolio > li { min-width: 0; }
+
+    .vbg-custom-holding {
+      display: grid;
+      grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+      column-gap: var(--vbg-space-8);
+      row-gap: var(--vbg-space-2);
+      padding-top: var(--vbg-space-5);
+      border-top: 1px solid var(--vbg-border-subtle);
+    }
+    .vbg-custom-holding > * { margin: 0; min-width: 0; }
+
+    .vbg-custom-holding-facts {
+      display: grid;
+      gap: var(--vbg-space-1);
+      align-content: start;
+    }
+    .vbg-custom-holding-facts dt { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+    .vbg-custom-holding-facts dd {
+      margin: 0;
+      font-size: var(--vbg-type-compact);
+      line-height: var(--vbg-leading-compact);
+      color: var(--vbg-text-secondary);
+    }
+    .vbg-custom-holding-facts dd:first-of-type {
+      font-size: var(--vbg-type-body);
+      font-weight: var(--vbg-weight-medium);
+      color: var(--vbg-text-primary);
+    }
+    .vbg-custom-holding-facts a { color: inherit; display: inline-block; line-height: 0; }
+    .vbg-custom-logo { width: auto; display: block; color: var(--vbg-text-primary); }
+    .vbg-custom-holding-facts dd:first-of-type { margin-bottom: var(--vbg-space-2); }
+
+    .vbg-custom-holding-text {
+      display: grid;
+      gap: var(--vbg-space-3);
+    }
+    .vbg-custom-holding-text p { margin: 0; }
+    .vbg-custom-thesis {
+      font-size: var(--vbg-type-lede);
+      line-height: var(--vbg-leading-lede);
+      color: var(--vbg-text-primary);
+    }
+    .vbg-custom-note {
+      color: var(--vbg-text-secondary);
+    }
+
+    @media (max-width: 720px) {
+      .vbg-custom-holding { grid-template-columns: minmax(0, 1fr); row-gap: var(--vbg-space-3); }
+    }
+  </style>
+</head>
+
+<body class="vbg-report">
+  <div class="vbg-shell">
+    <a class="vbg-skip-link" href="#main">Skip to content</a>
+
+    <header class="vbg-header">
+      <div class="vbg-masthead">
+        <span class="vbg-identity"><span class="vbg-custom-name">Junho Yeo</span></span>
+        <div class="vbg-document-meta">
+          <span class="vbg-state">Personal portfolio</span>
+          <span class="vbg-date">Updated September 2026</span>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="vbg-opening">
+        <div class="vbg-opening-claim">
+          <h1 class="vbg-title">A personal portfolio of private investments.</h1>
+        </div>
+        <div class="vbg-opening-context vbg-reading">
+          <p class="vbg-lede">Waves keep coming: technology, capital, narrative, war. None of them can be controlled, only caught or missed. I try to stay balanced enough to catch a few, and to turn a temporary edge into something that compounds: equity, brands, distribution, trust.</p>
+          <p>I invest in private companies in two ways. For later-stage rounds, I participate as a limited partner (LP) in project funds, gaining exposure to companies approaching IPO or scaling toward it. For very early companies, I write angel checks of around $10k, usually alongside operators and founders I trust.</p>
+        </div>
+      </section>
+
+      <section class="vbg-section" aria-labelledby="portfolio-heading">
+        <h2 id="portfolio-heading" class="vbg-heading-24">Portfolio</h2>
+
+        <ol class="vbg-custom-portfolio">
+
+          <li>
+            <article class="vbg-custom-holding">
+              <dl class="vbg-custom-holding-facts">
+                <dt>Company</dt>
+                <dd><a href="https://motiftech.io" rel="noopener" title="Motif Technologies"><svg class="vbg-custom-logo" role="img" aria-label="Motif" style="height:20px" viewBox="0 0 180 36" fill="none" xmlns="http://www.w3.org/2000/svg"><mask id="mask0_161_75" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="180" height="36"><path d="M179.874 0H0V36H179.874V0Z" fill="white"/></mask><g mask="url(#mask0_161_75)"><path d="M89.3068 17.1172L81.9955 7.06006H77.2778C76.9151 7.06006 76.6211 7.35409 76.6211 7.71675V31.3332H82.2225V16.8128L89.307 25.9332L96.3916 16.8128V31.3332H101.993V7.06006H96.6144L89.3068 17.1172Z" fill="currentColor"/><path d="M131.41 12.1867H137.557V31.3332H143.311V12.1867H149.363V7.06006H132.066C131.704 7.06006 131.41 7.35409 131.41 7.71675V12.1867Z" fill="currentColor"/><path d="M152.641 31.3332H158.396V7.06006H153.298C152.935 7.06006 152.641 7.35409 152.641 7.71675V31.3332Z" fill="currentColor"/><path d="M179.874 12.1867V7.06006H163.634C163.271 7.06006 162.977 7.35409 162.977 7.71675V31.3332H168.732V22.3564H178.519V17.2297H168.732V12.1867H179.874Z" fill="currentColor"/><path d="M118.05 6.35425C110.968 6.35425 105.207 12.1154 105.207 19.197C105.207 26.2785 110.968 32.0397 118.05 32.0397C125.132 32.0397 130.893 26.2785 130.893 19.197C130.893 12.1154 125.131 6.35425 118.05 6.35425ZM125.391 19.197C125.391 23.2452 122.098 26.5389 118.05 26.5389C114.001 26.5389 110.708 23.2454 110.708 19.197C110.708 15.1485 114.001 11.8551 118.05 11.8551C122.098 11.8551 125.391 15.1485 125.391 19.197Z" fill="currentColor"/><path d="M3.30239 19.3401H16.122V36.0001H0V22.6425C0 20.8199 1.47974 19.3401 3.30239 19.3401Z" fill="currentColor"/><path d="M2.23828 0H18.0529C19.8137 0 21.4622 0.865146 22.4622 2.31457L45.7095 36H27.3716C27.1909 36 27.0215 35.9112 26.9188 35.7624L2.23828 0Z" fill="currentColor"/><path d="M47.6904 0H59.3051V36H43.9922V3.69816C43.9922 1.65708 45.6493 0 47.6904 0Z" fill="currentColor"/></g></svg></a></dd>
+                <dt>Stage</dt>
+                <dd>Series B</dd>
+                <dt>How</dt>
+                <dd>LP via project fund</dd>
+                <dt>Where</dt>
+                <dd>Seoul</dd>
+              </dl>
+              <div class="vbg-custom-holding-text">
+                <p class="vbg-custom-thesis">Motif 3 is the highest-scoring open-weight model developed outside China on the Artificial Analysis Intelligence Index, with a score of 47.</p>
+                <p class="vbg-custom-note">Builds foundation models from its own architecture rather than foreign open-source designs, and is one of the teams selected for Korea's sovereign foundation model program.</p>
+              </div>
+            </article>
+          </li>
+
+          <li>
+            <article class="vbg-custom-holding">
+              <dl class="vbg-custom-holding-facts">
+                <dt>Company</dt>
+                <dd><a href="https://www.cravercorp.com" rel="noopener" title="Craver Corporation"><svg class="vbg-custom-logo" role="img" aria-label="Craver" style="height:19px" viewBox="0 0 174 34" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_161_65)"><path d="M126.171 33.941C130.401 33.9838 134.5 32.4783 137.697 29.708L137.644 29.648L131.644 24.982C130.363 25.8195 128.874 26.2813 127.344 26.315C124.864 26.315 123.558 24.928 123.484 22.835H140.936C141.496 21.2792 141.815 19.6471 141.883 17.995C142.07 12.529 138.99 6.71601 130.224 6.71601C125.93 6.64665 121.781 8.26276 118.665 11.2177C115.549 14.1726 113.716 18.2309 113.558 22.522C113.285 29.332 118.092 33.941 126.171 33.941ZM129.664 14.182C130.055 14.1399 130.451 14.1793 130.826 14.2978C131.201 14.4164 131.548 14.6115 131.844 14.8707C132.14 15.13 132.379 15.4479 132.546 15.8042C132.713 16.1605 132.804 16.5476 132.814 16.941C132.803 17.3311 132.726 17.7165 132.587 18.081H124.341C124.734 16.972 125.452 16.0071 126.402 15.3123C127.351 14.6175 128.488 14.225 129.664 14.186V14.182Z" fill="currentColor"/><path d="M59.488 6.9789L54.823 18.4109H53.697C48.504 18.4109 45.697 21.1169 44.218 26.8169L42.465 33.2769H31.418L38.524 7.3649H49.57L48.157 12.5849C49.455 10.8074 51.1629 9.36959 53.1356 8.39359C55.1083 7.41759 57.2875 6.93228 59.488 6.9789Z" fill="currentColor"/><path d="M0 19.665C0 10.786 7.006 0 21.392 0C28.592 0 33.685 3.72 35.071 9.486L25.112 13.719C24.8585 12.5499 24.1963 11.5095 23.2444 10.785C22.2925 10.0604 21.1134 9.69908 19.919 9.766C14.913 9.766 11.673 14.226 11.673 18.692C11.673 22.272 13.96 24.272 16.913 24.272C18.1819 24.2458 19.4274 23.9257 20.5517 23.337C21.6761 22.7483 22.6486 21.9069 23.393 20.879L31.113 26.825C27.78 31.105 22.92 33.945 15.821 33.945C6.48 33.944 0 28.412 0 19.665Z" fill="currentColor"/><path d="M98.0399 20.399L97.3109 7.37305H85.9609L89.5339 33.273H99.8669L117.626 7.37305H105.933L98.0399 20.399Z" fill="currentColor"/><path d="M71.4974 6.70691C68.0016 6.68812 64.5167 7.09989 61.1214 7.93291L62.1484 15.4589C64.4664 14.8066 66.8547 14.4372 69.2614 14.3589C72.0344 14.3589 73.3474 15.2719 73.3474 16.9119V17.3319C73.3078 17.6285 73.25 17.9224 73.1744 18.2119L73.0814 18.4989H73.0214C71.0721 17.9303 69.052 17.6408 67.0214 17.6389C59.5214 17.6389 55.1484 21.2519 55.1484 26.7919C55.1484 31.3179 58.1684 33.9579 62.2484 33.9579C65.3084 33.9579 67.3084 32.7049 69.6944 30.7319V30.7849L69.0274 33.2979H79.9934L83.8734 18.9459C84.1841 17.7504 84.3453 16.5211 84.3534 15.2859C84.3824 9.99991 80.2964 6.70691 71.4974 6.70691ZM71.4974 24.2459C71.1925 25.1552 70.6222 25.9523 69.8601 26.5344C69.0979 27.1165 68.1789 27.457 67.2214 27.5119C65.1144 27.5989 64.1154 26.4449 64.1354 25.0319C64.1354 23.3789 65.7954 22.2059 68.1354 22.0459C69.4333 21.93 70.7414 22.052 71.9954 22.4059C71.9954 22.4059 71.7154 23.4529 71.4884 24.2459H71.4974Z" fill="currentColor"/><path d="M170.794 33.2779L173.061 25.0249H164.244L161.984 33.2779H170.794Z" fill="currentColor"/><path d="M169.156 6.97909L164.49 18.4111H163.337C158.144 18.4111 155.337 21.1171 153.858 26.8171L152.105 33.2771H141.078L148.191 7.36509H159.23L157.817 12.5851C159.117 10.8077 160.827 9.37012 162.8 8.39421C164.774 7.41829 166.955 6.93286 169.156 6.97909Z" fill="currentColor"/></g><defs><clipPath id="clip0_161_65"><rect width="173.089" height="33.958" fill="white"/></clipPath></defs></svg></a></dd>
+                <dt>Stage</dt>
+                <dd>Pre-IPO, Tokyo Stock Exchange</dd>
+                <dt>How</dt>
+                <dd>LP via project fund</dd>
+                <dt>Where</dt>
+                <dd>Seoul</dd>
+              </dl>
+              <div class="vbg-custom-holding-text">
+                <p class="vbg-custom-thesis">A consumer brand company with its own manufacturing, marketing, and distribution under one roof, growing at 111% a year with over 90% of sales outside Korea.</p>
+                <p class="vbg-custom-note">Nurtures six consumer brands including SKIN1004, exporting to over 170 countries through more than 2,980 B2B buyers. Brand revenue passed ₩300B in 2024 and reached ₩359B by August 2025.</p>
+              </div>
+            </article>
+          </li>
+
+          <li>
+            <article class="vbg-custom-holding">
+              <dl class="vbg-custom-holding-facts">
+                <dt>Company</dt>
+                <dd><a href="https://nextgen.kr" rel="noopener" title="Nextgen"><svg class="vbg-custom-logo" role="img" aria-label="Nextgen" style="height:20px" viewBox="0 0 140 35" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_161_88)"><path fill-rule="evenodd" clip-rule="evenodd" d="M84.8552 4.79702C86.0236 4.80328 87.0036 5.00664 87.7955 5.40712C88.6001 5.80471 89.2474 6.30402 89.7376 6.90504C90.2369 7.4968 90.6206 8.07933 90.8888 8.65261H91.1107V5.07425H96.978V26.5861C96.978 28.3983 96.5341 29.9148 95.6465 31.1352C94.7587 32.3558 93.5288 33.2712 91.9568 33.8814C90.394 34.5009 88.5954 34.8107 86.5611 34.8107C84.6469 34.8107 83.0056 34.5472 81.6369 34.0202C80.2776 33.5024 79.1957 32.795 78.3912 31.898C77.5867 31.0012 77.0642 29.9934 76.8238 28.8745L82.2889 28.1395C82.4553 28.5648 82.7189 28.9624 83.0795 29.3323C83.4402 29.7021 83.9164 29.998 84.5082 30.2199C85.1093 30.4511 85.8398 30.5666 86.6998 30.5666C87.9851 30.5666 89.044 30.2522 89.8762 29.6235C90.7177 29.004 91.1384 27.9637 91.1384 26.5028V22.6055H90.8888C90.6299 23.1972 90.2414 23.7566 89.7236 24.2838C89.2058 24.8107 88.54 25.2407 87.7263 25.5736C86.9125 25.9065 85.9415 26.0729 84.8133 26.0729C83.2136 26.0729 81.7572 25.703 80.444 24.9632C79.1402 24.2144 78.0998 23.0724 77.3232 21.5376C76.5555 19.9933 76.1719 18.0424 76.1719 15.6845C76.1719 13.2712 76.5649 11.2555 77.3508 9.63735C78.1369 8.01924 79.1818 6.80797 80.4856 6.00353C81.7987 5.19909 83.2368 4.79688 84.7995 4.79688L84.8552 4.79702ZM86.686 9.49866C85.7149 9.49866 84.8966 9.76219 84.2308 10.2892C83.565 10.807 83.061 11.5283 82.7188 12.4529C82.3767 13.3775 82.2056 14.4455 82.2056 15.6567C82.2056 16.8866 82.3767 17.9498 82.7188 18.8468C83.0703 19.7345 83.5743 20.4234 84.2308 20.9134C84.8966 21.3942 85.7149 21.6346 86.686 21.6346C87.6384 21.6346 88.443 21.3988 89.0994 20.9272C89.7652 20.4465 90.2738 19.7622 90.6252 18.8746C90.9859 17.9776 91.1662 16.905 91.1662 15.6567C91.1662 14.4085 90.9904 13.3267 90.639 12.4113C90.2877 11.4866 89.7792 10.77 89.1132 10.2615C88.4475 9.75294 87.6384 9.49866 86.686 9.49866Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M31.5368 4.82812C32.9424 4.82812 34.2508 5.05467 35.4622 5.50774C36.6829 5.95157 37.7463 6.62196 38.6525 7.51886C39.5679 8.41576 40.28 9.5438 40.7886 10.903C41.2972 12.253 41.5516 13.8341 41.5516 15.6465V17.2692H27.0427V17.283C27.0427 18.3371 27.2369 19.2479 27.6252 20.0154C28.0228 20.7828 28.5823 21.3746 29.3036 21.7907C30.0248 22.2068 30.8802 22.4149 31.8697 22.4149C32.5263 22.4149 33.1273 22.3223 33.6729 22.1374C34.2185 21.9525 34.6854 21.6752 35.0739 21.3053C35.4622 20.9353 35.7582 20.4823 35.9616 19.946L41.4267 20.3066C41.1493 21.6196 40.5805 22.7662 39.7205 23.7463C38.8698 24.7172 37.7695 25.4753 36.4193 26.0209C35.0786 26.5572 33.5296 26.8254 31.7727 26.8254C29.5811 26.8254 27.6946 26.3815 26.1134 25.4938C24.5413 24.597 23.33 23.3302 22.4791 21.6936C21.6284 20.0478 21.2031 18.1014 21.2031 15.8545C21.2031 13.6631 21.6284 11.7398 22.4791 10.0847C23.33 8.42962 24.5274 7.13976 26.0716 6.21512C27.6252 5.29047 29.4469 4.82812 31.5368 4.82812ZM31.6339 9.2387C30.7369 9.2387 29.9416 9.44673 29.2481 9.86281C28.5638 10.2697 28.0275 10.8198 27.639 11.5133C27.2808 12.1445 27.0838 12.8426 27.0482 13.6076H35.9893C35.9893 12.7569 35.8044 12.0034 35.4344 11.3469C35.0646 10.6904 34.5514 10.1772 33.8948 9.80732C33.2475 9.42822 32.4939 9.2387 31.6339 9.2387Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M108.81 4.79688C110.216 4.79688 111.524 5.02342 112.736 5.47649C113.956 5.92032 115.02 6.59067 115.926 7.48757C116.841 8.38447 117.554 9.51255 118.062 10.8718C118.571 12.2218 118.825 13.8029 118.825 15.6152V17.2379H104.316V17.2517C104.316 18.3058 104.51 19.2166 104.899 19.9841C105.296 20.7516 105.856 21.3433 106.577 21.7594C107.298 22.1755 108.154 22.3836 109.143 22.3836C109.8 22.3836 110.401 22.2911 110.946 22.1061C111.492 21.9212 111.959 21.6439 112.347 21.2739C112.736 20.9041 113.032 20.451 113.235 19.9147L118.7 20.2754C118.423 21.5883 117.854 22.735 116.994 23.715C116.143 24.6859 115.043 25.4441 113.693 25.9897C112.352 26.526 110.803 26.7941 109.046 26.7941C106.855 26.7941 104.968 26.3502 103.387 25.4626C101.815 24.5657 100.603 23.2989 99.7527 21.6624C98.902 20.0164 98.4766 18.0701 98.4766 15.8233C98.4766 13.6318 98.902 11.7086 99.7527 10.0534C100.603 8.39835 101.801 7.10846 103.345 6.18383C104.899 5.25918 106.721 4.79688 108.81 4.79688ZM108.907 9.20741C108.01 9.20741 107.215 9.41545 106.522 9.83154C105.837 10.2384 105.301 10.7885 104.913 11.482C104.554 12.1132 104.357 12.8113 104.322 13.5763H113.263C113.263 12.7257 113.078 11.9721 112.708 11.3156C112.338 10.6591 111.825 10.1459 111.168 9.77606C110.521 9.39697 109.767 9.20741 108.907 9.20741Z" fill="currentColor"/><path d="M70.4625 0V5.10403H74.4711V9.54231H70.4625V19.8612C70.4625 20.4068 70.5457 20.8321 70.7121 21.1374C70.8786 21.4332 71.1098 21.6412 71.4057 21.7614C71.7108 21.8817 72.0622 21.9418 72.4598 21.9418C72.7373 21.9418 73.0147 21.9187 73.292 21.8724C73.5695 21.817 73.7822 21.7754 73.9302 21.7476L74.8594 26.1443C74.5637 26.2366 74.1474 26.343 73.6111 26.4632C73.0748 26.5927 72.4229 26.6712 71.6554 26.699C70.2313 26.7545 68.983 26.565 67.9102 26.1304C66.8468 25.6958 66.0193 25.0207 65.4274 24.1054C64.8355 23.19 64.5442 22.0342 64.5535 20.638V9.54231H61.6406V5.10403H64.5535V0H70.4625Z" fill="currentColor"/><path d="M12.2895 4.82812C13.7691 4.82812 15.059 5.15175 16.1594 5.79899C17.2599 6.44624 18.1153 7.37091 18.7256 8.57294C19.336 9.76573 19.6411 11.1897 19.6411 12.8448V26.4092H13.7321V13.8989C13.7413 12.5951 13.4084 11.578 12.7334 10.8476C12.0583 10.1079 11.129 9.73798 9.94535 9.73798C9.15009 9.73798 8.44732 9.90904 7.837 10.2512C7.23595 10.5933 6.76433 11.0926 6.42219 11.7491C6.0893 12.3963 5.9182 13.1777 5.90895 14.0931V26.4092H0V5.10554H5.63153V8.8642H5.8812C6.35282 7.62517 7.14346 6.64505 8.25312 5.92383C9.36279 5.19336 10.7083 4.82812 12.2895 4.82812Z" fill="currentColor"/><path d="M51.0179 12.5495L55.0266 5.10156H61.0882L54.9156 15.7534L61.2546 26.4053H55.2208L51.0179 19.0405L46.8844 26.4053H40.7812L47.1063 15.7534L41.0032 5.10156H47.1063L51.0179 12.5495Z" fill="currentColor"/><path d="M132.695 4.79709C134.145 4.80705 135.412 5.1306 136.495 5.76774C137.596 6.41498 138.451 7.33962 139.062 8.54166C139.672 9.73445 139.977 11.1584 139.977 12.8135V26.378H134.068V13.8676C134.077 12.5639 133.744 11.5467 133.069 10.8163C132.394 10.0766 131.465 9.7067 130.281 9.7067C129.486 9.7067 128.783 9.87779 128.173 10.2199C127.572 10.562 127.1 11.0613 126.758 11.7178C126.425 12.3651 126.254 13.1464 126.245 14.0618V26.378H120.336V5.07425H125.967V8.83294H126.217C126.689 7.59392 127.479 6.6138 128.589 5.89258C129.699 5.16211 131.044 4.79688 132.625 4.79688L132.695 4.79709Z" fill="currentColor"/></g><defs><clipPath id="clip0_161_88"><rect width="140" height="35" fill="white"/></clipPath></defs></svg></a></dd>
+                <dt>Stage</dt>
+                <dd>Pre-seed</dd>
+                <dt>How</dt>
+                <dd>Angel, alongside founders from Gravity Labs and CarDoc</dd>
+                <dt>Where</dt>
+                <dd>Seoul</dd>
+              </dl>
+              <div class="vbg-custom-holding-text">
+                <p class="vbg-custom-thesis">As AI raises individual output, more creators will run themselves as one-person companies. Nextgen is building the infrastructure for that shift in Korea, starting with the creators themselves.</p>
+                <p class="vbg-custom-note">A creator monetization platform: link-in-bio, ebook and VOD course sales, and a creator academy and community. Founded by an ex-Primer and EO Studio operator.</p>
+              </div>
+            </article>
+          </li>
+
+        </ol>
+      </section>
+
+      <section class="vbg-section vbg-reading" aria-labelledby="contact-heading">
+        <h2 id="contact-heading" class="vbg-heading-24">Founders and GPs</h2>
+        <p>I'm open to conversations. Write to <a href="mailto:i@junho.io">i@junho.io</a>.</p>
+      </section>
+    </main>
+
+    <footer class="vbg-footer">
+      <span class="vbg-custom-name">Junho Yeo</span>
+      <span class="vbg-meta">This site documents personal investments. Nothing here is investment advice or a solicitation.</span>
+    </footer>
+  </div>
+</body>
+</html>

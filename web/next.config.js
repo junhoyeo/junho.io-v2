@@ -21,6 +21,14 @@ module.exports = withBundleAnalyzer({
     );
     return config;
   },
+  async rewrites() {
+    return [
+      {
+        source: '/backed',
+        destination: '/backed/index.html',
+      },
+    ];
+  },
   // redirect /qr to https://www.youtube.com/watch?v=dQw4w9WgXcQ
   async redirects() {
     return [
