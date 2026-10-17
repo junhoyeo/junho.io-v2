@@ -31,6 +31,17 @@ export const NavigationBar: React.FC = () => {
             Blog
           </NavigationLink>
 
+          <NavigationLink
+            href="/backed"
+            style={{
+              color: router.asPath.includes('/backed')
+                ? colors.accents_8
+                : colors.accents_4,
+            }}
+          >
+            Backed
+          </NavigationLink>
+
           {/*
         <PostDrawerButton
           auto
