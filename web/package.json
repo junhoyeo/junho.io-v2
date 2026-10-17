@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "prebuild": "ts-node -r tsconfig-paths/register ./scripts/generate-posts.ts",
-    "build": "next build",
+    "build": "yarn prebuild && next build",
     "build:analyze": "ANALYZE=true yarn build",
     "predev": "yarn prebuild",
     "dev": "next dev",
