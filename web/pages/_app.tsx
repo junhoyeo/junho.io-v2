@@ -5,6 +5,7 @@ import '@/styles/reset.css';
 import '@/styles/fonts.css';
 import '@/styles/global.css';
 import '@/styles/linkflags.css';
+import { GlobalCursor } from '@/components/GlobalCursor';
 import { NavigationBar } from '@/components/NavigationBar';
 import { colors } from '@/styles/colors';
 
@@ -56,6 +57,7 @@ export default function App({ Component, pageProps }: AppProps) {
         `}
       />
       <NavigationBar />
+      <GlobalCursor />
 
       <Component {...pageProps} />
     </>
